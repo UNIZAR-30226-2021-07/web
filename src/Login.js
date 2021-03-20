@@ -18,7 +18,7 @@ function Login({ onLogin }) {
               <Form.Control type="password" />
             </Form.Group>
             <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
+              <Form.Check type="checkbox" label="Recuérdame" />
             </Form.Group>
             <Button variant="primary" type="submit" onClick={onLogin}>Iniciar sesión</Button>
           </Form>
