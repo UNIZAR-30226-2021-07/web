@@ -1,23 +1,17 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
+import Menu from './Menu';
+import Login from './Login';
+
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
+  const [logged, setLogged] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {logged ? <Menu /> : <Login onLogin={() => setLogged(true)} />}
     </div>
   );
 }
