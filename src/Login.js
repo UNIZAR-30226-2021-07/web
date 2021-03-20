@@ -30,7 +30,7 @@ function Login({ onLogin }) {
           <Button>CREAR UNA CUENTA</Button>
         </Row>
       </Container>
-    </Container >
+    </Container>
   );
 }
 
