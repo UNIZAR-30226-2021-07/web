@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Match() {
   return (
@@ -7,7 +8,9 @@ function Match() {
       <Container>
         <Row className="align-items-center">¿Nuevo en Gatovid?</Row>
         <Row className="align-items-center">
-          <Button>Página de ejemplo uwu</Button>
+          <Link to="/">
+            <Button>Página de ejemplo uwu</Button>
+          </Link>
         </Row>
       </Container>
     </Container >

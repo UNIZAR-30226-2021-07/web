@@ -1,4 +1,5 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
 
 import Menu from './Menu';
 import Match from './Match';
@@ -8,6 +9,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
+  const [logged, setLogged] = useState(false);
+
   return (
     <div className="App">
       <Switch>
@@ -19,8 +22,10 @@ function App() {
           <Match />
         </Route>
 
+        // La página de login solo saldrá la primera vez. En caso contrario, se
+        // redirigirá al menú principal.
         <Route path="/">
-          <Login />
+          {logged ? <Redirect to="/menu" /> : <Login onLogin={() => setLogged(true)} />}
         </Route>
       </Switch>
     </div>
