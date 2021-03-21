@@ -1,19 +1,31 @@
-import React from 'react'
-import {Modal, Button} from 'react-bootstrap'
+import React from "react";
+import { PopupboxManager } from "react-popupbox";
 
-function PopUp(props) {
-    return (
-        <Modal.Dialog>
-            <Modal.Header closeButton>
-                <Modal.Title>{props.title}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>{props.body}</Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary">Atras</Button>
-                <Button variant="outline-secondary">Continuar</Button>
-            </Modal.Footer>
-        </Modal.Dialog>
-    );
+export default function openPopupbox(title) {
+  const content = (
+    <dev>
+      <h1>{title}</h1>
+      <button
+        type="button"
+        class="btn btn-danger"
+        onClick={PopupboxManager.close()}
+      >
+        Cancelar
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        onClick={PopupboxManager.close()}
+      >
+        Aceptar
+      </button>
+    </dev>
+  );
+  PopupboxManager.open({
+    content,
+    config: {
+      fadeIn: true,
+      fadeInSpeed: 500,
+    },
+  });
 }
-
-export default PopUp;

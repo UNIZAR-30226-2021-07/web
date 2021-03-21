@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { PopupboxManager, PopupboxContainer } from "react-popupbox";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <PopupboxContainer />
     <App />
   </React.StrictMode>,
   document.getElementById('root')
