@@ -14,22 +14,28 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/menu">
-          <Menu />
+        <Route path="/login">
+          <Login onLogin={() => setLogged(true)} />
         </Route>
 
-        <Route path="/match">
-          <Match />
-        </Route>
+        <ProtectedRoute path="/home" loggedIn={logged} component={Menu} />
 
-        // La página de login solo saldrá la primera vez. En caso contrario, se
-        // redirigirá al menú principal.
+        <ProtectedRoute path="/match" loggedIn={logged} component={Match} />
+
         <Route path="/">
-          {logged ? <Redirect to="/menu" /> : <Login onLogin={() => setLogged(true)} />}
+          {logged ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Route>
       </Switch>
     </div>
   );
 }
+
+const ProtectedRoute = ({ component: Component, loggedIn, ...rest }) => {
+  return (
+    <Route {...rest} render={
+      props => loggedIn ? <Component {...rest} {...props} /> : <Redirect to='/login' />
+    } />
+  )
+};
 
 export default App;
