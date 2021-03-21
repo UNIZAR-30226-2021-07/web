@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Menu from './Menu';
 import Login from './Login';
 
-import openPopupbox from './PopUp';
+import { openPopup } from './PopUp';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       {logged ? <Menu /> : <Login onLogin={() => setLogged(true)} />}
-      <button onClick={() => openPopupbox("¡Atención!")}> PopUp</button>
+      <button onClick={() => openPopup("¡Atención!")}> PopUp</button>
     </div>
   );
 }
