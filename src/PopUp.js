@@ -10,6 +10,7 @@ export default function Popup({ title, children }) {
           <div>
             <h2 className="popup-title">{title}</h2>
           </div>
+          {/* Botón de cierre si se necesita (no está en el diseño) */}
           <div className="d-flex">
             <Button
               className="close"
@@ -19,6 +20,7 @@ export default function Popup({ title, children }) {
               <span aria-hidden="true">&times;</span>
             </Button>
           </div>
+          {/* Fin botón de cierre */}
         </div>
         <Col>
           {children}
