@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { PopupboxManager, PopupboxContainer } from "react-popupbox";
+import { PopupboxContainer } from "react-popupbox";
 
 import './index.css';
 import "react-popupbox/dist/react-popupbox.css"
