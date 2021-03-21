@@ -22,7 +22,7 @@ function Menu() {
       </Row>
 
       <Row>
-        <Col md={4}><Link to="/match"><Button>Crear partida privada</Button></Link></Col>
+        <Col md={4}><Button>Crear partida privada</Button></Col>
         <Col md={4}><Button>Unirse partida privada</Button></Col>
         <Col md={4}><Button>Unirse partida pública</Button></Col>
       </Row>
