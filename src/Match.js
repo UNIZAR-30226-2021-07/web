@@ -6,10 +6,9 @@ function Match() {
   return (
     <Container className="app-container">
       <Container>
-        <Row className="align-items-center">¿Nuevo en Gatovid?</Row>
         <Row className="align-items-center">
           <Link to="/">
-            <Button>Página de ejemplo uwu</Button>
+            <Button>Salir de la partida</Button>
           </Link>
         </Row>
       </Container>
