@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 import logo from "./logo.svg";
 
