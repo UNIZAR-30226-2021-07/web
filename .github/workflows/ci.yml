@@ -53,10 +53,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm install --save-dev --save-exact prettier
+        run: npm install
 
-      - name: Run Prettier
-        run: npx prettier --write .
+      - name: Run Formatter
+        run: npm run format
 
   lint:
     runs-on: ubuntu-20.04
@@ -74,9 +74,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: |
-          npm install eslint --save-dev
-          npm install eslint-plugin-react
+        run: npm install
 
-      - name: Run ESLint
-        run: npx eslint src
+      - name: Run Linter
+        run: npm run lint
