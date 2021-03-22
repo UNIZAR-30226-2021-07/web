@@ -1,7 +1,12 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Login from './Login';
 
 test('renders submit button', () => {
-    render(<Login />);
+    render(
+        <Router>
+            <Login />
+        </Router>
+    );
     expect(screen.getByText('Iniciar Sesión')).toBeInTheDocument();
 });
