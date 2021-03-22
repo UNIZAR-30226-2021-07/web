@@ -4,7 +4,6 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Menu from "./Menu";
 import Match from "./Match";
 import Login from "./Login";
-import { openPopup } from "./PopUp";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";

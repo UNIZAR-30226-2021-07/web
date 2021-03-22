@@ -28,7 +28,7 @@ export default function Popup({ title, children }) {
       </Row>
     </Container>
   );
-};
+}
 
 // For test purposes only
 export function openPopup(title) {
