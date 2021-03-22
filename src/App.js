@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import React, { useState } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 
-import Menu from './Menu';
-import Match from './Match';
-import Login from './Login';
+import Menu from "./Menu";
+import Match from "./Match";
+import Login from "./Login";
 
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [logged, setLogged] = useState(false);
@@ -32,10 +32,13 @@ function App() {
 
 const ProtectedRoute = ({ component: Component, loggedIn, ...rest }) => {
   return (
-    <Route {...rest} render={
-      props => loggedIn ? <Component {...rest} {...props} /> : <Redirect to='/login' />
-    } />
-  )
+    <Route
+      {...rest}
+      render={(props) =>
+        loggedIn ? <Component {...rest} {...props} /> : <Redirect to="/login" />
+      }
+    />
+  );
 };
 
 export default App;
