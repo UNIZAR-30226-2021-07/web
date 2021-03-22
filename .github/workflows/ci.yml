@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     strategy:
       matrix:
@@ -38,7 +38,7 @@ jobs:
         run: npm test
 
   format:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     strategy:
       matrix:
@@ -59,7 +59,7 @@ jobs:
         run: npx prettier --write .
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     strategy:
       matrix:
@@ -75,8 +75,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-            npm install eslint --save-dev
-            npm install eslint-plugin-react
+          npm install eslint --save-dev
+          npm install eslint-plugin-react
 
       - name: Run ESLint
         run: npx eslint src
