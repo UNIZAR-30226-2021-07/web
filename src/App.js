@@ -26,7 +26,7 @@ function App() {
           {logged ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Route>
       </Switch>
-    </div >
+    </div>
   );
 }
 

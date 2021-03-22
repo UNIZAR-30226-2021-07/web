@@ -22,9 +22,7 @@ export default function Popup({ title, children }) {
           </div>
           {/* Fin botón de cierre */}
         </div>
-        <Col>
-          {children}
-        </Col>
+        <Col>{children}</Col>
       </Row>
     </Container>
   );
@@ -32,13 +30,12 @@ export default function Popup({ title, children }) {
 
 // For test purposes only
 export function openPopup(title) {
-  const content = <Popup
-    title={title} />
+  const content = <Popup title={title} />;
   PopupboxManager.open({
     content,
     config: {
       fadeIn: true,
-      fadeInSpeed: 400
-    }
-  })
+      fadeInSpeed: 400,
+    },
+  });
 }

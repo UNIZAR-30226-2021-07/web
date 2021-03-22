@@ -5,7 +5,7 @@ import { PopupboxContainer } from "react-popupbox";
 import { HashRouter as Router } from "react-router-dom";
 
 import "./index.css";
-import "react-popupbox/dist/react-popupbox.css"
+import "react-popupbox/dist/react-popupbox.css";
 
 import reportWebVitals from "./reportWebVitals";
 
