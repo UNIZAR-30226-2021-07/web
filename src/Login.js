@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Form, Button, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Login({ onLogin }) {
   return (
@@ -20,7 +21,9 @@ function Login({ onLogin }) {
             <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Recuérdame" />
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={onLogin}>Iniciar sesión</Button>
+            <Link to="/menu">
+              <Button onClick={onLogin} variant="primary" type="submit">Iniciar sesión</Button>
+            </Link>
           </Form>
         </Card.Body>
       </Card>
