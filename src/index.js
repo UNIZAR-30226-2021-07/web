@@ -1,19 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import process from "process";
+import ReactDOM from "react-dom";
 import { PopupboxContainer } from "react-popupbox";
+import { HashRouter as Router } from "react-router-dom";
 
-import './index.css';
+import "./index.css";
 import "react-popupbox/dist/react-popupbox.css"
 
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from "./reportWebVitals";
+
+import App from "./App";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router basename={process.env.PUBLIC_URL}>
     <PopupboxContainer />
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Router>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

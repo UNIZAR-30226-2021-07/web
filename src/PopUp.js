@@ -1,6 +1,6 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 export default function Popup({ title, children }) {
   return (
