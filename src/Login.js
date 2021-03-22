@@ -1,6 +1,6 @@
-import React from 'react';
-import { Card, Form, Button, Container, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Card, Form, Button, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Login({ onLogin }) {
   return (
@@ -22,7 +22,9 @@ function Login({ onLogin }) {
               <Form.Check type="checkbox" label="Recuérdame" />
             </Form.Group>
             <Link to="/menu">
-              <Button onClick={onLogin} variant="primary" type="submit">Iniciar sesión</Button>
+              <Button onClick={onLogin} variant="primary" type="submit">
+                Iniciar sesión
+              </Button>
             </Link>
           </Form>
         </Card.Body>

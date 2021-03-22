@@ -1,9 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { HashRouter as Router } from 'react-router-dom';
+import React from "react";
+import process from "process";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { HashRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
   <Router basename={process.env.PUBLIC_URL}>

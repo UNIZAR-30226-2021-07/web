@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button, Container, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Button, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Match() {
   return (
@@ -12,7 +12,7 @@ function Match() {
           </Link>
         </Row>
       </Container>
-    </Container >
+    </Container>
   );
 }
 

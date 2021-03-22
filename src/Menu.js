@@ -1,7 +1,7 @@
-import React from 'react';
-import { Container, Row, Col, Button, Image } from 'react-bootstrap';
+import React from "react";
+import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
-import logo from './logo.svg';
+import logo from "./logo.svg";
 
 function Menu() {
   return (
@@ -21,9 +21,15 @@ function Menu() {
       </Row>
 
       <Row>
-        <Col md={4}><Button>Crear partida privada</Button></Col>
-        <Col md={4}><Button>Unirse partida privada</Button></Col>
-        <Col md={4}><Button>Unirse partida pública</Button></Col>
+        <Col md={4}>
+          <Button>Crear partida privada</Button>
+        </Col>
+        <Col md={4}>
+          <Button>Unirse partida privada</Button>
+        </Col>
+        <Col md={4}>
+          <Button>Unirse partida pública</Button>
+        </Col>
       </Row>
     </Container>
   );
