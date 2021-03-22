@@ -1,19 +1,41 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { PopupboxManager } from "react-popupbox";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
-function PopUp(props) {
+export default function Popup({ title, children }) {
   return (
-    <Modal.Dialog>
-      <Modal.Header closeButton>
-        <Modal.Title>{props.title}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>{props.body}</Modal.Body>
-      <Modal.Footer>
-        <Button variant="primary">Atras</Button>
-        <Button variant="outline-secondary">Continuar</Button>
-      </Modal.Footer>
-    </Modal.Dialog>
+    <Container>
+      <Row>
+        <div className="d-flex justify-content-between col-12">
+          <div>
+            <h2 className="popup-title">{title}</h2>
+          </div>
+          {/* Botón de cierre si se necesita (no está en el diseño) */}
+          <div className="d-flex">
+            <Button
+              className="close"
+              aria-label="Close"
+              onClick={PopupboxManager.close}
+            >
+              <span aria-hidden="true">&times;</span>
+            </Button>
+          </div>
+          {/* Fin botón de cierre */}
+        </div>
+        <Col>{children}</Col>
+      </Row>
+    </Container>
   );
 }
 
-export default PopUp;
+// For test purposes only
+export function openPopup(title) {
+  const content = <Popup title={title} />;
+  PopupboxManager.open({
+    content,
+    config: {
+      fadeIn: true,
+      fadeInSpeed: 400,
+    },
+  });
+}
