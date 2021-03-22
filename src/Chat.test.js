@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import Chat from './Chat';
-import Message from './Message'
 
 test('renders title', () => {
     render(<Chat />);
@@ -9,14 +8,21 @@ test('renders title', () => {
 });
 
 test('renders messages', () => {
-    const messages = [     
-        <div>     
-          <Message userid="Nombre 1"text="Mensaje 1"/>
-          <Message userid="Nombre 2" text="Mensaje 2"/>
-          <Message userid="Nombre 3" text="Mensaje 3"/>
-        </div>      
-    ];
-    render( <Chat messages={messages}/>);
+    const messages = [
+        {
+            userid: "Nombre 1",
+            text: "Mensaje 1",
+        },
+        {
+            userid: "Nombre 2",
+            text: "Mensaje 2",
+        },
+        {
+            userid: "Nombre 3",
+            text: "Mensaje 3",
+        }
+    ]
+    render(<Chat messages={messages} />);
     var usernameElement = screen.getByText("Nombre 1: Mensaje 1");
     expect(usernameElement).toBeInTheDocument();
     usernameElement = screen.getByText("Nombre 2: Mensaje 2");
