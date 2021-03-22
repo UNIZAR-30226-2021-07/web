@@ -7,7 +7,7 @@ Para dar formato automáticamente al código se usa
 
 ```sh
 $ npm install --save-dev --save-exact prettier
-$ npx prettier --write .
+$ npm run format
 ```
 
 Y para recibir recomendaciones automáticas del código, con
@@ -16,7 +16,7 @@ Y para recibir recomendaciones automáticas del código, con
 ```sh
 $ npm install eslint --save-dev
 $ npm install eslint-plugin-react
-$ npx eslint src
+$ npm run lint
 ```
 
 ## Available Scripts
