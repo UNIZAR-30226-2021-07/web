@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Chat from './Chat';
-import Message from '.Message'
+import Message from './Message'
 
 test('renders title', () => {
     render(<Chat />);
