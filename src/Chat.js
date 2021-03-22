@@ -1,28 +1,35 @@
 import React from 'react';
-import { Container, Button, Row, Col } from 'react-bootstrap';
+import { Container, Button, Row, Col, InputGroup } from 'react-bootstrap';
+
+function Mensaje({userid, text}) {
+    return(
+        <Row className="align-items-center">
+            <Col md={2}>{userid}: </Col>
+            <Col md={10}>{text}</Col>
+        </Row>
+    )
+}
 
 function Chat(){
     return(
-        <Container  className="app-container">
-            <h1>Chat</h1>
+        <Container>
             <Container>
-                <Row className="align-items-center">
-                    <Col md={2}>Nombre</Col>
-                    <Col md={10}>Mensaje</Col>
-                </Row>
-                <Row className="align-items-center">
-                    <Col md={2}>Nombre2</Col>
-                    <Col md={10}>Mensaje2</Col>
-                </Row>
+                <h1>Chat de partida</h1>
             </Container>
             <Container>
-                <Row className="align-items-center">
-                    <Col md={4}>Input Message</Col>
-                    <Col md={6}>
+                <Mensaje userid="Nombre 1"text="Mensaje 1"/>
+                <Mensaje userid="Nombre 2" text="Mensaje 2"/>
+                <Mensaje userid="Nombre 3" text="Mensaje 4"/>
+            </Container>
+            <Container>
+                <Row>
+                    <Col>
+                    <input type="email" class="form-control" border-color="red" placeholder="Escribir Mensaje"></input>
+                    </Col>
+                    <Col>
                         <Button>Send</Button>
                     </Col>
                 </Row>
-                
             </Container>          
         </Container>
 
