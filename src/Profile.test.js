@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import Perfil from "./Perfil";
+import Profile from "./Profile";
 
-test("renders username", () => {
+test("renders profile", () => {
   var username = "Juan Carlos";
   var email = "juanCarlos@gmail.com";
   var games = "15";
@@ -10,7 +10,7 @@ test("renders username", () => {
   var losts = "8";
   var timePlayed = "145";
   render(
-    <Perfil
+    <Profile
       username={username}
       email={email}
       games={games}
