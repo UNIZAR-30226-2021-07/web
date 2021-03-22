@@ -22,7 +22,9 @@ function Login({ onLogin }) {
               <Form.Check type="checkbox" label="Recuérdame" />
             </Form.Group>
             <Link to="/menu">
-              <Button onClick={onLogin} variant="primary" type="submit">Iniciar sesión</Button>
+              <Button onClick={onLogin} variant="primary" type="submit">
+                Iniciar sesión
+              </Button>
             </Link>
           </Form>
         </Card.Body>
