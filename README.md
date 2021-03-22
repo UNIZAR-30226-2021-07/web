@@ -1,6 +1,23 @@
-# Getting Started with Create React App
+# Gatovid Web
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Formatting y Linter
+
+Para dar formato automáticamente al código se usa
+[Prettier](https://github.com/prettier/prettier). Su uso es el siguiente:
+
+```sh
+$ npm install --save-dev --save-exact prettier
+$ npx prettier --write .
+```
+
+Y para recibir recomendaciones automáticas del código, con
+[ESLint](https://github.com/eslint/eslint):
+
+```sh
+$ npm install eslint --save-dev
+$ npm install eslint-plugin-react
+$ npx eslint src
+```
 
 ## Available Scripts
 

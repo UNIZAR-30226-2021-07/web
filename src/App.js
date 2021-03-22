@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Menu from './Menu';
-import Login from './Login';
+import Menu from "./Menu";
+import Login from "./Login";
 
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [logged, setLogged] = useState(false);

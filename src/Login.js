@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, Form, Button, Container, Row } from 'react-bootstrap';
+import React from "react";
+import { Card, Form, Button, Container, Row } from "react-bootstrap";
 
 function Login({ onLogin }) {
   return (
@@ -20,7 +20,9 @@ function Login({ onLogin }) {
             <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Recuérdame" />
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={onLogin}>Iniciar sesión</Button>
+            <Button variant="primary" type="submit" onClick={onLogin}>
+              Iniciar sesión
+            </Button>
           </Form>
         </Card.Body>
       </Card>
