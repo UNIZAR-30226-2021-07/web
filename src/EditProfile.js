@@ -1,10 +1,9 @@
 import React from "react";
-import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Form, Image} from "react-bootstrap";
 
-import logo from "./logo.svg";
-//import tapete from "./tapete.jpg";
+import camera from "./camera.png";
 
-function EditProfile({email, username, boardColor}) {
+function EditProfile({email, username, image, boardType}) {
   return (
     <Container className="app-container">
       <Card>
@@ -14,8 +13,13 @@ function EditProfile({email, username, boardColor}) {
         <Row>
           <Col>
             <Card.Body>
+              <Row className="align-items-right justify-content-right">
+                  <Button variant="outline-info" size="sm">
+                    <Image fluid src={camera}></Image>
+                  </Button>      
+              </Row>
               <Row className="align-items-center justify-content-center">
-                <Card.Img variant="top" src={logo}></Card.Img>
+                  <Card.Img variant="top" src={image}></Card.Img>
               </Row>
               <br></br>
               <Row className="align-items-center justify-content-center">
@@ -46,9 +50,9 @@ function EditProfile({email, username, boardColor}) {
                             <Form.Label>Cambiar Tablero</Form.Label>
                           </Col>
                           <Col>
-                            <Form.Control type="color" disabled="true"  class="form-control form-control-color" 
-                            id="exampleColorInput" value={boardColor}>
-                            </Form.Control>  
+                            <Button variant="outline-info" size="sm">
+                            <Image fluid src={boardType}></Image>
+                            </Button>
                           </Col>
                         </Form.Row>
                     </Form.Group>     
