@@ -2,13 +2,14 @@ import React from "react";
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
 
 import logo from "./logo.svg";
+//import tapete from "./tapete.jpg";
 
-function EditProfile(props) {
+function EditProfile({email, username, boardColor}) {
   return (
     <Container className="app-container">
       <Card>
         <Card.Body>
-          <Card.Title>Configuración</Card.Title>
+          <Card.Title><h1>Configuración</h1></Card.Title>
         </Card.Body>
         <Row>
           <Col>
@@ -18,21 +19,17 @@ function EditProfile(props) {
               </Row>
               <br></br>
               <Row className="align-items-center justify-content-center">
-                <Card.Text>{props.username}</Card.Text>
+                <Card.Text>{username}</Card.Text>
               </Row>
               <Row className="align-items-center justify-content-center">
-                <Card.Text>{props.email}</Card.Text>
+                <Card.Text>{email}</Card.Text>
               </Row>
             </Card.Body>
           </Col>
           <Col>
-            <Card.Title>
-              <Row className="align-items-center justify-content-center">
-                <Card.Text>Editar Configuración de Usuario</Card.Text>
-              </Row>
-            </Card.Title>
             <Card.Body>
                 <Form>
+                    <Card.Text className="text-muted">Editar Configuración de Usuario</Card.Text>
                     <Form.Group controlId="formBasicUser">
                         <Form.Label>Nombre de Usuario</Form.Label>
                         <Form.Control type="text" 
@@ -44,9 +41,17 @@ function EditProfile(props) {
                         placeholder="Nueva contraseña"/>
                     </Form.Group>
                     <Form.Group controlId="formBasicBoardType">
-                        <Form.Label>Cambiar Tablero</Form.Label>
-                        <Form.Control
-                            type="boardType"/>
+                        <Form.Row>
+                          <Col xs={8}>
+                            <Form.Label>Cambiar Tablero</Form.Label>
+                          </Col>
+                          <Col>
+                            <Form.Control type="color" disabled="true" class="form-control form-control-color" 
+                            id="exampleColorInput" value={boardColor}>
+                            </Form.Control> 
+  
+                          </Col>
+                        </Form.Row>
                     </Form.Group>     
                 </Form>
             </Card.Body>
