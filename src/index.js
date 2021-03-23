@@ -1,13 +1,19 @@
 import React from "react";
 import process from "process";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import { PopupboxContainer } from "react-popupbox";
 import { HashRouter as Router } from "react-router-dom";
+
+import "./index.css";
+import "react-popupbox/dist/react-popupbox.css";
+
+import reportWebVitals from "./reportWebVitals";
+
+import App from "./App";
 
 ReactDOM.render(
   <Router basename={process.env.PUBLIC_URL}>
+    <PopupboxContainer />
     <App />
   </Router>,
   document.getElementById("root")
