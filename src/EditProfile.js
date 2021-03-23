@@ -46,10 +46,9 @@ function EditProfile({email, username, boardColor}) {
                             <Form.Label>Cambiar Tablero</Form.Label>
                           </Col>
                           <Col>
-                            <Form.Control type="color" disabled="true" class="form-control form-control-color" 
+                            <Form.Control type="color" disabled="true"  class="form-control form-control-color" 
                             id="exampleColorInput" value={boardColor}>
-                            </Form.Control> 
-  
+                            </Form.Control>  
                           </Col>
                         </Form.Row>
                     </Form.Group>     

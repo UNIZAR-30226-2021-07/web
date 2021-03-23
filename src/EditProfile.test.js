@@ -19,6 +19,10 @@ test("renders EditProfile", () => {
   const emailElement = screen.getByText(email);
   expect(emailElement).toBeInTheDocument();
 
-  const boardColorElement = screen.getByText(boardColor);
-  expect(boardColorElement).toBeInTheDocument();
+  const buttonElement = screen.getByText(/GUARDAR/i);
+  expect(buttonElement).toBeInTheDocument();
+
+  // TODO: Falta test sobre color/tipo de tablero -> a falta de definir bien
+  // el botón de cambiar tablero
+  
 });
