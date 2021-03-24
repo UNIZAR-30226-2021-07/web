@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 import logo from "./logo.svg";
 
-function Perfil(props) {
+function Profile(props) {
   return (
     <Container className="app-container">
       <Card>
@@ -84,4 +84,4 @@ function Perfil(props) {
   );
 }
 
-export default Perfil;
+export default Profile;
