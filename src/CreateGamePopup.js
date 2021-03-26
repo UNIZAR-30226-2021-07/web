@@ -23,9 +23,9 @@ export default function CreateGamePopup({ code, children }) {
           className="code-box"
           type="text"
           size="4"
-          placeholder={code}
           readOnly
-        ></input>
+          value={code}
+        />
         <Button className="btn btn-primary" onClick={PopupboxManager.close}>
           CONFIRMAR
         </Button>
