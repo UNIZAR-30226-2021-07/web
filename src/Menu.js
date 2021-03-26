@@ -3,6 +3,8 @@ import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
 import logo from "./logo.svg";
 
+import { openPrivatePopup } from './PrivatePopUp';
+
 function Menu() {
   return (
     <Container className="app-container">
@@ -25,7 +27,7 @@ function Menu() {
           <Button>Crear partida privada</Button>
         </Col>
         <Col md={4}>
-          <Button>Unirse partida privada</Button>
+          <Button onClick={() => openPrivatePopup()} >Unirse partida privada</Button>
         </Col>
         <Col md={4}>
           <Button>Unirse partida pública</Button>
