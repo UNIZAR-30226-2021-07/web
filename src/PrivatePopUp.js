@@ -1,15 +1,12 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Row, Button } from "react-bootstrap";
+import Popup from "./PopUp";
 
-export default function PrivatePopup({ children }) {
+export default function PrivatePopup() {
   return (
-    <Container>
-      <Row className="d-flex justify-content-center">
-        <div>Tick Icon</div>
-        <h2 className="popup-title">Unirse a partida</h2>
-      </Row>
-      <Row className="d-flex justify-content-center">
+    <Popup title="Unirse a partida" icon="TickImage">
+        <Row className="d-flex justify-content-center">
         <p>
           Introduce el código de partida y <br></br>
           comienza a jugar con tus amigos.
@@ -30,9 +27,8 @@ export default function PrivatePopup({ children }) {
           CONFIRMAR
         </Button>
       </Row>
-      <Col>{children}</Col>
-    </Container>
-  );
+    </Popup>
+)
 }
 
 // For test purposes only
