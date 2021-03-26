@@ -32,6 +32,8 @@ export function openStartGamePopup(ready, total) {
     config: {
       fadeIn: true,
       fadeInSpeed: 400,
+      escClose: false,
+      overlayClose: false,
     },
   });
 }
