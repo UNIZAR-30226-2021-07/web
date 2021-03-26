@@ -22,7 +22,7 @@ test("renders copy button", () => {
 
 test("check code exists", () => {
   const code = "1312";
-  render(<CreateGamePopup code="1312" />);
-  const codeBox = screen.getByDisplayValue("1312");
+  render(<CreateGamePopup code={code} />);
+  const codeBox = screen.getByDisplayValue(code);
   expect(codeBox).toBeInTheDocument();
 });
