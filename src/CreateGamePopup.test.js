@@ -23,6 +23,6 @@ test("renders copy button", () => {
 test("check code exists", () => {
   const code = "1312";
   render(<CreateGamePopup code={code} />);
-  const codeBox = screen.getByDisplayValue(code);
+  const codeBox = screen.getByPlaceholderText(code);
   expect(codeBox).toBeInTheDocument();
 });
