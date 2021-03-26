@@ -25,3 +25,4 @@ test("check code exists", () => {
   const inputElement = screen.getByText(/1234/i);
   expect(inputElement).toBeInTheDocument()
 });
+
