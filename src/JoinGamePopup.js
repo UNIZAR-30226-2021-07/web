@@ -3,7 +3,7 @@ import { PopupboxManager } from "react-popupbox";
 import { Row, Button } from "react-bootstrap";
 import Popup from "./PopUp";
 
-export default function PrivatePopup() {
+export default function JoinGamePopup() {
   return (
     <Popup title="Unirse a partida" icon="TickImage">
         <Row className="d-flex justify-content-center">
@@ -32,8 +32,8 @@ export default function PrivatePopup() {
 }
 
 // For test purposes only
-export function openPrivatePopup() {
-  const content = <PrivatePopup />;
+export function renderJoinGamePopup() {
+  const content = <JoinGamePopup />;
   PopupboxManager.open({
     content,
     config: {

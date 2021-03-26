@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
 import logo from "./logo.svg";
 
-import { openPrivatePopup } from './PrivatePopUp';
+import { renderJoinGamePopup } from './JoinGamePopup';
 
 function Menu() {
   return (
@@ -27,7 +27,7 @@ function Menu() {
           <Button>Crear partida privada</Button>
         </Col>
         <Col md={4}>
-          <Button onClick={() => openPrivatePopup()} >Unirse partida privada</Button>
+          <Button onClick={() => renderJoinGamePopup()} >Unirse partida privada</Button>
         </Col>
         <Col md={4}>
           <Button>Unirse partida pública</Button>
