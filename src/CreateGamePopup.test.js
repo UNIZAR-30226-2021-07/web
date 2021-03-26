@@ -3,27 +3,26 @@ import { render, screen } from "@testing-library/react";
 import CreateGamePopup from "./CreateGamePopup";
 
 test("renders title", () => {
-  render(<CreateGamePopup code="1234"/>);
+  render(<CreateGamePopup code="1234" />);
   const titleElement = screen.getByText(/Partida privada lista/i);
   expect(titleElement).toBeInTheDocument();
 });
 
 test("renders confirm button", () => {
-  render(<CreateGamePopup code="1234"/>);
+  render(<CreateGamePopup code="1234" />);
   const buttonElement = screen.getByText(/CONFIRMAR/i);
-  expect(buttonElement).toBeInTheDocument()
+  expect(buttonElement).toBeInTheDocument();
 });
 
 test("renders copy button", () => {
-    render(<CreateGamePopup code="1234"/>);
-    const buttonElement = screen.getByText(/Copy/i);
-    expect(buttonElement).toBeInTheDocument()
-  });
+  render(<CreateGamePopup code="1234" />);
+  const buttonElement = screen.getByText(/Copy/i);
+  expect(buttonElement).toBeInTheDocument();
+});
 
 test("check code exists", () => {
   const code = "1312";
   render(<CreateGamePopup code="1312" />);
-  const codeBox = screen.getByDisplayValue("1312")
-  expect(codeBox).toBeInTheDocument()
+  const codeBox = screen.getByDisplayValue("1312");
+  expect(codeBox).toBeInTheDocument();
 });
-
