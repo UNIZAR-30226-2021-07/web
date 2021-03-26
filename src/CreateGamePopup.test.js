@@ -21,8 +21,9 @@ test("renders copy button", () => {
   });
 
 test("check code exists", () => {
-  render(<CreateGamePopup code="1234"/>);
-  const inputElement = screen.getByText(/1234/i);
-  expect(inputElement).toBeInTheDocument()
+  const code = "1312";
+  render(<CreateGamePopup code="1312" />);
+  const codeBox = screen.getByDisplayValue("1312")
+  expect(codeBox).toBeInTheDocument()
 });
 
