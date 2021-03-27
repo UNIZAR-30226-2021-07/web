@@ -16,6 +16,6 @@ test("renders confirm button", () => {
 
 test("check input is correct", () => {
   render(<JoinGamePopup />);
-  const inputElement = screen.getByText(/código/i);
+  const inputElement = screen.getByPlaceholderText(/código/i);
   expect(inputElement).toBeInTheDocument();
 });
