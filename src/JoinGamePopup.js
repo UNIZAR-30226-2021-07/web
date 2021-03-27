@@ -3,7 +3,7 @@ import { PopupboxManager } from "react-popupbox";
 import { Row, Button } from "react-bootstrap";
 import Popup from "./PopUp";
 
-import { renderPreparingGamePopup } from './PreparingGamePopup';
+import { renderPreparingGamePopup } from "./PreparingGamePopup";
 
 export default function JoinGamePopup() {
   return (
