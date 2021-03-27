@@ -3,12 +3,10 @@ import { PopupboxManager } from "react-popupbox";
 import { Row } from "react-bootstrap";
 import Popup from "./PopUp";
 
-
 const curiosities = [
-    "Los gatos tricolores siempre son hembras",
-    "Todos los gatos recién nacidos tienen los ojos azules.",
+  "Los gatos tricolores siempre son hembras",
+  "Todos los gatos recién nacidos tienen los ojos azules.",
 ];
-
 
 export default function PreparingGamePopup() {
   return (
