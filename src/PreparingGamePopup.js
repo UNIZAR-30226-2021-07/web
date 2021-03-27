@@ -33,6 +33,7 @@ export function renderPreparingGamePopup() {
       fadeIn: true,
       fadeInSpeed: 400,
       escClose: false,
+      overlayClose: false,
     },
   });
 }
