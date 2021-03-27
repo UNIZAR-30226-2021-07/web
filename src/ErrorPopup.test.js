@@ -28,4 +28,3 @@ test("renders continuar button", () => {
   const buttonElement = screen.getByText(/continuar/i);
   expect(buttonElement).toBeInTheDocument();
 });
-

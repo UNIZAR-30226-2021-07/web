@@ -13,10 +13,7 @@ export default function ErrorPopup({ body, title = "¡Atención!" }) {
         <Button className="btn btn-primary" onClick={PopupboxManager.close}>
           Atrás
         </Button>
-        <Button
-          className="btn btn-danger"
-          onClick={PopupboxManager.close}
-        >
+        <Button className="btn btn-danger" onClick={PopupboxManager.close}>
           Continuar
         </Button>
       </Row>
