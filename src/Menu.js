@@ -3,6 +3,9 @@ import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
 import logo from "./logo.svg";
 
+
+import { renderCreateGamePopup } from './CreateGamePopup';
+
 function Menu() {
   return (
     <Container className="app-container">
@@ -22,7 +25,7 @@ function Menu() {
 
       <Row>
         <Col md={4}>
-          <Button>Crear partida privada</Button>
+          <Button onClick={() => renderCreateGamePopup("1234")}>Crear partida privada</Button>
         </Col>
         <Col md={4}>
           <Button>Unirse partida privada</Button>

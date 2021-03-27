@@ -1,21 +1,18 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import {  Row, Col, Button } from "react-bootstrap";
+import Popup from "./PopUp";
 
 export default function CreateGamePopup({ code, children }) {
   return (
-    <Container>
-      <Row className="d-flex justify-content-center">
-        <div>Tick Icon</div>
-        <h2 className="popup-title">Partida privada lista</h2>
-      </Row>
+    <Popup title="Partida privada lista" icon="TickImage">
       <Row className="d-flex justify-content-center">
         <p>
           Comparte el siguiente código con tus <br></br>
           amigos para empezar a jugar.
         </p>
       </Row>
-      <Row className="d-flex justify-content-between">
+      <Row className="d-flex justify-content-around">
         <Button className="btn btn-secondary" onClick={PopupboxManager.close}>
           Copy
         </Button>
@@ -31,12 +28,12 @@ export default function CreateGamePopup({ code, children }) {
         </Button>
       </Row>
       <Col>{children}</Col>
-    </Container>
+    </Popup>
   );
 }
 
 // For test purposes only
-export function openCreateGamePopup(code) {
+export function renderCreateGamePopup(code) {
   const content = <CreateGamePopup code={code} />;
   PopupboxManager.open({
     content,
