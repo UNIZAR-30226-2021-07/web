@@ -3,6 +3,8 @@ import { PopupboxManager } from "react-popupbox";
 import { Row, Button } from "react-bootstrap";
 import Popup from "./PopUp";
 
+import { renderPreparingGamePopup } from "./PreparingGamePopup";
+
 export default function JoinGamePopup() {
   return (
     <Popup title="Unirse a partida" icon="TickImage">
@@ -21,7 +23,10 @@ export default function JoinGamePopup() {
           maxLength="8"
           placeholder="Código"
         ></input>
-        <Button className="btn btn-primary" onClick={PopupboxManager.close}>
+        <Button
+          className="btn btn-primary"
+          onClick={() => renderPreparingGamePopup()}
+        >
           CONFIRMAR
         </Button>
       </Row>
