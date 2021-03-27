@@ -8,11 +8,6 @@ test("renders title", () => {
   expect(screen.getByText(title)).toBeInTheDocument();
 });
 
-test("renders close button", () => {
-  render(<PopUp title="¡Atención!" />);
-  expect(screen.getByLabelText("Close")).toBeInTheDocument();
-});
-
 test("renders children", () => {
   render(
     <PopUp title="¡Atención!">

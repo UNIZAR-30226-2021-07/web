@@ -7,8 +7,10 @@ export default function Popup({ title, icon, children }) {
     <Container>
       <div>
         <div className="d-flex justify-content-between col-12">
-          <div className="d-flex d-flex justify-content-start">{icon}</div>
-          <h2 className="popup-title">{title}</h2>
+          <div className="d-flex d-flex justify-content-start align-self-center">
+            {icon}
+          </div>
+          <h2 className="popup-title ">{title}</h2>
         </div>
       </div>
       <Col>{children}</Col>
