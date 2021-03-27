@@ -3,6 +3,8 @@ import { PopupboxManager } from "react-popupbox";
 import { Row, Col, Button } from "react-bootstrap";
 import Popup from "./PopUp";
 
+import { renderStartGamePopup } from "./StartGamePopup";
+
 export default function CreateGamePopup({ code, children }) {
   return (
     <Popup title="Partida privada lista" icon="TickImage">
@@ -23,7 +25,10 @@ export default function CreateGamePopup({ code, children }) {
           readOnly
           value={code}
         />
-        <Button className="btn btn-primary" onClick={PopupboxManager.close}>
+        <Button
+          className="btn btn-primary"
+          onClick={() => renderStartGamePopup()}
+        >
           CONFIRMAR
         </Button>
       </Row>
