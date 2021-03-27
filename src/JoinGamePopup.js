@@ -6,29 +6,27 @@ import Popup from "./PopUp";
 export default function JoinGamePopup() {
   return (
     <Popup title="Unirse a partida" icon="TickImage">
-        <Row className="d-flex justify-content-center">
+      <Row className="d-flex justify-content-center">
         <p>
           Introduce el código de partida y <br></br>
           comienza a jugar con tus amigos.
         </p>
       </Row>
       <Row className="d-flex justify-content-between">
-        <input className= "code-box"
+        <input
+          className="code-box"
           type="text"
-          size = "8"
+          size="8"
           minLength="4"
           maxLength="8"
           placeholder="Código"
         ></input>
-        <Button
-          className="btn btn-primary"
-          onClick={PopupboxManager.close}
-        >
+        <Button className="btn btn-primary" onClick={PopupboxManager.close}>
           CONFIRMAR
         </Button>
       </Row>
     </Popup>
-)
+  );
 }
 
 // For test purposes only
