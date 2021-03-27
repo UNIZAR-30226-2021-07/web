@@ -1,13 +1,11 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
+import Popup from "./PopUp";
 
 export default function StartGamePopup({ready, total, children}) {
   return (
-    <Container>
-      <Row className="d-flex justify-content-center">
-        <h2 className="popup-title">¿Empezar partida?</h2>
-      </Row>
+    <Popup title="¿Empezar partida?">
       <Row className="d-flex justify-content-center">
         <p>{ready}/{total} gaticos preparados</p>
       </Row>
@@ -20,12 +18,14 @@ export default function StartGamePopup({ready, total, children}) {
         </Button>
       </Row>
       <Col>{children}</Col>
-    </Container>
+    </Popup>
   );
 }
 
 // For test purposes only
-export function openStartGamePopup(ready, total) {
+export function renderStartGamePopup() {
+  const ready = "4"; //Se actualizara con el servidor
+  const total = "6"
   const content = <StartGamePopup ready={ready} total={total}/>;
   PopupboxManager.open({
     content,
