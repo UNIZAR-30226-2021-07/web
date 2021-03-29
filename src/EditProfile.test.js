@@ -2,8 +2,8 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import EditProfile from "./EditProfile";
 
-import tapete from "./images/tapete.png";
-import logo from "./logo.svg";
+import tapete from "./assets/boards/green.png";
+import logo from "./assets/logo/logo.svg";
 
 test("renders EditProfile", () => {
   var username = "Juan Carlos";
