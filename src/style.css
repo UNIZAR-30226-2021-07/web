@@ -1,6 +1,50 @@
-button {
-    background-color: red;
-  }
+body {
+  color:#00344A !important;
+}
+
+.primary-button {
+    background-color: #6A1B9A !important;
+    border-radius: 30px !important;
+    width: 290px !important;
+    height: 50px !important;
+    size: 24px !important;
+    font-weight: bold !important;
+    
+}
+
+.secondary-button {
+  background-color: #9C4DCC !important;
+  border-radius: 30px !important;
+  width: 270px !important;
+  height: 50px !important;
+  size: 24px !important;
+  font-weight: bold !important;
+}
+
+.primary-title {
+  font-size: 64px !important;
+  font-weight: bold;
+}
+
+.secondary-title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.card {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/*Caja de texto formularios*/
+.form-control {
+  background: #F9F6F3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.form-label {
+  font-size: 24px;
+  font-weight: bold;
+}
 
 html,
 body,
@@ -9,9 +53,4 @@ body,
 .app-container {
   padding: 0;
   height: 100vh;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }

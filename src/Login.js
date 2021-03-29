@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Form, Button, Container, Row } from "react-bootstrap";
+import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Login({ onLogin }) {
@@ -7,7 +7,11 @@ function Login({ onLogin }) {
     <Container className="app-container">
       <Card>
         <Card.Body>
-          <Card.Title>Iniciar Sesión</Card.Title>
+          <Row className="justify-content-center">
+            <Card.Title className="primary-title text-align-center">
+              Iniciar Sesión
+            </Card.Title>
+          </Row>
           <Form>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
@@ -22,17 +26,28 @@ function Login({ onLogin }) {
               <Form.Check type="checkbox" label="Recuérdame" />
             </Form.Group>
             <Link to="/menu">
-              <Button onClick={onLogin} variant="primary" type="submit">
-                Iniciar sesión
-              </Button>
+              <Row>
+                <Col className="offset-8">
+                  <Button
+                    className="primary-button"
+                    onClick={onLogin}
+                    variant="primary"
+                    type="submit"
+                  >
+                    INICIAR SESIÓN
+                  </Button>
+                </Col>
+              </Row>
             </Link>
           </Form>
         </Card.Body>
       </Card>
       <Container>
-        <Row className="align-items-center">¿Nuevo en Gatovid?</Row>
-        <Row className="align-items-center">
-          <Button>CREAR UNA CUENTA</Button>
+        <Row className="justify-content-center secondary-title">
+          ¿Nuevo en Gatovid?
+        </Row>
+        <Row className="justify-content-center">
+          <Button className="secondary-button">CREAR UNA CUENTA</Button>
         </Row>
       </Container>
     </Container>
