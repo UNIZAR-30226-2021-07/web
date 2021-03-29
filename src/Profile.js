@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
-import logo from "./logo.svg";
+import logo from "./assets/common/logo/logo.svg";
 
 function Profile(props) {
   return (
