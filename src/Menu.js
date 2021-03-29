@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
-import logo from "./assets/logo/logo.svg";
+import logo from "./assets/common/logo/logo.svg";
 
 import { renderJoinGamePopup } from "./JoinGamePopup";
 import { renderPreparingGamePopup } from "./PreparingGamePopup";

@@ -9,7 +9,7 @@ import {
   Image,
 } from "react-bootstrap";
 
-import camera from "./camera.png";
+import camera from "./assets/common/icons/camera.png";
 
 function EditProfile({ email, username, image, boardType }) {
   return (
