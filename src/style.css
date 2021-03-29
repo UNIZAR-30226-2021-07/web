@@ -23,7 +23,7 @@ body {
 
 .primary-title {
   font-size: 64px !important;
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 .secondary-title {
