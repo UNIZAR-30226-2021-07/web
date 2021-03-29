@@ -1,5 +1,6 @@
 body {
   color:#00344A !important;
+  background-image: url("assets/common/background.svg");
 }
 
 .primary-button {
@@ -22,12 +23,12 @@ body {
 }
 
 .primary-title {
-  font-size: 64px !important;
+  font-size: 48px !important;
   font-weight: bold !important;
 }
 
 .secondary-title {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -42,7 +43,7 @@ body {
 }
 
 .form-label {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
 }
 
