@@ -1,10 +1,10 @@
 import React from "react";
-import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Card, Form, Button, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Login({ onLogin }) {
   return (
-    <Container className="app-container">
+    <Container className="app-container centered">
       <Card>
         <Card.Body>
           <Row className="justify-content-center">
@@ -12,7 +12,8 @@ function Login({ onLogin }) {
               Iniciar Sesión
             </Card.Title>
           </Row>
-          <Form>
+
+          <Form className="justify-content-center">
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" />
@@ -26,22 +27,21 @@ function Login({ onLogin }) {
               <Form.Check type="checkbox" label="Recuérdame" />
             </Form.Group>
             <Link to="/menu">
-              <Row>
-                <Col className="offset-8">
-                  <Button
-                    className="primary-button"
-                    onClick={onLogin}
-                    variant="primary"
-                    type="submit"
-                  >
-                    INICIAR SESIÓN
-                  </Button>
-                </Col>
-              </Row>
+              <Button
+                className="primary-button"
+                onClick={onLogin}
+                variant="primary"
+                type="submit"
+              >
+                {" "}
+                INICIAR SESIÓN
+              </Button>
             </Link>
           </Form>
         </Card.Body>
       </Card>
+      <br></br>
+      <br></br>
       <Container>
         <Row className="justify-content-center secondary-title">
           ¿Nuevo en Gatovid?

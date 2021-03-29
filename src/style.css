@@ -1,20 +1,31 @@
 body {
-  color:#00344A !important;
-  background-image: url("assets/common/background.svg");
+  color: #00344a !important;
+  background-image: url("assets/common/background.jpg");
+}
+
+.centered {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
 }
 
 .primary-button {
-    background-color: #6A1B9A !important;
-    border-radius: 30px !important;
-    width: 290px !important;
-    height: 50px !important;
-    size: 24px !important;
-    font-weight: bold !important;
-    
+  background-color: #6a1b9a !important;
+  border-radius: 30px !important;
+  width: 80% !important;
+  max-width: 290px !important;
+  min-width: min-content !important;
+  height: 100% !important;
+  max-height: 50px !important;
+  min-height: min-content !important;
+  justify-content: flex-end;
+  size: 24px !important;
+  font-weight: bold !important;
 }
 
 .secondary-button {
-  background-color: #9C4DCC !important;
+  background-color: #9c4dcc !important;
   border-radius: 30px !important;
   width: 270px !important;
   height: 50px !important;
@@ -38,7 +49,7 @@ body {
 
 /*Caja de texto formularios*/
 .form-control {
-  background: #F9F6F3;
+  background: #f9f6f3;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -51,7 +62,7 @@ html,
 body,
 #root,
 .App,
-.app-container {
+.centered .app-container {
   padding: 0;
   height: 100vh;
 }
