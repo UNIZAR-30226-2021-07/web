@@ -25,6 +25,8 @@ export function renderDeleteAccountPopup() {
     config: {
       fadeIn: true,
       fadeInSpeed: 400,
+      escClose: false,
+      overlayClose: false,
     },
   });
 }
