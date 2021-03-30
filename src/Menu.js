@@ -2,6 +2,8 @@ import React from "react";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
 import logo from "./assets/common/logo/logo.svg";
+import shop from "./assets/common/icons/tienda.svg";
+import user from "./assets/common/icons/perfil.svg";
 
 import { renderCreateGamePopup } from "./CreateGamePopup";
 import { renderJoinGamePopup } from "./JoinGamePopup";
@@ -10,36 +12,37 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 function Menu() {
   return (
     <Container className="app-container">
-      <Row>
-        <Col md={4}>Perfil</Col>
-        <Col md={{ span: 4, offset: 4 }}>Tienda</Col>
+      <Row className="icons">
+        <Image src={user} alt="Perfil" />
+        <Image src={shop} alt="Tienda" />
       </Row>
-
-      <Row className="align-items-center">
+      <Row className="main">
         <Col>
-          <Image className="py-5" src={logo} alt="logo" fluid />
+          <Image id="logo" className src={logo} alt="logo" />
         </Col>
         <Col>
-          <h1>GATOVID</h1>
+          <h1 id="main-title">GATOVID</h1>
         </Col>
       </Row>
-
-      <Row>
-        <Col md={4}>
-          <Button onClick={() => renderCreateGamePopup("1234")}>
-            Crear partida privada
-          </Button>
-        </Col>
-        <Col md={4}>
-          <Button onClick={() => renderJoinGamePopup()}>
-            Unirse partida privada
-          </Button>
-        </Col>
-        <Col md={4}>
-          <Button onClick={() => renderPreparingGamePopup()}>
-            Unirse partida pública
-          </Button>
-        </Col>
+      <Row className="menu-buttons">
+        <Button
+          className="primary-button"
+          onClick={() => renderCreateGamePopup("1234")}
+        >
+          CREAR PARTIDA PRIVADA
+        </Button>
+        <Button
+          className="primary-button"
+          onClick={() => renderJoinGamePopup()}
+        >
+          UNIRSE PARTIDA PRIVADA
+        </Button>
+        <Button
+          className="primary-button"
+          onClick={() => renderPreparingGamePopup()}
+        >
+          UNIRSE PARTIDA PÚBLICA
+        </Button>
       </Row>
     </Container>
   );
