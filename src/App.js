@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Menu from "./Menu";
 import Match from "./Match";
 import Login from "./Login";
+import SignUp from "./SignUp";
 
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,6 +17,10 @@ function App() {
       <Switch>
         <Route path="/login">
           <Login onLogin={() => setLogged(true)} />
+        </Route>
+
+        <Route path="/signup">
+          <SignUp />
         </Route>
 
         <ProtectedRoute path="/home" loggedIn={logged} component={Menu} />

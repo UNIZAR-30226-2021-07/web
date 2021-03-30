@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Login({ onLogin }) {
   return (
-    <Container className="app-container centered">
+    <Container className="app-container">
       <Card>
         <Card.Body>
           <Row className="justify-content-center">
@@ -33,21 +33,20 @@ function Login({ onLogin }) {
                 variant="primary"
                 type="submit"
               >
-                {" "}
                 INICIAR SESIÓN
               </Button>
             </Link>
           </Form>
         </Card.Body>
       </Card>
-      <br></br>
-      <br></br>
       <Container>
         <Row className="justify-content-center secondary-title">
           ¿Nuevo en Gatovid?
         </Row>
         <Row className="justify-content-center">
-          <Button className="secondary-button">CREAR UNA CUENTA</Button>
+          <Link to="/signup">
+            <Button className="secondary-button">CREAR UNA CUENTA</Button>
+          </Link>
         </Row>
       </Container>
     </Container>
