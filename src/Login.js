@@ -12,7 +12,6 @@ function Login({ onLogin }) {
               Iniciar Sesión
             </Card.Title>
           </Row>
-
           <Form className="justify-content-center">
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
@@ -30,7 +29,6 @@ function Login({ onLogin }) {
               <Button
                 className="primary-button"
                 onClick={onLogin}
-                variant="primary"
                 type="submit"
               >
                 INICIAR SESIÓN
