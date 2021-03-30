@@ -1,13 +1,16 @@
+html {
+  display: inline-block;
+}
 body {
   color: #00344a !important;
   background-image: url("assets/common/background.jpg");
 }
 
-.centered {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
+.card {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 5%;
+  margin-bottom: 3%;
+  padding: 2%;
 }
 
 .primary-button {
@@ -43,10 +46,6 @@ body {
   font-weight: bold;
 }
 
-.card {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
 /*Caja de texto formularios*/
 .form-control {
   background: #f9f6f3;
@@ -64,5 +63,4 @@ body,
 .App,
 .centered .app-container {
   padding: 0;
-  height: 100vh;
 }
