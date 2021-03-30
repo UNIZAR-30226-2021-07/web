@@ -11,7 +11,7 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 
 function Menu() {
   return (
-    <Container className="app-container">
+    <Container className="app-container menu-container">
       <Row>
         <Col className="col-md-2">
           <Image src={user} alt="Perfil" className="mx-auto d-block" />
@@ -26,7 +26,7 @@ function Menu() {
           </Row>
         </Col>
       </Row>
-      <Row className="justify-content-center align-items-center">
+      <Row className="logo-row justify-content-center align-items-center">
         <Image id="logo" className="menu-logo img-fluid" src={logo} alt="logo" />
         <h1 id="main-title">GATOVID</h1>
       </Row>

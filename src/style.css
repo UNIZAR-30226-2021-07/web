@@ -3,11 +3,28 @@ body {
   background-image: url("assets/common/background.jpg");
 }
 
+html,
+body,
+#root,
+.App,
+.app-container {
+  height: 100vh;
+}
+
 /**************Menú**************/
 
 .menu-logo {
   height: 80vh;
   max-height: 200px;
+}
+
+.logo-row {
+  flex: 1;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .icons {
