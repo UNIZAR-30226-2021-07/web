@@ -12,37 +12,49 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 function Menu() {
   return (
     <Container className="app-container">
-      <Row className="icons">
-        <Image src={user} alt="Perfil" />
-        <Image src={shop} alt="Tienda" />
-      </Row>
-      <Row className="main">
-        <Col>
-          <Image id="logo" className src={logo} alt="logo" />
+      <Row>
+        <Col className="col-md-2">
+          <Image src={user} alt="Perfil" className="mx-auto d-block" />
         </Col>
-        <Col>
-          <h1 id="main-title">GATOVID</h1>
+        <Col className="col-md-2 offset-md-8 justify-content-center align-items-center">
+          <Row className="">
+            <Image src={shop} alt="Tienda" className="mx-auto d-block" />
+          </Row>
+          <Row className="justify-content-center align-items-center">
+            <span id="coins">100</span>
+            <Image src={shop} alt="Tienda" className="" />
+          </Row>
         </Col>
       </Row>
-      <Row className="menu-buttons">
-        <Button
-          className="primary-button"
-          onClick={() => renderCreateGamePopup("1234")}
-        >
-          CREAR PARTIDA PRIVADA
+      <Row className="justify-content-center align-items-center">
+        <Image id="logo" className="menu-logo img-fluid" src={logo} alt="logo" />
+        <h1 id="main-title">GATOVID</h1>
+      </Row>
+      <Row className="">
+        <Col lg={true}>
+          <Button
+            className="primary-button d-block mx-auto"
+            onClick={() => renderCreateGamePopup("1234")}
+          >
+            CREAR PARTIDA PRIVADA
         </Button>
-        <Button
-          className="primary-button"
-          onClick={() => renderJoinGamePopup()}
-        >
-          UNIRSE PARTIDA PRIVADA
+        </Col>
+        <Col lg={true}>
+          <Button
+            className="primary-button d-block mx-auto"
+            onClick={() => renderJoinGamePopup()}
+          >
+            UNIRSE PARTIDA PRIVADA
         </Button>
-        <Button
-          className="primary-button"
-          onClick={() => renderPreparingGamePopup()}
-        >
-          UNIRSE PARTIDA PÚBLICA
+        </Col>
+        <Col lg={true}>
+          <Button
+            className="primary-button d-block mx-auto"
+            onClick={() => renderPreparingGamePopup()}
+          >
+            UNIRSE PARTIDA PÚBLICA
         </Button>
+        </Col>
       </Row>
     </Container>
   );

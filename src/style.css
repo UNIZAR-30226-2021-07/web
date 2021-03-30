@@ -5,6 +5,11 @@ body {
 
 /**************Menú**************/
 
+.menu-logo {
+  height: 80vh;
+  max-height: 200px;
+}
+
 .icons {
   display: flex;
   flex-direction: row;
