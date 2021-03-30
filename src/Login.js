@@ -47,7 +47,9 @@ function Login({ onLogin }) {
           ¿Nuevo en Gatovid?
         </Row>
         <Row className="justify-content-center">
-          <Button className="secondary-button">CREAR UNA CUENTA</Button>
+          <Link to="/signup">
+            <Button className="secondary-button">CREAR UNA CUENTA</Button>
+          </Link>
         </Row>
       </Container>
     </Container>
