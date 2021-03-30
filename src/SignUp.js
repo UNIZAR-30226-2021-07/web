@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Container, Form, Row, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function SignUp() {
   return (
@@ -30,7 +31,9 @@ function SignUp() {
       <Container>
         <Row className="align-items-center">¿Ya tienes cuenta?</Row>
         <Row className="align-items-center">
-          <Button>INICIAR SESIÓN</Button>
+          <Link to="/login">
+            <Button>INICIAR SESIÓN</Button>
+          </Link>
         </Row>
       </Container>
     </Container>
