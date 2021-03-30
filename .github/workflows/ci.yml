@@ -26,6 +26,7 @@ jobs:
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
+          submodules: recursive
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
@@ -50,6 +51,7 @@ jobs:
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
+          submodules: recursive
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
@@ -71,6 +73,7 @@ jobs:
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
+          submodules: recursive
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
