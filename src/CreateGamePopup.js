@@ -1,6 +1,6 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Row, Col, Button, Image } from "react-bootstrap";
+import { Row, Button, Image } from "react-bootstrap";
 import Popup from "./PopUp";
 
 import { renderStartGamePopup } from "./StartGamePopup";
@@ -25,9 +25,8 @@ export default function CreateGamePopup({ code, children }) {
         </p>
       </Row>
  
-      <Row>
-        <Col md={8}>
-          <div className="input-group">
+      <Row className="justify-content-center">
+          <div className="input-group w-50 mr-2">
             <div className="input-group-prepend">
               <Button className="btn-outline-secondary" type="button" onClick={copyCode}>
                 <Image className="" src={clipboard} style={{"height": "20px"}} />
@@ -43,15 +42,12 @@ export default function CreateGamePopup({ code, children }) {
               aria-describedby="inputGroup-sizing-default"
             />
           </div>
-        </Col>
-        <Col md={4}>
           <Button
             className="btn btn-primary"
             onClick={renderStartGamePopup}
           >
             CONFIRMAR
           </Button>
-        </Col>
       </Row>
 
       <Row>
