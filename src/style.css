@@ -137,6 +137,18 @@ body,
   margin-bottom: 10px;
 }
 
+#profile td:nth-child(2) {
+  text-align: right;
+}
+
+#profile .table td, .table th{
+  padding: 0 !important;
+}
+
+#profile .table > tbody > tr > td {
+  vertical-align: middle;
+}
+
 html,
 body,
 #root,

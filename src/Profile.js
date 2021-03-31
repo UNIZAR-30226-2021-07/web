@@ -1,11 +1,13 @@
 import React from "react";
 import { Container, Row, Col, Card, Button, Image, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import {renderCreateGamePopup} from "./CreateGamePopup"
 
 import logo from "./assets/common/logo/logo.png";
 
 function Profile(props) {
   return (
-    <Container className="app-container">
+    <Container id="profile" className="app-container">
       <Card>
          <Card.Body>
             <Row className="align-items-center justify-content-center">
@@ -25,7 +27,9 @@ function Profile(props) {
                       <Card.Text>{props.email}</Card.Text>
                     </Row>
                     <Row className="align-items-center justify-content-center">
-                      <Button className="tertiary-button">Editar Perfil</Button>
+                      <Link to="/editProfile">
+                        <Button className="tertiary-button">Editar Perfil</Button>
+                      </Link>
                     </Row>
                   </Col>
                   <Col>
@@ -34,8 +38,8 @@ function Profile(props) {
                             Estadísticas
                       </Card.Title>
                     </Row>
-                    <Card.Body className="ml-5 align-items-center justify-content-center">
-                      <Table>
+                    <Card.Body className="mx-4 align-items-center justify-content-center">
+                      <Table borderless>
                         <tbody>
                             <tr>
                               <td>
@@ -62,12 +66,13 @@ function Profile(props) {
                             </tr>
                           </tbody>
                         </Table>
-
-
                       </Card.Body>
                       <Card.Body>
                         <Row className="align-items-center justify-content-center">
-                          <Button className="alert-button">Cerrar Sesión</Button>
+                            <Button className="alert-button" 
+                              onClick={() => renderCreateGamePopup("1234")}>
+                                Cerrar Sesión 
+                            </Button>
                         </Row>
                       </Card.Body>
                   </Col>

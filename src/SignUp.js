@@ -26,7 +26,7 @@ function SignUp() {
               <Form.Control type="password" />
             </Form.Group>
             <Row>
-              <Col className="offset-md-8">
+              <Col className="mt-2 offset-md-8">
                 <Link to="/menu">
                   <Button className="primary-button">REGISTRARSE</Button>
                 </Link>
