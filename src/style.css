@@ -59,6 +59,13 @@ body {
 }
 
 .secondary-title {
+  font-size: 30px !important;
+  font-weight: bold !important;
+}
+
+/* TODO: Ahora tertiary es el antiguo secondary --> cambiar donde esté
+   en otras pantallas*/
+.tertiary-title {
   font-size: 24px;
   font-weight: bold;
   padding-bottom: 1%;
@@ -86,6 +93,6 @@ html,
 body,
 #root,
 .App,
-.centered .app-container {
+.app-container {
   padding: 0;
 }
