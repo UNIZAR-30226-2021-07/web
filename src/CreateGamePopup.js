@@ -1,11 +1,19 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button, Image } from "react-bootstrap";
 import Popup from "./PopUp";
 
 import { renderStartGamePopup } from "./StartGamePopup";
 
 import check from "./assets/common/icons/check.svg";
+import clipboard from "./assets/common/icons/clipboard.svg";
+
+function copyCode() {
+    const codeField = document.getElementById("game-code");
+    codeField.focus();
+    codeField.select();
+    document.execCommand("copy");
+}
 
 export default function CreateGamePopup({ code, children }) {
   return (
@@ -16,25 +24,40 @@ export default function CreateGamePopup({ code, children }) {
           amigos para empezar a jugar.
         </p>
       </Row>
-      <Row className="d-flex justify-content-around">
-        <Button className="btn btn-secondary" onClick={PopupboxManager.close}>
-          Copy
-        </Button>
-        <input
-          className="code-box"
-          type="text"
-          size="4"
-          readOnly
-          value={code}
-        />
-        <Button
-          className="btn btn-primary"
-          onClick={() => renderStartGamePopup()}
-        >
-          CONFIRMAR
-        </Button>
+ 
+      <Row>
+        <Col md={8}>
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <Button className="btn-outline-secondary" type="button" onClick={copyCode}>
+                <Image className="" src={clipboard} style={{"height": "20px"}} />
+              </Button>
+            </div>
+            <input
+              id="game-code"
+              type="text"
+              className="form-control"
+              readOnly
+              value={code}
+              aria-label="Default"
+              aria-describedby="inputGroup-sizing-default"
+            />
+          </div>
+        </Col>
+        <Col md={4}>
+          <Button
+            className="btn btn-primary"
+            onClick={renderStartGamePopup}
+          >
+            CONFIRMAR
+          </Button>
+        </Col>
       </Row>
-      <Col>{children}</Col>
+
+      <Row>
+          {children}
+      </Row>
+
     </Popup>
   );
 }

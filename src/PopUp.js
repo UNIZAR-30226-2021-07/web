@@ -9,9 +9,7 @@ export default function Popup({ title, icon, children }) {
         <Image src={icon} className="mr-2" style={{"height": "30px"}} fluid></Image>
         <h2 className="popup-title mb-0">{title}</h2>
       </Row>
-      <Row>
-          {children}
-      </Row>
+      {children}
     </Container>
   );
 }
