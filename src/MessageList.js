@@ -3,13 +3,18 @@ import { ListGroup } from "react-bootstrap";
 
 import Message from "./Message";
 
+function showMessages(messages) {
+  if (!messages) {
+      return;
+  }
+
+  return messages.map((msg, idx) => <Message key={idx} message={msg} />);
+}
+
 function MessageList({ messages }) {
   return (
     <ListGroup>
-      {messages &&
-        messages.map((msg) => {
-          return <Message key={msg.id} message={msg} />;
-        })}
+      {showMessages(messages)}
     </ListGroup>
   );
 }

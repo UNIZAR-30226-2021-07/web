@@ -24,6 +24,9 @@ test("renders EditProfile", () => {
   const emailElement = screen.getByText(email);
   expect(emailElement).toBeInTheDocument();
 
-  const buttonElement = screen.getByText(/GUARDAR/i);
+  var buttonElement = screen.getByText(/GUARDAR/i);
+  expect(buttonElement).toBeInTheDocument();
+
+  buttonElement = screen.getByText(/Eliminar cuenta/i);
   expect(buttonElement).toBeInTheDocument();
 });

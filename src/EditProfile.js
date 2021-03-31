@@ -11,6 +11,8 @@ import {
 
 import camera from "./assets/common/icons/camera.png";
 
+import { renderDeleteAccountPopup } from "./DeleteAccountPopup";
+
 function EditProfile({ email, username, image, boardType }) {
   return (
     <Container className="app-container">
@@ -37,6 +39,11 @@ function EditProfile({ email, username, image, boardType }) {
               </Row>
               <Row className="align-items-center justify-content-center">
                 <Card.Text>{email}</Card.Text>
+              </Row>
+              <Row className="align-items-center justify-content-center">
+                <Button onClick={renderDeleteAccountPopup}>
+                  Eliminar Cuenta
+                </Button>
               </Row>
             </Card.Body>
           </Col>
