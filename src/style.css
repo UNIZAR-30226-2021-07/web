@@ -11,8 +11,17 @@ body {
   padding: 2%;
 }
 
+.alert-button {
+  background-color: red !important;
+  border: none !important;
+}
+
 .primary-button {
   background-color: #6a1b9a !important;
+}
+
+/* Estas dos clases css comparten todos estos atributos*/
+.primary-button, .alert-button {
   border-radius: 30px !important;
   width: 80% !important;
   max-width: 290px !important;
@@ -30,6 +39,16 @@ body {
   border-radius: 30px !important;
   width: 270px !important;
   height: 50px !important;
+  size: 24px !important;
+  font-weight: bold !important;
+}
+
+.tertiary-button {
+  background-color: #B4B4B4 !important;
+  border-radius: 30px !important;
+  border: none !important;
+  width: 150px !important;
+  height: 40px !important;
   size: 24px !important;
   font-weight: bold !important;
 }
@@ -55,6 +74,12 @@ body {
 .form-label {
   font-size: 18px;
   font-weight: bold;
+}
+
+.user-profile-image {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
 }
 
 html,

@@ -1,20 +1,24 @@
 import React from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
 
-import logo from "./assets/common/logo/logo.svg";
+import logo from "./assets/common/logo/logo.png";
 
 function Profile(props) {
   return (
     <Container className="app-container">
       <Card>
-        <Card.Body>
-          <Card.Title>Mi perfil</Card.Title>
-        </Card.Body>
+          <Container>
+            <Row>
+              <Col className="col-md-4 offset-md-4">
+                <Card.Title>Mi perfil</Card.Title>
+              </Col>
+            </Row>
+          </Container>    
         <Row>
           <Col>
             <Card.Body>
               <Row className="align-items-center justify-content-center">
-                <Card.Img variant="top" src={logo}></Card.Img>
+                  <Image src={logo} className="user-profile-image" roundedCircle thumbnail ></Image>
               </Row>
               <br></br>
               <Row className="align-items-center justify-content-center">
@@ -25,7 +29,7 @@ function Profile(props) {
               </Row>
               <br></br>
               <Row className="align-items-center justify-content-center">
-                <Button>Editar Perfil</Button>
+                <Button className="tertiary-button">Editar Perfil</Button>
               </Row>
             </Card.Body>
           </Col>
@@ -74,7 +78,7 @@ function Profile(props) {
             </Card.Body>
             <Card.Body>
               <Row className="align-items-center justify-content-center">
-                <Button variant="danger">Cerrar Sesión</Button>
+                <Button className="alert-button">Cerrar Sesión</Button>
               </Row>
             </Card.Body>
           </Col>
