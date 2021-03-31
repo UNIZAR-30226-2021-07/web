@@ -2,6 +2,8 @@ import React from "react";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
 import logo from "./assets/common/logo/logo.svg";
+import shop from "./assets/common/icons/tienda.svg";
+import user from "./assets/common/icons/perfil.svg";
 
 import { renderCreateGamePopup } from "./CreateGamePopup";
 import { renderJoinGamePopup } from "./JoinGamePopup";
@@ -9,36 +11,49 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 
 function Menu() {
   return (
-    <Container className="app-container">
+    <Container className="app-container menu-container">
       <Row>
-        <Col md={4}>Perfil</Col>
-        <Col md={{ span: 4, offset: 4 }}>Tienda</Col>
+        <Col className="col-md-2">
+          <Image src={user} alt="Perfil" className="mx-auto d-block" />
+        </Col>
+        <Col className="col-md-2 offset-md-8 justify-content-center align-items-center">
+          <Row className="">
+            <Image src={shop} alt="Tienda" className="mx-auto d-block" />
+          </Row>
+          <Row className="justify-content-center align-items-center">
+            <span id="coins">100</span>
+            <Image src={shop} alt="Tienda" className="" />
+          </Row>
+        </Col>
       </Row>
-
-      <Row className="align-items-center">
-        <Col>
-          <Image className="py-5" src={logo} alt="logo" fluid />
-        </Col>
-        <Col>
-          <h1>GATOVID</h1>
-        </Col>
+      <Row className="logo-row justify-content-center align-items-center">
+        <Image id="logo" className="menu-logo img-fluid" src={logo} alt="logo" />
+        <h1 id="main-title">GATOVID</h1>
       </Row>
-
-      <Row>
-        <Col md={4}>
-          <Button onClick={() => renderCreateGamePopup("1234")}>
-            Crear partida privada
-          </Button>
+      <Row className="">
+        <Col lg={true}>
+          <Button
+            className="primary-button d-block mx-auto"
+            onClick={() => renderCreateGamePopup("1234")}
+          >
+            CREAR PARTIDA PRIVADA
+        </Button>
         </Col>
-        <Col md={4}>
-          <Button onClick={() => renderJoinGamePopup()}>
-            Unirse partida privada
-          </Button>
+        <Col lg={true}>
+          <Button
+            className="primary-button d-block mx-auto"
+            onClick={() => renderJoinGamePopup()}
+          >
+            UNIRSE PARTIDA PRIVADA
+        </Button>
         </Col>
-        <Col md={4}>
-          <Button onClick={() => renderPreparingGamePopup()}>
-            Unirse partida pública
-          </Button>
+        <Col lg={true}>
+          <Button
+            className="primary-button d-block mx-auto"
+            onClick={() => renderPreparingGamePopup()}
+          >
+            UNIRSE PARTIDA PÚBLICA
+        </Button>
         </Col>
       </Row>
     </Container>

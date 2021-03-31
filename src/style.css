@@ -3,6 +3,60 @@ body {
   background-image: url("assets/common/background.jpg");
 }
 
+html,
+body,
+#root,
+.App,
+.app-container {
+  height: 100vh;
+}
+
+/**************Menú**************/
+
+.menu-logo {
+  height: 80vh;
+  max-height: 200px;
+}
+
+.logo-row {
+  flex: 1;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.icons img {
+  height: 10%;
+  width: 10%;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.main img {
+  width: 60%;
+}
+
+.main h1 {
+  font-size: 700%;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .card {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 5%;
