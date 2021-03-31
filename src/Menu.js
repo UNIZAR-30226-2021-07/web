@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 import logo from "./assets/common/logo/logo.svg";
 
@@ -12,16 +11,8 @@ function Menu() {
   return (
     <Container className="app-container">
       <Row>
-        <Col md={4}>
-          <Link to="/profile">
-              <Button>Perfil</Button>
-          </Link>
-        </Col>
-        <Col md={{ span: 4, offset: 4 }}>
-          <Link to="/profile">
-              <Button>Tienda</Button>
-          </Link>
-        </Col>
+        <Col md={4}>Perfil</Col>
+        <Col md={{ span: 4, offset: 4 }}>Tienda</Col>
       </Row>
 
       <Row className="align-items-center">
