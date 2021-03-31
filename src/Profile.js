@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Image, Table } from "react-bootstrap";
 
 import logo from "./assets/common/logo/logo.png";
 
@@ -8,72 +8,62 @@ function Profile(props) {
     <Container className="app-container">
       <Card>
          <Card.Body>
-                <Row>
+            <Row className="align-items-center justify-content-center">
                   <Col>
-                    <Row className="align-items-center justify-content-center">
+                    <Row className="align-items-center justify-content-center mb-3">
                       <Card.Title className="primary-title text-align-center">
                             Mi Perfil
                       </Card.Title>
                     </Row>
-                    <br></br>
-                    <Row className="align-items-center justify-content-center">
+                    <Row className="align-items-center justify-content-center mb-2">
                         <Image src={logo} className="user-profile-image" roundedCircle thumbnail ></Image>
                     </Row>
-                    <br></br>
                     <Row className="align-items-center justify-content-center">
                       <Card.Text>{props.username}</Card.Text>
                     </Row>
-                    <Row className="align-items-center justify-content-center">
+                    <Row className="align-items-center justify-content-center mb-2">
                       <Card.Text>{props.email}</Card.Text>
                     </Row>
-                    <br></br>
                     <Row className="align-items-center justify-content-center">
                       <Button className="tertiary-button">Editar Perfil</Button>
                     </Row>
                   </Col>
-                  <Col className=" 
-                                    margin-top: 10%">
+                  <Col>
                     <Row className="align-items-center justify-content-center">
                       <Card.Title className="secondary-title text-align-center">
                             Estadísticas
                       </Card.Title>
                     </Row>
-                    <Card.Body>
-                        <Row className="align-items-center justify-content-center">
-                          <Col sm={8}>
-                            <Card.Text>Partidas jugadas </Card.Text>
-                          </Col>
-                          <Col sm={4}>
-                            <Card.Text>{props.games}</Card.Text>
-                          </Col>
-                        </Row>
-                        <Row
-                          md={20}
-                          className="align-items-center justify-content-center"
-                        >
-                          <Col sm={8}>
-                            <Card.Text>Partidas ganadas</Card.Text>
-                          </Col>
-                          <Col sm={4}>
-                            <Card.Text>{props.wins}</Card.Text>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center justify-content-center">
-                          <Col sm={8}>
-                            <Card.Text>Partidas perdidas</Card.Text>
-                          </Col>
-                          <Col sm={4}>
-                            <Card.Text>{props.losts}</Card.Text>
-                          </Col>
-                        </Row>
-                        <Row className="align-items-center justify-content-center">
-                          <Col sm={8}>
-                            <Card.Text>Tiempo jugado</Card.Text>
-                          </Col>
-                          <Col sm={4}>
-                            <Card.Text>{props.timePlayed} min</Card.Text>
-                          </Col>
-                        </Row>
+                    <Card.Body className="ml-5 align-items-center justify-content-center">
+                      <Table>
+                        <tbody>
+                            <tr>
+                              <td>
+                                <Card.Title className="tertiary-title">Partidas jugadas:</Card.Title>
+                              </td>
+                              <td>
+                                <Card.Text>{props.games}</Card.Text>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><Card.Title className="tertiary-title">Partidas ganadas:</Card.Title>
+                              </td>
+                              <td><Card.Text>{props.wins}</Card.Text></td>
+                            </tr>
+                            <tr>
+                              <td><Card.Title className="tertiary-title">Partidas perdidas:</Card.Title>
+                              </td>
+                              <td><Card.Text>{props.losts}</Card.Text></td>
+                            </tr>
+                            <tr>
+                              <td><Card.Title className="tertiary-title">Tiempo jugado:</Card.Title>
+                            </td>
+                              <td><Card.Text>{props.timePlayed} min</Card.Text></td>
+                            </tr>
+                          </tbody>
+                        </Table>
+
+
                       </Card.Body>
                       <Card.Body>
                         <Row className="align-items-center justify-content-center">
