@@ -14,12 +14,6 @@ test("renders confirm button", () => {
   expect(buttonElement).toBeInTheDocument();
 });
 
-test("renders copy button", () => {
-  render(<CreateGamePopup code="1234" />);
-  const buttonElement = screen.getByText(/Copy/i);
-  expect(buttonElement).toBeInTheDocument();
-});
-
 test("check code exists", () => {
   const code = "1312";
   render(<CreateGamePopup code={code} />);
