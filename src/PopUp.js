@@ -1,16 +1,15 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Container, Col } from "react-bootstrap";
+import { Container, Col, Image } from "react-bootstrap";
 
 export default function Popup({ title, icon, children }) {
   return (
     <Container>
       <div>
-        <div className="d-flex justify-content-between col-12">
-          <div className="d-flex d-flex justify-content-start align-self-center">
-            {icon}
-          </div>
-          <h2 className="popup-title ">{title}</h2>
+        <div className="d-flex justify-content-between align-items-center col-12 mb-2">
+          <Image src={icon} className="mr-2" style={{"height": "30px"}} fluid>
+          </Image>
+          <h2 className="popup-title mb-0">{title}</h2>
         </div>
       </div>
       <Col>{children}</Col>

@@ -5,12 +5,14 @@ import Popup from "./PopUp";
 
 import { renderStartGamePopup } from "./StartGamePopup";
 
+import check from "./assets/common/icons/check.svg";
+
 export default function CreateGamePopup({ code, children }) {
   return (
-    <Popup title="Partida privada lista" icon="TickImage">
-      <Row className="d-flex justify-content-center">
-        <p>
-          Comparte el siguiente código con tus <br></br>
+    <Popup title="Partida privada lista" icon={check}>
+      <Row className="justify-content-center">
+        <p className="text-center">
+          Comparte el siguiente código con tus<br />
           amigos para empezar a jugar.
         </p>
       </Row>
