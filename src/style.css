@@ -1,0 +1,106 @@
+body {
+  color: #00344a !important;
+  background-image: url("assets/common/background.jpg");
+}
+
+html,
+body,
+#root,
+.App,
+.app-container {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+/**************Menú**************/
+
+.menu-logo {
+  height: 80vh;
+  max-height: 200px;
+}
+
+.menu-icon {
+  height: 25vh;
+}
+
+#coins {
+  height: 8vh;
+}
+
+#number-coins {
+  font-size: 9vh;
+}
+
+.logo-row {
+  margin: 0% 5% 5% 5%;
+}
+
+#logo-title {
+  font-size: 20vh;
+  margin-left: 5%;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 2%;
+  margin-bottom: 1%;
+}
+
+.primary-button {
+  background-color: #6a1b9a !important;
+  border-radius: 30px !important;
+  width: 80% !important;
+  max-width: 290px !important;
+  min-width: min-content !important;
+  height: 100% !important;
+  max-height: 50px !important;
+  min-height: min-content !important;
+  justify-content: flex-end;
+  size: 24px !important;
+  font-weight: bold !important;
+}
+
+.secondary-button {
+  background-color: #9c4dcc !important;
+  border-radius: 30px !important;
+  width: 270px !important;
+  height: 50px !important;
+  size: 24px !important;
+  font-weight: bold !important;
+}
+
+.primary-title {
+  font-size: 48px !important;
+  font-weight: bold !important;
+}
+
+.secondary-title {
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 1%;
+}
+
+/*Caja de texto formularios*/
+.form-control {
+  background: #f9f6f3;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0%;
+}
+
+.form-label {
+  font-size: 18px;
+  font-weight: bold;
+}

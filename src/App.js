@@ -7,10 +7,10 @@ import Login from "./Login";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import SignUp from "./SignUp";
-import Shop from "./Shop"
-import Help from "./Help"
+import Shop from "./Shop";
+import Help from "./Help";
 
-import "./App.css";
+import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -33,7 +33,11 @@ function App() {
 
         <ProtectedRoute path="/profile" loggedIn={logged} component={Profile} />
 
-        <ProtectedRoute path="/editProfile" loggedIn={logged} component={EditProfile} />
+        <ProtectedRoute
+          path="/editProfile"
+          loggedIn={logged}
+          component={EditProfile}
+        />
 
         <ProtectedRoute path="/shop" loggedIn={logged} component={Shop} />
 
@@ -59,4 +63,3 @@ const ProtectedRoute = ({ component: Component, loggedIn, ...rest }) => {
 };
 
 export default App;
-

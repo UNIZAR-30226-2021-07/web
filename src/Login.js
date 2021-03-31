@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Form, Button, Container, Row } from "react-bootstrap";
+import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Login({ onLogin }) {
@@ -7,8 +7,12 @@ function Login({ onLogin }) {
     <Container className="app-container">
       <Card>
         <Card.Body>
-          <Card.Title>Iniciar Sesión</Card.Title>
-          <Form>
+          <Row className="justify-content-center">
+            <Card.Title className="primary-title text-align-center">
+              Iniciar Sesión
+            </Card.Title>
+          </Row>
+          <Form className="justify-content-center">
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" />
@@ -21,18 +25,30 @@ function Login({ onLogin }) {
             <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Recuérdame" />
             </Form.Group>
-            <Link to="/menu">
-              <Button onClick={onLogin} variant="primary" type="submit">
-                Iniciar sesión
-              </Button>
-            </Link>
           </Form>
+          <Row>
+            <Col className="offset-md-8">
+              <Link to="/menu">
+                <Button
+                  className="primary-button"
+                  onClick={onLogin}
+                  type="submit"
+                >
+                  INICIAR SESIÓN
+                </Button>
+              </Link>
+            </Col>
+          </Row>
         </Card.Body>
       </Card>
       <Container>
-        <Row className="align-items-center">¿Nuevo en Gatovid?</Row>
-        <Row className="align-items-center">
-          <Button>CREAR UNA CUENTA</Button>
+        <Row className="justify-content-center secondary-title">
+          ¿Nuevo en Gatovid?
+        </Row>
+        <Row className="justify-content-center">
+          <Link to="/signup">
+            <Button className="secondary-button">CREAR UNA CUENTA</Button>
+          </Link>
         </Row>
       </Container>
     </Container>
