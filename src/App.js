@@ -4,6 +4,10 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Menu from "./Menu";
 import Match from "./Match";
 import Login from "./Login";
+import Profile from "./Profile";
+import EditProfile from "./EditProfile";
+import Chat from "./Chat";
+import SignUp from "./SignUp";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,9 +22,23 @@ function App() {
           <Login onLogin={() => setLogged(true)} />
         </Route>
 
+        <Route path="/signup">
+          <SignUp />
+        </Route>
+
         <ProtectedRoute path="/home" loggedIn={logged} component={Menu} />
 
         <ProtectedRoute path="/match" loggedIn={logged} component={Match} />
+
+        <ProtectedRoute path="/profile" loggedIn={logged} component={Profile} />
+
+        <ProtectedRoute
+          path="/editProfile"
+          loggedIn={logged}
+          component={EditProfile}
+        />
+
+        <ProtectedRoute path="/chat" loggedIn={logged} component={Chat} />
 
         <Route path="/">
           {logged ? <Redirect to="/home" /> : <Redirect to="/login" />}
