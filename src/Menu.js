@@ -15,11 +15,19 @@ function Menu() {
     <Container className="app-container menu-container">
       <Row>
         <Col className="col-md-2">
-          <Image src={user} alt="Perfil" className="menu-icon mx-auto d-block" />
+          <Image
+            src={user}
+            alt="Perfil"
+            className="menu-icon mx-auto d-block"
+          />
         </Col>
         <Col className="col-md-2 offset-md-8 justify-content-center align-items-center">
           <Row className="">
-            <Image src={shop} alt="Tienda" className="menu-icon mx-auto d-block" />
+            <Image
+              src={shop}
+              alt="Tienda"
+              className="menu-icon mx-auto d-block"
+            />
           </Row>
           <Row className="justify-content-center align-items-center">
             <span id="number-coins">100</span>
@@ -28,7 +36,12 @@ function Menu() {
         </Col>
       </Row>
       <Row className="logo-row justify-content-center align-items-center">
-        <Image id="logo" className="menu-logo img-fluid" src={logo} alt="logo" />
+        <Image
+          id="logo"
+          className="menu-logo img-fluid"
+          src={logo}
+          alt="logo"
+        />
         <h1 id="logo-title">GATOVID</h1>
       </Row>
       <Row className="">
@@ -38,7 +51,7 @@ function Menu() {
             onClick={() => renderCreateGamePopup("1234")}
           >
             CREAR PARTIDA PRIVADA
-        </Button>
+          </Button>
         </Col>
         <Col lg={true}>
           <Button
@@ -46,7 +59,7 @@ function Menu() {
             onClick={() => renderJoinGamePopup()}
           >
             UNIRSE PARTIDA PRIVADA
-        </Button>
+          </Button>
         </Col>
         <Col lg={true}>
           <Button
@@ -54,7 +67,7 @@ function Menu() {
             onClick={() => renderPreparingGamePopup()}
           >
             UNIRSE PARTIDA PÚBLICA
-        </Button>
+          </Button>
         </Col>
       </Row>
     </Container>
