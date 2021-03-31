@@ -9,43 +9,46 @@ import {
   Image,
 } from "react-bootstrap";
 
+//import { Link } from "react-router-dom";
+
 import camera from "./assets/common/icons/camera.png";
 
 import { renderDeleteAccountPopup } from "./DeleteAccountPopup";
+
 
 function EditProfile({ email, username, image, boardType }) {
   return (
     <Container className="app-container">
       <Card>
         <Card.Body>
-          <Card.Title>
-            <h1>Configuración</h1>
-          </Card.Title>
-        </Card.Body>
-        <Row>
-          <Col>
-            <Card.Body>
-              <Row className="align-items-right justify-content-right">
-                <Button variant="outline-info" size="sm">
-                  <Image fluid src={camera}></Image>
-                </Button>
-              </Row>
-              <Row className="align-items-center justify-content-center">
-                <Card.Img variant="top" src={image}></Card.Img>
-              </Row>
-              <br></br>
-              <Row className="align-items-center justify-content-center">
-                <Card.Text>{username}</Card.Text>
-              </Row>
-              <Row className="align-items-center justify-content-center">
-                <Card.Text>{email}</Card.Text>
-              </Row>
-              <Row className="align-items-center justify-content-center">
-                <Button onClick={renderDeleteAccountPopup}>
-                  Eliminar Cuenta
-                </Button>
-              </Row>
-            </Card.Body>
+            <Row className="align-items-center justify-content-center">
+                <Col>
+                  <Row className="align-items-center justify-content-center mb-3">
+                    <Card.Title className="primary-title text-align-center">
+                          Configuración
+                    </Card.Title>
+                  </Row>
+                  <Row className="align-items-right justify-content-right">
+                  <Button variant="outline-info" size="sm">
+                    <Image fluid src={camera}></Image>
+                  </Button>
+                </Row>
+                  <Row className="align-items-center justify-content-center mb-2">
+                      <Image src={image} className="user-profile-image" roundedCircle thumbnail ></Image>
+                  </Row>
+                  <Row className="align-items-center justify-content-center">
+                    <Card.Text>{username}</Card.Text>
+                  </Row>
+                  <Row className="align-items-center justify-content-center mb-2">
+                    <Card.Text>{email}</Card.Text>
+                  </Row>
+              <Card.Body>
+                <Row className="align-items-center justify-content-center">
+                  <Button className onClick={renderDeleteAccountPopup}>
+                    Eliminar Cuenta
+                  </Button>
+                </Row>
+              </Card.Body>
           </Col>
           <Col>
             <Card.Body>
@@ -78,12 +81,13 @@ function EditProfile({ email, username, image, boardType }) {
                 </Form.Group>
               </Form>
             </Card.Body>
-          </Col>
-        </Row>
+        </Col>
         <Card.Body>
           <Row className="align-items-center justify-content-center">
             <Button>GUARDAR</Button>
           </Row>
+        </Card.Body>
+        </Row>
         </Card.Body>
       </Card>
     </Container>

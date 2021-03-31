@@ -13,15 +13,15 @@ import Help from "./Help";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import tapete from "./assets/common/boards/green.png";
+import logo from "./assets/common/logo/logo.svg";
+
 function App() {
   const [logged, setLogged] = useState(false);
 
+
   var username = "Juan Carlos";
   var email = "juanCarlos@gmail.com";
-  var games = "15";
-  var wins = "7";
-  var losts = "8";
-  var timePlayed = "145";
 
   return (
     <div className="App">
@@ -34,17 +34,17 @@ function App() {
           <SignUp />
         </Route>
       
-        <ProtectedRoute path="/home" loggedIn={logged} component={Profile}     
-                        username={username}
-                        email={email}
-                        games={games}
-                        wins={wins}
-                        losts={losts}
-                        timePlayed={timePlayed}  />
+        <ProtectedRoute path="/home" loggedIn={logged} component={EditProfile}     
+                      username={username}
+                      email={email}
+                      image={logo}
+                      boardType={tapete}  />
 
         <ProtectedRoute path="/match" loggedIn={logged} component={Match} />
 
         <ProtectedRoute path="/profile" loggedIn={logged} component={Profile} />
+
+        <ProtectedRoute path="/editProfile" loggedIn={logged} component={EditProfile} />
 
         <ProtectedRoute
           path="/editProfile"

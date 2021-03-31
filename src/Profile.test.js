@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import Profile from "./Profile";
+import { BrowserRouter as Router } from "react-router-dom";
 
 test("renders profile", () => {
   var username = "Juan Carlos";
@@ -10,14 +11,16 @@ test("renders profile", () => {
   var losts = "8";
   var timePlayed = "145";
   render(
-    <Profile
-      username={username}
-      email={email}
-      games={games}
-      wins={wins}
-      losts={losts}
-      timePlayed={timePlayed}
-    />
+    <Router>
+      <Profile
+        username={username}
+        email={email}
+        games={games}
+        wins={wins}
+        losts={losts}
+        timePlayed={timePlayed}
+      />
+    </Router>
   );
   const usernameElement = screen.getByText(username);
   expect(usernameElement).toBeInTheDocument();
