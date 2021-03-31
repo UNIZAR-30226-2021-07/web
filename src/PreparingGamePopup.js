@@ -11,8 +11,8 @@ const curiosities = [
 export default function PreparingGamePopup() {
   return (
     <Popup title="Preparando partida...">
-      <Row className="d-flex justify-content-center">Load Icon</Row>
-      <Row className="d-flex justify-content-center">
+      <Row className="justify-content-center">Load Icon</Row>
+      <Row className="justify-content-center">
         <p>
           ¿Lo sabias? <br></br>
           {curiosities[0]}

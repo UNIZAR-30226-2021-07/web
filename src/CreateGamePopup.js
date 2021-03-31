@@ -29,7 +29,7 @@ export default function CreateGamePopup({ code, children }) {
           <div className="input-group w-50 mr-2">
             <div className="input-group-prepend">
               <Button className="btn-outline-secondary" type="button" onClick={copyCode}>
-                <Image className="" src={clipboard} style={{"height": "20px"}} />
+                <Image src={clipboard} style={{"height": "20px"}} />
               </Button>
             </div>
             <input

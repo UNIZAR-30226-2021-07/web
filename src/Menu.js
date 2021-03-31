@@ -22,7 +22,7 @@ function Menu() {
           />
         </Col>
         <Col className="col-md-2 offset-md-8 justify-content-center align-items-center">
-          <Row className="">
+          <Row>
             <Image
               src={shop}
               alt="Tienda"
@@ -31,7 +31,7 @@ function Menu() {
           </Row>
           <Row className="justify-content-center align-items-center">
             <span id="number-coins">100</span>
-            <Image id="coins" src={coins} alt="Tienda" className="" />
+            <Image id="coins" src={coins} alt="Tienda" />
           </Row>
         </Col>
       </Row>
@@ -44,7 +44,7 @@ function Menu() {
         />
         <h1 id="logo-title">GATOVID</h1>
       </Row>
-      <Row className="">
+      <Row>
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto"
@@ -56,7 +56,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto"
-            onClick={() => renderJoinGamePopup()}
+            onClick={renderJoinGamePopup}
           >
             UNIRSE PARTIDA PRIVADA
           </Button>
@@ -64,7 +64,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto"
-            onClick={() => renderPreparingGamePopup()}
+            onClick={renderPreparingGamePopup}
           >
             UNIRSE PARTIDA PÚBLICA
           </Button>

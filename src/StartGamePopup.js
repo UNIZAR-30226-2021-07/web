@@ -6,12 +6,12 @@ import Popup from "./PopUp";
 export default function StartGamePopup({ ready, total, children }) {
   return (
     <Popup title="¿Empezar partida?">
-      <Row className="d-flex justify-content-center">
+      <Row className="justify-content-center">
         <p>
           {ready}/{total} gaticos preparados
         </p>
       </Row>
-      <Row className="d-flex justify-content-center">
+      <Row className="justify-content-center">
         <Button
           className="btn btn-primary btn-lg btn-block"
           onClick={PopupboxManager.close}
