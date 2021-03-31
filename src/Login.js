@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Form, Button, Container, Row } from "react-bootstrap";
+import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Login({ onLogin }) {
@@ -25,16 +25,20 @@ function Login({ onLogin }) {
             <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Recuérdame" />
             </Form.Group>
-            <Link to="/menu">
-              <Button
-                className="primary-button"
-                onClick={onLogin}
-                type="submit"
-              >
-                INICIAR SESIÓN
-              </Button>
-            </Link>
           </Form>
+          <Row>
+            <Col className="offset-md-8">
+              <Link to="/menu">
+                <Button
+                  className="primary-button"
+                  onClick={onLogin}
+                  type="submit"
+                >
+                  INICIAR SESIÓN
+                </Button>
+              </Link>
+            </Col>
+          </Row>
         </Card.Body>
       </Card>
       <Container>

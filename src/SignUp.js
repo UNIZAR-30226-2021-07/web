@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Container, Form, Row, Button } from "react-bootstrap";
+import { Card, Container, Form, Row, Button, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function SignUp() {
@@ -25,9 +25,13 @@ function SignUp() {
               <Form.Label>Contraseña</Form.Label>
               <Form.Control type="password" />
             </Form.Group>
-            <Link to="/menu">
-              <Button className="primary-button">REGISTRARSE</Button>
-            </Link>
+            <Row>
+              <Col className="offset-md-8">
+                <Link to="/menu">
+                  <Button className="primary-button">REGISTRARSE</Button>
+                </Link>
+              </Col>
+            </Row>
           </Form>
         </Card.Body>
       </Card>
@@ -37,7 +41,7 @@ function SignUp() {
         </Row>
         <Row className="justify-content-center">
           <Link to="/login">
-            <Button  className="secondary-button">INICIAR SESIÓN</Button>
+            <Button className="secondary-button">INICIAR SESIÓN</Button>
           </Link>
         </Row>
       </Container>
