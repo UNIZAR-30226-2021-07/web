@@ -5,6 +5,7 @@ import Menu from "./Menu";
 import Match from "./Match";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import Profile from "./Profile";
 
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,6 +27,8 @@ function App() {
         <ProtectedRoute path="/home" loggedIn={logged} component={Menu} />
 
         <ProtectedRoute path="/match" loggedIn={logged} component={Match} />
+
+        <ProtectedRoute path="/profile" loggedIn={logged} component={Profile} />
 
         <Route path="/">
           {logged ? <Redirect to="/home" /> : <Redirect to="/login" />}
