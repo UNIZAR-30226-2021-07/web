@@ -41,7 +41,7 @@ function EditProfile({ email, username, image, boardType }) {
                 <Card.Text>{email}</Card.Text>
               </Row>
               <Row className="align-items-center justify-content-center">
-                <Button onClick={() => renderDeleteAccountPopup()}>
+                <Button onClick={renderDeleteAccountPopup}>
                   Eliminar Cuenta
                 </Button>
               </Row>

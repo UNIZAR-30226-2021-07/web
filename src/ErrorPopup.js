@@ -6,10 +6,10 @@ import Popup from "./PopUp";
 export default function ErrorPopup({ body, title = "¡Atención!" }) {
   return (
     <Popup title={title} icon="ErrorIcon">
-      <Row className="d-flex justify-content-center">
+      <Row className="justify-content-center">
         <p>{body}</p>
       </Row>
-      <Row className="d-flex justify-content-around">
+      <Row className="justify-content-around">
         <Button className="btn btn-primary" onClick={PopupboxManager.close}>
           Atrás
         </Button>

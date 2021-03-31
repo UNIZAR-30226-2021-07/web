@@ -8,13 +8,13 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 export default function JoinGamePopup() {
   return (
     <Popup title="Unirse a partida" icon="TickImage">
-      <Row className="d-flex justify-content-center">
+      <Row className="justify-content-center">
         <p>
           Introduce el código de partida y <br></br>
           comienza a jugar con tus amigos.
         </p>
       </Row>
-      <Row className="d-flex justify-content-between">
+      <Row className="justify-content-between">
         <input
           className="code-box"
           type="text"
@@ -25,7 +25,7 @@ export default function JoinGamePopup() {
         ></input>
         <Button
           className="btn btn-primary"
-          onClick={() => renderPreparingGamePopup()}
+          onClick={renderPreparingGamePopup}
         >
           CONFIRMAR
         </Button>
