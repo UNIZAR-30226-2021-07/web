@@ -8,7 +8,8 @@ test("renders create game", () => {
   render(
     <Router>
       <Menu />
-    </Router>);
+    </Router>
+  );
   const buttonElement = screen.getByText(/crear partida privada/i);
   expect(buttonElement).toBeInTheDocument();
 });
@@ -17,7 +18,8 @@ test("renders title", () => {
   render(
     <Router>
       <Menu />
-    </Router>);
+    </Router>
+  );
   const titleElement = screen.getByText(/gatovid/i);
   expect(titleElement).toBeInTheDocument();
 });

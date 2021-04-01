@@ -10,12 +10,22 @@ export default function DeleteAccountPopup({ children }) {
         <h2 className="popup-title mb-0">permanentemente?</h2>
       </Row>
       <Row>
-        <Button className="alert-button mb-3 mt-4" style={{"width": "100%"}}
-                onClick={PopupboxManager.close}>Sí</Button>
+        <Button
+          className="alert-button mb-3 mt-4"
+          style={{ width: "100%" }}
+          onClick={PopupboxManager.close}
+        >
+          Sí
+        </Button>
       </Row>
       <Row>
-        <Button className="tertiary-button" style={{"width": "100%"}}
-                onClick={PopupboxManager.close}>No</Button>
+        <Button
+          className="tertiary-button"
+          style={{ width: "100%" }}
+          onClick={PopupboxManager.close}
+        >
+          No
+        </Button>
       </Row>
       <Col>{children}</Col>
     </Popup>

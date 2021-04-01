@@ -17,26 +17,28 @@ function Menu() {
     <Container className="app-container menu-container">
       <Row>
         <Col className="col-md-2">
-        <Link to="/profile">
-          <Image
-            src={user}
-            alt="Perfil"
-            className="menu-icon mx-auto d-block img-shadow"
-          />
+          <Link to="/profile">
+            <Image
+              src={user}
+              alt="Perfil"
+              className="menu-icon mx-auto d-block img-shadow"
+            />
           </Link>
         </Col>
         <Col className="col-md-2 offset-md-8 justify-content-center align-items-center">
           <Row>
-          <Link to="/shop">
-            <Image
-              src={shop}
-              alt="Tienda"
-              className="menu-icon mx-auto d-block img-shadow"
-            />
+            <Link to="/shop">
+              <Image
+                src={shop}
+                alt="Tienda"
+                className="menu-icon mx-auto d-block img-shadow"
+              />
             </Link>
           </Row>
           <Row className="justify-content-center align-items-center flex-nowrap">
-            <span id="number-coins" className="mr-2">100</span>
+            <span id="number-coins" className="mr-2">
+              100
+            </span>
             <Image id="coins" src={coins} alt="Tienda" />
           </Row>
         </Col>
