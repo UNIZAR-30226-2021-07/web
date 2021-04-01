@@ -230,6 +230,7 @@ body,
   right: 10px;
   top: 5px;
 }
+
 .close:hover, .close:focus {
   background: none !important;
 }
