@@ -30,7 +30,9 @@ function Menu() {
             />
           </Row>
           <Row className="justify-content-center align-items-center flex-nowrap">
-            <span id="number-coins" className="mr-2">100</span>
+            <span id="number-coins" className="mr-2">
+              100
+            </span>
             <Image id="coins" src={coins} alt="Tienda" />
           </Row>
         </Col>
