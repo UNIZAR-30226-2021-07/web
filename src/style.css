@@ -129,6 +129,7 @@ body,
   font-weight: bold;
 }
 
-#close-button .btn-primary:hover  {
-  background-color: none !important;
+.close:hover, .close:focus {
+  background: none !important;
+  box-shadow: none !important;
 }

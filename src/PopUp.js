@@ -14,11 +14,7 @@ export default function Popup({ title, icon, close, children }) {
         ></Image>
         <h2 className="popup-title mb-0">{title}</h2>
         {close && (
-          <Button
-            id="close-button"
-            className="close"
-            onClick={PopupboxManager.close}
-          >
+          <Button className="close" onClick={PopupboxManager.close}>
             &times;
           </Button>
         )}
@@ -30,7 +26,7 @@ export default function Popup({ title, icon, close, children }) {
 
 // For test purposes only
 export function openPopup(title, icon, close) {
-  const content = <Popup title={title} icon={icon} close={close}/>;
+  const content = <Popup title={title} icon={icon} close={close} />;
   PopupboxManager.open({
     content,
     config: {
