@@ -120,7 +120,8 @@ body,
 }
 
 .tertiary-button:hover {
-  background-color: #B4B4B4 !important;
+  background-color: darkgrey !important;
+  border-color: grey !important;
 }
 
 .tertiary-button {
@@ -139,8 +140,7 @@ body,
 }
 
 .alert-button:hover {
-  background-color: #0069d9;
-  border-color: #0062cc;
+  background-color: rgb(253, 66, 66) !important;
 }
 
 .primary-title {
