@@ -18,30 +18,29 @@ function Menu() {
       <Row className="h-100">
         <Col className="app-container h-100">
           <Row className="h-33 align-items-center">
-            <Col className="col-md-2">
-            <Link to="/profile">
-              <Image
-                src={user}
-                alt="Perfil"
-                className="menu-icon mx-auto d-block img-shadow"
-              />
+            <Col className="col-md-2 menu-icon">
+              <Link className="d-block h-100" to="/profile">
+                <Image
+                  src={user}
+                  alt="Perfil"
+                  className="mx-auto h-100"
+                />
               </Link>
             </Col>
-            <Col className="col-md-2 offset-md-8 justify-content-center align-items-center">
-              <Row className="justify-content-center">
-                <Link to="/shop">
-                  <Image
-                    src={shop}
-                    alt="Tienda"
-                    className="menu-icon mx-auto d-block img-shadow"
-                  />
-                </Link>
-              </Row>
-              <Row className="justify-content-center align-items-center flex-nowrap">
+            <Link
+              to="/shop"
+              className="col-md-2 offset-md-8 justify-content-center align-items-center menu-icon menu-icon-shop"
+            >
+              <Image
+                src={shop}
+                alt="Tienda"
+                className="mx-auto h-100"
+              />
+              <Row className="justify-content-center align-items-center flex-nowrap coins">
                 <span id="number-coins" className="mr-2">100</span>
-                <Image id="coins" src={coins} alt="Tienda" />
+                <Image src={coins} alt="Tienda" />
               </Row>
-            </Col>
+            </Link>
           </Row>
           <Row className="logo-row justify-content-center align-items-center h-33">
             <Image

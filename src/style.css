@@ -33,18 +33,27 @@ body,
 
 .menu-icon {
   height: 12vh;
-  transition: all 0.3s 0s cubic-bezier(.29,-0.43,.27,1.55);
+  transition: transform 0.3s 0s cubic-bezier(.29,-0.43,.27,1.55);
 }
 .menu-icon:hover {
-  height: 15vh;
+  transform: scale(1.2);
 }
 
-#coins {
-  height: 6vh;
+/* El icono del menú es un conjunto de ítems con la imagen y las monedas */
+.menu-icon-shop {
+  display: flex;
+  flex-flow: column nowrap;
+  color: #000;
 }
-
-#number-coins {
-  font-size: 5vh;
+.menu-icon-shop:hover {
+  text-decoration: none;
+  color: #000;
+}
+.coins {
+  font-size: 2.5vh;
+}
+.coins img {
+  height: 2ex;
 }
 
 .logo-row {
