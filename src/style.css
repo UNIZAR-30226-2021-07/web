@@ -79,7 +79,7 @@ body,
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.primary-button, .secondary-button, .alert-button, .continue-button {
+.primary-button, .secondary-button, .tertiary-button, .alert-button, .continue-button {
   padding: 10px 20px !important;
   border-radius: 30px !important;
   font-weight: bold !important;
@@ -126,12 +126,7 @@ body,
 
 .tertiary-button {
   background-color: #B4B4B4 !important;
-  border-radius: 30px !important;
   border: none !important;
-  width: 150px !important;
-  height: 40px !important;
-  size: 24px !important;
-  font-weight: bold !important;
 }
 
 .alert-button {
@@ -235,6 +230,7 @@ body,
   right: 10px;
   top: 5px;
 }
+
 .close:hover, .close:focus {
   background: none !important;
 }
