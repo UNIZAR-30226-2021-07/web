@@ -7,7 +7,7 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 
 export default function JoinGamePopup() {
   return (
-    <Popup title="Unirse a partida" icon="TickImage">
+    <Popup title="Unirse a partida" icon="TickImage" close={true}>
       <Row className="justify-content-center">
         <p>
           Introduce el código de partida y <br></br>

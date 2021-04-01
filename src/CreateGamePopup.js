@@ -17,7 +17,7 @@ function copyCode() {
 
 export default function CreateGamePopup({ code, children }) {
   return (
-    <Popup title="Partida privada lista" icon={check}>
+    <Popup title="Partida privada lista" icon={check} close={true}>
       <Row className="justify-content-center">
         <p className="text-center">
           Comparte el siguiente código con tus<br />
