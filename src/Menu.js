@@ -18,18 +18,18 @@ function Menu() {
       id="menu"
       className="app-container col-centered justify-content-around"
     >
-      <Row className="justify-content-between">
-        <Col className="icon-height">
+      <Row className="justify-content-between menu-icons">
+        <Col className="h-100">
           <Link className="d-block h-100" to="/profile">
-            <Image src={user} alt="Perfil" className="mx-auto h-100 menu-icon" />
+            <Image src={user} alt="Perfil" className="menu-icon" />
           </Link>
         </Col>
         <Link
           to="/shop"
-          className="justify-content-center align-items-center icon-height menu-icon-shop"
+          className="justify-content-center align-items-center h-100 menu-icon-shop"
         >
-          <div className="menu-icon h-100">
-            <Image src={shop} alt="Tienda" className="mx-auto h-100" />
+          <div className="menu-icon">
+            <Image src={shop} alt="Tienda" className="h-100" />
             <Row className="justify-content-center align-items-center flex-nowrap coins">
               <span id="number-coins" className="mr-2">
                 100

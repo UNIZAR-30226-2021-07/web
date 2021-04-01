@@ -29,20 +29,15 @@ body,
 /**************Menú**************/
 
 .menu-logo {
-  height: 80vh;
-  max-height: 200px;
+  max-height: 35vh;
 }
 
-.menu-section {
-  margin-top: 5vh;
-  margin-bottom: 10vh;
-}
-
-.icon-height {
+.menu-icons {
   height: 12vh;
 }
 
 .menu-icon {
+  height: 100%;
   transition: transform 0.3s 0s cubic-bezier(0.29, -0.43, 0.27, 1.55);
 }
 .menu-icon:hover {
