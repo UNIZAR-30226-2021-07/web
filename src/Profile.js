@@ -3,9 +3,18 @@ import { Container, Row, Col, Card, Button, Image, Table } from "react-bootstrap
 import { Link } from "react-router-dom";
 import {renderCreateGamePopup} from "./CreateGamePopup"
 
-import logo from "./assets/common/logo/logo.png";
+import logo from "./assets/common/logo/logo.svg";
 
-function Profile(props) {
+function Profile(/*{ username, email, games, wins, losts, timePlayed }*/) {
+
+  // TODO: Solo para prototipo inicial
+  var username = "Juan Carlos";
+  var email = "juanCarlos@gmail.com";
+  var games = "15";
+  var wins = "7";
+  var losts = "8";
+  var timePlayed = "145";
+
   return (
     <Container id="profile" className="app-container">
       <Card>
@@ -21,10 +30,10 @@ function Profile(props) {
                         <Image src={logo} className="user-profile-image" roundedCircle thumbnail ></Image>
                     </Row>
                     <Row className="align-items-center justify-content-center">
-                      <Card.Text>{props.username}</Card.Text>
+                      <Card.Text>{username}</Card.Text>
                     </Row>
                     <Row className="align-items-center justify-content-center mb-2">
-                      <Card.Text>{props.email}</Card.Text>
+                      <Card.Text>{email}</Card.Text>
                     </Row>
                     <Row className="align-items-center justify-content-center">
                       <Link to="/editProfile">
@@ -46,23 +55,23 @@ function Profile(props) {
                                 <Card.Title className="tertiary-title">Partidas jugadas:</Card.Title>
                               </td>
                               <td>
-                                <Card.Text>{props.games}</Card.Text>
+                                <Card.Text>{games}</Card.Text>
                               </td>
                             </tr>
                             <tr>
                               <td><Card.Title className="tertiary-title">Partidas ganadas:</Card.Title>
                               </td>
-                              <td><Card.Text>{props.wins}</Card.Text></td>
+                              <td><Card.Text>{wins}</Card.Text></td>
                             </tr>
                             <tr>
                               <td><Card.Title className="tertiary-title">Partidas perdidas:</Card.Title>
                               </td>
-                              <td><Card.Text>{props.losts}</Card.Text></td>
+                              <td><Card.Text>{losts}</Card.Text></td>
                             </tr>
                             <tr>
                               <td><Card.Title className="tertiary-title">Tiempo jugado:</Card.Title>
                             </td>
-                              <td><Card.Text>{props.timePlayed} min</Card.Text></td>
+                              <td><Card.Text>{timePlayed} min</Card.Text></td>
                             </tr>
                           </tbody>
                         </Table>

@@ -9,15 +9,22 @@ import {
   Image,
 } from "react-bootstrap";
 
+import boardType from "./assets/common/boards/green.png";
+import image from "./assets/common/logo/logo.svg";
+
 //import { Link } from "react-router-dom";
 
-//import camera from "./assets/common/icons/camera.png";
-import camera from "./camera.svg";
+import camera from "./assets/common/icons/camera.svg";
 
 import { renderDeleteAccountPopup } from "./DeleteAccountPopup";
 
 
-function EditProfile({ email, username, image, boardType }) {
+function EditProfile(/*{ email, username, image , boardType }*/) {
+
+  // TODO: Solo para prototipo inicial
+  var username = "Juan Carlos";
+  var email = "juanCarlos@gmail.com";
+
   return (
     <Container id="editProfile" className="app-container">
       <Card>
