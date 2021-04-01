@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import EditProfile from "./EditProfile";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import tapete from "./assets/common/boards/green.png";
 import logo from "./assets/common/logo/logo.svg";
@@ -10,12 +11,14 @@ test("renders EditProfile", () => {
   var email = "juanCarlos@gmail.com";
 
   render(
-    <EditProfile
-      username={username}
-      email={email}
-      image={logo}
-      boardType={tapete}
-    />
+    <Router>
+      <EditProfile
+        username={username}
+        email={email}
+        image={logo}
+        boardType={tapete}
+      />
+    </Router>
   );
 
   const usernameElement = screen.getByText(username);

@@ -91,9 +91,18 @@ body,
   border: 2px solid !important;
 }
 
+.continue-button:hover {
+  background-color: grey !important;
+  color: white !important;
+}
+
 .continue-button {
   border-color: grey !important;
   color: grey !important;
+}
+
+.primary-button:hover {
+  background-color: #a92ff5 !important;
 }
 
 .primary-button {
@@ -101,9 +110,37 @@ body,
   border: none !important;
 }
 
+.secondary-button:hover {
+  background-color: #c05efd !important;
+}
+
 .secondary-button {
   background-color: #9c4dcc !important;
   border: none !important;
+}
+
+.tertiary-button:hover {
+  background-color: darkgrey !important;
+  border-color: grey !important;
+}
+
+.tertiary-button {
+  background-color: #B4B4B4 !important;
+  border-radius: 30px !important;
+  border: none !important;
+  width: 150px !important;
+  height: 40px !important;
+  size: 24px !important;
+  font-weight: bold !important;
+}
+
+.alert-button {
+  background-color: red !important;
+  border: none !important;
+}
+
+.alert-button:hover {
+  background-color: rgb(253, 66, 66) !important;
 }
 
 .primary-title {
@@ -112,6 +149,13 @@ body,
 }
 
 .secondary-title {
+  font-size: 30px !important;
+  font-weight: bold !important;
+}
+
+/* TODO: Ahora tertiary es el antiguo secondary --> cambiar donde esté
+   en otras pantallas*/
+.tertiary-title {
   font-size: 24px;
   font-weight: bold;
   padding-bottom: 1%;
@@ -129,6 +173,60 @@ body,
   font-weight: bold;
 }
 
+.user-profile-image {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+#profile td:nth-child(2) {
+  text-align: right;
+}
+
+#profile .table td, .table th {
+  padding: 0 !important;
+}
+
+#profile .table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+#editProfile .alert-button {
+  background-color: white !important;
+  border: 2px solid !important;
+  border-color: red !important;
+  color: red !important;
+}
+
+#editProfile .alert-button:hover {
+  background-color: red !important;
+  border: 2px solid !important;
+  border-color: red !important;
+  color: white !important;
+}
+
+#imgCambioTablero img {
+  height: 40px; 
+  width: 40px;
+  border: 1px solid;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#imgCambioTablero img:hover {
+  height: 40px; 
+  width: 40px;
+  border: 1px solid;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+#btnImageChange .primary-button {
+  position: absolute;
+  top: 0%;
+  left: 60%;
+  border-radius: 50% !important;
+  height: 70px !important;
+  width: 70px !important;
+}
 
 .close {
   box-shadow: none !important;
