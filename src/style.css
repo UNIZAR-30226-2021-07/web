@@ -59,14 +59,31 @@ body,
   margin-bottom: 1%;
 }
 
-.alert-button {
-  background-color: red !important;
-  border: none !important;
+.primary-background {
+  background-color: #6a1b9a !important;
 }
 
-.alert-button:hover {
-  background-color: #0069d9;
-  border-color: #0062cc;
+.secondary-background {
+  background-color: #9c4dcc !important;
+}
+
+.button-radius-left {
+  border-radius: 30px 0 0 30px !important;
+}
+
+.button-radius-right {
+  border-radius: 0 30px 30px 0 !important;
+}
+
+.btn {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.primary-button, .secondary-button .alert-button {
+  padding: 10px 20px !important;
+  border-radius: 30px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
 }
 
 .primary-button:hover {
@@ -75,20 +92,7 @@ body,
 
 .primary-button {
   background-color: #6a1b9a !important;
-}
-
-/* Estas dos clases css comparten todos estos atributos*/
-.primary-button, .alert-button {
-  border-radius: 30px !important;
-  width: 80% !important;
-  max-width: 290px !important;
-  min-width: min-content !important;
-  height: 100% !important;
-  max-height: 50px !important;
-  min-height: min-content !important;
-  justify-content: flex-end;
-  size: 24px !important;
-  font-weight: bold !important;
+  border: none !important;
 }
 
 .secondary-button:hover {
@@ -96,12 +100,8 @@ body,
 }
 
 .secondary-button {
-  background-color: #b158e9 !important;
-  border-radius: 30px !important;
-  width: 270px !important;
-  height: 50px !important;
-  size: 24px !important;
-  font-weight: bold !important;
+  background-color: #9c4dcc !important;
+  border: none !important;
 }
 
 .tertiary-button:hover {
@@ -116,6 +116,16 @@ body,
   height: 40px !important;
   size: 24px !important;
   font-weight: bold !important;
+}
+
+.alert-button {
+  background-color: red !important;
+  border: none !important;
+}
+
+.alert-button:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
 }
 
 .primary-title {

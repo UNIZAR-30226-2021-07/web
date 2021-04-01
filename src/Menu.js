@@ -29,8 +29,8 @@ function Menu() {
               className="menu-icon mx-auto d-block"
             />
           </Row>
-          <Row className="justify-content-center align-items-center">
-            <span id="number-coins">100</span>
+          <Row className="justify-content-center align-items-center flex-nowrap">
+            <span id="number-coins" className="mr-2">100</span>
             <Image id="coins" src={coins} alt="Tienda" />
           </Row>
         </Col>

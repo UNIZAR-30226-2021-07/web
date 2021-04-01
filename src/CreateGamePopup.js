@@ -28,14 +28,18 @@ export default function CreateGamePopup({ code, children }) {
       <Row className="justify-content-center">
           <div className="input-group w-50 mr-2">
             <div className="input-group-prepend">
-              <Button className="btn-outline-secondary" type="button" onClick={copyCode}>
+              <Button
+                className="primary-background btn-outline-primary button-radius-left"
+                type="button"
+                onClick={copyCode}
+              >
                 <Image src={clipboard} style={{"height": "20px"}} />
               </Button>
             </div>
             <input
               id="game-code"
               type="text"
-              className="form-control"
+              className="form-control h-100 button-radius-right"
               readOnly
               value={code}
               aria-label="Default"
@@ -43,7 +47,7 @@ export default function CreateGamePopup({ code, children }) {
             />
           </div>
           <Button
-            className="btn btn-primary"
+            className="primary-button"
             onClick={renderStartGamePopup}
           >
             CONFIRMAR
