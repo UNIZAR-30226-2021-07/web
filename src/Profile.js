@@ -15,8 +15,7 @@ function Profile(/*{ username, email, games, wins, losts, timePlayed }*/) {
   var timePlayed = "145";
 
   return (
-    <Container id="profile" className="app-container-centered">
-      <Row className="justify-content-center align-items-center w-100">
+    <Container id="profile" className="app-container col-centered justify-content-center">
       <Card className="w-100">
          <Card.Body>
             <Row className="align-items-center justify-content-center">
@@ -87,7 +86,6 @@ function Profile(/*{ username, email, games, wins, losts, timePlayed }*/) {
                 </Row>
           </Card.Body>
       </Card>
-      </Row>
     </Container>
   );
 }

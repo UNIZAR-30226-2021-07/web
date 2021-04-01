@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 
 function SignUp() {
   return (
-    <Container className="app-container-centered">
-      <Row className="justify-content-center align-items-center w-100">
+    <Container className="app-container col-centered justify-content-center">
         <Card className="w-100">
           <Card.Body>
             <Row className="justify-content-center">
@@ -34,7 +33,7 @@ function SignUp() {
             </Form>
           </Card.Body>
         </Card>
-        <Container>
+        <Container className="mt-5">
           <Row className="justify-content-center secondary-title">
             ¿Ya tienes cuenta?
           </Row>
@@ -44,7 +43,6 @@ function SignUp() {
             </Link>
           </Row>
         </Container>
-      </Row>
     </Container>
   );
 }
