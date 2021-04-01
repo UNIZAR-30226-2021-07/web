@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Login({ onLogin }) {
   return (
-    <Container className="app-container d-flex h-100">
+    <Container className="app-container-centered">
       <Row className="justify-content-center align-items-center w-100">
         <Card className="w-100">
           <Card.Body>

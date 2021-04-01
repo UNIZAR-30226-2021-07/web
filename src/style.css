@@ -20,8 +20,10 @@ body,
   padding-left: 5%;
 }
 
-.h-33 {
-  height: 33.33% !important;
+.app-container-centered {
+  display: flex;
+  justify-content: center;
+  height: 100%;
 }
 
 /**************Menú**************/
@@ -29,6 +31,11 @@ body,
 .menu-logo {
   height: 80vh;
   max-height: 200px;
+}
+
+.menu-section {
+  margin-top: 5vh;
+  margin-bottom: 10vh;
 }
 
 .menu-icon {
@@ -54,10 +61,6 @@ body,
 }
 .coins img {
   height: 2ex;
-}
-
-.logo-row {
-  margin: 0% 5% 5% 5%;
 }
 
 .logo-title {

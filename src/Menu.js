@@ -14,10 +14,10 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 
 function Menu() {
   return (
-    <Container className="h-100">
-      <Row className="h-100">
-        <Col className="app-container h-100">
-          <Row className="h-33 align-items-center">
+    <Container id="menu" className="app-container">
+      <Row className="justify-content-center align-items-center h-100">
+        <Col className="mx-auto">
+          <Row className="align-items-center">
             <Col className="menu-icon">
               <Link className="d-block h-100" to="/profile">
                 <Image
@@ -42,7 +42,7 @@ function Menu() {
               </Row>
             </Link>
           </Row>
-          <Row className="logo-row justify-content-center align-items-center h-33">
+          <Row className="logo-row justify-content-center align-items-center">
             <Image
               id="logo"
               className="menu-logo img-fluid"
@@ -51,10 +51,10 @@ function Menu() {
             />
             <h1 className="logo-title ml-4">GATOVID</h1>
           </Row>
-          <Row className="h-33 align-items-center">
+          <Row className="align-items-center">
             <Col lg={true}>
               <Button
-                className="primary-button d-block mx-auto"
+                className="primary-button d-block mx-auto m-2"
                 onClick={() => renderCreateGamePopup("1234")}
               >
                 CREAR PARTIDA PRIVADA
@@ -62,7 +62,7 @@ function Menu() {
             </Col>
             <Col lg={true}>
               <Button
-                className="primary-button d-block mx-auto"
+                className="primary-button d-block mx-auto m-2"
                 onClick={renderJoinGamePopup}
               >
                 UNIRSE PARTIDA PRIVADA
@@ -70,7 +70,7 @@ function Menu() {
             </Col>
             <Col lg={true}>
               <Button
-                className="primary-button d-block mx-auto"
+                className="primary-button d-block mx-auto m-2"
                 onClick={renderPreparingGamePopup}
               >
                 UNIRSE PARTIDA PÚBLICA
