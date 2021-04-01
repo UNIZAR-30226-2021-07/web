@@ -9,26 +9,26 @@ test("renders title", () => {
       <SignUp />
     </Router>
   );
-  const titleElement = screen.getByText(/Iniciar Sesión/i);
+  const titleElement = screen.getByText(/Crear una cuenta/i);
   expect(titleElement).toBeInTheDocument();
 });
-
+/*
 test("renders iniciar sesion button", () => {
   render(
     <Router>
       <SignUp />
     </Router>
   );
-  const buttonElement = screen.getByText(/Iniciar Sesión/i);
+  const buttonElement = screen.getByText(/Iniciar sesion/i);
   expect(buttonElement).toBeInTheDocument();
-});
+});*/
 
-test("renders crear cuenta button", () => {
+test("renders registrarse button", () => {
   render(
     <Router>
       <SignUp />
     </Router>
   );
-  const buttonElement = screen.getByText(/Crear una cuenta/i);
+  const buttonElement = screen.getByText(/Registrarse/i);
   expect(buttonElement).toBeInTheDocument();
 });
