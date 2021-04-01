@@ -20,24 +20,29 @@ function Menu() {
     >
       <Row className="justify-content-between menu-icons">
         <Col className="h-100">
-          <Link className="d-block h-100" to="/profile">
+          <Link to="/profile" className="d-block h-100">
             <Image src={user} alt="Perfil" className="menu-icon" />
           </Link>
         </Col>
-        <Link
-          to="/shop"
-          className="justify-content-center align-items-center h-100 menu-icon-shop"
-        >
-          <div className="menu-icon">
-            <Image src={shop} alt="Tienda" className="h-100" />
-            <Row className="justify-content-center align-items-center flex-nowrap coins">
-              <span id="number-coins" className="mr-2">
-                100
-              </span>
-              <Image src={coins} alt="Tienda" />
+        <Col className="h-100">
+          <Link to="/shop" className="d-block h-100 url-style-disabled" >
+            <Row className="justify-content-end h-100">
+              <div className="menu-icon">
+                <Col className="h-100">
+                  <Row className="h-100">
+                    <Image src={shop} alt="Tienda" className="h-100" />
+                  </Row>
+                  <Row className="coins justify-content-center align-items-center">
+                    <span id="number-coins" className="mr-2">
+                      100
+                    </span>
+                    <Image src={coins} alt="Tienda" />
+                  </Row>
+                </Col>
+              </div>
             </Row>
-          </div>
-        </Link>
+          </Link>
+        </Col>
       </Row>
       <Row className="logo-row justify-content-center align-items-center">
         <Image

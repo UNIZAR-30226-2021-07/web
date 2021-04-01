@@ -45,17 +45,15 @@ body,
 }
 
 /* El icono del menú es un conjunto de ítems con la imagen y las monedas */
-.menu-icon-shop {
-  display: flex;
-  flex-flow: column nowrap;
-  color: #000;
+.url-style-disabled {
+  color: #000 !important;
 }
-.menu-icon-shop:hover {
-  text-decoration: none;
-  color: #000;
+.url-style-disabled:hover {
+  text-decoration: none !important;
+  color: #000 !important;
 }
 .coins {
-  font-size: 2.5vh;
+  font-size: 3vh;
 }
 .coins img {
   height: 2ex;
