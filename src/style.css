@@ -128,3 +128,15 @@ body,
   font-size: 18px;
   font-weight: bold;
 }
+
+
+.close {
+  box-shadow: none !important;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+.close:hover, .close:focus {
+  background: none !important;
+}

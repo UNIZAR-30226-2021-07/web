@@ -9,7 +9,7 @@ import check from "./assets/common/icons/check.svg";
 
 export default function JoinGamePopup() {
   return (
-    <Popup title="Unirse a partida" icon={check}>
+    <Popup title="Unirse a partida" icon={check} close={true}>
       <Row className="justify-content-center">
         <p className="text-center">
           Introduce el código de partida y <br />
@@ -28,7 +28,10 @@ export default function JoinGamePopup() {
             className="text-center form-control h-100 button-rouded"
           ></input>
         </div>
-        <Button className="primary-button ml-2" onClick={renderPreparingGamePopup}>
+        <Button
+          className="primary-button ml-2"
+          onClick={renderPreparingGamePopup}
+        >
           CONFIRMAR
         </Button>
       </Row>
