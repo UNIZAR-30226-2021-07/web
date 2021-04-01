@@ -231,3 +231,39 @@ body,
 .close:hover, .close:focus {
   background: none !important;
 }
+
+#chat {
+  margin: 0 !important;
+  max-width: 100%;
+}
+#match.container {
+  margin: 0 !important;
+  max-width: 100%;
+}
+
+#chat-header {
+  background-color: #64DD17;
+  color: black;
+  font-weight: bold !important;
+  height: 10vh;
+}
+
+.send-button:hover, .send-button{
+  background-color: white !important;
+  border-color: #ced4da !important;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+.btn-primary:focus, .btn-primary:focus {
+	box-shadow: none !important;
+  border-color: none !important;
+}
+
+.form-control:focus {
+	border-color: none !important;
+	box-shadow: none !important;
+}
