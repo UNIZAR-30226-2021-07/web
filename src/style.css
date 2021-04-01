@@ -175,6 +175,7 @@ body,
   right: 10px;
   top: 5px;
 }
+
 .close:hover, .close:focus {
   background: none !important;
 }
@@ -232,7 +233,6 @@ body,
   height: 70px !important;
   width: 70px !important;
 }
-
 
 /* --------------------------- Menu ------------------------ */
 .img-shadow:hover {
