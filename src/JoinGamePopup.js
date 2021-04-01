@@ -5,26 +5,31 @@ import Popup from "./PopUp";
 
 import { renderPreparingGamePopup } from "./PreparingGamePopup";
 
+import check from "./assets/common/icons/check.svg";
+
 export default function JoinGamePopup() {
   return (
-    <Popup title="Unirse a partida" icon="TickImage" close={true}>
+    <Popup title="Unirse a partida" icon={check} close={true}>
       <Row className="justify-content-center">
-        <p>
-          Introduce el código de partida y <br></br>
+        <p className="text-center">
+          Introduce el código de partida y <br />
           comienza a jugar con tus amigos.
         </p>
       </Row>
-      <Row className="justify-content-between">
-        <input
-          className="code-box"
-          type="text"
-          size="8"
-          minLength="4"
-          maxLength="8"
-          placeholder="Código"
-        ></input>
+      <Row className="justify-content-center">
+        <div>
+          <input
+            id="game-code"
+            type="text"
+            size="6"
+            minLength="4"
+            maxLength="6"
+            placeholder="Código"
+            className="text-center form-control h-100 button-rouded"
+          ></input>
+        </div>
         <Button
-          className="btn btn-primary"
+          className="primary-button ml-2"
           onClick={renderPreparingGamePopup}
         >
           CONFIRMAR
