@@ -7,13 +7,13 @@ export default function StartGamePopup({ ready, total, children }) {
   return (
     <Popup title="¿Empezar partida?">
       <Row className="justify-content-center">
-        <p>
+        <p className="h5 text-center mb-3">
           {ready}/{total} gaticos preparados
         </p>
       </Row>
       <Row className="justify-content-center">
         <Button
-          className="btn btn-primary btn-lg btn-block"
+          className="primary-button"
           onClick={PopupboxManager.close}
         >
           Empezar partida

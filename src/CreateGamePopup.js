@@ -39,7 +39,8 @@ export default function CreateGamePopup({ code, children }) {
             <input
               id="game-code"
               type="text"
-              className="form-control h-100 button-radius-right"
+              size="6"
+              className="text-center form-control h-100 button-radius-right"
               readOnly
               value={code}
               aria-label="Default"

@@ -3,17 +3,19 @@ import { PopupboxManager } from "react-popupbox";
 import { Row, Button } from "react-bootstrap";
 import Popup from "./PopUp";
 
+import warning from "./assets/common/icons/warning.svg";
+
 export default function ErrorPopup({ body, title = "¡Atención!" }) {
   return (
-    <Popup title={title} icon="ErrorIcon">
+    <Popup title={title} icon={warning}>
       <Row className="justify-content-center">
-        <p>{body}</p>
+        <p className="text-center">{body}</p>
       </Row>
       <Row className="justify-content-around">
-        <Button className="btn btn-primary" onClick={PopupboxManager.close}>
+        <Button className="primary-button" onClick={PopupboxManager.close}>
           Atrás
         </Button>
-        <Button className="btn btn-danger" onClick={PopupboxManager.close}>
+        <Button className="continue-button" onClick={PopupboxManager.close}>
           Continuar
         </Button>
       </Row>
