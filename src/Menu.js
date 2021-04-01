@@ -14,69 +14,65 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 
 function Menu() {
   return (
-    <Container id="menu" className="app-container">
-      <Row className="justify-content-center align-items-center h-100">
-        <Col className="col-centered justify-content-around">
-          <Row className="align-items-center">
-            <Col className="menu-icon">
-              <Link className="d-block h-100" to="/profile">
-                <Image
-                  src={user}
-                  alt="Perfil"
-                  className="mx-auto h-100"
-                />
-              </Link>
-            </Col>
-            <Link
-              to="/shop"
-              className="offset-md-8 justify-content-center align-items-center menu-icon menu-icon-shop"
-            >
-              <Image
-                src={shop}
-                alt="Tienda"
-                className="mx-auto h-100"
-              />
-              <Row className="justify-content-center align-items-center flex-nowrap coins">
-                <span id="number-coins" className="mr-2">100</span>
-                <Image src={coins} alt="Tienda" />
-              </Row>
-            </Link>
-          </Row>
-          <Row className="logo-row justify-content-center align-items-center">
+    <Container id="menu" className="app-container col-centered justify-content-around">
+      <Row className="align-items-center">
+        <Col className="menu-icon">
+          <Link className="d-block h-100" to="/profile">
             <Image
-              id="logo"
-              className="menu-logo img-fluid"
-              src={logo}
-              alt="logo"
+              src={user}
+              alt="Perfil"
+              className="mx-auto h-100"
             />
-            <h1 className="logo-title ml-4">GATOVID</h1>
+          </Link>
+        </Col>
+        <Link
+          to="/shop"
+          className="offset-md-8 justify-content-center align-items-center menu-icon menu-icon-shop"
+        >
+          <Image
+            src={shop}
+            alt="Tienda"
+            className="mx-auto h-100"
+          />
+          <Row className="justify-content-center align-items-center flex-nowrap coins">
+            <span id="number-coins" className="mr-2">100</span>
+            <Image src={coins} alt="Tienda" />
           </Row>
-          <Row className="align-items-center">
-            <Col lg={true}>
-              <Button
-                className="primary-button d-block mx-auto m-2"
-                onClick={() => renderCreateGamePopup("1234")}
-              >
-                CREAR PARTIDA PRIVADA
-              </Button>
-            </Col>
-            <Col lg={true}>
-              <Button
-                className="primary-button d-block mx-auto m-2"
-                onClick={renderJoinGamePopup}
-              >
-                UNIRSE PARTIDA PRIVADA
-              </Button>
-            </Col>
-            <Col lg={true}>
-              <Button
-                className="primary-button d-block mx-auto m-2"
-                onClick={renderPreparingGamePopup}
-              >
-                UNIRSE PARTIDA PÚBLICA
-              </Button>
-            </Col>
-          </Row>
+        </Link>
+      </Row>
+      <Row className="logo-row justify-content-center align-items-center">
+        <Image
+          id="logo"
+          className="menu-logo img-fluid"
+          src={logo}
+          alt="logo"
+        />
+        <h1 className="logo-title ml-4">GATOVID</h1>
+      </Row>
+      <Row className="align-items-center">
+        <Col lg={true}>
+          <Button
+            className="primary-button d-block mx-auto m-2"
+            onClick={() => renderCreateGamePopup("1234")}
+          >
+            CREAR PARTIDA PRIVADA
+          </Button>
+        </Col>
+        <Col lg={true}>
+          <Button
+            className="primary-button d-block mx-auto m-2"
+            onClick={renderJoinGamePopup}
+          >
+            UNIRSE PARTIDA PRIVADA
+          </Button>
+        </Col>
+        <Col lg={true}>
+          <Button
+            className="primary-button d-block mx-auto m-2"
+            onClick={renderPreparingGamePopup}
+          >
+            UNIRSE PARTIDA PÚBLICA
+          </Button>
         </Col>
       </Row>
     </Container>
