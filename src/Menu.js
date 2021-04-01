@@ -13,7 +13,7 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 function Menu() {
   return (
     <Container className="app-container menu-container">
-      <Row>
+      <Row className="mt-3">
         <Col className="col-md-2">
           <Image
             src={user}
