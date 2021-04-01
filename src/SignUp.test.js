@@ -13,16 +13,6 @@ test("renders title", () => {
   expect(titleElement).toBeInTheDocument();
 });
 
-test("renders iniciar sesion button", () => {
-  render(
-    <Router>
-      <SignUp />
-    </Router>
-  );
-  const buttonElement = screen.getByText(/Iniciar Sesión/i);
-  expect(buttonElement).toBeInTheDocument();
-});
-
 test("renders crear cuenta button", () => {
   render(
     <Router>
