@@ -58,7 +58,7 @@ jobs:
         run: npm install
 
       - name: Run Formatter
-        run: npm run format
+        run: npm run check-format
 
   lint:
     runs-on: ubuntu-20.04
