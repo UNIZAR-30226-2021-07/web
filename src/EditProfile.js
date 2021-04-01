@@ -24,7 +24,7 @@ function EditProfile(/*{ email, username, image , boardType }*/) {
   var email = "juanCarlos@gmail.com";
 
   return (
-    <Container id="editProfile" className="app-container">
+    <Container id="editProfile" className="app-container col-centered justify-content-center">
       <Card>
         <Card.Body>
           <Row className="align-items-center justify-content-center">
