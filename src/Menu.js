@@ -18,7 +18,7 @@ function Menu() {
       <Row className="h-100">
         <Col className="app-container h-100">
           <Row className="h-33 align-items-center">
-            <Col className="col-md-2 menu-icon">
+            <Col className="menu-icon">
               <Link className="d-block h-100" to="/profile">
                 <Image
                   src={user}
@@ -29,7 +29,7 @@ function Menu() {
             </Col>
             <Link
               to="/shop"
-              className="col-md-2 offset-md-8 justify-content-center align-items-center menu-icon menu-icon-shop"
+              className="offset-md-8 justify-content-center align-items-center menu-icon menu-icon-shop"
             >
               <Image
                 src={shop}
