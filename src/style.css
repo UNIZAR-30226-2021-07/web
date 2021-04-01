@@ -204,7 +204,10 @@ body,
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.5);
 }
 
-#circleButton .primary-button {
+#btnImageChange .primary-button {
+  position: absolute;
+  top: 0%;
+  left: 60%;
   border-radius: 50% !important;
   height: 70px !important;
   width: 70px !important;

@@ -29,13 +29,12 @@ function EditProfile({ email, username, image, boardType }) {
                           Configuración
                     </Card.Title>
                   </Row>
-                  <Row id="circleButton">
+                  <Row id="btnImageChange" className="align-items-center justify-content-center mb-2"
+                    style={{"position": "relative"}}>
                     <Button className="primary-button">
                       <Image src={camera} fluid></Image>
                     </Button>
-                  </Row>
-                  <Row className="align-items-center justify-content-center m">
-                      <Image src={image} className="user-profile-image" roundedCircle thumbnail ></Image>
+                    <Image src={image} className="user-profile-image mt-3" roundedCircle thumbnail ></Image> 
                   </Row>
                   <Row className="align-items-center justify-content-center">
                     <Card.Text>{username}</Card.Text>
