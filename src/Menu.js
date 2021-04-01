@@ -16,7 +16,7 @@ function Menu() {
   return (
     <Container id="menu" className="app-container">
       <Row className="justify-content-center align-items-center h-100">
-        <Col className="mx-auto">
+        <Col className="col-centered justify-content-around">
           <Row className="align-items-center">
             <Col className="menu-icon">
               <Link className="d-block h-100" to="/profile">

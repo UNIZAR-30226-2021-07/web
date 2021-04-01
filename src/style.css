@@ -20,9 +20,9 @@ body,
   padding-left: 5%;
 }
 
-.app-container-centered {
+.col-centered {
   display: flex;
-  justify-content: center;
+  flex-flow: column nowrap;
   height: 100%;
 }
 
