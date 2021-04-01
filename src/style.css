@@ -38,8 +38,11 @@ body,
   margin-bottom: 10vh;
 }
 
-.menu-icon {
+.icon-height {
   height: 12vh;
+}
+
+.menu-icon {
   transition: transform 0.3s 0s cubic-bezier(0.29, -0.43, 0.27, 1.55);
 }
 .menu-icon:hover {
