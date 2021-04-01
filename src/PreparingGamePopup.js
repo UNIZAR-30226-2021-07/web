@@ -2,7 +2,7 @@ import React from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Image } from "react-bootstrap";
 import Popup from "./PopUp";
-import loadArrow from "./assets/common/icons/flecha-cargar.svg"
+import loadArrow from "./assets/common/icons/flecha-cargar.svg";
 
 const curiosities = [
   "Los gatos tricolores siempre son hembras",
@@ -15,12 +15,8 @@ export default function PreparingGamePopup() {
       <Row className="justify-content-center mb-3 mt-3">
         <Image src={loadArrow} fluid></Image>
       </Row>
-      <Row className="justify-content-center"> 
-          ¿Lo sabías?
-      </Row>
-      <Row className="justify-content-center"> 
-          {curiosities[0]}
-      </Row>
+      <Row className="justify-content-center">¿Lo sabías?</Row>
+      <Row className="justify-content-center">{curiosities[0]}</Row>
     </Popup>
   );
 }

@@ -14,28 +14,25 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 
 function Menu() {
   return (
-    <Container id="menu" className="app-container col-centered justify-content-around">
+    <Container
+      id="menu"
+      className="app-container col-centered justify-content-around"
+    >
       <Row className="align-items-center">
         <Col className="menu-icon">
           <Link className="d-block h-100" to="/profile">
-            <Image
-              src={user}
-              alt="Perfil"
-              className="mx-auto h-100"
-            />
+            <Image src={user} alt="Perfil" className="mx-auto h-100" />
           </Link>
         </Col>
         <Link
           to="/shop"
           className="offset-md-8 justify-content-center align-items-center menu-icon menu-icon-shop"
         >
-          <Image
-            src={shop}
-            alt="Tienda"
-            className="mx-auto h-100"
-          />
+          <Image src={shop} alt="Tienda" className="mx-auto h-100" />
           <Row className="justify-content-center align-items-center flex-nowrap coins">
-            <span id="number-coins" className="mr-2">100</span>
+            <span id="number-coins" className="mr-2">
+              100
+            </span>
             <Image src={coins} alt="Tienda" />
           </Row>
         </Link>
