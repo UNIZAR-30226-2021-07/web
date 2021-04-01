@@ -11,7 +11,8 @@ import {
 
 //import { Link } from "react-router-dom";
 
-import camera from "./assets/common/icons/camera.png";
+//import camera from "./assets/common/icons/camera.png";
+import camera from "./camera.svg";
 
 import { renderDeleteAccountPopup } from "./DeleteAccountPopup";
 
@@ -28,12 +29,12 @@ function EditProfile({ email, username, image, boardType }) {
                           Configuración
                     </Card.Title>
                   </Row>
-                  <Row className="align-items-right justify-content-right">
-                    <Button variant="outline-info" size="sm">
-                      <Image fluid src={camera}></Image>
+                  <Row id="circleButton">
+                    <Button className="primary-button">
+                      <Image src={camera} fluid></Image>
                     </Button>
                   </Row>
-                  <Row className="align-items-center justify-content-center mb-2">
+                  <Row className="align-items-center justify-content-center m">
                       <Image src={image} className="user-profile-image" roundedCircle thumbnail ></Image>
                   </Row>
                   <Row className="align-items-center justify-content-center">
