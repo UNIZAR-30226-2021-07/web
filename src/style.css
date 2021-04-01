@@ -228,10 +228,13 @@ body,
   width: 70px !important;
 }
 
-html,
-body,
-#root,
-.App,
-.app-container {
-  padding: 0;
+.close {
+  box-shadow: none !important;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+.close:hover, .close:focus {
+  background: none !important;
 }
