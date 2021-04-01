@@ -5,12 +5,27 @@ import Popup from "./PopUp";
 
 export default function DeleteAccountPopup({ children }) {
   return (
-    <Popup title="¿Desea eliminar su cuenta permanentemente?">
-      <Row>
-        <Button className="btn btn-primary btn-lg btn-block">Sí</Button>
+    <Popup title="¿Eliminar su cuenta">
+      <Row className="align-items-center justify-content-center">
+        <h2 className="popup-title mb-0">permanentemente?</h2>
       </Row>
       <Row>
-        <Button className="btn btn-danger btn-lg btn-block">No</Button>
+        <Button
+          className="alert-button mb-3 mt-4"
+          style={{ width: "100%" }}
+          onClick={PopupboxManager.close}
+        >
+          Sí
+        </Button>
+      </Row>
+      <Row>
+        <Button
+          className="tertiary-button"
+          style={{ width: "100%" }}
+          onClick={PopupboxManager.close}
+        >
+          No
+        </Button>
       </Row>
       <Col>{children}</Col>
     </Popup>

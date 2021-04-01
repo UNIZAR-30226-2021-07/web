@@ -77,6 +77,7 @@ body,
 
 .primary-button,
 .secondary-button,
+.tertiary-button,
 .alert-button,
 .continue-button {
   padding: 10px 20px !important;
@@ -128,10 +129,6 @@ body,
   background-color: #b4b4b4 !important;
   border-radius: 30px !important;
   border: none !important;
-  width: 150px !important;
-  height: 40px !important;
-  size: 24px !important;
-  font-weight: bold !important;
 }
 
 .alert-button {
@@ -172,6 +169,21 @@ body,
   font-size: 18px;
   font-weight: bold;
 }
+
+.close {
+  box-shadow: none !important;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.close:hover,
+.close:focus {
+  background: none !important;
+}
+
+/* --------------------------- Profile / EditProfile ------------------------ */
 
 .user-profile-image {
   width: 200px;
@@ -240,6 +252,7 @@ body,
 .close:focus {
   background: none !important;
 }
+
 /* No hace falta animación para el botón de cerrar porque ya se hace con el
  * popup. */
 .close:focus {

@@ -9,7 +9,6 @@ import {
   Table,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { renderCreateGamePopup } from "./CreateGamePopup";
 
 import logo from "./assets/common/logo/logo.svg";
 
@@ -107,12 +106,7 @@ function Profile(/*{ username, email, games, wins, losts, timePlayed }*/) {
               </Card.Body>
               <Card.Body>
                 <Row className="align-items-center justify-content-center">
-                  <Button
-                    className="alert-button"
-                    onClick={() => renderCreateGamePopup("1234")}
-                  >
-                    Cerrar Sesión
-                  </Button>
+                  <Button className="alert-button">Cerrar Sesión</Button>
                 </Row>
               </Card.Body>
             </Col>
