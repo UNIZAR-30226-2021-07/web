@@ -20,6 +20,10 @@ body,
   padding-left: 5%;
 }
 
+.h-33 {
+  height: 33.33% !important;
+}
+
 /**************Menú**************/
 
 .menu-logo {
@@ -28,24 +32,27 @@ body,
 }
 
 .menu-icon {
-  height: 25vh;
+  height: 12vh;
+  transition: all 0.3s 0s cubic-bezier(.29,-0.43,.27,1.55);
+}
+.menu-icon:hover {
+  height: 15vh;
 }
 
 #coins {
-  height: 8vh;
+  height: 6vh;
 }
 
 #number-coins {
-  font-size: 9vh;
+  font-size: 5vh;
 }
 
 .logo-row {
   margin: 0% 5% 5% 5%;
 }
 
-#logo-title {
-  font-size: 20vh;
-  margin-left: 5%;
+.logo-title {
+  font-size: 10vh;
 }
 
 .menu-container {
@@ -231,11 +238,4 @@ body,
   border-radius: 50% !important;
   height: 70px !important;
   width: 70px !important;
-}
-
-
-/* --------------------------- Menu ------------------------ */
-.img-shadow:hover {
-  -webkit-filter: drop-shadow(0px 1px 1px #8f8c8c);
-  filter: drop-shadow(0px 1px 1px #8f8c8c);
 }
