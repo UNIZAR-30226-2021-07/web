@@ -52,15 +52,13 @@ function EditProfile({ email, username, image, boardType }) {
                </Col>
                 <Col>
                   <Card.Body>
-                    <Form>
-                      <Card.Text className="text-muted">
+                    <Form className="align-items-center justify-content-center">
                         Editar Configuración de Usuario
-                      </Card.Text>
-                      <Form.Group controlId="formBasicUser">
+                      <Form.Group controlId="formBasicUser" className="mb-3 mt-3">
                         <Form.Label>Nombre de Usuario</Form.Label>
                         <Form.Control type="text" placeholder="Nuevo nombre" />
                       </Form.Group>
-                      <Form.Group controlId="formBasicPassword">
+                      <Form.Group controlId="formBasicPassword" className="mb-3">
                         <Form.Label>Cambiar contraseña</Form.Label>
                         <Form.Control
                           type="password"
@@ -68,14 +66,12 @@ function EditProfile({ email, username, image, boardType }) {
                         />
                       </Form.Group>
                       <Form.Group controlId="formBasicBoardType">
-                        <Form.Row>
-                          <Col xs={8}>
+                        <Form.Row className="align-items-center justify-content-center mt-4 flex-nowrap">
+                          <Col md={4}>
                             <Form.Label>Cambiar Tablero</Form.Label>
                           </Col>
-                          <Col>
-                              <Image id="imgCambioTablero" style={{"height": "40px", "width": "40px", "border": "1px solid",
-                                               "box-shadow": "0px 4px 4px rgba(0, 0, 0, 0.25)"}} 
-                                      rounded src={boardType}>
+                          <Col id="imgCambioTablero">
+                              <Image rounded src={boardType}>
                               </Image>
                           </Col>
                         </Form.Row>
@@ -84,7 +80,7 @@ function EditProfile({ email, username, image, boardType }) {
                   </Card.Body>
                   <Card.Body>
                     <Row className="align-items-center justify-content-center">
-                      <Button className="primary-button">GUARDAR</Button>
+                      <Button className="primary-button" style={{"width": "40vh"}}>GUARDAR</Button>
                     </Row>
                   </Card.Body>
               </Col>
