@@ -234,6 +234,8 @@ body,
 .close:hover, .close:focus {
   background: none !important;
 }
+/* No hace falta animación para el botón de cerrar porque ya se hace con el
+ * popup. */
 .close:focus {
   color: #000 !important;
   transition: none !important;
