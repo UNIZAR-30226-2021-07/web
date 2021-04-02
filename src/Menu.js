@@ -25,7 +25,7 @@ function Menu() {
           </Link>
         </Col>
         <Col className="h-100">
-          <Link to="/shop" className="d-block h-100 url-style-disabled" >
+          <Link to="/shop" className="d-block h-100 url-style-disabled">
             <Row className="justify-content-end h-100">
               <div className="menu-icon">
                 <Col className="h-100">
