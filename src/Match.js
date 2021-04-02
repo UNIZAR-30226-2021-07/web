@@ -50,21 +50,26 @@ const messages = [
 
 function Match() {
   return (
-    <Container
-      className="app-container"
-      id="match"
-    >
-      <Row className="h-100">
-        <Col className="md-9">
-          <Link to="/">
-            <Button>Salir de la partida</Button>
-          </Link>
-        </Col>
-        <Col className="md-3">
-          <Chat messages={messages} />
-        </Col>
-      </Row>
-    </Container>
+    <Row className="m-0">
+      <Col>
+        <Container
+          className="app-container"
+        >
+          <Row className="h-100">
+            <Col className="md-9">
+              <Link to="/">
+                <Button>Salir de la partida</Button>
+              </Link>
+            </Col>
+            <Col className="md-3">
+            </Col>
+          </Row>
+        </Container>
+      </Col>
+      <Col className="p-0">
+        <Chat className="" messages={messages} />
+      </Col>
+    </Row>
   );
 }
 

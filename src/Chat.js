@@ -7,7 +7,7 @@ import MessageList from "./MessageList";
 
 function Chat({ messages }) {
   return (
-    <Container className="chat">
+    <Container className="chat-container">
       <Row
         className="chat-header justify-content-center align-items-center"
       >
@@ -22,7 +22,7 @@ function Chat({ messages }) {
           className="form-control"
           placeholder="Escribir Mensaje"
         ></input>
-        <div className="input-group-append">
+        <div className="input-group-append pb-2">
           <Button className="send-button">
             <Image src={send} style={{ height: "20px" }} />
           </Button>
