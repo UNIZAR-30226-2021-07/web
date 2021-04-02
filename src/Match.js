@@ -12,7 +12,8 @@ const messages = [
   },
   {
     userid: "Nombre",
-    text: "Nooooooooooooooooooooooooooooooooooooo ooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+    text:
+      "Nooooooooooooooooooooooooooooooooooooo ooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
   },
   {
     userid: "Nombre",
@@ -52,17 +53,14 @@ function Match() {
   return (
     <Row className="m-0">
       <Col>
-        <Container
-          className="app-container"
-        >
+        <Container className="app-container">
           <Row className="h-100">
             <Col className="md-9">
               <Link to="/">
                 <Button>Salir de la partida</Button>
               </Link>
             </Col>
-            <Col className="md-3">
-            </Col>
+            <Col className="md-3"></Col>
           </Row>
         </Container>
       </Col>

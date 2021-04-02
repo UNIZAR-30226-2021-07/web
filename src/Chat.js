@@ -8,9 +8,7 @@ import MessageList from "./MessageList";
 function Chat({ messages }) {
   return (
     <Container className="chat-container">
-      <Row
-        className="chat-header justify-content-center align-items-center"
-      >
+      <Row className="chat-header justify-content-center align-items-center">
         <h4>Chat de partida</h4>
       </Row>
       <Row className="message-list px-3">
