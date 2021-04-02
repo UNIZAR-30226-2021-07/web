@@ -12,7 +12,7 @@ const messages = [
   },
   {
     userid: "Nombre",
-    text: "Noooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+    text: "Nooooooooooooooooooooooooooooooooooooo ooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
   },
   {
     userid: "Nombre",

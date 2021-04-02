@@ -240,6 +240,8 @@ body,
   margin: 0 !important;
   padding: 0 !important;
 }
+
+/*Chat*/
 .chat-header {
   background-color: #64DD17;
   color: black;
@@ -262,19 +264,10 @@ body,
 .send-button:hover, .send-button{
   background-color: white !important;
   border-color: #ced4da !important;
+  border-left-color: white !important;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.btn:focus {
-  box-shadow: none;
-}
-
-.btn-primary:focus, .btn-primary:focus {
-	box-shadow: none !important;
-  border-color: none !important;
-}
-
-.form-control:focus {
-	border-color: none !important;
+.btn-primary:focus, .btn-primary:focus, .form-control:focus{
 	box-shadow: none !important;
 }
