@@ -12,7 +12,7 @@ body,
 #root,
 .App,
 .app-container {
-  height: 100%;
+  height: 100vh;
   padding: 0;
   margin: 0;
 }
@@ -255,11 +255,8 @@ body,
 }
 
 .message-list {
-  overflow-block: scroll;
-}
-.send-message {
-  position: absolute;
-  bottom: 0px;
+  overflow-y: scroll;
+  height: 80vh;
 }
 
 .send-button:hover, .send-button{

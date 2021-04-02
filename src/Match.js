@@ -7,45 +7,45 @@ import Chat from "./Chat";
 //Solo para test
 const messages = [
   {
-    userid: "Nombre 1",
-    text: "Mensaje 1",
+    userid: "Nombre",
+    text: "Mensaje",
   },
   {
-    userid: "Nombre 2",
-    text: "Mensaje 2 eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    userid: "Nombre",
+    text: "Noooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
   },
   {
-    userid: "Nombre 3",
-    text: "Mensaje 3",
+    userid: "Nombre",
+    text: "Mensaje",
   },
   {
-    userid: "Nombre 1",
-    text: "Mensaje 1",
+    userid: "Nombre",
+    text: "Mensaje",
   },
   {
-    userid: "Nombre 2",
-    text: "Mensaje 2 eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    userid: "Nombre",
+    text: "Mensaje",
   },
   {
-    userid: "Nombre 3",
-    text: "Mensaje 3",
+    userid: "Nombre",
+    text: "Mensaje",
   },
   {
-    userid: "Nombre 1",
-    text: "Mensaje 1",
+    userid: "Nombre",
+    text: "Mensaje",
   },
   {
-    userid: "Nombre 2",
-    text: "Mensaje 2 eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    userid: "Nombre",
+    text: "Mensaje",
   },
   {
-    userid: "Nombre 3",
-    text: "Mensaje 3",
+    userid: "Nombre",
+    text: "Mensaje",
   },
   {
-    userid: "Nombre 3",
-    text: "Mensaje 3",
-  }
+    userid: "Nombre",
+    text: "Mensaje",
+  },
 ];
 
 function Match() {
