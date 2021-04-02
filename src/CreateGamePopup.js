@@ -30,7 +30,7 @@ export default function CreateGamePopup({ code, children }) {
         <div className="input-group w-50 mr-2">
           <div className="input-group-prepend">
             <Button
-              className="primary-background btn-outline-primary button-radius-left"
+              className="primary-background btn-outline-primary"
               type="button"
               onClick={copyCode}
             >
@@ -41,7 +41,7 @@ export default function CreateGamePopup({ code, children }) {
             id="game-code"
             type="text"
             size="6"
-            className="text-center form-control h-100 button-radius-right"
+            className="text-center form-control h-100"
             readOnly
             value={code}
             aria-label="Default"
