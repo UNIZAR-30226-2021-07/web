@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   color: #00344a !important;
   background-image: url("assets/common/background.jpg");
@@ -232,20 +236,30 @@ body,
   background: none !important;
 }
 
-#chat {
+.match {
   margin: 0 !important;
-  max-width: 100%;
+  padding: 0 !important;
 }
-#match.container {
-  margin: 0 !important;
-  max-width: 100%;
-}
-
-#chat-header {
+.chat-header {
   background-color: #64DD17;
   color: black;
   font-weight: bold !important;
   height: 10vh;
+}
+
+.message {  
+  background-color: #DCF8C6 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.message-list {
+  overflow-block: scroll;
+}
+.send-message {
+  position: absolute;
+  bottom: 0px;
 }
 
 .send-button:hover, .send-button{

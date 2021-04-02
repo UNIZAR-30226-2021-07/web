@@ -7,20 +7,19 @@ import MessageList from "./MessageList";
 
 function Chat({ messages }) {
   return (
-    <Container id="chat" className="px-0 justify-content-space-between">
+    <Container className="chat">
       <Row
-        id="chat-header"
-        className="justify-content-center align-items-center"
+        className="chat-header justify-content-center align-items-center"
       >
         <h4>Chat de partida</h4>
       </Row>
-      <Row className="p-2">
+      <Row className="message-list px-3">
         <MessageList messages={messages} />
       </Row>
-      <Row className="input-group mt-auto ">
+      <Row className="send-message input-group mt-2">
         <input
           type="text"
-          className="input-chat form-control"
+          className="form-control"
           placeholder="Escribir Mensaje"
         ></input>
         <div className="input-group-append">

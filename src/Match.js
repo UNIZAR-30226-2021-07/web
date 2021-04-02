@@ -12,12 +12,40 @@ const messages = [
   },
   {
     userid: "Nombre 2",
-    text: "Mensaje 2",
+    text: "Mensaje 2 eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
   },
   {
     userid: "Nombre 3",
     text: "Mensaje 3",
   },
+  {
+    userid: "Nombre 1",
+    text: "Mensaje 1",
+  },
+  {
+    userid: "Nombre 2",
+    text: "Mensaje 2 eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  },
+  {
+    userid: "Nombre 3",
+    text: "Mensaje 3",
+  },
+  {
+    userid: "Nombre 1",
+    text: "Mensaje 1",
+  },
+  {
+    userid: "Nombre 2",
+    text: "Mensaje 2 eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  },
+  {
+    userid: "Nombre 3",
+    text: "Mensaje 3",
+  },
+  {
+    userid: "Nombre 3",
+    text: "Mensaje 3",
+  }
 ];
 
 function Match() {
@@ -26,8 +54,8 @@ function Match() {
       className="app-container"
       id="match"
     >
-      <Row className="align-content-center">
-        <Col>
+      <Row className="h-100">
+        <Col className="md-9">
           <Link to="/">
             <Button>Salir de la partida</Button>
           </Link>
