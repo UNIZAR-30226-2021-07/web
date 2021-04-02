@@ -17,32 +17,54 @@ body,
   margin: 0;
 }
 
+.App {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+.col-centered {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+}
+
 /**************Menú**************/
 
 .menu-logo {
-  height: 80vh;
-  max-height: 200px;
+  max-height: 35vh;
+}
+
+.menu-icons {
+  height: 12vh;
 }
 
 .menu-icon {
-  height: 25vh;
+  height: 100%;
+  transition: transform 0.3s 0s cubic-bezier(0.29, -0.43, 0.27, 1.55);
+}
+.menu-icon:hover {
+  transform: scale(1.2);
 }
 
-#coins {
-  height: 8vh;
+/* El icono del menú es un conjunto de ítems con la imagen y las monedas */
+.url-style-disabled {
+  color: #000 !important;
+}
+.url-style-disabled:hover {
+  text-decoration: none !important;
+  color: #000 !important;
+}
+.coins {
+  font-size: 3vh;
+}
+.coins img {
+  height: 2ex;
 }
 
-#number-coins {
-  font-size: 9vh;
-}
-
-.logo-row {
-  margin: 0% 5% 5% 5%;
-}
-
-#logo-title {
-  font-size: 20vh;
-  margin-left: 5%;
+.logo-title {
+  font-size: 10vh;
 }
 
 .menu-container {
@@ -64,26 +86,27 @@ body,
   background-color: #9c4dcc !important;
 }
 
-.button-radius-left {
-  border-radius: 30px 0 0 30px !important;
-}
-
-.button-radius-right {
-  border-radius: 0 30px 30px 0 !important;
-}
-
 .btn {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.primary-button, .secondary-button, .alert-button, .continue-button {
+.btn-outline-primary {
+  border: none !important;
+}
+
+.primary-button,
+.secondary-button,
+.tertiary-button,
+.alert-button,
+.continue-button {
   padding: 10px 20px !important;
   border-radius: 30px !important;
   font-weight: bold !important;
   text-transform: uppercase !important;
 }
 
-.alert-button, .continue-button {
+.alert-button,
+.continue-button {
   background-color: white !important;
   border: 2px solid !important;
 }
@@ -122,13 +145,8 @@ body,
 }
 
 .tertiary-button {
-  background-color: #B4B4B4 !important;
-  border-radius: 30px !important;
+  background-color: #b4b4b4 !important;
   border: none !important;
-  width: 150px !important;
-  height: 40px !important;
-  size: 24px !important;
-  font-weight: bold !important;
 }
 
 .alert-button {
@@ -170,6 +188,21 @@ body,
   font-weight: bold;
 }
 
+.close {
+  box-shadow: none !important;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.close:hover,
+.close:focus {
+  background: none !important;
+}
+
+/* --------------------------- Profile / EditProfile ------------------------ */
+
 .user-profile-image {
   width: 200px;
   height: 200px;
@@ -180,7 +213,8 @@ body,
   text-align: right;
 }
 
-#profile .table td, .table th {
+#profile .table td,
+.table th {
   padding: 0 !important;
 }
 
@@ -203,16 +237,13 @@ body,
 }
 
 #imgCambioTablero img {
-  height: 40px; 
+  height: 40px;
   width: 40px;
   border: 1px solid;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 #imgCambioTablero img:hover {
-  height: 40px; 
-  width: 40px;
-  border: 1px solid;
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -232,7 +263,8 @@ body,
   right: 10px;
   top: 5px;
 }
-.close:hover, .close:focus {
+.close:hover,
+.close:focus {
   background: none !important;
 }
 
@@ -271,4 +303,11 @@ body,
 .btn-primary:focus, .btn-primary:focus, .form-control:focus{
 	box-shadow: none !important;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* No hace falta animación para el botón de cerrar porque ya se hace con el
+ * popup. */
+.close:focus {
+  color: #000 !important;
+  transition: none !important;
 }

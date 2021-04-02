@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
+import { Link } from "react-router-dom";
+
 import logo from "./assets/common/logo/logo.svg";
 import shop from "./assets/common/icons/tienda.svg";
 import user from "./assets/common/icons/perfil.svg";
@@ -12,27 +14,34 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 
 function Menu() {
   return (
-    <Container className="app-container menu-container">
-      <Row className="mt-3">
-        <Col className="col-md-2">
-          <Image
-            src={user}
-            alt="Perfil"
-            className="menu-icon mx-auto d-block"
-          />
+    <Container
+      id="menu"
+      className="app-container col-centered justify-content-around"
+    >
+      <Row className="justify-content-between menu-icons">
+        <Col className="h-100">
+          <Link to="/profile" className="d-block h-100">
+            <Image src={user} alt="Perfil" className="menu-icon" />
+          </Link>
         </Col>
-        <Col className="col-md-2 offset-md-8 justify-content-center align-items-center">
-          <Row>
-            <Image
-              src={shop}
-              alt="Tienda"
-              className="menu-icon mx-auto d-block"
-            />
-          </Row>
-          <Row className="justify-content-center align-items-center flex-nowrap">
-            <span id="number-coins" className="mr-2">100</span>
-            <Image id="coins" src={coins} alt="Tienda" />
-          </Row>
+        <Col className="h-100">
+          <Link to="/shop" className="d-block h-100 url-style-disabled">
+            <Row className="justify-content-end h-100">
+              <div className="menu-icon">
+                <Col className="h-100">
+                  <Row className="h-100">
+                    <Image src={shop} alt="Tienda" className="h-100" />
+                  </Row>
+                  <Row className="coins justify-content-center align-items-center">
+                    <span id="number-coins" className="mr-2">
+                      100
+                    </span>
+                    <Image src={coins} alt="Tienda" />
+                  </Row>
+                </Col>
+              </div>
+            </Row>
+          </Link>
         </Col>
       </Row>
       <Row className="logo-row justify-content-center align-items-center">
@@ -42,12 +51,12 @@ function Menu() {
           src={logo}
           alt="logo"
         />
-        <h1 id="logo-title">GATOVID</h1>
+        <h1 className="logo-title ml-4">GATOVID</h1>
       </Row>
-      <Row>
+      <Row className="align-items-center">
         <Col lg={true}>
           <Button
-            className="primary-button d-block mx-auto"
+            className="primary-button d-block mx-auto m-2"
             onClick={() => renderCreateGamePopup("1234")}
           >
             CREAR PARTIDA PRIVADA
@@ -55,7 +64,7 @@ function Menu() {
         </Col>
         <Col lg={true}>
           <Button
-            className="primary-button d-block mx-auto"
+            className="primary-button d-block mx-auto m-2"
             onClick={renderJoinGamePopup}
           >
             UNIRSE PARTIDA PRIVADA
@@ -63,7 +72,7 @@ function Menu() {
         </Col>
         <Col lg={true}>
           <Button
-            className="primary-button d-block mx-auto"
+            className="primary-button d-block mx-auto m-2"
             onClick={renderPreparingGamePopup}
           >
             UNIRSE PARTIDA PÚBLICA
