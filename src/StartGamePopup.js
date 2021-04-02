@@ -12,10 +12,7 @@ export default function StartGamePopup({ ready, total, children }) {
         </p>
       </Row>
       <Row className="justify-content-center">
-        <Button
-          className="primary-button"
-          onClick={PopupboxManager.close}
-        >
+        <Button className="primary-button" onClick={PopupboxManager.close}>
           Empezar partida
         </Button>
       </Row>
