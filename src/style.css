@@ -20,32 +20,47 @@ body,
   padding-left: 5%;
 }
 
+.col-centered {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+}
+
 /**************Menú**************/
 
 .menu-logo {
-  height: 80vh;
-  max-height: 200px;
+  max-height: 35vh;
+}
+
+.menu-icons {
+  height: 12vh;
 }
 
 .menu-icon {
-  height: 25vh;
+  height: 100%;
+  transition: transform 0.3s 0s cubic-bezier(0.29, -0.43, 0.27, 1.55);
+}
+.menu-icon:hover {
+  transform: scale(1.2);
 }
 
-#coins {
-  height: 8vh;
+/* El icono del menú es un conjunto de ítems con la imagen y las monedas */
+.url-style-disabled {
+  color: #000 !important;
+}
+.url-style-disabled:hover {
+  text-decoration: none !important;
+  color: #000 !important;
+}
+.coins {
+  font-size: 3vh;
+}
+.coins img {
+  height: 2ex;
 }
 
-#number-coins {
-  font-size: 9vh;
-}
-
-.logo-row {
-  margin: 0% 5% 5% 5%;
-}
-
-#logo-title {
-  font-size: 20vh;
-  margin-left: 5%;
+.logo-title {
+  font-size: 10vh;
 }
 
 .menu-container {
