@@ -25,7 +25,7 @@ test("renders messages", () => {
   ];
   render(<Chat messages={messages} />);
   for (let msg of messages) {
-    console.log(msg)
+    console.log(msg);
     let usernameElement = screen.getByText(msg.userid + ":");
     expect(usernameElement).toBeInTheDocument();
     let textElement = screen.getByText(msg.text);
