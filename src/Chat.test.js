@@ -24,10 +24,11 @@ test("renders messages", () => {
     },
   ];
   render(<Chat messages={messages} />);
-  var usernameElement = screen.getByText("Nombre 1: Mensaje 1");
-  expect(usernameElement).toBeInTheDocument();
-  usernameElement = screen.getByText("Nombre 2: Mensaje 2");
-  expect(usernameElement).toBeInTheDocument();
-  usernameElement = screen.getByText("Nombre 3: Mensaje 3");
-  expect(usernameElement).toBeInTheDocument();
+  for (let msg of messages) {
+    console.log(msg)
+    let usernameElement = screen.getByText(msg.userid + ":");
+    expect(usernameElement).toBeInTheDocument();
+    let textElement = screen.getByText(msg.text);
+    expect(textElement).toBeInTheDocument();
+  }
 });
