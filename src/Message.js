@@ -3,8 +3,8 @@ import { ListGroup } from "react-bootstrap";
 
 function Message({ message }) {
   return (
-    <ListGroup.Item>
-      {message.userid}: {message.text}
+    <ListGroup.Item className="message mt-1 mb-2">
+      <strong>{message.userid}:</strong> {message.text}
     </ListGroup.Item>
   );
 }
