@@ -57,12 +57,12 @@ function App() {
   );
 }
 
-const ProtectedRoute = ({ component: Component, token, ...rest }) => {
+const ProtectedRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
       render={(props) =>
-        token != null ? (
+        rest.token != null ? (
           <Component {...rest} {...props} />
         ) : (
           <Redirect to="/login" />

@@ -9,10 +9,31 @@ import {
   Table,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import logo from "../assets/common/logo/logo.svg";
 
-function Profile({ setToken }) {
+
+async function logoutUser({ token }) {
+
+  console.log(token)
+
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer" + token 
+    },
+  };
+
+  return fetch("https://gatovid.herokuapp.com/data/logout", requestOptions)
+    .then((data) => data.json())
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+
+function Profile({token, setToken }) {
   // TODO: Solo para prototipo inicial
   var username = "Juan Carlos";
   var email = "juanCarlos@gmail.com";
@@ -20,6 +41,20 @@ function Profile({ setToken }) {
   var wins = "7";
   var losts = "8";
   var timePlayed = "145";
+
+  const handleSubmit = async (e) => {
+    console.log(token)
+    e.preventDefault();
+    const response = await logoutUser({
+      token
+    });
+
+    if ("message" in response) {
+      setToken(null);
+    } else {
+      renderErrorPopup(response.error);
+    }
+  };
 
   return (
     <Container
@@ -111,7 +146,7 @@ function Profile({ setToken }) {
                 <Row className="align-items-center justify-content-center">
                   <Button
                     className="alert-button"
-                    onClick={() => setToken(null)}
+                    onClick={handleSubmit}
                   >
                     Cerrar Sesión
                   </Button>
