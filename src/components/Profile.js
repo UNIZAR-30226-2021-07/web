@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import logo from "./assets/common/logo/logo.svg";
+import logo from "../assets/common/logo/logo.svg";
 
 function Profile(/*{ username, email, games, wins, losts, timePlayed }*/) {
   // TODO: Solo para prototipo inicial

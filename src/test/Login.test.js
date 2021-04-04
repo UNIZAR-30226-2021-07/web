@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import Login from "./Login";
+import Login from "../components/Login";
 
 /*
 test("renders submit button", () => {

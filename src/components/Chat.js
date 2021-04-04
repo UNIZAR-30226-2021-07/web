@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Image, Container, Row } from "react-bootstrap";
 
-import send from "./assets/common/icons/send.svg";
+import send from "../assets/common/icons/send.svg";
 
 import MessageList from "./MessageList";
 

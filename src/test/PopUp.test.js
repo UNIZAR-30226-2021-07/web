@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import PopUp from "./PopUp";
+import PopUp from "../components/popups/PopUp";
 
 test("renders title", () => {
   var title = "¡Atención!";

@@ -1,6 +1,7 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Col, Button } from "react-bootstrap";
+
 import Popup from "./PopUp";
 
 export default function StartGamePopup({ ready, total, children }) {

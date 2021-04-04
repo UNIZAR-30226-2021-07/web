@@ -1,11 +1,12 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button } from "react-bootstrap";
+
 import Popup from "./PopUp";
 
 import { renderPreparingGamePopup } from "./PreparingGamePopup";
 
-import check from "./assets/common/icons/check.svg";
+import check from "../../assets/common/icons/check.svg";
 
 export default function JoinGamePopup() {
   return (

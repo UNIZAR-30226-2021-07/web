@@ -9,7 +9,7 @@ import "react-popupbox/dist/react-popupbox.css";
 
 import reportWebVitals from "./reportWebVitals";
 
-import App from "./App";
+import App from "./components/App";
 
 ReactDOM.render(
   <Router basename={process.env.PUBLIC_URL}>

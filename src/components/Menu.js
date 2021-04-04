@@ -3,14 +3,14 @@ import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 
-import logo from "./assets/common/logo/logo.svg";
-import shop from "./assets/common/icons/tienda.svg";
-import user from "./assets/common/icons/perfil.svg";
-import coins from "./assets/common/icons/huella.svg";
+import logo from "../assets/common/logo/logo.svg";
+import shop from "../assets/common/icons/tienda.svg";
+import user from "../assets/common/icons/perfil.svg";
+import coins from "../assets/common/icons/huella.svg";
 
-import { renderCreateGamePopup } from "./CreateGamePopup";
-import { renderJoinGamePopup } from "./JoinGamePopup";
-import { renderPreparingGamePopup } from "./PreparingGamePopup";
+import { renderCreateGamePopup } from "./popups/CreateGamePopup";
+import { renderJoinGamePopup } from "./popups/JoinGamePopup";
+import { renderPreparingGamePopup } from "./popups/PreparingGamePopup";
 
 function Menu() {
   return (

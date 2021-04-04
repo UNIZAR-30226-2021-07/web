@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import CreateGamePopup from "./CreateGamePopup";
+import CreateGamePopup from "../components/popups/CreateGamePopup";
 
 test("renders title", () => {
   render(<CreateGamePopup code="1234" />);
