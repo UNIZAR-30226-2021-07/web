@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 import logo from "../assets/common/logo/logo.svg";
 
-function Profile(/*{ username, email, games, wins, losts, timePlayed }*/) {
+function Profile({ setToken }) {
   // TODO: Solo para prototipo inicial
   var username = "Juan Carlos";
   var email = "juanCarlos@gmail.com";
@@ -109,7 +109,7 @@ function Profile(/*{ username, email, games, wins, losts, timePlayed }*/) {
               </Card.Body>
               <Card.Body>
                 <Row className="align-items-center justify-content-center">
-                  <Button className="alert-button">Cerrar Sesión</Button>
+                  <Button className="alert-button" onClick={() => setToken(null)}>Cerrar Sesión</Button>
                 </Row>
               </Card.Body>
             </Col>

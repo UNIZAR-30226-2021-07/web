@@ -14,7 +14,7 @@ import "../style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(null);
 
   return (
     <div className="App">
@@ -32,7 +32,7 @@ function App() {
 
         <ProtectedRoute path="/match" token={token} component={Match} />
 
-        <ProtectedRoute path="/profile" token={token} component={Profile} />
+        <ProtectedRoute path="/profile" token={token} setToken={setToken} component={Profile} />
 
         <ProtectedRoute
           path="/editProfile"

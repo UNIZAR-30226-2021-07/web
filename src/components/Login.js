@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Card, Form, Button, Container, Row} from "react-bootstrap";
+import { Card, Form, Button, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
 
 
-async function loginUser({email, password}) {
+async function loginUser({ email, password }) {
 
   let data = new URLSearchParams();
   data.append(`email`, email);
@@ -16,7 +16,7 @@ async function loginUser({email, password}) {
   const requestOptions = {
     method: 'POST',
     body: data,
-    };
+  };
 
   return fetch('https://gatovid.herokuapp.com/data/login', requestOptions)
     .then(data => data.json())
@@ -36,14 +36,14 @@ function Login({ setToken }) {
       email,
       password
     });
-    
+
     if ("access_token" in response) {
       setToken(response.access_token);
-    } else { 
+    } else {
       renderErrorPopup(response.error);
     }
-    
-    
+
+
   }
 
   return (
@@ -65,10 +65,7 @@ function Login({ setToken }) {
               <Form.Label>Contraseña</Form.Label>
               <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
             </Form.Group>
-            <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Recuérdame" />
-            </Form.Group>
-            <Row className="justify-content-end w-100">
+            <Row className="justify-content-end w-100 mt-4">
               <Button
                 className="primary-button"
                 type="submit">
