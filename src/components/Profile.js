@@ -16,10 +16,12 @@ import logo from "../assets/common/logo/logo.svg";
 
 async function logoutUser({ token }) {
 
+  console.log(token);
+
   const requestOptions = {
     method: "POST",
     headers: {
-      "Authorization": "Bearer" + token 
+      'Authorization': 'Bearer ' + token
     },
   };
 
