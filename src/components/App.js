@@ -4,9 +4,9 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Menu from "./Menu";
 import Match from "./Match";
 import Login from "./Login";
-import Profile from "./Profile";
+import Profile from "../Profile";
 import EditProfile from "./EditProfile";
-import SignUp from "./SignUp";
+import SignUp from "../SignUp";
 import Shop from "./Shop";
 import Help from "./Help";
 
