@@ -8,7 +8,7 @@ import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import SignUp from "./SignUp";
 import Shop from "./Shop";
-import Help from "./Help";  
+import Help from "./Help";
 
 import "../style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
