@@ -21,7 +21,7 @@ function App() {
       <Switch>
         <Route path="/login">
           <Login setToken={setToken} />
-          {(token != null) ? <Redirect to="/home" /> : <Redirect to="/login" />}
+          {token != null ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/signup">
@@ -32,7 +32,12 @@ function App() {
 
         <ProtectedRoute path="/match" token={token} component={Match} />
 
-        <ProtectedRoute path="/profile" token={token} setToken={setToken} component={Profile} />
+        <ProtectedRoute
+          path="/profile"
+          token={token}
+          setToken={setToken}
+          component={Profile}
+        />
 
         <ProtectedRoute
           path="/editProfile"
@@ -45,7 +50,7 @@ function App() {
         <ProtectedRoute path="/help" token={token} component={Help} />
 
         <Route path="/">
-          {(token != null) ? <Redirect to="/home" /> : <Redirect to="/login" />}
+          {token != null ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Route>
       </Switch>
     </div>
@@ -57,7 +62,11 @@ const ProtectedRoute = ({ component: Component, token, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        (token != null) ? <Component {...rest} {...props} /> : <Redirect to="/login" />
+        token != null ? (
+          <Component {...rest} {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
       }
     />
   );

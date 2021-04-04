@@ -109,7 +109,12 @@ function Profile({ setToken }) {
               </Card.Body>
               <Card.Body>
                 <Row className="align-items-center justify-content-center">
-                  <Button className="alert-button" onClick={() => setToken(null)}>Cerrar Sesión</Button>
+                  <Button
+                    className="alert-button"
+                    onClick={() => setToken(null)}
+                  >
+                    Cerrar Sesión
+                  </Button>
                 </Row>
               </Card.Body>
             </Col>
