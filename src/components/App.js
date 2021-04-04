@@ -25,7 +25,8 @@ function App() {
         </Route>
 
         <Route path="/signup">
-          <SignUp />
+          <SignUp setToken={setToken} />
+          {token != null ? <Redirect to="/home" /> : <Redirect to="/signup" />}
         </Route>
 
         <ProtectedRoute path="/home" token={token} component={Menu} />
@@ -57,12 +58,12 @@ function App() {
   );
 }
 
-const ProtectedRoute = ({ component: Component, token, ...rest }) => {
+const ProtectedRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
       render={(props) =>
-        token != null ? (
+        rest.token != null ? (
           <Component {...rest} {...props} />
         ) : (
           <Redirect to="/login" />
