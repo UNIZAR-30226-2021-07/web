@@ -42,7 +42,6 @@ async function logoutUser({ token }) {
 // }
 
 async function getUserData({ token }) {
-  console.log(token);
   const requestOptions = {
     method: "POST",
     headers: { Authorization: "Bearer " + token },
@@ -69,12 +68,18 @@ function Profile({ token, setToken }) {
   const timePlayed = 0;
 
   useEffect(() => {
-    const data = getUserData(token);
-    setUserName(data.name);
-    setEmail(data.email);
-    console.log(data.name);
-    console.log(data.email);
-  }, []);
+    getUserData({token})
+    .then(response => {
+      if ("error" in response) {
+        renderErrorPopup(response.error);
+      } else {
+        setUserName(response.name);
+        setEmail(response.email);
+        console.log("Usuario: " + response.name);
+        console.log("Email: " + response.email);
+      }
+    });
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
