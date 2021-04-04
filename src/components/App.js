@@ -14,49 +14,59 @@ import "../style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [logged, setLogged] = useState(false);
+  const [token, setToken] = useState(null);
 
   return (
     <div className="App">
       <Switch>
         <Route path="/login">
-          <Login onLogin={() => setLogged(true)} />
+          <Login setToken={setToken} />
+          {token != null ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/signup">
           <SignUp />
         </Route>
 
-        <ProtectedRoute path="/home" loggedIn={logged} component={Menu} />
+        <ProtectedRoute path="/home" token={token} component={Menu} />
 
-        <ProtectedRoute path="/match" loggedIn={logged} component={Match} />
+        <ProtectedRoute path="/match" token={token} component={Match} />
 
-        <ProtectedRoute path="/profile" loggedIn={logged} component={Profile} />
+        <ProtectedRoute
+          path="/profile"
+          token={token}
+          setToken={setToken}
+          component={Profile}
+        />
 
         <ProtectedRoute
           path="/editProfile"
-          loggedIn={logged}
+          token={token}
           component={EditProfile}
         />
 
-        <ProtectedRoute path="/shop" loggedIn={logged} component={Shop} />
+        <ProtectedRoute path="/shop" token={token} component={Shop} />
 
-        <ProtectedRoute path="/help" loggedIn={logged} component={Help} />
+        <ProtectedRoute path="/help" token={token} component={Help} />
 
         <Route path="/">
-          {logged ? <Redirect to="/home" /> : <Redirect to="/login" />}
+          {token != null ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Route>
       </Switch>
     </div>
   );
 }
 
-const ProtectedRoute = ({ component: Component, loggedIn, ...rest }) => {
+const ProtectedRoute = ({ component: Component, token, ...rest }) => {
   return (
     <Route
       {...rest}
       render={(props) =>
-        loggedIn ? <Component {...rest} {...props} /> : <Redirect to="/login" />
+        token != null ? (
+          <Component {...rest} {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
       }
     />
   );
