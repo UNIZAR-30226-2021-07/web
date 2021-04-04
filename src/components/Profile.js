@@ -13,15 +13,11 @@ import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import logo from "../assets/common/logo/logo.svg";
 
-
 async function logoutUser({ token }) {
-
-  console.log(token);
-
   const requestOptions = {
     method: "POST",
     headers: {
-      'Authorization': 'Bearer ' + token
+      Authorization: "Bearer " + token,
     },
   };
 
@@ -32,8 +28,7 @@ async function logoutUser({ token }) {
     });
 }
 
-
-function Profile({token, setToken}) {
+function Profile({ token, setToken }) {
   // TODO: Solo para prototipo inicial
   var username = "Juan Carlos";
   var email = "juanCarlos@gmail.com";
@@ -45,7 +40,7 @@ function Profile({token, setToken}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await logoutUser({
-      token
+      token,
     });
 
     if ("message" in response) {
@@ -143,10 +138,7 @@ function Profile({token, setToken}) {
               </Card.Body>
               <Card.Body>
                 <Row className="align-items-center justify-content-center">
-                  <Button
-                    className="alert-button"
-                    onClick={handleSubmit}
-                  >
+                  <Button className="alert-button" onClick={handleSubmit}>
                     Cerrar Sesión
                   </Button>
                 </Row>
