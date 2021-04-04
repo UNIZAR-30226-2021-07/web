@@ -5,19 +5,9 @@ import { renderErrorPopup } from "./popups/ErrorPopup";
 
 
 
-async function loginUser(/*credentials*/) {
+async function loginUser(credentials) {
 
-  /*
-  const data = {
-    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYxNzUzNTMyOCwianRpIjoiOTc1MmI2NmUtYTU1Yy00MTVlLTkxY2MtNTZmYzE4MTkzNDUwIiwibmJmIjoxNjE3NTM1MzI4LCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoicHJ1ZWJhQGdtYWlsLmNvbSIsImV4cCI6MTYxNzUzNjIyOH0.VRpupBWOdCj4suMMkIQHje8pIfDkwlykYxIheQRxp-8"
-  };
-  */
-
-  const data1 = {
-    "error": "Parámetro vacío"
-  };
-  
-  /*return fetch('https://gatovid.herokuapp.com/data/login', {
+  return fetch('https://gatovid.herokuapp.com/data/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -25,9 +15,7 @@ async function loginUser(/*credentials*/) {
     },
     body: JSON.stringify(credentials)
   })
-    .then(data => data.json())
-  */
-  return data1;
+    .then(data => data.json());
 }
 
 function Login({ setToken }) {
