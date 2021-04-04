@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -13,13 +13,11 @@ import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import logo from "../assets/common/logo/logo.svg";
 
-
 async function logoutUser({ token }) {
-
   const requestOptions = {
     method: "POST",
     headers: {
-      "Authorization": "Bearer" + token 
+      Authorization: "Bearer " + token,
     },
   };
 
@@ -30,20 +28,58 @@ async function logoutUser({ token }) {
     });
 }
 
+// async function getUserStats({ token }) {
+//   const requestOptions = {
+//     method: "POST",
+//     headers: { "Authorization": "Bearer" + token },
+//   };
 
-function Profile({token, setToken}) {
-  // TODO: Solo para prototipo inicial
-  var username = "Juan Carlos";
-  var email = "juanCarlos@gmail.com";
-  var games = "15";
-  var wins = "7";
-  var losts = "8";
-  var timePlayed = "145";
+//   return fetch("https://gatovid.herokuapp.com/data/user_stats", requestOptions)
+//     .then((data) => data.json())
+//     .catch((error) => {
+//       console.error("Error:", error);
+//     });
+// }
+
+async function getUserData({ token }) {
+  console.log(token);
+  const requestOptions = {
+    method: "POST",
+    headers: { Authorization: "Bearer " + token },
+  };
+
+  return fetch("https://gatovid.herokuapp.com/data/user_data", requestOptions)
+    .then((data) => data.json())
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+function Profile({ token, setToken }) {
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  // const [games, setGames] = useState(0);
+  // const [wins, setWins] = useState(0);
+  // const [losts, setLosts] = useState(0);
+  // const [timePlayed, setTimePlayed] = useState(0);
+
+  const games = 0;
+  const wins = 0;
+  const losts = 0;
+  const timePlayed = 0;
+
+  useEffect(() => {
+    const data = getUserData(token);
+    setUserName(data.name);
+    setEmail(data.email);
+    console.log(data.name);
+    console.log(data.email);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await logoutUser({
-      token
+      token,
     });
 
     if ("message" in response) {
@@ -141,10 +177,7 @@ function Profile({token, setToken}) {
               </Card.Body>
               <Card.Body>
                 <Row className="align-items-center justify-content-center">
-                  <Button
-                    className="alert-button"
-                    onClick={handleSubmit}
-                  >
+                  <Button className="alert-button" onClick={handleSubmit}>
                     Cerrar Sesión
                   </Button>
                 </Row>
