@@ -16,8 +16,6 @@ import logo from "../assets/common/logo/logo.svg";
 
 async function logoutUser({ token }) {
 
-  console.log(token)
-
   const requestOptions = {
     method: "POST",
     headers: {
@@ -33,7 +31,7 @@ async function logoutUser({ token }) {
 }
 
 
-function Profile({token, setToken }) {
+function Profile({token, setToken}) {
   // TODO: Solo para prototipo inicial
   var username = "Juan Carlos";
   var email = "juanCarlos@gmail.com";
@@ -43,7 +41,6 @@ function Profile({token, setToken }) {
   var timePlayed = "145";
 
   const handleSubmit = async (e) => {
-    console.log(token)
     e.preventDefault();
     const response = await logoutUser({
       token

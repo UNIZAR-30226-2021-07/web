@@ -8,8 +8,6 @@ async function loginUser({ email, password }) {
   data.append(`email`, email);
   data.append(`password`, password);
 
-  console.log(data);
-
   const requestOptions = {
     method: "POST",
     body: data,
