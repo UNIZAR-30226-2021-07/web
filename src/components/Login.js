@@ -5,16 +5,24 @@ import { renderErrorPopup } from "./popups/ErrorPopup";
 
 
 
-async function loginUser(credentials) {
+async function loginUser({email, password}) {
 
-  return fetch('https://gatovid.herokuapp.com/data/login', {
+  let data = new URLSearchParams();
+  data.append(`email`, email);
+  data.append(`password`, password);
+
+  console.log(data);
+
+  const requestOptions = {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json());
+    body: data,
+    };
+
+  return fetch('https://gatovid.herokuapp.com/data/login', requestOptions)
+    .then(data => data.json())
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 }
 
 function Login({ setToken }) {
@@ -28,14 +36,10 @@ function Login({ setToken }) {
       email,
       password
     });
-
-    console.log(email);
-    console.log(password);
-    console.log(response);
     
     if ("access_token" in response) {
       setToken(response.access_token);
-    } else { // Hacer tercer caso, por si no error en response
+    } else { 
       renderErrorPopup(response.error);
     }
     

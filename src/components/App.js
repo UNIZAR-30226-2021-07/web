@@ -21,6 +21,7 @@ function App() {
       <Switch>
         <Route path="/login">
           <Login setToken={setToken} />
+          {(token != null) ? <Redirect to="/home" /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/signup">
