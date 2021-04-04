@@ -11,7 +11,6 @@ async function loginUser(credentials) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'https://gatovid.herokuapp'
     },
     body: JSON.stringify(credentials)
   })
@@ -30,13 +29,17 @@ function Login({ setToken }) {
       password
     });
 
+    console.log(email);
+    console.log(password);
+    console.log(response);
+    
     if ("access_token" in response) {
       setToken(response.access_token);
     } else { // Hacer tercer caso, por si no error en response
       renderErrorPopup(response.error);
     }
     
-    /*console.log(token)*/
+    
   }
 
   return (
