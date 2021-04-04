@@ -1,10 +1,23 @@
 import React, { useState } from "react";
-import { Card, Form, Button, Container, Row } from "react-bootstrap";
+import { Card, Form, Button, Container, Row} from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { renderErrorPopup } from "./popups/ErrorPopup";
 
 
-async function loginUser(credentials) {
-  return fetch('https://gatovid.herokuapp.com/data/login', {
+
+async function loginUser(/*credentials*/) {
+
+  /*
+  const data = {
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYxNzUzNTMyOCwianRpIjoiOTc1MmI2NmUtYTU1Yy00MTVlLTkxY2MtNTZmYzE4MTkzNDUwIiwibmJmIjoxNjE3NTM1MzI4LCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoicHJ1ZWJhQGdtYWlsLmNvbSIsImV4cCI6MTYxNzUzNjIyOH0.VRpupBWOdCj4suMMkIQHje8pIfDkwlykYxIheQRxp-8"
+  };
+  */
+
+  const data1 = {
+    "error": "Parámetro vacío"
+  };
+  
+  /*return fetch('https://gatovid.herokuapp.com/data/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -13,21 +26,29 @@ async function loginUser(credentials) {
     body: JSON.stringify(credentials)
   })
     .then(data => data.json())
+  */
+  return data1;
 }
 
-function Login(/*{ onLogin }*/) {
+function Login({ setToken }) {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
+    const response = await loginUser({
       email,
       password
     });
-    /*setToken(token);*/
-    console.log(token)
+
+    if ("access_token" in response) {
+      setToken(response.access_token);
+    } else { // Hacer tercer caso, por si no error en response
+      renderErrorPopup(response.error);
+    }
+    
+    /*console.log(token)*/
   }
 
   return (
