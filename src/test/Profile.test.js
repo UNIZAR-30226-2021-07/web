@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import Profile from "./Profile";
 import { BrowserRouter as Router } from "react-router-dom";
+import Profile from "../components/Profile";
 
 test("renders profile", () => {
   var username = "Juan Carlos";

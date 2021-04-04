@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import StartGamePopup from "./StartGamePopup";
+import StartGamePopup from "../components/popups/StartGamePopup";
 
 test("renders title", () => {
   render(<StartGamePopup ready="4" total="6" />);

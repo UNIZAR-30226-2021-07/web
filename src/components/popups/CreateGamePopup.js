@@ -1,12 +1,12 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button, Image } from "react-bootstrap";
-import Popup from "./PopUp";
 
+import Popup from "./PopUp";
 import { renderStartGamePopup } from "./StartGamePopup";
 
-import check from "./assets/common/icons/check.svg";
-import clipboard from "./assets/common/icons/clipboard.svg";
+import check from "../../assets/common/icons/check.svg";
+import clipboard from "../../assets/common/icons/clipboard.svg";
 
 function copyCode() {
   const codeField = document.getElementById("game-code");

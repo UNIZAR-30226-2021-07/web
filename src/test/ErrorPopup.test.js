@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import ErrorPopup from "./ErrorPopup";
+import ErrorPopup from "../components/popups/ErrorPopup";
 
 test("renders title", () => {
   const title = "Atencion";

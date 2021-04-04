@@ -1,9 +1,10 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button } from "react-bootstrap";
+
 import Popup from "./PopUp";
 
-import warning from "./assets/common/icons/warning.svg";
+import warning from "../../assets/common/icons/warning.svg";
 
 export default function ErrorPopup({ body, title = "¡Atención!" }) {
   return (

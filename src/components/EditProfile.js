@@ -9,14 +9,13 @@ import {
   Image,
 } from "react-bootstrap";
 
-import boardType from "./assets/common/boards/green.png";
-import image from "./assets/common/logo/logo.svg";
+import boardType from "../assets/common/boards/green.png";
+import image from "../assets/common/logo/logo.svg";
+import camera from "../assets/common/icons/camera.svg";
 
 //import { Link } from "react-router-dom";
 
-import camera from "./assets/common/icons/camera.svg";
-
-import { renderDeleteAccountPopup } from "./DeleteAccountPopup";
+import { renderDeleteAccountPopup } from "./popups/DeleteAccountPopup";
 
 function EditProfile(/*{ email, username, image , boardType }*/) {
   // TODO: Solo para prototipo inicial
