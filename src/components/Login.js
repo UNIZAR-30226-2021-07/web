@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Card, Form, Button, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
-export async function loginUser({ email, password }) {
+async function loginUser({ email, password }) {
   let data = new URLSearchParams();
   data.append(`email`, email);
   data.append(`password`, password);
@@ -23,6 +23,7 @@ export async function loginUser({ email, password }) {
 function Login({ setToken }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,9 +32,11 @@ function Login({ setToken }) {
       password,
     });
 
+    // TODO: Si response vacía salta error... -> solo visible para nosotros
+    // o tb para el cliente normal
     if ("access_token" in response) {
       setToken(response.access_token);
-      console.log(response.access_token);
+      history.push("/home");
     } else {
       renderErrorPopup(response.error);
     }
