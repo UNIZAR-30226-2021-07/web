@@ -20,7 +20,9 @@ function Chat() {
     });
     */
     /*this.props.onSubmitMessage(this.state.message)*/
-    setMessage('')
+    MessageList.newMessage(message);
+    setMessage('');
+
   };
 
   return (
