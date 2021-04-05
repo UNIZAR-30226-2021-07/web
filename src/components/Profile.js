@@ -29,7 +29,6 @@ async function logoutUser({ token }) {
 }
 
 async function getUserStats({ username }) {
-  console.log("https://gatovid.herokuapp.com/data/user_stats?name=" + username);
   return fetch("https://gatovid.herokuapp.com/data/user_stats?name=" + username)
     .then((data) => data.json())
     .catch((error) => {
@@ -63,22 +62,19 @@ function Profile({ token, setToken }) {
       if ("error" in response) {
         console.log(response.error);
       } else {
-        console.log(response);
         setUserName(response.name);
         setEmail(response.email);
+      }
+    });
 
-        getUserStats({ username }).then((response) => {
-          console.log(response);
-          if ("error" in response) {
-            console.log(response.error);
-          } else {
-            console.log(response);
-            setGames(response.games);
-            setWins(response.wins);
-            setLosses(response.losses);
-            setTimePlayed(response.playtime_mins);
-          }
-        });
+    getUserStats({ username }).then((response) => {
+      if ("error" in response) {
+        console.log(response.error);
+      } else {
+        setGames(response.games);
+        setWins(response.wins);
+        setLosses(response.losses);
+        setTimePlayed(response.playtime_mins);
       }
     });
   }, []);
