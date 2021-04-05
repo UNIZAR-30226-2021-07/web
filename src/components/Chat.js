@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Button, Image, Container, Row } from "react-bootstrap";
 
 import send from "../assets/common/icons/send.svg";
@@ -7,7 +7,18 @@ import MessageList from "./MessageList";
 
 function Chat() {
 
+  const [message, setMessage] = useState('');
 
+  const handleClick = async (e) => {
+    e.preventDefault();
+    /*
+    const response = await logoutUser({
+      token,
+    });
+    */
+    /*this.props.onSubmitMessage(this.state.message)*/
+    setMessage('')
+  };
 
   return (
     <Container className="chat-container">
@@ -21,10 +32,12 @@ function Chat() {
         <input
           type="text"
           className="form-control"
+          value={message}
           placeholder="Escribir Mensaje"
+          onChange={e => setMessage(e.target.value)}
         ></input>
         <div className="input-group-append pb-2">
-          <Button className="send-button">
+          <Button className="send-button" onClick={handleClick}>
             <Image src={send} style={{ height: "20px" }} />
           </Button>
         </div>
