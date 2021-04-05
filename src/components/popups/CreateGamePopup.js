@@ -56,7 +56,6 @@ export default function CreateGamePopup({ code }) {
   );
 }
 
-// For test purposes only
 export function renderCreateGamePopup(code) {
   const content = <CreateGamePopup code={code} />;
   PopupboxManager.open({

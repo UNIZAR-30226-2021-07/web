@@ -32,7 +32,6 @@ export default function DeleteAccountPopup() {
   );
 }
 
-// For test purposes only
 export function renderDeleteAccountPopup() {
   const content = <DeleteAccountPopup />;
   PopupboxManager.open({

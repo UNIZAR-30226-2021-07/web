@@ -23,7 +23,6 @@ export default function PreparingGamePopup() {
   );
 }
 
-// For test purposes only
 export function renderPreparingGamePopup() {
   const content = <PreparingGamePopup />;
   PopupboxManager.open({

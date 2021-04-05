@@ -40,7 +40,6 @@ export default function JoinGamePopup() {
   );
 }
 
-// For test purposes only
 export function renderJoinGamePopup() {
   const content = <JoinGamePopup />;
   PopupboxManager.open({

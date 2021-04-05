@@ -24,7 +24,6 @@ export default function ErrorPopup({ body, title = "¡Atención!" }) {
   );
 }
 
-// For test purposes only
 export function renderErrorPopup(body, title) {
   const content = <ErrorPopup title={title} body={body} />;
   PopupboxManager.open({

@@ -21,7 +21,6 @@ export default function StartGamePopup({ ready, total }) {
   );
 }
 
-// For test purposes only
 export function renderStartGamePopup() {
   const ready = "4"; //Se actualizara con el servidor
   const total = "6";
