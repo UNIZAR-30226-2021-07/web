@@ -13,11 +13,12 @@ export default function ErrorPopup({ body, title = "¡Atención!" }) {
         <p className="text-center">{body}</p>
       </Row>
       <Row className="justify-content-around">
-        <Button className="primary-button" onClick={PopupboxManager.close}>
-          Atrás
-        </Button>
-        <Button className="continue-button" onClick={PopupboxManager.close}>
-          Continuar
+        <Button
+          className="primary-button"
+          onClick={PopupboxManager.close}
+          style={{ width: "100%" }}
+        >
+          Aceptar
         </Button>
       </Row>
     </Popup>
