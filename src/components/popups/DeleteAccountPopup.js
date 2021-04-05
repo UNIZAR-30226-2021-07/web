@@ -1,10 +1,10 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Button } from "react-bootstrap";
 
 import Popup from "./PopUp";
 
-export default function DeleteAccountPopup({ children }) {
+export default function DeleteAccountPopup() {
   return (
     <Popup title="¿Eliminar su cuenta">
       <Row className="align-items-center justify-content-center">
@@ -28,7 +28,6 @@ export default function DeleteAccountPopup({ children }) {
           No
         </Button>
       </Row>
-      <Col>{children}</Col>
     </Popup>
   );
 }

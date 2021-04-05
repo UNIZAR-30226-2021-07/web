@@ -1,10 +1,10 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Button } from "react-bootstrap";
 
 import Popup from "./PopUp";
 
-export default function StartGamePopup({ ready, total, children }) {
+export default function StartGamePopup({ ready, total}) {
   return (
     <Popup title="¿Empezar partida?">
       <Row className="justify-content-center">
@@ -17,7 +17,6 @@ export default function StartGamePopup({ ready, total, children }) {
           Empezar partida
         </Button>
       </Row>
-      <Col>{children}</Col>
     </Popup>
   );
 }
