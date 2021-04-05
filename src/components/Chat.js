@@ -5,14 +5,17 @@ import send from "../assets/common/icons/send.svg";
 
 import MessageList from "./MessageList";
 
-function Chat({ messages }) {
+function Chat() {
+
+
+
   return (
     <Container className="chat-container">
       <Row className="chat-header justify-content-center align-items-center">
         <h4>Chat de partida</h4>
       </Row>
       <Row className="message-list px-3">
-        <MessageList messages={messages} />
+        <MessageList  />
       </Row>
       <Row className="send-message input-group mt-2">
         <input

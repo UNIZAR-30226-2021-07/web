@@ -3,7 +3,52 @@ import { ListGroup } from "react-bootstrap";
 
 import Message from "./Message";
 
-function showMessages(messages) {
+//Solo para test
+const messages = [
+  {
+    userid: "Nombre",
+    text: "Mensaje",
+  },
+  {
+    userid: "Nombre",
+    text:
+      "Nooooooooooooooooooooooooooooooooooooo ooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+  },
+  {
+    userid: "Nombre",
+    text: "Mensaje",
+  },
+  {
+    userid: "Nombre",
+    text: "Mensaje",
+  },
+  {
+    userid: "Nombre",
+    text: "Mensaje",
+  },
+  {
+    userid: "Nombre",
+    text: "Mensaje",
+  },
+  {
+    userid: "Nombre",
+    text: "Mensaje",
+  },
+  {
+    userid: "Nombre",
+    text: "Mensaje",
+  },
+  {
+    userid: "Nombre",
+    text: "Mensaje",
+  },
+  {
+    userid: "Nombre",
+    text: "Mensaje",
+  },
+];
+
+function showMessages() {
   if (!messages) {
     return;
   }
@@ -11,7 +56,7 @@ function showMessages(messages) {
   return messages.map((msg, idx) => <Message key={idx} message={msg} />);
 }
 
-function MessageList({ messages }) {
+function MessageList() {
   return <ListGroup>{showMessages(messages)}</ListGroup>;
 }
 

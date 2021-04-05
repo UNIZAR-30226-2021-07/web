@@ -4,51 +4,6 @@ import { Link } from "react-router-dom";
 
 import Chat from "./Chat";
 
-//Solo para test
-const messages = [
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text:
-      "Nooooooooooooooooooooooooooooooooooooo ooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-];
-
 function Match() {
   return (
     <Row className="m-0">
@@ -65,7 +20,7 @@ function Match() {
         </Container>
       </Col>
       <Col className="p-0">
-        <Chat className="" messages={messages} />
+        <Chat className="" />
       </Col>
     </Row>
   );
