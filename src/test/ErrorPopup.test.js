@@ -17,14 +17,8 @@ test("renders body", () => {
   expect(inputElement).toBeInTheDocument();
 });
 
-test("renders atras button", () => {
+test("renders aceptar button", () => {
   render(<ErrorPopup />);
-  const buttonElement = screen.getByText(/atrás/i);
-  expect(buttonElement).toBeInTheDocument();
-});
-
-test("renders continuar button", () => {
-  render(<ErrorPopup />);
-  const buttonElement = screen.getByText(/continuar/i);
+  const buttonElement = screen.getByText(/ACEPTAR/i);
   expect(buttonElement).toBeInTheDocument();
 });
