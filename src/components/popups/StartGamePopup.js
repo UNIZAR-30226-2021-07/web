@@ -4,7 +4,7 @@ import { Row, Button } from "react-bootstrap";
 
 import Popup from "./PopUp";
 
-export default function StartGamePopup({ ready, total}) {
+export default function StartGamePopup({ ready, total }) {
   return (
     <Popup title="¿Empezar partida?">
       <Row className="justify-content-center">
