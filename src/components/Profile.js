@@ -29,6 +29,7 @@ async function logoutUser({ token }) {
 }
 
 async function getUserStats({ username }) {
+  console.log(username);
   return fetch("https://gatovid.herokuapp.com/data/user_stats?name=" + username)
     .then((data) => data.json())
     .catch((error) => {
@@ -77,7 +78,7 @@ function Profile({ token, setToken }) {
         setTimePlayed(response.playtime_mins);
       }
     });
-  }, []);
+  });
 
   const handleClick = async (e) => {
     e.preventDefault();
