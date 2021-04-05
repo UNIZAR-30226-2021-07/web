@@ -33,7 +33,6 @@ function Login({ setToken }) {
 
     if ("access_token" in response) {
       setToken(response.access_token);
-      console.log(response.access_token);
     } else {
       renderErrorPopup(response.error);
     }
