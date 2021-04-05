@@ -15,7 +15,7 @@ function copyCode() {
   document.execCommand("copy");
 }
 
-export default function CreateGamePopup({ code, children }) {
+export default function CreateGamePopup({ code }) {
   return (
     <Popup title="Partida privada lista" icon={check} close={true}>
       <Row className="justify-content-center">
@@ -52,13 +52,10 @@ export default function CreateGamePopup({ code, children }) {
           CONFIRMAR
         </Button>
       </Row>
-
-      <Row>{children}</Row>
     </Popup>
   );
 }
 
-// For test purposes only
 export function renderCreateGamePopup(code) {
   const content = <CreateGamePopup code={code} />;
   PopupboxManager.open({

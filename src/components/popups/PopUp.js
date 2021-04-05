@@ -24,7 +24,6 @@ export default function Popup({ title, icon, close, children }) {
   );
 }
 
-// For test purposes only
 export function openPopup(title, icon, close) {
   const content = <Popup title={title} icon={icon} close={close} />;
   PopupboxManager.open({
