@@ -28,18 +28,14 @@ async function logoutUser({ token }) {
     });
 }
 
-// async function getUserStats({ token }) {
-//   const requestOptions = {
-//     method: "POST",
-//     headers: { "Authorization": "Bearer" + token },
-//   };
-
-//   return fetch("https://gatovid.herokuapp.com/data/user_stats", requestOptions)
-//     .then((data) => data.json())
-//     .catch((error) => {
-//       console.error("Error:", error);
-//     });
-// }
+async function getUserStats({ username }) {
+  console.log("https://gatovid.herokuapp.com/data/user_stats?name=" + username);
+  return fetch("https://gatovid.herokuapp.com/data/user_stats?name=" + username)
+    .then((data) => data.json())
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
 
 async function getUserData({ token }) {
   const requestOptions = {
@@ -57,29 +53,35 @@ async function getUserData({ token }) {
 function Profile({ token, setToken }) {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
-  // const [games, setGames] = useState(0);
-  // const [wins, setWins] = useState(0);
-  // const [losts, setLosts] = useState(0);
-  // const [timePlayed, setTimePlayed] = useState(0);
-
-  const games = 0;
-  const wins = 0;
-  const losts = 0;
-  const timePlayed = 0;
+  const [games, setGames] = useState(0);
+  const [wins, setWins] = useState(0);
+  const [losses, setLosses] = useState(0);
+  const [timePlayed, setTimePlayed] = useState(0);
 
   useEffect(() => {
-    getUserData({token})
-    .then(response => {
+    getUserData({ token }).then((response) => {
       if ("error" in response) {
-        renderErrorPopup(response.error);
+        console.log(response.error);
       } else {
+        console.log(response);
         setUserName(response.name);
         setEmail(response.email);
-        console.log("Usuario: " + response.name);
-        console.log("Email: " + response.email);
+
+        getUserStats({ username }).then((response) => {
+          console.log(response);
+          if ("error" in response) {
+            console.log(response.error);
+          } else {
+            console.log(response);
+            setGames(response.games);
+            setWins(response.wins);
+            setLosses(response.losses);
+            setTimePlayed(response.playtime_mins);
+          }
+        });
       }
     });
-  }, [])
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -164,7 +166,7 @@ function Profile({ token, setToken }) {
                         </Card.Title>
                       </td>
                       <td>
-                        <Card.Text>{losts}</Card.Text>
+                        <Card.Text>{losses}</Card.Text>
                       </td>
                     </tr>
                     <tr>
