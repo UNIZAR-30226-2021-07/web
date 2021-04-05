@@ -79,7 +79,7 @@ function Profile({ token, setToken }) {
     });
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
     const response = await logoutUser({
       token,
@@ -180,7 +180,7 @@ function Profile({ token, setToken }) {
               </Card.Body>
               <Card.Body>
                 <Row className="align-items-center justify-content-center">
-                  <Button className="alert-button" onClick={handleSubmit}>
+                  <Button className="alert-button" onClick={handleClick}>
                     Cerrar Sesión
                   </Button>
                 </Row>
