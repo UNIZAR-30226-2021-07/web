@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -28,14 +28,56 @@ async function logoutUser({ token }) {
     });
 }
 
+async function getUserStats({ username }) {
+  return fetch("https://gatovid.herokuapp.com/data/user_stats?name=" + username)
+    .then((data) => data.json())
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+async function getUserData({ token }) {
+  const requestOptions = {
+    method: "POST",
+    headers: { Authorization: "Bearer " + token },
+  };
+
+  return fetch("https://gatovid.herokuapp.com/data/user_data", requestOptions)
+    .then((data) => data.json())
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
 function Profile({ token, setToken }) {
-  // TODO: Solo para prototipo inicial
-  var username = "Juan Carlos";
-  var email = "juanCarlos@gmail.com";
-  var games = "15";
-  var wins = "7";
-  var losts = "8";
-  var timePlayed = "145";
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [games, setGames] = useState(0);
+  const [wins, setWins] = useState(0);
+  const [losses, setLosses] = useState(0);
+  const [timePlayed, setTimePlayed] = useState(0);
+
+  useEffect(() => {
+    getUserData({ token }).then((response) => {
+      if ("error" in response) {
+        console.log(response.error);
+      } else {
+        setUserName(response.name);
+        setEmail(response.email);
+      }
+    });
+
+    getUserStats({ username }).then((response) => {
+      if ("error" in response) {
+        console.log(response.error);
+      } else {
+        setGames(response.games);
+        setWins(response.wins);
+        setLosses(response.losses);
+        setTimePlayed(response.playtime_mins);
+      }
+    });
+  }, []);
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -120,7 +162,7 @@ function Profile({ token, setToken }) {
                         </Card.Title>
                       </td>
                       <td>
-                        <Card.Text>{losts}</Card.Text>
+                        <Card.Text>{losses}</Card.Text>
                       </td>
                     </tr>
                     <tr>
