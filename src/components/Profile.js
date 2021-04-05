@@ -9,10 +9,26 @@ import {
   Table,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import logo from "../assets/common/logo/logo.svg";
 
-function Profile(/*{ username, email, games, wins, losts, timePlayed }*/) {
+async function logoutUser({ token }) {
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  };
+
+  return fetch("https://gatovid.herokuapp.com/data/logout", requestOptions)
+    .then((data) => data.json())
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+function Profile({ token, setToken }) {
   // TODO: Solo para prototipo inicial
   var username = "Juan Carlos";
   var email = "juanCarlos@gmail.com";
@@ -20,6 +36,19 @@ function Profile(/*{ username, email, games, wins, losts, timePlayed }*/) {
   var wins = "7";
   var losts = "8";
   var timePlayed = "145";
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const response = await logoutUser({
+      token,
+    });
+
+    if ("message" in response) {
+      setToken(null);
+    } else {
+      renderErrorPopup(response.error);
+    }
+  };
 
   return (
     <Container
@@ -109,7 +138,9 @@ function Profile(/*{ username, email, games, wins, losts, timePlayed }*/) {
               </Card.Body>
               <Card.Body>
                 <Row className="align-items-center justify-content-center">
-                  <Button className="alert-button">Cerrar Sesión</Button>
+                  <Button className="alert-button" onClick={handleClick}>
+                    Cerrar Sesión
+                  </Button>
                 </Row>
               </Card.Body>
             </Col>
