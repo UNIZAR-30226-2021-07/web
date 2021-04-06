@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
-import logo from "../assets/common/logo/logo.svg";
+import profile_pics from "../assets/common/profile_pics.json";
 
 async function logoutUser({ token }) {
   const requestOptions = {
@@ -53,18 +53,21 @@ async function getUserData({ token }) {
 function Profile({ token, setToken }) {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
+  const [pictureURL, setPictureURL] = useState(profile_pics[0].image);
   const [games, setGames] = useState(0);
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
   const [timePlayed, setTimePlayed] = useState(0);
 
   useEffect(() => {
+    console.log(pictureURL);
     getUserData({ token }).then((response) => {
       if ("error" in response) {
         console.log(response.error);
       } else {
         setUserName(response.name);
         setEmail(response.email);
+        setPictureURL(profile_pics[response.picture].image);
       }
     });
 
@@ -109,7 +112,7 @@ function Profile({ token, setToken }) {
               </Row>
               <Row className="align-items-center justify-content-center mb-2">
                 <Image
-                  src={logo}
+                  src="assets/common/profile_pics/default.svg"
                   className="user-profile-image"
                   roundedCircle
                   thumbnail
