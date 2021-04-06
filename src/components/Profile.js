@@ -60,7 +60,6 @@ function Profile({ token, setToken }) {
   const [timePlayed, setTimePlayed] = useState(0);
 
   useEffect(() => {
-    console.log(pictureURL);
     getUserData({ token }).then((response) => {
       if ("error" in response) {
         console.log(response.error);
