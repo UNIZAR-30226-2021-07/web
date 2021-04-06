@@ -112,7 +112,7 @@ function Profile({ token, setToken }) {
               </Row>
               <Row className="align-items-center justify-content-center mb-2">
                 <Image
-                  src="assets/common/profile_pics/default.svg"
+                  src={pictureURL}
                   className="user-profile-image"
                   roundedCircle
                   thumbnail
