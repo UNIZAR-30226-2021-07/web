@@ -1,16 +1,75 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Image, Container, Row, Form } from "react-bootstrap";
 
 import send from "../assets/common/icons/send.svg";
 import MessageList from "./MessageList";
 
+
+import io from 'socket.io-client';
+
+
 // const URL = ''
+
+
+function setupWebsockets(login_data) {
+  fetch('http://localhost:81/data/login', {
+    method: 'POST',
+    body: login_data,
+  })
+  .then(response => response.json())
+  .then(data => {
+      if(data['error']) {
+          console.error('Error:', data['error']);
+          return;
+      }
+
+      let token = data['access_token'];
+      console.log(token);
+      setup_socketio(token);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
+
+function setup_socketio(token) {
+
+  var socket = io.connect("ws://localhost:81", {
+          extraHeaders: {
+              Authorization: "Bearer " + token,
+          }
+  });
+
+  socket.on('connect', function() {
+      console.log('connected')
+  });
+}
+
+function start_game(token) {
+
+  var socket = io.connect("ws://localhost:81", {
+          extraHeaders: {
+              Authorization: "Bearer " + token,
+          }
+  });
+
+  socket.on('connect', function() {
+      console.log('connected')
+  });
+}
+
 
 function Chat() {
 
   const [message, setMessage] = useState('');
 
-  // ws = new WebSocket(URL);
+
+  useEffect(() => {
+    let data = new URLSearchParams();
+    data.append(`email`, `test_user1@gmail.com`);
+    data.append(`password`, `whatever1`);
+    setupWebsockets(data);
+  });
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -26,6 +85,7 @@ function Chat() {
   };
 
   return (
+
     <Container className="chat-container">
       <Row className="chat-header justify-content-center align-items-center">
         <h4>Chat de partida</h4>
@@ -47,6 +107,15 @@ function Chat() {
           </Button>
         </div>
         </Form>
+        <form id="form" action="">
+      <input id="input" autoComplete="off" /><button>Send</button>
+    </form>
+    <button id="create-room" onClick={start_game}>Create room</button>
+    <button id="start-game">Start game</button>
+    <button id="leave-room">Leave room</button>
+    <form id="join-room-form" action="">
+      <input id="code-input" autoComplete="off" /><button>Join room</button>
+    </form>
     </Container>
   );
 }
