@@ -17,18 +17,41 @@ export default function useWebSocket({ url, token }) {
             }
         });
 
-        socket.current.onconnect  = function() {
-            console.log('connected');
-        }
+        socket.current.on('connect', function() {
+            console.log('connected')
+            console.log(socket)
+        });
+
+        socket.current.on('connect_error', function (e) {
+            console.error('not connected', e);
+        });
+
+        socket.current.on('chat', function ({owner, msg}) {
+            console.log(owner, msg);
+        });
+
+        socket.current.on('create_game', function () {
+            console.log("CREATE GAME RECIBIDO");
+        });
+
+        socket.current.on('start_game', function () {
+            alert('Game started');
+        });
+
+        socket.current.on('players_waiting', function (n) {
+            console.log(n);
+        });
+
 
 
         return () => {
             socket.current.close();
+            socket.current = null;
         }
 
     }, [url, token]);
     // De esta forma el useEffect se ejecutará si cambia la url o el token
-    
+
     // Funciones de recepción de mensajes del servidor: socket.on
     /*
     function onConnect() {
@@ -53,7 +76,7 @@ export default function useWebSocket({ url, token }) {
 
     */
     return {
-        socket: socket.current, 
-        messages
-    }
+        socket,
+        messages,
+    };
 }

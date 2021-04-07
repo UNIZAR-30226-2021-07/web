@@ -11,25 +11,27 @@ function Chat({token}) {
   const [message, setMessage] = useState('');
   const [codeInput, setCodeInput] = useState('');
 
-  const { socket, messages } = useWebSocket({ 
-    url: "ws://localhost:81",
-    token 
-  });
+  const { socket, messages } = useWebSocket(
+    { 
+      url: "ws://localhost:81",
+      token: token,
+    },
+  );
 
   const createGame = async (e) => {
     e.preventDefault();
-    socket.emit('create_game', callback);
+    socket.current.emit('create_game', callback);
   };
 
   const startGame = async (e) => {
     e.preventDefault();
-    socket.emit('start_game', callback);
+    socket.current.emit('start_game', callback);
   };
 
   const joinGame = async (e) => {
     e.preventDefault();
     if (codeInput) {
-      socket.emit('join', {'game':codeInput}, callback);
+      socket.current.emit('join', {'game':codeInput}, callback);
       setCodeInput('');
     }
   };
