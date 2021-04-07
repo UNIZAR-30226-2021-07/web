@@ -6,7 +6,6 @@ import MessageList from "./MessageList";
 
 import useWebSocket from "./websockets";
 
-
 // TODO: Provisional para pedir el username
 async function getUserData({ token }) {
   const requestOptions = {
@@ -31,7 +30,6 @@ function Chat({ token }) {
     url: "ws://gatovid.herokuapp.com",
     token: token,
   });
-
 
   useEffect(() => {
     getUserData({ token }).then((response) => {
@@ -82,7 +80,7 @@ function Chat({ token }) {
         <h4>Chat de partida</h4>
       </Row>
       <Row className="message-list px-3">
-        <MessageList username={username} messages={messages}/>
+        <MessageList username={username} messages={messages} />
       </Row>
       <Form className="send-message input-group mt-2" onSubmit={sendMessage}>
         <input
