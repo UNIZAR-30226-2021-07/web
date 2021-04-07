@@ -13,7 +13,7 @@ async function loginUser({ email, password }) {
     body: data,
   };
 
-  return fetch("https://gatovid.herokuapp.com/data/login", requestOptions)
+  return fetch("http://localhost:81/data/login", requestOptions)
     .then((data) => data.json())
     .catch((error) => {
       console.error("Error:", error);

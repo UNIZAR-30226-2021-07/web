@@ -1,81 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { ListGroup } from "react-bootstrap";
 
 import Message from "./Message";
 
-//Solo para test
-const initMessages = [
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text:
-      "Nooooooooooooooooooooooooooooooooooooo ooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-  {
-    userid: "Nombre",
-    text: "Mensaje",
-  },
-];
 
 
-function MessageList() {
+
+function MessageList({ messages }) {
   // TODO: Se inicializa a algo para ver el scroll
-  const [messages/*, setMessages*/] = useState(initMessages);
   const messagesEndRef = useRef(null)
 
   const scrollToBottom = () => {
@@ -85,13 +17,6 @@ function MessageList() {
   // useEffect se ejecuta / se dispara cuando ocurre un cambio en messages
   // (condición/guarda entre []), al hacerlo ejecuta la f. scrollToBottom 
   useEffect(scrollToBottom, [messages]);
-
-  /*
-  const newMessage = (message) => {
-    let totalMessages = [...messages, message];
-    setMessages(totalMessages);
-  }
-  */
 
   return <ListGroup>
     {messages.map((msg, idx) => <Message key={idx} message={msg} />)}
