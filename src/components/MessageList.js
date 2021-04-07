@@ -3,7 +3,7 @@ import { ListGroup } from "react-bootstrap";
 
 import Message from "./Message";
 
-function MessageList({ messages }) {
+function MessageList({ username, messages }) {
   // TODO: Se inicializa a algo para ver el scroll
   const messagesEndRef = useRef(null);
 
@@ -18,7 +18,7 @@ function MessageList({ messages }) {
   return (
     <ListGroup>
       {messages.map((msg, idx) => (
-        <Message key={idx} message={msg} />
+        <Message key={idx} username={username} message={msg} />
       ))}
       <div ref={messagesEndRef} />
     </ListGroup>

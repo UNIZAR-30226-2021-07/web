@@ -283,6 +283,18 @@ body,
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+.gatovid-message {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.own-message {
+  background-color: #dcf8c6 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
 .message-list {
   overflow-y: scroll;
   flex: 1;
