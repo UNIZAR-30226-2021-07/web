@@ -18,7 +18,7 @@ function MessageList({ username, messages }) {
   return (
     <ListGroup>
       {messages.map((msg, idx) => (
-        <Message key={idx} username={username} message={msg} />
+        <Message className="align-items-center justify-content-center text-align-center" key={idx} username={username} message={msg} />
       ))}
       <div ref={messagesEndRef} />
     </ListGroup>
