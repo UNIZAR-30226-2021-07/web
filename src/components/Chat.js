@@ -11,7 +11,7 @@ function Chat({token}) {
   const [message, setMessage] = useState('');
   const [codeInput, setCodeInput] = useState('');
 
-  const { socket, messages } = useWebSocket(
+  const { socket, messages} = useWebSocket(
     { 
       url: "ws://localhost:81",
       token: token,
@@ -31,8 +31,9 @@ function Chat({token}) {
   const joinGame = async (e) => {
     e.preventDefault();
     if (codeInput) {
-      socket.current.emit('join', {'game':codeInput}, callback);
-      setCodeInput('');
+      console.log(codeInput);
+      socket.current.emit('join', codeInput, callback);
+      setCodeInput();
     }
   };
 
@@ -42,9 +43,11 @@ function Chat({token}) {
     }
   }
 
-  const handleClick = async (e) => {
+  const sendMessage = async (e) => {
     e.preventDefault();
-    MessageList.newMessage(message);
+    if (message) {
+      socket.current.emit('chat', message, callback);
+    }
     setMessage('');
   };
   
@@ -56,9 +59,9 @@ function Chat({token}) {
         <h4>Chat de partida</h4>
       </Row>
       <Row className="message-list px-3">
-        <MessageList messages = {messages} />
+        <MessageList messages={messages}/>
       </Row>
-      <Form className="send-message input-group mt-2" onSubmit={handleClick}>
+      <Form className="send-message input-group mt-2" onSubmit={sendMessage}>
         <input
           type="text"
           className="form-control"
