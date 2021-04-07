@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import Chat from "./Chat";
 
-function Match({token}) {
+function Match({ token }) {
   return (
     <Row className="m-0">
       <Col>
