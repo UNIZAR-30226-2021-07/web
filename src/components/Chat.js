@@ -11,7 +11,7 @@ function Chat({ token }) {
   const [codeInput, setCodeInput] = useState("");
 
   const { socket, messages } = useWebSocket({
-    url: "ws://localhost:81",
+    url: "ws://gatovid.herokuapp.com",
     token: token,
   });
 

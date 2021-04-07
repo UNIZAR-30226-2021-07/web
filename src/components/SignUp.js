@@ -14,7 +14,7 @@ async function signUpUser({ name, email, password }) {
     body: data,
   };
 
-  return fetch("http://localhost:81/data/signup", requestOptions)
+  return fetch("https://gatovid.herokuapp.com/data/signup", requestOptions)
     .then((data) => data.json())
     .catch((error) => {
       console.error("Error:", error);

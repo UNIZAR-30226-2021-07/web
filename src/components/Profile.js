@@ -21,7 +21,7 @@ async function logoutUser({ token }) {
     },
   };
 
-  return fetch("http://localhost:81/data/logout", requestOptions)
+  return fetch("https://gatovid.herokuapp.com/data/logout", requestOptions)
     .then((data) => data.json())
     .catch((error) => {
       console.error("Error:", error);
@@ -29,7 +29,7 @@ async function logoutUser({ token }) {
 }
 
 async function getUserStats({ username }) {
-  return fetch("http://localhost:81/data/user_stats?name=" + username)
+  return fetch("https://gatovid.herokuapp.com/data/user_stats?name=" + username)
     .then((data) => data.json())
     .catch((error) => {
       console.error("Error:", error);
@@ -42,7 +42,7 @@ async function getUserData({ token }) {
     headers: { Authorization: "Bearer " + token },
   };
 
-  return fetch("http://localhost:81/data/user_data", requestOptions)
+  return fetch("https://gatovid.herokuapp.com/data/user_data", requestOptions)
     .then((data) => data.json())
     .catch((error) => {
       console.error("Error:", error);
