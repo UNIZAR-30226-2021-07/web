@@ -13,8 +13,6 @@ import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import profile_pics from "../assets/common/profile_pics.json";
 
-import icon from "../assets/common/profile_pics/default.jpg"
-
 async function logoutUser({ token }) {
   const requestOptions = {
     method: "POST",
@@ -31,7 +29,6 @@ async function logoutUser({ token }) {
 }
 
 async function getUserStats({ username }) {
-  console.log(username);
   return fetch("https://gatovid.herokuapp.com/data/user_stats?name=" + username)
     .then((data) => data.json())
     .catch((error) => {
@@ -55,7 +52,7 @@ async function getUserData({ token }) {
 function Profile({ token, setToken }) {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
-  const [pictureURL, setPictureURL] = useState("");
+  const [picture, setPicture] = useState("");
   const [games, setGames] = useState(0);
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
@@ -64,20 +61,21 @@ function Profile({ token, setToken }) {
   useEffect(() => {
     getUserData({ token }).then((response) => {
       if ("error" in response) {
-        console.log(response.error);
+        console.error(response.error);
       } else {
         setUserName(response.name);
         setEmail(response.email);
-        
-        let url = profile_pics[response.picture].image;
-        setPictureURL("../assets/common/" + url);
-        console.log(pictureURL);
+
+        //Url a la imagen disponible en la carpeta public
+        let pictureURL =
+          process.env.PUBLIC_URL + "/" + profile_pics[response.picture].image;
+        setPicture(pictureURL);
       }
     });
 
     getUserStats({ username }).then((response) => {
       if ("error" in response) {
-        console.log(response.error);
+        console.error(response.error);
       } else {
         setGames(response.games);
         setWins(response.wins);
@@ -116,7 +114,7 @@ function Profile({ token, setToken }) {
               </Row>
               <Row className="align-items-center justify-content-center mb-2">
                 <Image
-                  src={icon}
+                  src={picture}
                   className="user-profile-image"
                   roundedCircle
                   thumbnail
