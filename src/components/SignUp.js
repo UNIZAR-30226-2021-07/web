@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Card, Container, Form, Row, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
-import { renderErrorPopup } from "./popups/ErrorPopup";
-import {signUpUser} from "../utils/api"
 
+import { signUpUser } from "../utils/api";
+
+import { renderErrorPopup } from "./popups/ErrorPopup";
 
 function SignUp() {
   const history = useHistory();

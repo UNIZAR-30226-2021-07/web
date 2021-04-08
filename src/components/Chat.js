@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Button, Image, Container, Row, Form } from "react-bootstrap";
 
-import send from "../assets/common/icons/send.svg";
-import MessageList from "./MessageList";
-import {getUserData} from "../utils/api"
-
 import useWebSocket from "./websockets";
+import { getUserData } from "../utils/api";
+
+import MessageList from "./MessageList";
+
+import send from "../assets/common/icons/send.svg";
 
 function Chat({ token }) {
   const [message, setMessage] = useState("");
   const [codeInput, setCodeInput] = useState("");
-  
+
   // TODO: Hardcodeado provisional para pedir el username
   const [username, setUserName] = useState("");
 
