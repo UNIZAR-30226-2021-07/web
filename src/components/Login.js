@@ -2,23 +2,7 @@ import React, { useState } from "react";
 import { Card, Form, Button, Container, Row } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { renderErrorPopup } from "./popups/ErrorPopup";
-
-async function loginUser({ email, password }) {
-  let data = new URLSearchParams();
-  data.append(`email`, email);
-  data.append(`password`, password);
-
-  const requestOptions = {
-    method: "POST",
-    body: data,
-  };
-
-  return fetch("https://gatovid.herokuapp.com/data/login", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
+import { loginUser } from "../api";
 
 function Login({ setToken }) {
   const [email, setEmail] = useState();
