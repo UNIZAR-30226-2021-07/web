@@ -96,10 +96,6 @@ function Chat({ token }) {
           </Button>
         </div>
       </Form>
-      <form id="form" action="">
-        <input id="input" autoComplete="off" />
-        <button>Send</button>
-      </form>
       <button id="create-room" onClick={createGame}>
         Create room
       </button>
