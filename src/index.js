@@ -4,11 +4,11 @@ import ReactDOM from "react-dom";
 import { PopupboxContainer } from "react-popupbox";
 import { HashRouter as Router } from "react-router-dom";
 
-(async function() {
-  await import('./style.css')
-  await import('bootstrap/dist/css/bootstrap.min.css')
-  await import('react-popupbox/dist/react-popupbox.css')
-})()
+(async function () {
+  await import("./style.css");
+  await import("bootstrap/dist/css/bootstrap.min.css");
+  await import("react-popupbox/dist/react-popupbox.css");
+})();
 
 import reportWebVitals from "./reportWebVitals";
 
