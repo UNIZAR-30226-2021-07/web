@@ -72,6 +72,10 @@ function Profile({ token, setToken }) {
         setPicture(pictureURL);
       }
     });
+  }, []);
+
+  useEffect(() => {
+    if (username === "") return;
 
     getUserStats({ username }).then((response) => {
       if ("error" in response) {
@@ -83,7 +87,7 @@ function Profile({ token, setToken }) {
         setTimePlayed(response.playtime_mins);
       }
     });
-  });
+  }, [username]);
 
   const handleClick = async (e) => {
     e.preventDefault();
