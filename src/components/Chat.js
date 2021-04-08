@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Image, Container, Row, Form } from "react-bootstrap";
 
-import useWebSocket from "./websockets";
+import useWebSocket from "../utils/websockets";
 import { getUserData } from "../utils/api";
 
 import MessageList from "./MessageList";
