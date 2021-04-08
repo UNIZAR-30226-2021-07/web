@@ -10,9 +10,6 @@ import SignUp from "./SignUp";
 import Shop from "./Shop";
 import Help from "./Help";
 
-import "../style.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-
 function App() {
   const [token, setToken] = useState(null);
 
