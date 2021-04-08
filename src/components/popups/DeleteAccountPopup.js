@@ -24,18 +24,18 @@ async function deleteUser({ token }) {
 export default function DeleteAccountPopup({ token, setToken }) {
   const history = useHistory();
 
-  const handleClick = async (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
 
-    const [[a, b], code] = await deleteUser({ token, setToken });
-    
-      console.log("Respuesta:" + a + ", código: " + code)
-      if ("message" == a) {
+    deleteUser({ token, setToken }).then((response) => {
+      console.log("Respuesta:" + response);
+      if ("message" in response) {
         setToken(null);
         history.push("/login");
       } else {
-        renderErrorPopup(b.error);
+        renderErrorPopup(response.error);
       }
+    });
   };
 
   return (

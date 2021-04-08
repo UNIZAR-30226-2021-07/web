@@ -32,8 +32,6 @@ function Login({ setToken }) {
       password,
     });
 
-    // TODO: Si response vacía salta error... -> solo visible para nosotros
-    // o tb para el cliente normal
     if ("access_token" in response) {
       setToken(response.access_token);
       history.push("/home");
