@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Form, Button, Container, Row } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { renderErrorPopup } from "./popups/ErrorPopup";
-import { loginUser } from "../api";
+import { loginUser } from "../utils/api";
 
 function Login({ setToken }) {
   const [email, setEmail] = useState();

@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { renderErrorPopup } from "./popups/ErrorPopup";
-import {logoutUser, getUserStats, getUserData } from "../api"
+import {logoutUser, getUserStats, getUserData } from "../utils/api"
 
 import profile_pics from "../assets/common/profile_pics.json";
 

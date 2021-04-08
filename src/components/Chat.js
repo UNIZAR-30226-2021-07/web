@@ -3,7 +3,7 @@ import { Button, Image, Container, Row, Form } from "react-bootstrap";
 
 import send from "../assets/common/icons/send.svg";
 import MessageList from "./MessageList";
-import {getUserData} from "../api"
+import {getUserData} from "../utils/api"
 
 import useWebSocket from "./websockets";
 

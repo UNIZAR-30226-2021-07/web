@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Container, Form, Row, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { renderErrorPopup } from "./popups/ErrorPopup";
-import {signUpUser} from "../api"
+import {signUpUser} from "../utils/api"
 
 
 function SignUp() {
