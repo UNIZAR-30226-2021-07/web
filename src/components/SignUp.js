@@ -12,9 +12,16 @@ function SignUp() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    //Revisa que las contraseñas sean iguales
+    if (password != confirmPassword) {
+      renderErrorPopup("Las contraseñas no coiciden.");
+      return;
+    }
 
     const response = await signUpUser({
       name,
@@ -59,6 +66,16 @@ function SignUp() {
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Confirmar contraseña</Form.Label>
+              <Form.Control
+                type="password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              {password != confirmPassword && confirmPassword !== undefined && (
+                <div className="text-danger">Las contraseñas no coinciden</div>
+              )}
             </Form.Group>
             <Row className="justify-content-end w-100 mt-4">
               <Button className="primary-button" type="submit">
