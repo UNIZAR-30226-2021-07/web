@@ -9,50 +9,17 @@ import {
   Table,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
+import { logoutUser, getUserStats, getUserData } from "../utils/api";
+
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
-import logo from "../assets/common/logo/logo.svg";
-
-async function logoutUser({ token }) {
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
-
-  return fetch("https://gatovid.herokuapp.com/data/logout", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
-
-async function getUserStats({ username }) {
-  console.log(username);
-  return fetch("https://gatovid.herokuapp.com/data/user_stats?name=" + username)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
-
-async function getUserData({ token }) {
-  const requestOptions = {
-    method: "POST",
-    headers: { Authorization: "Bearer " + token },
-  };
-
-  return fetch("https://gatovid.herokuapp.com/data/user_data", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
+import profile_pics from "../assets/common/profile_pics.json";
 
 function Profile({ token, setToken }) {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
+  const [picture, setPicture] = useState("");
   const [games, setGames] = useState(0);
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
@@ -61,16 +28,25 @@ function Profile({ token, setToken }) {
   useEffect(() => {
     getUserData({ token }).then((response) => {
       if ("error" in response) {
-        console.log(response.error);
+        console.error(response.error);
       } else {
         setUserName(response.name);
         setEmail(response.email);
+
+        //Url a la imagen disponible en la carpeta public
+        let pictureURL =
+          process.env.PUBLIC_URL + "/" + profile_pics[response.picture].image;
+        setPicture(pictureURL);
       }
     });
+  }, []);
+
+  useEffect(() => {
+    if (username === "") return;
 
     getUserStats({ username }).then((response) => {
       if ("error" in response) {
-        console.log(response.error);
+        console.error(response.error);
       } else {
         setGames(response.games);
         setWins(response.wins);
@@ -78,7 +54,7 @@ function Profile({ token, setToken }) {
         setTimePlayed(response.playtime_mins);
       }
     });
-  });
+  }, [username]);
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -109,7 +85,7 @@ function Profile({ token, setToken }) {
               </Row>
               <Row className="align-items-center justify-content-center mb-2">
                 <Image
-                  src={logo}
+                  src={picture}
                   className="user-profile-image"
                   roundedCircle
                   thumbnail
