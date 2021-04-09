@@ -3,23 +3,10 @@ import { PopupboxManager } from "react-popupbox";
 import { Row, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
+import { deleteUser } from "../../utils/api";
+
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
-
-async function deleteUser({ token }) {
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
-
-  return fetch("https://gatovid.herokuapp.com/data/remove_user", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
 
 export default function DeleteAccountPopup({ token, setToken }) {
   const history = useHistory();
@@ -65,8 +52,8 @@ export default function DeleteAccountPopup({ token, setToken }) {
   );
 }
 
-export function renderDeleteAccountPopup() {
-  const content = <DeleteAccountPopup />;
+export function renderDeleteAccountPopup({ token, setToken }) {
+  const content = <DeleteAccountPopup token={token} setToken={setToken} />;
   PopupboxManager.open({
     content,
     config: {
