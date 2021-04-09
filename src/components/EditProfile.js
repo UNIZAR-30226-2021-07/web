@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Row,
@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 
 import { renderDeleteAccountPopup } from "./popups/DeleteAccountPopup";
+import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import boardType from "../assets/common/boards/green.png";
 import image from "../assets/common/logo/logo.svg";
@@ -19,6 +20,18 @@ function EditProfile(/*{ email, username, image , boardType }*/) {
   // TODO: Solo para prototipo inicial
   var username = "Juan Carlos";
   var email = "juanCarlos@gmail.com";
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    //Revisa que las contraseñas sean iguales
+    if (password != confirmPassword) {
+      renderErrorPopup("Las contraseñas no coiciden.");
+      return;
+    }
+  };
 
   return (
     <Container
@@ -68,7 +81,10 @@ function EditProfile(/*{ email, username, image , boardType }*/) {
             </Col>
             <Col>
               <Card.Body>
-                <Form className="align-items-center justify-content-center">
+                <Form
+                  className="align-items-center justify-content-center "
+                  onSubmit={handleSubmit}
+                >
                   Editar Configuración de Usuario
                   <Form.Group controlId="formBasicUser" className="mb-3 mt-3">
                     <Form.Label>Nombre de Usuario</Form.Label>
@@ -79,7 +95,22 @@ function EditProfile(/*{ email, username, image , boardType }*/) {
                     <Form.Control
                       type="password"
                       placeholder="Nueva contraseña"
+                      onChange={(e) => setPassword(e.target.value)}
                     />
+                  </Form.Group>
+                  <Form.Group controlId="formBasicPassword" className="mb-3">
+                    <Form.Label>Confirmar contraseña</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Nueva contraseña"
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                    {password != confirmPassword &&
+                      confirmPassword !== undefined && (
+                        <div className="text-danger">
+                          Las contraseñas no coinciden
+                        </div>
+                      )}
                   </Form.Group>
                   <Form.Group controlId="formBasicBoardType">
                     <Form.Row className="align-items-center justify-content-center mt-4 flex-nowrap">
@@ -91,14 +122,16 @@ function EditProfile(/*{ email, username, image , boardType }*/) {
                       </Col>
                     </Form.Row>
                   </Form.Group>
+                  <Row className="align-items-center justify-content-center">
+                    <Button
+                      className="primary-button"
+                      type="submit"
+                      style={{ width: "40vh" }}
+                    >
+                      GUARDAR
+                    </Button>
+                  </Row>
                 </Form>
-              </Card.Body>
-              <Card.Body>
-                <Row className="align-items-center justify-content-center">
-                  <Button className="primary-button" style={{ width: "40vh" }}>
-                    GUARDAR
-                  </Button>
-                </Row>
               </Card.Body>
             </Col>
           </Row>
