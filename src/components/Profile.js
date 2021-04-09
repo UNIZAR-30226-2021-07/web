@@ -9,45 +9,12 @@ import {
   Table,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
+import { logoutUser, getUserStats, getUserData } from "../utils/api";
+
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import profile_pics from "../assets/common/profile_pics.json";
-
-async function logoutUser({ token }) {
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  };
-
-  return fetch("https://gatovid.herokuapp.com/data/logout", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
-
-async function getUserStats({ username }) {
-  return fetch("https://gatovid.herokuapp.com/data/user_stats?name=" + username)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
-
-async function getUserData({ token }) {
-  const requestOptions = {
-    method: "POST",
-    headers: { Authorization: "Bearer " + token },
-  };
-
-  return fetch("https://gatovid.herokuapp.com/data/user_data", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
 
 function Profile({ token, setToken }) {
   const [username, setUserName] = useState("");
