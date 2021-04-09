@@ -1,25 +1,10 @@
 import React, { useState } from "react";
 import { Card, Container, Form, Row, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
+
+import { signUpUser } from "../utils/api";
+
 import { renderErrorPopup } from "./popups/ErrorPopup";
-
-async function signUpUser({ name, email, password }) {
-  let data = new URLSearchParams();
-  data.append(`name`, name);
-  data.append(`email`, email);
-  data.append(`password`, password);
-
-  const requestOptions = {
-    method: "POST",
-    body: data,
-  };
-
-  return fetch("https://gatovid.herokuapp.com/data/signup", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
 
 function SignUp() {
   const history = useHistory();

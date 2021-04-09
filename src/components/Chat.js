@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Button, Image, Container, Row, Form } from "react-bootstrap";
 
-import send from "../assets/common/icons/send.svg";
+import useWebSocket from "../utils/websockets";
+import { getUserData } from "../utils/api";
+
 import MessageList from "./MessageList";
 
-import useWebSocket from "./websockets";
-
-// TODO: Provisional para pedir el username
-async function getUserData({ token }) {
-  const requestOptions = {
-    method: "POST",
-    headers: { Authorization: "Bearer " + token },
-  };
-
-  return fetch("https://gatovid.herokuapp.com/data/user_data", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
+import send from "../assets/common/icons/send.svg";
 
 function Chat({ token }) {
   const [message, setMessage] = useState("");
   const [codeInput, setCodeInput] = useState("");
+
   // TODO: Hardcodeado provisional para pedir el username
   const [username, setUserName] = useState("");
 
