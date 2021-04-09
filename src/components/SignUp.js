@@ -73,7 +73,7 @@ function SignUp() {
                 type="password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-              { (password != confirmPassword && confirmPassword != undefined) && (
+              {password != confirmPassword && confirmPassword !== undefined && (
                 <div className="text-danger">Las contraseñas no coinciden</div>
               )}
             </Form.Group>
