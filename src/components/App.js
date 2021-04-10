@@ -36,6 +36,7 @@ function App() {
         <ProtectedRoute
           path="/editProfile"
           token={token}
+          setToken={setToken}
           component={EditProfile}
         />
 

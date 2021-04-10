@@ -16,7 +16,7 @@ import boardType from "../assets/common/boards/green.png";
 import image from "../assets/common/logo/logo.svg";
 import camera from "../assets/common/icons/camera.svg";
 
-function EditProfile(/*{ email, username, image , boardType }*/) {
+function EditProfile({ token, setToken }) {
   // TODO: Solo para prototipo inicial
   var username = "Juan Carlos";
   var email = "juanCarlos@gmail.com";
@@ -72,7 +72,9 @@ function EditProfile(/*{ email, username, image , boardType }*/) {
                 <Row className="align-items-center justify-content-center">
                   <Button
                     className="alert-button"
-                    onClick={renderDeleteAccountPopup}
+                    onClick={() =>
+                      renderDeleteAccountPopup({ token, setToken })
+                    }
                   >
                     Eliminar Cuenta
                   </Button>
