@@ -12,17 +12,25 @@ import Help from "./Help";
 
 function App() {
   const [token, setToken] = useState(null);
+  const [userData, setUserData] = useState([]);
 
+  // El token hay que pasarle a todas porque sirve para mantener sesión,
+  // si es null se vuelve a login
   return (
     <div className="App">
       <Switch>
         <Route path="/login">
-          <Login setToken={setToken} />
+          <Login setToken={setToken} setUserData={setUserData} />
         </Route>
 
         <Route path="/signup" component={SignUp} />
 
-        <ProtectedRoute path="/home" token={token} component={Menu} />
+        <ProtectedRoute
+          path="/home"
+          token={token}
+          userData={userData}
+          component={Menu}
+        />
 
         <ProtectedRoute path="/match" token={token} component={Match} />
 

@@ -11,7 +11,8 @@ import shop from "../assets/common/icons/tienda.svg";
 import user from "../assets/common/icons/perfil.svg";
 import coins from "../assets/common/icons/huella.svg";
 
-function Menu() {
+function Menu({ userData }){
+
   return (
     <Container
       id="menu"
@@ -33,7 +34,7 @@ function Menu() {
                   </Row>
                   <Row className="coins justify-content-center align-items-center">
                     <span id="number-coins" className="mr-2">
-                      100
+                      {userData.coins}
                     </span>
                     <Image src={coins} alt="Tienda" />
                   </Row>
