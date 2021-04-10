@@ -23,7 +23,7 @@ function Menu({ token, userData, setSocket }){
   console.log(messages);
   useEffect(() => {
     setSocket(socket);
-  }, []);
+  }, [socket]);
 
   return (
     <Container

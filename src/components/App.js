@@ -14,7 +14,7 @@ function App() {
   const [socket, setSocket] = useState(null);
   const [token, setToken] = useState(null);
   const [userData, setUserData] = useState([]);
-  
+
   // El token hay que pasarle a todas porque sirve para mantener sesión,
   // si es null se vuelve a login
   return (
@@ -40,6 +40,7 @@ function App() {
           path="/profile"
           token={token}
           setToken={setToken}
+          userData={userData}
           component={Profile}
         />
 
@@ -47,6 +48,7 @@ function App() {
           path="/editProfile"
           token={token}
           setToken={setToken}
+          userData={userData}
           component={EditProfile}
         />
 

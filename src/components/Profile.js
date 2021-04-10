@@ -10,15 +10,13 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import { logoutUser, getUserStats, getUserData } from "../utils/api";
+import { logoutUser, getUserStats } from "../utils/api";
 
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import profile_pics from "../assets/common/profile_pics.json";
 
-function Profile({ token, setToken }) {
-  const [username, setUserName] = useState("");
-  const [email, setEmail] = useState("");
+function Profile({ token, setToken, userData }) {
   const [picture, setPicture] = useState("");
   const [games, setGames] = useState(0);
   const [wins, setWins] = useState(0);
@@ -26,25 +24,18 @@ function Profile({ token, setToken }) {
   const [timePlayed, setTimePlayed] = useState(0);
 
   useEffect(() => {
-    getUserData({ token }).then((response) => {
-      if ("error" in response) {
-        console.error(response.error);
-      } else {
-        setUserName(response.name);
-        setEmail(response.email);
-
-        //Url a la imagen disponible en la carpeta public
-        let pictureURL =
-          process.env.PUBLIC_URL + "/" + profile_pics[response.picture].image;
-        setPicture(pictureURL);
-      }
-    });
-  }, []);
+      // Url to the image available in "public" directory
+      let pictureURL =
+        process.env.PUBLIC_URL + "/" + profile_pics[userData.picture].image;
+      setPicture(pictureURL);
+  }, [userData.picture]);
 
   useEffect(() => {
-    if (username === "") return;
-
-    getUserStats({ username }).then((response) => {
+    if (userData.name === "") return;
+    
+    // Get user stats
+    let username = userData.name;
+    getUserStats( {username} ).then((response) => {
       if ("error" in response) {
         console.error(response.error);
       } else {
@@ -54,7 +45,7 @@ function Profile({ token, setToken }) {
         setTimePlayed(response.playtime_mins);
       }
     });
-  }, [username]);
+  }, [userData.name]);
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -92,10 +83,10 @@ function Profile({ token, setToken }) {
                 ></Image>
               </Row>
               <Row className="align-items-center justify-content-center">
-                <Card.Text>{username}</Card.Text>
+                <Card.Text>{userData.name}</Card.Text>
               </Row>
               <Row className="align-items-center justify-content-center mb-2">
-                <Card.Text>{email}</Card.Text>
+                <Card.Text>{userData.email}</Card.Text>
               </Row>
               <Row className="align-items-center justify-content-center">
                 <Link to="/editProfile">

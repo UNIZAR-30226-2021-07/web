@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Row,
@@ -12,21 +12,38 @@ import {
 import { renderDeleteAccountPopup } from "./popups/DeleteAccountPopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
-import boardType from "../assets/common/boards/green.png";
-import image from "../assets/common/logo/logo.svg";
 import camera from "../assets/common/icons/camera.svg";
+import profile_pics from "../assets/common/profile_pics.json";
+import boards from "../assets/common/boards.json";
 
-function EditProfile({ token, setToken }) {
-  // TODO: Solo para prototipo inicial
-  var username = "Juan Carlos";
-  var email = "juanCarlos@gmail.com";
+function EditProfile({ token, setToken, userData }) {
+
+  const [picture, setPicture] = useState("");
+  const [board, setBoard] = useState("");
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
+
+  useEffect(() => {
+    // Url to the image available in "public" directory
+    let pictureURL =
+      process.env.PUBLIC_URL + "/" + profile_pics[userData.picture].image;
+    setPicture(pictureURL);
+    console.log(pictureURL);
+  }, [userData.picture]);
+
+  useEffect(() => {
+    console.log(userData);
+    // Url to the image available in "public" directory
+    let boardURL =
+      process.env.PUBLIC_URL + "/" + boards[userData.board].image;
+    setBoard(boardURL);
+    console.log(boardURL);
+  }, [userData.board]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //Revisa que las contraseñas sean iguales
+    // Check if passwords match
     if (password != confirmPassword) {
       renderErrorPopup("Las contraseñas no coiciden.");
       return;
@@ -56,17 +73,17 @@ function EditProfile({ token, setToken }) {
                   <Image src={camera} fluid></Image>
                 </Button>
                 <Image
-                  src={image}
+                  src={picture}
                   className="user-profile-image mt-3"
                   roundedCircle
                   thumbnail
                 ></Image>
               </Row>
               <Row className="align-items-center justify-content-center">
-                <Card.Text>{username}</Card.Text>
+                <Card.Text>{userData.name}</Card.Text>
               </Row>
               <Row className="align-items-center justify-content-center mb-2">
-                <Card.Text>{email}</Card.Text>
+                <Card.Text>{userData.email}</Card.Text>
               </Row>
               <Card.Body>
                 <Row className="align-items-center justify-content-center">
@@ -120,7 +137,7 @@ function EditProfile({ token, setToken }) {
                         <Form.Label>Cambiar Tablero</Form.Label>
                       </Col>
                       <Col id="imgCambioTablero">
-                        <Image rounded src={boardType}></Image>
+                        <Image rounded src={board}></Image>
                       </Col>
                     </Form.Row>
                   </Form.Group>
