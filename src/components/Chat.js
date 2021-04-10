@@ -58,7 +58,7 @@ function Chat({ token, socket }) {
         <h4>Chat de partida</h4>
       </Row>
       <Row className="message-list px-3">
-      {/* TODO: PONER MESSAGES */}
+        {/* TODO: PONER MESSAGES */}
         <MessageList username={username} messages={[]} />
       </Row>
       <Form className="send-message input-group mt-2" onSubmit={sendMessage}>

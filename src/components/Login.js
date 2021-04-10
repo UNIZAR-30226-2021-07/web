@@ -22,7 +22,7 @@ function Login({ setToken, setUserData }) {
       let token = response.access_token;
       setToken(token);
       // Se piden los datos del usuario
-      getUserData({token}).then((response) => {
+      getUserData({ token }).then((response) => {
         if ("error" in response) {
           console.error(response.error);
         } else {
@@ -35,7 +35,7 @@ function Login({ setToken, setUserData }) {
             purchases: response.purchases,
           });
         }
-      })
+      });
       history.push("/home");
     } else {
       renderErrorPopup(response.error);

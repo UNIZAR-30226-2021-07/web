@@ -24,18 +24,18 @@ function Profile({ token, setToken, userData }) {
   const [timePlayed, setTimePlayed] = useState(0);
 
   useEffect(() => {
-      // Url to the image available in "public" directory
-      let pictureURL =
-        process.env.PUBLIC_URL + "/" + profile_pics[userData.picture].image;
-      setPicture(pictureURL);
+    // Url to the image available in "public" directory
+    let pictureURL =
+      process.env.PUBLIC_URL + "/" + profile_pics[userData.picture].image;
+    setPicture(pictureURL);
   }, [userData.picture]);
 
   useEffect(() => {
     if (userData.name === "") return;
-    
+
     // Get user stats
     let username = userData.name;
-    getUserStats( {username} ).then((response) => {
+    getUserStats({ username }).then((response) => {
       if ("error" in response) {
         console.error(response.error);
       } else {

@@ -16,14 +16,12 @@ function copyCode() {
 }
 
 export default function CreateGamePopup({ socket }) {
-
   const [code, setCode] = useState("");
 
   useEffect(() => {
-    
     socket.current.emit("create_game", callback);
-  
-    socket.current.on("create_game",  (response) => {
+
+    socket.current.on("create_game", (response) => {
       console.log("CREATE GAME RECIBIDO");
       console.log(response);
       setCode(response.code);
@@ -76,7 +74,7 @@ export default function CreateGamePopup({ socket }) {
   );
 }
 
-export function renderCreateGamePopup({socket}) {
+export function renderCreateGamePopup({ socket }) {
   const content = <CreateGamePopup socket={socket} />;
   PopupboxManager.open({
     content,

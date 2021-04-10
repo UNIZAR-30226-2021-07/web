@@ -85,7 +85,6 @@ export async function getUserStats({ username }) {
 }
 
 export async function modifyUser({ token, data }) {
-
   const requestOptions = {
     method: "POST",
     headers: { Authorization: "Bearer " + token },
@@ -98,4 +97,3 @@ export async function modifyUser({ token, data }) {
       console.error("Error:", error);
     });
 }
-

@@ -18,7 +18,6 @@ import profile_pics from "../assets/common/profile_pics.json";
 import boards from "../assets/common/boards.json";
 
 function EditProfile({ token, setToken, userData, setUserData }) {
-
   const [pictureURL, setPictureURL] = useState("");
   const [boardURL, setBoardURL] = useState("");
   const [picture, setPicture] = useState(userData.picture);
@@ -29,7 +28,9 @@ function EditProfile({ token, setToken, userData, setUserData }) {
 
   useEffect(() => {
     // Url to the image available in "public" directory
-    setPictureURL(process.env.PUBLIC_URL + "/" + profile_pics[userData.picture].image);
+    setPictureURL(
+      process.env.PUBLIC_URL + "/" + profile_pics[userData.picture].image
+    );
     console.log(pictureURL);
   }, [userData.picture]);
 
@@ -72,7 +73,7 @@ function EditProfile({ token, setToken, userData, setUserData }) {
       } else {
         console.log("Datos actualizados correctamente");
         // Update local user_data as server has just updated
-        getUserData({token}).then((response) => {
+        getUserData({ token }).then((response) => {
           if ("error" in response) {
             console.error(response.error);
           } else {
@@ -85,20 +86,20 @@ function EditProfile({ token, setToken, userData, setUserData }) {
               purchases: response.purchases,
             });
           }
-        })
+        });
       }
     }
   };
 
-  const changePicture = async(e) => {
+  const changePicture = async (e) => {
     e.preventDefault();
     setPicture(picture + 1);
   };
 
-  const changeBoard = async(e) => {
+  const changeBoard = async (e) => {
     e.preventDefault();
     setBoard(board + 1);
-  }
+  };
 
   return (
     <Container
@@ -158,10 +159,11 @@ function EditProfile({ token, setToken, userData, setUserData }) {
                   Editar Configuración de Usuario
                   <Form.Group controlId="formBasicUser" className="mb-3 mt-3">
                     <Form.Label>Nombre de Usuario</Form.Label>
-                    <Form.Control 
-                      type="text" 
+                    <Form.Control
+                      type="text"
                       placeholder="Nuevo nombre"
-                      onChange={(e) => setNewUserName(e.target.value)} />
+                      onChange={(e) => setNewUserName(e.target.value)}
+                    />
                   </Form.Group>
                   <Form.Group controlId="formBasicPassword" className="mb-3">
                     <Form.Label>Cambiar contraseña</Form.Label>
@@ -191,9 +193,11 @@ function EditProfile({ token, setToken, userData, setUserData }) {
                         <Form.Label>Cambiar Tablero</Form.Label>
                       </Col>
                       <Col id="imgCambioTablero">
-                        <Image rounded src={boardURL} 
-                              onClick={changeBoard}>
-                        </Image>
+                        <Image
+                          rounded
+                          src={boardURL}
+                          onClick={changeBoard}
+                        ></Image>
                       </Col>
                     </Form.Row>
                   </Form.Group>

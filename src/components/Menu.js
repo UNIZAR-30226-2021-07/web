@@ -13,8 +13,7 @@ import shop from "../assets/common/icons/tienda.svg";
 import user from "../assets/common/icons/perfil.svg";
 import coins from "../assets/common/icons/huella.svg";
 
-function Menu({ token, userData, setSocket }){
-
+function Menu({ token, userData, setSocket }) {
   const { socket, messages } = useWebSocket({
     url: "ws://gatovid.herokuapp.com",
     token: token,
@@ -69,7 +68,7 @@ function Menu({ token, userData, setSocket }){
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={() => renderCreateGamePopup({socket})}
+            onClick={() => renderCreateGamePopup({ socket })}
           >
             CREAR PARTIDA PRIVADA
           </Button>

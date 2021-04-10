@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/login">
-          <Login setToken={setToken} setUserData={setUserData}/>
+          <Login setToken={setToken} setUserData={setUserData} />
         </Route>
 
         <Route path="/signup" component={SignUp} />
@@ -34,7 +34,12 @@ function App() {
           component={Menu}
         />
 
-        <ProtectedRoute path="/match" token={token} socket={socket} component={Match} />
+        <ProtectedRoute
+          path="/match"
+          token={token}
+          socket={socket}
+          component={Match}
+        />
 
         <ProtectedRoute
           path="/profile"
