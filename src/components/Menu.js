@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -6,12 +6,24 @@ import { renderCreateGamePopup } from "./popups/CreateGamePopup";
 import { renderJoinGamePopup } from "./popups/JoinGamePopup";
 import { renderPreparingGamePopup } from "./popups/PreparingGamePopup";
 
+import useWebSocket from "../utils/websockets";
+
 import logo from "../assets/common/logo/logo.svg";
 import shop from "../assets/common/icons/tienda.svg";
 import user from "../assets/common/icons/perfil.svg";
 import coins from "../assets/common/icons/huella.svg";
 
-function Menu({ userData }){
+function Menu({ token, userData, setSocket }){
+
+  const { socket, messages } = useWebSocket({
+    url: "ws://gatovid.herokuapp.com",
+    token: token,
+  });
+
+  console.log(messages);
+  useEffect(() => {
+    setSocket(socket);
+  }, []);
 
   return (
     <Container
@@ -57,7 +69,7 @@ function Menu({ userData }){
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={() => renderCreateGamePopup("1234")}
+            onClick={() => renderCreateGamePopup({socket})}
           >
             CREAR PARTIDA PRIVADA
           </Button>

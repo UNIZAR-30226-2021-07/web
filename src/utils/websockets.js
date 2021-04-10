@@ -21,11 +21,6 @@ export default function useWebSocket({ url, token }) {
       console.error("not connected", e);
     });
 
-    socket.current.on("create_game", function ({ code }) {
-      console.log("CREATE GAME RECIBIDO");
-      console.log(code);
-    });
-
     socket.current.on("start_game", function () {
       alert("Game started");
     });

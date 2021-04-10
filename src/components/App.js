@@ -11,16 +11,17 @@ import Shop from "./Shop";
 import Help from "./Help";
 
 function App() {
+  const [socket, setSocket] = useState(null);
   const [token, setToken] = useState(null);
   const [userData, setUserData] = useState([]);
-
+  
   // El token hay que pasarle a todas porque sirve para mantener sesión,
   // si es null se vuelve a login
   return (
     <div className="App">
       <Switch>
         <Route path="/login">
-          <Login setToken={setToken} setUserData={setUserData} />
+          <Login setToken={setToken} setUserData={setUserData}/>
         </Route>
 
         <Route path="/signup" component={SignUp} />
@@ -29,10 +30,11 @@ function App() {
           path="/home"
           token={token}
           userData={userData}
+          setSocket={setSocket}
           component={Menu}
         />
 
-        <ProtectedRoute path="/match" token={token} component={Match} />
+        <ProtectedRoute path="/match" token={token} socket={socket} component={Match} />
 
         <ProtectedRoute
           path="/profile"

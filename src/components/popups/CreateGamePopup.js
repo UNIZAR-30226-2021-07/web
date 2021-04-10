@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button, Image } from "react-bootstrap";
 
@@ -15,7 +15,27 @@ function copyCode() {
   document.execCommand("copy");
 }
 
-export default function CreateGamePopup({ code }) {
+export default function CreateGamePopup({ socket }) {
+
+  const [code, setCode] = useState("");
+
+  useEffect(() => {
+    
+    socket.current.emit("create_game", callback);
+  
+    socket.current.on("create_game",  (response) => {
+      console.log("CREATE GAME RECIBIDO");
+      console.log(response);
+      setCode(response.code);
+    });
+  }, []);
+
+  function callback(data) {
+    if (data && data.error) {
+      console.error(data.error);
+    }
+  }
+
   return (
     <Popup title="Partida privada lista" icon={check} close={true}>
       <Row className="justify-content-center">
@@ -56,8 +76,8 @@ export default function CreateGamePopup({ code }) {
   );
 }
 
-export function renderCreateGamePopup(code) {
-  const content = <CreateGamePopup code={code} />;
+export function renderCreateGamePopup({socket}) {
+  const content = <CreateGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {

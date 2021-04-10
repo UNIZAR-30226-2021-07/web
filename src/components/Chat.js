@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Button, Image, Container, Row, Form } from "react-bootstrap";
 
-import useWebSocket from "../utils/websockets";
 import { getUserData } from "../utils/api";
 
 import MessageList from "./MessageList";
 
 import send from "../assets/common/icons/send.svg";
 
-function Chat({ token }) {
+function Chat({ token, socket }) {
   const [message, setMessage] = useState("");
   const [codeInput, setCodeInput] = useState("");
 
   // TODO: Hardcodeado provisional para pedir el username
   const [username, setUserName] = useState("");
-
-  const { socket, messages } = useWebSocket({
-    url: "ws://gatovid.herokuapp.com",
-    token: token,
-  });
 
   useEffect(() => {
     getUserData({ token }).then((response) => {
@@ -29,11 +23,6 @@ function Chat({ token }) {
       }
     });
   }, []);
-
-  const createGame = async (e) => {
-    e.preventDefault();
-    socket.current.emit("create_game", callback);
-  };
 
   const startGame = async (e) => {
     e.preventDefault();
@@ -69,7 +58,8 @@ function Chat({ token }) {
         <h4>Chat de partida</h4>
       </Row>
       <Row className="message-list px-3">
-        <MessageList username={username} messages={messages} />
+      {/* TODO: PONER MESSAGES */}
+        <MessageList username={username} messages={[]} />
       </Row>
       <Form className="send-message input-group mt-2" onSubmit={sendMessage}>
         <input
@@ -85,9 +75,6 @@ function Chat({ token }) {
           </Button>
         </div>
       </Form>
-      <button id="create-room" onClick={createGame}>
-        Create room
-      </button>
       <button id="start-game" onClick={startGame}>
         Start game
       </button>
