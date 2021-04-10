@@ -49,6 +49,7 @@ export async function signUpUser({ name, email, password }) {
 }
 
 export async function deleteUser({ token }) {
+
   const requestOptions = {
     method: "POST",
     headers: {

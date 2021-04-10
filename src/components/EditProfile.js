@@ -59,7 +59,7 @@ function EditProfile({ token, setToken }) {
                 <Row className="align-items-center justify-content-center">
                   <Button
                     className="alert-button"
-                    onClick={() => renderDeleteAccountPopup(token, setToken)}
+                    onClick={() => renderDeleteAccountPopup({token, setToken})}
                   >
                     Eliminar Cuenta
                   </Button>

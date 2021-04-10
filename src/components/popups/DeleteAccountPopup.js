@@ -11,18 +11,19 @@ import { renderErrorPopup } from "./ErrorPopup";
 export default function DeleteAccountPopup({ token, setToken }) {
   const history = useHistory();
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
 
-    deleteUser({ token, setToken }).then((response) => {
-      console.log("Respuesta:" + response);
-      if ("message" in response) {
-        setToken(null);
-        history.push("/login");
-      } else {
-        renderErrorPopup(response.error);
-      }
-    });
+    const response = await deleteUser({ token });
+
+    if ("message" in response) {
+      setToken(null);
+      PopupboxManager.close()
+      history.push("/login");
+    
+    } else {
+      renderErrorPopup(response.error);
+    }
   };
 
   return (
@@ -59,6 +60,8 @@ export function renderDeleteAccountPopup({ token, setToken }) {
     config: {
       fadeIn: true,
       fadeInSpeed: 400,
+      fadeOut: true,
+      fadeOutSpeed: 50,
       escClose: false,
       overlayClose: false,
     },
