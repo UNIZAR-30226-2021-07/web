@@ -18,9 +18,8 @@ export default function DeleteAccountPopup({ token, setToken }) {
 
     if ("message" in response) {
       setToken(null);
-      PopupboxManager.close()
+      PopupboxManager.close();
       history.push("/login");
-    
     } else {
       renderErrorPopup(response.error);
     }
