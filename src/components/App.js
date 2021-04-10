@@ -49,6 +49,7 @@ function App() {
           token={token}
           setToken={setToken}
           userData={userData}
+          setUserData={setUserData}
           component={EditProfile}
         />
 

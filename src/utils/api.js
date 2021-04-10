@@ -83,3 +83,19 @@ export async function getUserStats({ username }) {
       console.error("Error:", error);
     });
 }
+
+export async function modifyUser({ token, data }) {
+
+  const requestOptions = {
+    method: "POST",
+    headers: { Authorization: "Bearer " + token },
+    body: data,
+  };
+
+  return fetch("https://gatovid.herokuapp.com/data/modify_user", requestOptions)
+    .then((data) => data.json())
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+

@@ -11,32 +11,32 @@ import {
 
 import { renderDeleteAccountPopup } from "./popups/DeleteAccountPopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
+import { getUserData, modifyUser } from "../utils/api";
 
 import camera from "../assets/common/icons/camera.svg";
 import profile_pics from "../assets/common/profile_pics.json";
 import boards from "../assets/common/boards.json";
 
-function EditProfile({ token, setToken, userData }) {
+function EditProfile({ token, setToken, userData, setUserData }) {
 
-  const [picture, setPicture] = useState("");
-  const [board, setBoard] = useState("");
+  const [pictureURL, setPictureURL] = useState("");
+  const [boardURL, setBoardURL] = useState("");
+  const [picture, setPicture] = useState(userData.picture);
+  const [board, setBoard] = useState(userData.board);
+  const [newUserName, setNewUserName] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
   useEffect(() => {
     // Url to the image available in "public" directory
-    let pictureURL =
-      process.env.PUBLIC_URL + "/" + profile_pics[userData.picture].image;
-    setPicture(pictureURL);
+    setPictureURL(process.env.PUBLIC_URL + "/" + profile_pics[userData.picture].image);
     console.log(pictureURL);
   }, [userData.picture]);
 
   useEffect(() => {
     console.log(userData);
-    // Url to the image available in "public" directory
-    let boardURL =
-      process.env.PUBLIC_URL + "/" + boards[userData.board].image;
-    setBoard(boardURL);
+    // Url to the board available in "public" directory
+    setBoardURL(process.env.PUBLIC_URL + "/" + boards[userData.board].image);
     console.log(boardURL);
   }, [userData.board]);
 
@@ -47,8 +47,58 @@ function EditProfile({ token, setToken, userData }) {
     if (password != confirmPassword) {
       renderErrorPopup("Las contraseñas no coiciden.");
       return;
+    } else {
+      // Update user configuration calling API function
+      let data = new URLSearchParams();
+      data.append(`name`, newUserName);
+      if (password === "") {
+        // If password is left empty, set the previous one in request to avoid
+        // the user to introduce it again
+        data.append(`password`, userData.password);
+      } else {
+        data.append(`password`, password);
+      }
+      // TODO -> Da error de no comprado!?
+      /*
+      data.append(`board`, board);
+      data.append(`picture`, picture);
+      */
+
+      const response = await modifyUser({ token, data });
+
+      console.log(response);
+      if ("error" in response) {
+        renderErrorPopup(response.error);
+      } else {
+        console.log("Datos actualizados correctamente");
+        // Update local user_data as server has just updated
+        getUserData({token}).then((response) => {
+          if ("error" in response) {
+            console.error(response.error);
+          } else {
+            setUserData({
+              email: response.email,
+              name: response.name,
+              coins: response.coins,
+              picture: response.picture,
+              board: response.board,
+              purchases: response.purchases,
+            });
+          }
+        })
+      }
     }
   };
+
+  const changePicture = async(e) => {
+    e.preventDefault();
+    setPicture(picture + 1);
+  };
+
+  const changeBoard = async(e) => {
+    e.preventDefault();
+    setBoard(board + 1);
+  }
 
   return (
     <Container
@@ -73,10 +123,11 @@ function EditProfile({ token, setToken, userData }) {
                   <Image src={camera} fluid></Image>
                 </Button>
                 <Image
-                  src={picture}
+                  src={pictureURL}
                   className="user-profile-image mt-3"
                   roundedCircle
                   thumbnail
+                  onClick={changePicture}
                 ></Image>
               </Row>
               <Row className="align-items-center justify-content-center">
@@ -107,7 +158,10 @@ function EditProfile({ token, setToken, userData }) {
                   Editar Configuración de Usuario
                   <Form.Group controlId="formBasicUser" className="mb-3 mt-3">
                     <Form.Label>Nombre de Usuario</Form.Label>
-                    <Form.Control type="text" placeholder="Nuevo nombre" />
+                    <Form.Control 
+                      type="text" 
+                      placeholder="Nuevo nombre"
+                      onChange={(e) => setNewUserName(e.target.value)} />
                   </Form.Group>
                   <Form.Group controlId="formBasicPassword" className="mb-3">
                     <Form.Label>Cambiar contraseña</Form.Label>
@@ -137,7 +191,9 @@ function EditProfile({ token, setToken, userData }) {
                         <Form.Label>Cambiar Tablero</Form.Label>
                       </Col>
                       <Col id="imgCambioTablero">
-                        <Image rounded src={board}></Image>
+                        <Image rounded src={boardURL} 
+                              onClick={changeBoard}>
+                        </Image>
                       </Col>
                     </Form.Row>
                   </Form.Group>
