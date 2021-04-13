@@ -59,14 +59,9 @@ function EditProfile() {
     } else {
       // Update user configuration calling API function
       let data = new URLSearchParams();
-      data.append(`name`, newUserName);
-      if (password === "") {
-        // If password is left empty, set the previous one in request to avoid
-        // the user to introduce it again
-        data.append(`password`, session.userData.password);
-      } else {
-        data.append(`password`, password);
-      }
+      if (newUserName && newUserName !== "") data.append(`name`, newUserName);
+      if (password && password !== "") data.append(`password`, password);
+
       // TODO -> Da error de no comprado!?
       /*
       data.append(`board`, board);
