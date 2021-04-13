@@ -12,7 +12,6 @@ import SignUp from "./SignUp";
 import Shop from "./Shop";
 import Help from "./Help";
 
-
 function App() {
   // NOTA: Parámetros a pasar con el contexto, para evitar parametrización
   // - Token
@@ -26,25 +25,25 @@ function App() {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    if(token != null) {
+    if (token != null) {
       socket.current = io.connect("ws://gatovid.herokuapp.com", {
         extraHeaders: {
           Authorization: "Bearer " + token,
         },
       });
-  
+
       socket.current.on("connect", function () {
         console.log("connected");
       });
-  
+
       socket.current.on("connect_error", function (e) {
         console.error("not connected", e);
       });
-  
+
       socket.current.on("start_game", function () {
         alert("Game started");
       });
-  
+
       socket.current.on("players_waiting", function (n) {
         console.log(n);
       });
@@ -60,10 +59,8 @@ function App() {
       };
     }
   }, [token]);
-    // De esta forma el useEffect se ejecutará si cambia el token, volviendo
-    // a hacer el connect
-  
-
+  // De esta forma el useEffect se ejecutará si cambia el token, volviendo
+  // a hacer el connect
 
   // El token hay que pasarle a todas porque sirve para mantener sesión,
   // si es null se vuelve a login

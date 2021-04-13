@@ -12,7 +12,6 @@ import user from "../assets/common/icons/perfil.svg";
 import coins from "../assets/common/icons/huella.svg";
 
 function Menu({ userData, socket }) {
-
   return (
     <Container
       id="menu"

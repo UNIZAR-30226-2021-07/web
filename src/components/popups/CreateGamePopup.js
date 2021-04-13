@@ -32,7 +32,7 @@ export default function CreateGamePopup({ socket }) {
       console.error(data.error);
     }
   }
-  
+
   return (
     <Popup title="Partida privada lista" icon={check} close={true}>
       <Row className="justify-content-center">
