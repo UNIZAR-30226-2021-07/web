@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import Menu from "./Menu";
@@ -10,10 +10,40 @@ import SignUp from "./SignUp";
 import Shop from "./Shop";
 import Help from "./Help";
 
+import { getUserData } from "../utils/api";
+
 import { SessionContext } from "./SessionProvider";
 
 function App() {
   const session = useContext(SessionContext);
+
+  useEffect(() => {
+    console.log("fetching user data");
+
+    if (!session.token || session.userData.length !== 0) {
+      return;
+    }
+
+    // Se piden los datos del usuario
+    getUserData(session).then((response) => {
+      if ("error" in response) {
+        console.error(response);
+      } else {
+        session.setUserData({
+          email: response.email,
+          name: response.name,
+          coins: response.coins,
+          picture: response.picture,
+          board: response.board,
+          purchases: response.purchases,
+        });
+      }
+    }).catch((status) => {
+      if (status === 401) {
+        session.setToken(null);
+      }
+    });
+  }, [session.token]);
 
   // El token hay que pasarle a todas porque sirve para mantener sesión,
   // si es null se vuelve a login
@@ -50,8 +80,8 @@ function App() {
           {session.token != null ? (
             <Redirect to="/home" />
           ) : (
-            <Redirect to="/login" />
-          )}
+              <Redirect to="/login" />
+            )}
         </Route>
       </Switch>
     </div>
@@ -66,8 +96,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
         rest.token != null ? (
           <Component {...rest} {...props} />
         ) : (
-          <Redirect to="/login" />
-        )
+            <Redirect to="/login" />
+          )
       }
     />
   );
