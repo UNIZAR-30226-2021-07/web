@@ -31,17 +31,20 @@ function EditProfile() {
   const [confirmPassword, setConfirmPassword] = useState();
 
   useEffect(() => {
+    if (session.userData.length === 0) return;
+
     // Url to the image available in "public" directory
     setPictureURL(
       process.env.PUBLIC_URL +
-        "/" +
-        profile_pics[session.userData.picture].image
+      "/" +
+      profile_pics[session.userData.picture].image
     );
     console.log(pictureURL);
   }, [session.userData.picture]);
 
   useEffect(() => {
-    console.log(session.userData);
+    if (session.userData.length === 0) return;
+
     // Url to the board available in "public" directory
     setBoardURL(
       process.env.PUBLIC_URL + "/" + boards[session.userData.board].image

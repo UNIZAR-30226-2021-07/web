@@ -7,7 +7,6 @@ import { renderJoinGamePopup } from "./popups/JoinGamePopup";
 import { renderPreparingGamePopup } from "./popups/PreparingGamePopup";
 
 import useWebSocket from "../utils/websockets";
-import { getUserData } from "../utils/api";
 
 import logo from "../assets/common/logo/logo.svg";
 import shop from "../assets/common/icons/tienda.svg";
@@ -29,24 +28,6 @@ function Menu() {
   useEffect(() => {
     session.setSocket(socket);
   }, [socket]);
-
-  useEffect(() => {
-    // Se piden los datos del usuario
-    getUserData(session).then((response) => {
-      if ("error" in response) {
-        console.error(response.error);
-      } else {
-        session.setUserData({
-          email: response.email,
-          name: response.name,
-          coins: response.coins,
-          picture: response.picture,
-          board: response.board,
-          purchases: response.purchases,
-        });
-      }
-    });
-  }, []);
 
   return (
     <Container

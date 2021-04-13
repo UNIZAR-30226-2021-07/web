@@ -28,6 +28,9 @@ function Profile() {
   const [timePlayed, setTimePlayed] = useState(0);
 
   useEffect(() => {
+    if (session.userData.length === 0)
+      return;
+
     // Url to the image available in "public" directory
     let pictureURL =
       process.env.PUBLIC_URL +
@@ -37,7 +40,7 @@ function Profile() {
   }, [session.userData.picture]);
 
   useEffect(() => {
-    if (session.userData.name === "") return;
+    if (!session.userData.name) return;
 
     // Get user stats
     let username = session.userData.name;
