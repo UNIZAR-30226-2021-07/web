@@ -20,7 +20,6 @@ export default function CreateGamePopup({ socket }) {
 
   useEffect(() => {
     socket.current.emit("create_game", callback);
-
     socket.current.on("create_game", (response) => {
       console.log("CREATE GAME RECIBIDO");
       console.log(response);
@@ -33,7 +32,7 @@ export default function CreateGamePopup({ socket }) {
       console.error(data.error);
     }
   }
-
+  
   return (
     <Popup title="Partida privada lista" icon={check} close={true}>
       <Row className="justify-content-center">
