@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Container,
   Row,
@@ -17,11 +17,15 @@ import camera from "../assets/common/icons/camera.svg";
 import profile_pics from "../assets/common/profile_pics.json";
 import boards from "../assets/common/boards.json";
 
-function EditProfile({ token, setToken, userData, setUserData }) {
+import { SessionContext } from "./SessionProvider";
+
+function EditProfile() {
+  const session = useContext(SessionContext);
+
   const [pictureURL, setPictureURL] = useState("");
   const [boardURL, setBoardURL] = useState("");
-  const [picture, setPicture] = useState(userData.picture);
-  const [board, setBoard] = useState(userData.board);
+  const [picture, setPicture] = useState(session.userData.picture);
+  const [board, setBoard] = useState(session.userData.board);
   const [newUserName, setNewUserName] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -29,17 +33,21 @@ function EditProfile({ token, setToken, userData, setUserData }) {
   useEffect(() => {
     // Url to the image available in "public" directory
     setPictureURL(
-      process.env.PUBLIC_URL + "/" + profile_pics[userData.picture].image
+      process.env.PUBLIC_URL +
+        "/" +
+        profile_pics[session.userData.picture].image
     );
     console.log(pictureURL);
-  }, [userData.picture]);
+  }, [session.userData.picture]);
 
   useEffect(() => {
-    console.log(userData);
+    console.log(session.userData);
     // Url to the board available in "public" directory
-    setBoardURL(process.env.PUBLIC_URL + "/" + boards[userData.board].image);
+    setBoardURL(
+      process.env.PUBLIC_URL + "/" + boards[session.userData.board].image
+    );
     console.log(boardURL);
-  }, [userData.board]);
+  }, [session.userData.board]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,7 +63,7 @@ function EditProfile({ token, setToken, userData, setUserData }) {
       if (password === "") {
         // If password is left empty, set the previous one in request to avoid
         // the user to introduce it again
-        data.append(`password`, userData.password);
+        data.append(`password`, session.userData.password);
       } else {
         data.append(`password`, password);
       }
@@ -65,7 +73,7 @@ function EditProfile({ token, setToken, userData, setUserData }) {
       data.append(`picture`, picture);
       */
 
-      const response = await modifyUser({ token, data });
+      const response = await modifyUser({ token: session.token, data });
 
       console.log(response);
       if ("error" in response) {
@@ -73,11 +81,11 @@ function EditProfile({ token, setToken, userData, setUserData }) {
       } else {
         console.log("Datos actualizados correctamente");
         // Update local user_data as server has just updated
-        getUserData({ token }).then((response) => {
+        getUserData(session).then((response) => {
           if ("error" in response) {
             console.error(response.error);
           } else {
-            setUserData({
+            session.setUserData({
               email: response.email,
               name: response.name,
               coins: response.coins,
@@ -132,18 +140,16 @@ function EditProfile({ token, setToken, userData, setUserData }) {
                 ></Image>
               </Row>
               <Row className="align-items-center justify-content-center">
-                <Card.Text>{userData.name}</Card.Text>
+                <Card.Text>{session.userData.name}</Card.Text>
               </Row>
               <Row className="align-items-center justify-content-center mb-2">
-                <Card.Text>{userData.email}</Card.Text>
+                <Card.Text>{session.userData.email}</Card.Text>
               </Row>
               <Card.Body>
                 <Row className="align-items-center justify-content-center">
                   <Button
                     className="alert-button"
-                    onClick={() =>
-                      renderDeleteAccountPopup({ token, setToken })
-                    }
+                    onClick={() => renderDeleteAccountPopup(session)}
                   >
                     Eliminar Cuenta
                   </Button>

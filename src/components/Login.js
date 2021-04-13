@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Card, Form, Button, Container, Row } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 
-import { getUserData, loginUser } from "../utils/api";
+import { loginUser } from "../utils/api";
 
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
-function Login({ setToken, setUserData }) {
+import { SessionContext } from "./SessionProvider";
+
+function Login() {
+  const session = useContext(SessionContext);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const history = useHistory();
@@ -20,22 +23,8 @@ function Login({ setToken, setUserData }) {
 
     if ("access_token" in response) {
       let token = response.access_token;
-      setToken(token);
-      // Se piden los datos del usuario
-      getUserData({ token }).then((response) => {
-        if ("error" in response) {
-          console.error(response.error);
-        } else {
-          setUserData({
-            email: response.email,
-            name: response.name,
-            coins: response.coins,
-            picture: response.picture,
-            board: response.board,
-            purchases: response.purchases,
-          });
-        }
-      });
+      session.setToken(token);
+
       history.push("/home");
     } else {
       renderErrorPopup(response.error);
