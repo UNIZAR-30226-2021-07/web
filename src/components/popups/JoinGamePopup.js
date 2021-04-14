@@ -1,18 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button, Form } from "react-bootstrap";
 
 import Popup from "./PopUp";
 
 import { renderPreparingGamePopup } from "./PreparingGamePopup";
+import { renderErrorPopup } from "./ErrorPopup";
 
 import check from "../../assets/common/icons/check.svg";
 
-export default function JoinGamePopup() {
-  const handleSubmit = (e) => {
+export default function JoinGamePopup({ socket }) {
+  const [code, setCode] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Handle");
-    renderPreparingGamePopup();
+
+    socket.current.emit("join", code, (response) => {
+      console.log(response);
+      if (response && response.error) {
+        renderErrorPopup(response.error);
+      } else {
+        renderPreparingGamePopup();
+      }
+    });
   };
   return (
     <Popup title="Unirse a partida" icon={check} close={true}>
@@ -32,6 +42,7 @@ export default function JoinGamePopup() {
             maxLength="6"
             placeholder="Código"
             className="text-center form-control h-100 button-rouded"
+            onChange={(e) => setCode(e.target.value)}
           ></input>
           <Button className="primary-button ml-2" type="submit">
             CONFIRMAR
@@ -42,8 +53,8 @@ export default function JoinGamePopup() {
   );
 }
 
-export function renderJoinGamePopup() {
-  const content = <JoinGamePopup />;
+export function renderJoinGamePopup({ socket }) {
+  const content = <JoinGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {
