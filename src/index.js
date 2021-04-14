@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import { PopupboxContainer } from "react-popupbox";
 import { HashRouter as Router } from "react-router-dom";
 
+import SessionProvider from "./components/SessionProvider";
+
 (async function () {
   await import("./style.css");
   await import("bootstrap/dist/css/bootstrap.min.css");
@@ -16,8 +18,10 @@ import App from "./components/App";
 
 ReactDOM.render(
   <Router basename={process.env.PUBLIC_URL}>
-    <PopupboxContainer />
-    <App />
+    <SessionProvider>
+      <PopupboxContainer />
+      <App />
+    </SessionProvider>
   </Router>,
   document.getElementById("root")
 );

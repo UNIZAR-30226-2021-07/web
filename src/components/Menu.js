@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
+
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -6,24 +7,16 @@ import { renderCreateGamePopup } from "./popups/CreateGamePopup";
 import { renderJoinGamePopup } from "./popups/JoinGamePopup";
 import { renderPreparingGamePopup } from "./popups/PreparingGamePopup";
 
-import useWebSocket from "../utils/websockets";
-
 import logo from "../assets/common/logo/logo.svg";
 import shop from "../assets/common/icons/tienda.svg";
 import user from "../assets/common/icons/perfil.svg";
 import coins from "../assets/common/icons/huella.svg";
 
-function Menu({ token, userData, setSocket }) {
-  const { socket, messages } = useWebSocket({
-    url: "ws://gatovid.herokuapp.com",
-    token: token,
-  });
+import { SessionContext } from "./SessionProvider";
 
-  console.log(messages);
-  useEffect(() => {
-    setSocket(socket);
-  }, [socket]);
-
+function Menu() {
+  const session = useContext(SessionContext);
+  
   return (
     <Container
       id="menu"
@@ -45,7 +38,7 @@ function Menu({ token, userData, setSocket }) {
                   </Row>
                   <Row className="coins justify-content-center align-items-center">
                     <span id="number-coins" className="mr-2">
-                      {userData.coins}
+                      {session.userData.coins}
                     </span>
                     <Image src={coins} alt="Tienda" />
                   </Row>
@@ -68,7 +61,7 @@ function Menu({ token, userData, setSocket }) {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={() => renderCreateGamePopup({ socket })}
+            onClick={() => renderCreateGamePopup(session)}
           >
             CREAR PARTIDA PRIVADA
           </Button>

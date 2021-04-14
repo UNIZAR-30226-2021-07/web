@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import EditProfile from "../components/EditProfile";
 
-import tapete from "../assets/common/boards/green.png";
+import tapete from "../assets/common/boards/green.svg";
 import logo from "../assets/common/logo/logo.svg";
 
 test("renders EditProfile", () => {

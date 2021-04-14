@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import Chat from "./Chat";
 
-function Match({ token, socket }) {
+function Match() {
   return (
     <Row className="m-0">
       <Col>
@@ -20,7 +20,7 @@ function Match({ token, socket }) {
         </Container>
       </Col>
       <Col className="p-0">
-        <Chat token={token} socket={socket} />
+        <Chat />
       </Col>
     </Row>
   );

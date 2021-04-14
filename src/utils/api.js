@@ -70,9 +70,11 @@ export async function getUserData({ token }) {
   };
 
   return fetch("https://gatovid.herokuapp.com/data/user_data", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
+    .then((data) => {
+      if (data.status !== 200)
+        throw data.status;
+      else
+        return data.json();
     });
 }
 
