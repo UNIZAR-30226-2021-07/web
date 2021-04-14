@@ -1,6 +1,6 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Row, Button } from "react-bootstrap";
+import { Row, Button, Form } from "react-bootstrap";
 
 import Popup from "./PopUp";
 
@@ -9,6 +9,11 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 import check from "../../assets/common/icons/check.svg";
 
 export default function JoinGamePopup() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Handle");
+    renderPreparingGamePopup();
+  };
   return (
     <Popup title="Unirse a partida" icon={check} close={true}>
       <Row className="justify-content-center">
@@ -18,7 +23,7 @@ export default function JoinGamePopup() {
         </p>
       </Row>
       <Row className="justify-content-center">
-        <div>
+        <Form className="input-group" onSubmit={handleSubmit}>
           <input
             id="game-code"
             type="text"
@@ -28,13 +33,10 @@ export default function JoinGamePopup() {
             placeholder="Código"
             className="text-center form-control h-100 button-rouded"
           ></input>
-        </div>
-        <Button
-          className="primary-button ml-2"
-          onClick={renderPreparingGamePopup}
-        >
-          CONFIRMAR
-        </Button>
+          <Button className="primary-button ml-2" type="submit">
+            CONFIRMAR
+          </Button>
+        </Form>
       </Row>
     </Popup>
   );

@@ -69,7 +69,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={renderJoinGamePopup}
+            onClick={() => renderJoinGamePopup(session)}
           >
             UNIRSE PARTIDA PRIVADA
           </Button>
