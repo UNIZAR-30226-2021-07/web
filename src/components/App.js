@@ -54,6 +54,7 @@ function App() {
         },
       });
 
+      console.log(session.socket.current);
       session.socket.current.on("connect", function () {
         console.log("connected");
       });

@@ -23,7 +23,9 @@ function getLocalStorage(key, initialValue) {
 
 function SessionProvider({ children }) {
   const [token, setToken] = useState(() => getLocalStorage("token", null));
-  const [socket, setSocket] = useRef(null);
+  // Para poder coger el valor que se le asigna desde el useEffect
+  // con current se referencia a este objeto desde fuera
+  const socket = useRef(null);
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
@@ -32,10 +34,6 @@ function SessionProvider({ children }) {
     setLocalStorage("token", token);
   }, [token]);
 
-  useEffect(() => {
-    console.log(socket);
-  }, [socket]);
-
   return (
     <SessionContext.Provider
       value={{
@@ -43,7 +41,6 @@ function SessionProvider({ children }) {
         socket: socket,
         userData: userData,
         setToken: (token) => setToken(token),
-        setSocket: (socket) => setSocket(socket),
         setUserData: (userData) => setUserData(userData),
       }}
     >
