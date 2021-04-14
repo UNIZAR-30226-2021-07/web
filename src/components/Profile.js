@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Container,
   Row,
@@ -16,7 +16,11 @@ import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import profile_pics from "../assets/common/profile_pics.json";
 
-function Profile({ token, setToken, userData }) {
+import { SessionContext } from "./SessionProvider";
+
+function Profile() {
+  const session = useContext(SessionContext);
+
   const [picture, setPicture] = useState("");
   const [games, setGames] = useState(0);
   const [wins, setWins] = useState(0);
@@ -24,17 +28,22 @@ function Profile({ token, setToken, userData }) {
   const [timePlayed, setTimePlayed] = useState(0);
 
   useEffect(() => {
+    if (session.userData.length === 0)
+      return;
+
     // Url to the image available in "public" directory
     let pictureURL =
-      process.env.PUBLIC_URL + "/" + profile_pics[userData.picture].image;
+      process.env.PUBLIC_URL +
+      "/" +
+      profile_pics[session.userData.picture].image;
     setPicture(pictureURL);
-  }, [userData.picture]);
+  }, [session.userData.picture]);
 
   useEffect(() => {
-    if (userData.name === "") return;
+    if (!session.userData.name) return;
 
     // Get user stats
-    let username = userData.name;
+    let username = session.userData.name;
     getUserStats({ username }).then((response) => {
       if ("error" in response) {
         console.error(response.error);
@@ -45,16 +54,14 @@ function Profile({ token, setToken, userData }) {
         setTimePlayed(response.playtime_mins);
       }
     });
-  }, [userData.name]);
+  }, [session.userData.name]);
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const response = await logoutUser({
-      token,
-    });
+    const response = await logoutUser(session);
 
     if ("message" in response) {
-      setToken(null);
+      session.setToken(null);
     } else {
       renderErrorPopup(response.error);
     }
@@ -83,10 +90,10 @@ function Profile({ token, setToken, userData }) {
                 ></Image>
               </Row>
               <Row className="align-items-center justify-content-center">
-                <Card.Text>{userData.name}</Card.Text>
+                <Card.Text>{session.userData.name}</Card.Text>
               </Row>
               <Row className="align-items-center justify-content-center mb-2">
-                <Card.Text>{userData.email}</Card.Text>
+                <Card.Text>{session.userData.email}</Card.Text>
               </Row>
               <Row className="align-items-center justify-content-center">
                 <Link to="/editProfile">

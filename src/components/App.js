@@ -12,53 +12,76 @@ import SignUp from "./SignUp";
 import Shop from "./Shop";
 import Help from "./Help";
 
-function App() {
-  // NOTA: Parámetros a pasar con el contexto, para evitar parametrización
-  // - Token
-  // - Socket
-  // - userData? -> no se si hacerlo ya con todos
+import { getUserData } from "../utils/api";
 
-  // Para poder coger el valor que se le asigna desde el useEffect
-  // con current se referencia a este objeto desde fuera
-  const socket = useRef(null);
-  const [token, setToken] = useState(null);
-  const [userData, setUserData] = useState([]);
+import { SessionContext } from "./SessionProvider";
+
+function App() {
+  const session = useContext(SessionContext);
 
   useEffect(() => {
-    if (token != null) {
-      socket.current = io.connect("ws://gatovid.herokuapp.com", {
+    console.log("fetching user data");
+
+    if (!session.token || session.userData.length !== 0) {
+      return;
+    }
+
+    // Se piden los datos del usuario
+    getUserData(session).then((response) => {
+      if ("error" in response) {
+        console.error(response);
+      } else {
+        session.setUserData({
+          email: response.email,
+          name: response.name,
+          coins: response.coins,
+          picture: response.picture,
+          board: response.board,
+          purchases: response.purchases,
+        });
+      }
+    }).catch((status) => {
+      if (status === 401) {
+        session.setToken(null);
+      }
+    });
+  }, [session.token]);
+
+  useEffect(() => {
+    if (session.token != null) {
+      session.socket.current = io.connect("ws://gatovid.herokuapp.com", {
         extraHeaders: {
-          Authorization: "Bearer " + token,
+          Authorization: "Bearer " + session.token,
         },
       });
 
-      socket.current.on("connect", function () {
+      session.socket.current.on("connect", function () {
         console.log("connected");
       });
 
-      socket.current.on("connect_error", function (e) {
+      session.socket.current.on("connect_error", function (e) {
         console.error("not connected", e);
       });
 
-      socket.current.on("start_game", function () {
+      session.socket.current.on("start_game", function () {
         alert("Game started");
       });
 
-      socket.current.on("players_waiting", function (n) {
+     session.socket.current.on("players_waiting", function (n) {
         console.log(n);
       });
       /*
-      socket.current.on("chat", function ({ owner, msg }) {
+      session.socket.current.on("chat", function ({ owner, msg }) {
         console.log(owner, msg);
         setMessages((prev) => [...prev, { userid: owner, text: msg }]);
       });
       */
       return () => {
-        socket.current.close();
-        socket.current = null;
+        session.socket.current.close();
+        session.socket.current = null;
       };
     }
-  }, [token]);
+  }, [session.token]);
   // De esta forma el useEffect se ejecutará si cambia el token, volviendo
   // a hacer el connect
 
@@ -68,49 +91,38 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/login">
-          <Login setToken={setToken} setUserData={setUserData} />
+          <Login />
         </Route>
 
         <Route path="/signup" component={SignUp} />
 
-        <ProtectedRoute
-          path="/home"
-          token={token}
-          userData={userData}
-          socket={socket}
-          component={Menu}
-        />
 
-        <ProtectedRoute
-          path="/match"
-          token={token}
-          socket={socket}
-          component={Match}
-        />
+        <ProtectedRoute path="/home" token={session.token} component={Menu} />
+
+        <ProtectedRoute path="/match" token={session.token} component={Match} />
 
         <ProtectedRoute
           path="/profile"
-          token={token}
-          setToken={setToken}
-          userData={userData}
+          token={session.token}
           component={Profile}
         />
 
         <ProtectedRoute
           path="/editProfile"
-          token={token}
-          setToken={setToken}
-          userData={userData}
-          setUserData={setUserData}
+          token={session.token}
           component={EditProfile}
         />
 
-        <ProtectedRoute path="/shop" token={token} component={Shop} />
+        <ProtectedRoute path="/shop" token={session.token} component={Shop} />
 
-        <ProtectedRoute path="/help" token={token} component={Help} />
+        <ProtectedRoute path="/help" token={session.token} component={Help} />
 
         <Route path="/">
-          {token != null ? <Redirect to="/home" /> : <Redirect to="/login" />}
+          {session.token != null ? (
+            <Redirect to="/home" />
+          ) : (
+              <Redirect to="/login" />
+            )}
         </Route>
       </Switch>
     </div>
@@ -125,8 +137,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
         rest.token != null ? (
           <Component {...rest} {...props} />
         ) : (
-          <Redirect to="/login" />
-        )
+            <Redirect to="/login" />
+          )
       }
     />
   );

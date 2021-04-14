@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Button, Image, Container, Row, Form } from "react-bootstrap";
 
 import { getUserData } from "../utils/api";
@@ -7,7 +7,10 @@ import MessageList from "./MessageList";
 
 import send from "../assets/common/icons/send.svg";
 
-function Chat({ token, socket }) {
+import { SessionContext } from "./SessionProvider";
+
+function Chat() {
+  const session = useContext(SessionContext);
   const [message, setMessage] = useState("");
   const [codeInput, setCodeInput] = useState("");
 
@@ -15,7 +18,7 @@ function Chat({ token, socket }) {
   const [username, setUserName] = useState("");
 
   useEffect(() => {
-    getUserData({ token }).then((response) => {
+    getUserData(session).then((response) => {
       if ("error" in response) {
         console.log(response.error);
       } else {
@@ -26,14 +29,14 @@ function Chat({ token, socket }) {
 
   const startGame = async (e) => {
     e.preventDefault();
-    socket.current.emit("start_game", callback);
+    session.socket.current.emit("start_game", callback);
   };
 
   const joinGame = async (e) => {
     e.preventDefault();
     if (codeInput) {
       console.log(codeInput);
-      socket.current.emit("join", codeInput, callback);
+      session.socket.current.emit("join", codeInput, callback);
       setCodeInput();
     }
   };
@@ -47,7 +50,7 @@ function Chat({ token, socket }) {
   const sendMessage = async (e) => {
     e.preventDefault();
     if (message) {
-      socket.current.emit("chat", message, callback);
+      session.socket.current.emit("chat", message, callback);
     }
     setMessage("");
   };
