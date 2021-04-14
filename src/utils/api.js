@@ -1,3 +1,5 @@
+const baseUrl = "https://gatovid.herokuapp.com";
+
 export async function loginUser({ email, password }) {
   let data = new URLSearchParams();
   data.append(`email`, email);
@@ -8,7 +10,7 @@ export async function loginUser({ email, password }) {
     body: data,
   };
 
-  return fetch("https://gatovid.herokuapp.com/data/login", requestOptions)
+  return fetch(baseUrl + "/data/login", requestOptions)
     .then((data) => data.json())
     .catch((error) => {
       console.error("Error:", error);
@@ -23,7 +25,7 @@ export async function logoutUser({ token }) {
     },
   };
 
-  return fetch("https://gatovid.herokuapp.com/data/logout", requestOptions)
+  return fetch(baseUrl + "/data/logout", requestOptions)
     .then((data) => data.json())
     .catch((error) => {
       console.error("Error:", error);
@@ -41,7 +43,7 @@ export async function signUpUser({ name, email, password }) {
     body: data,
   };
 
-  return fetch("https://gatovid.herokuapp.com/data/signup", requestOptions)
+  return fetch(baseUrl + "/data/signup", requestOptions)
     .then((data) => data.json())
     .catch((error) => {
       console.error("Error:", error);
@@ -56,7 +58,7 @@ export async function deleteUser({ token }) {
     },
   };
 
-  return fetch("https://gatovid.herokuapp.com/data/remove_user", requestOptions)
+  return fetch(baseUrl + "/data/remove_user", requestOptions)
     .then((data) => data.json())
     .catch((error) => {
       console.error("Error:", error);
@@ -78,14 +80,6 @@ export async function getUserData({ token }) {
     });
 }
 
-export async function getUserStats({ username }) {
-  return fetch("https://gatovid.herokuapp.com/data/user_stats?name=" + username)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
-
 export async function modifyUser({ token, data }) {
   const requestOptions = {
     method: "POST",
@@ -94,6 +88,16 @@ export async function modifyUser({ token, data }) {
   };
 
   return fetch("https://gatovid.herokuapp.com/data/modify_user", requestOptions)
+    .then((data) => {
+    if (data.status !== 200)
+      throw data.status;
+    else
+      return data.json();
+  });
+}
+
+export async function getUserStats({ username }) {
+  return fetch(baseUrl + "/data/user_stats?name=" + username)
     .then((data) => data.json())
     .catch((error) => {
       console.error("Error:", error);
