@@ -39,7 +39,6 @@ function EditProfile() {
       "/" +
       profile_pics[session.userData.picture].image
     );
-    console.log(pictureURL);
   }, [session.userData.picture]);
 
   useEffect(() => {
