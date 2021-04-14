@@ -197,8 +197,8 @@ body,
 /* --------------------------- Profile / EditProfile ------------------------ */
 
 .user-profile-image {
-  width: 17vh;
-  height: 17vh;
+  width: 200px;
+  height: 200px;
   margin-bottom: 10px;
 }
 
