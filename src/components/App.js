@@ -1,5 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+
+import io from "socket.io-client";
 
 import Menu from "./Menu";
 import Match from "./Match";
@@ -45,6 +47,44 @@ function App() {
     });
   }, [session.token]);
 
+  useEffect(() => {
+    if (session.token != null) {
+      session.socket.current = io.connect("ws://gatovid.herokuapp.com", {
+        extraHeaders: {
+          Authorization: "Bearer " + session.token,
+        },
+      });
+
+      session.socket.current.on("connect", function () {
+        console.log("connected");
+      });
+
+      session.socket.current.on("connect_error", function (e) {
+        console.error("not connected", e);
+      });
+
+      session.socket.current.on("start_game", function () {
+        alert("Game started");
+      });
+
+     session.socket.current.on("players_waiting", function (n) {
+        console.log(n);
+      });
+      /*
+      session.socket.current.on("chat", function ({ owner, msg }) {
+        console.log(owner, msg);
+        setMessages((prev) => [...prev, { userid: owner, text: msg }]);
+      });
+      */
+      return () => {
+        session.socket.current.close();
+        session.socket.current = null;
+      };
+    }
+  }, [session.token]);
+  // De esta forma el useEffect se ejecutará si cambia el token, volviendo
+  // a hacer el connect
+
   // El token hay que pasarle a todas porque sirve para mantener sesión,
   // si es null se vuelve a login
   return (
@@ -55,6 +95,7 @@ function App() {
         </Route>
 
         <Route path="/signup" component={SignUp} />
+
 
         <ProtectedRoute path="/home" token={session.token} component={Menu} />
 

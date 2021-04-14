@@ -1,12 +1,11 @@
 import React, { useEffect, useContext } from "react";
+
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { renderCreateGamePopup } from "./popups/CreateGamePopup";
 import { renderJoinGamePopup } from "./popups/JoinGamePopup";
 import { renderPreparingGamePopup } from "./popups/PreparingGamePopup";
-
-import useWebSocket from "../utils/websockets";
 
 import logo from "../assets/common/logo/logo.svg";
 import shop from "../assets/common/icons/tienda.svg";
@@ -17,18 +16,7 @@ import { SessionContext } from "./SessionProvider";
 
 function Menu() {
   const session = useContext(SessionContext);
-
-  const { socket, messages } = useWebSocket({
-    url: "ws://gatovid.herokuapp.com",
-    token: session.token,
-  });
-
-  console.log(messages);
-
-  useEffect(() => {
-    session.setSocket(socket);
-  }, [socket]);
-
+  
   return (
     <Container
       id="menu"
