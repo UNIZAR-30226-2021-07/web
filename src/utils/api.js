@@ -71,11 +71,29 @@ export async function getUserData({ token }) {
     headers: { Authorization: "Bearer " + token },
   };
 
-  return fetch(baseUrl + "/data/user_data", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  return fetch(
+    "https://gatovid.herokuapp.com/data/user_data",
+    requestOptions
+  ).then((data) => {
+    if (data.status !== 200) throw data.status;
+    else return data.json();
+  });
+}
+
+export async function modifyUser({ token, data }) {
+  const requestOptions = {
+    method: "POST",
+    headers: { Authorization: "Bearer " + token },
+    body: data,
+  };
+
+  return fetch(
+    "https://gatovid.herokuapp.com/data/modify_user",
+    requestOptions
+  ).then((data) => {
+    if (data.status !== 200) throw data.status;
+    else return data.json();
+  });
 }
 
 export async function getUserStats({ username }) {

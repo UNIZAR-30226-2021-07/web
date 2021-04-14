@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Container,
   Row,
@@ -11,26 +11,99 @@ import {
 
 import { renderDeleteAccountPopup } from "./popups/DeleteAccountPopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
+import { getUserData, modifyUser } from "../utils/api";
 
-import boardType from "../assets/common/boards/green.png";
-import image from "../assets/common/logo/logo.svg";
 import camera from "../assets/common/icons/camera.svg";
+import profile_pics from "../assets/common/profile_pics.json";
+import boards from "../assets/common/boards.json";
 
-function EditProfile({ token, setToken }) {
-  // TODO: Solo para prototipo inicial
-  var username = "Juan Carlos";
-  var email = "juanCarlos@gmail.com";
+import { SessionContext } from "./SessionProvider";
+
+function EditProfile() {
+  const session = useContext(SessionContext);
+
+  const [pictureURL, setPictureURL] = useState("");
+  const [boardURL, setBoardURL] = useState("");
+  const [picture, setPicture] = useState(session.userData.picture);
+  const [board, setBoard] = useState(session.userData.board);
+  const [newUserName, setNewUserName] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
+
+  useEffect(() => {
+    if (session.userData.length === 0) return;
+
+    // Url to the image available in "public" directory
+    setPictureURL(
+      process.env.PUBLIC_URL +
+        "/" +
+        profile_pics[session.userData.picture].image
+    );
+  }, [session.userData.picture]);
+
+  useEffect(() => {
+    if (session.userData.length === 0) return;
+
+    // Url to the board available in "public" directory
+    setBoardURL(
+      process.env.PUBLIC_URL + "/" + boards[session.userData.board].image
+    );
+    console.log(boardURL);
+  }, [session.userData.board]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //Revisa que las contraseñas sean iguales
+    // Check if passwords match
     if (password != confirmPassword) {
       renderErrorPopup("Las contraseñas no coiciden.");
       return;
+    } else {
+      // Update user configuration calling API function
+      let data = new URLSearchParams();
+      if (newUserName && newUserName !== "") data.append(`name`, newUserName);
+      if (password && password !== "") data.append(`password`, password);
+
+      // TODO -> Da error de no comprado!?
+      /*
+      data.append(`board`, board);
+      data.append(`picture`, picture);
+      */
+
+      const response = await modifyUser({ token: session.token, data });
+
+      console.log(response);
+      if ("error" in response) {
+        renderErrorPopup(response.error);
+      } else {
+        console.log("Datos actualizados correctamente");
+        // Update local user_data as server has just updated
+        getUserData(session).then((response) => {
+          if ("error" in response) {
+            console.error(response.error);
+          } else {
+            session.setUserData({
+              email: response.email,
+              name: response.name,
+              coins: response.coins,
+              picture: response.picture,
+              board: response.board,
+              purchases: response.purchases,
+            });
+          }
+        });
+      }
     }
+  };
+
+  const changePicture = async (e) => {
+    e.preventDefault();
+    setPicture(picture + 1);
+  };
+
+  const changeBoard = async (e) => {
+    e.preventDefault();
+    setBoard(board + 1);
   };
 
   return (
@@ -56,25 +129,24 @@ function EditProfile({ token, setToken }) {
                   <Image src={camera} fluid></Image>
                 </Button>
                 <Image
-                  src={image}
+                  src={pictureURL}
                   className="user-profile-image mt-3"
                   roundedCircle
                   thumbnail
+                  onClick={changePicture}
                 ></Image>
               </Row>
               <Row className="align-items-center justify-content-center">
-                <Card.Text>{username}</Card.Text>
+                <Card.Text>{session.userData.name}</Card.Text>
               </Row>
               <Row className="align-items-center justify-content-center mb-2">
-                <Card.Text>{email}</Card.Text>
+                <Card.Text>{session.userData.email}</Card.Text>
               </Row>
               <Card.Body>
                 <Row className="align-items-center justify-content-center">
                   <Button
                     className="alert-button"
-                    onClick={() =>
-                      renderDeleteAccountPopup({ token, setToken })
-                    }
+                    onClick={() => renderDeleteAccountPopup(session)}
                   >
                     Eliminar Cuenta
                   </Button>
@@ -90,7 +162,11 @@ function EditProfile({ token, setToken }) {
                   Editar Configuración de Usuario
                   <Form.Group controlId="formBasicUser" className="mb-3 mt-3">
                     <Form.Label>Nombre de Usuario</Form.Label>
-                    <Form.Control type="text" placeholder="Nuevo nombre" />
+                    <Form.Control
+                      type="text"
+                      placeholder="Nuevo nombre"
+                      onChange={(e) => setNewUserName(e.target.value)}
+                    />
                   </Form.Group>
                   <Form.Group controlId="formBasicPassword" className="mb-3">
                     <Form.Label>Cambiar contraseña</Form.Label>
@@ -120,7 +196,11 @@ function EditProfile({ token, setToken }) {
                         <Form.Label>Cambiar Tablero</Form.Label>
                       </Col>
                       <Col id="imgCambioTablero">
-                        <Image rounded src={boardType}></Image>
+                        <Image
+                          rounded
+                          src={boardURL}
+                          onClick={changeBoard}
+                        ></Image>
                       </Col>
                     </Form.Row>
                   </Form.Group>

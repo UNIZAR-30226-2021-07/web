@@ -3,11 +3,14 @@ import React from "react";
 import Menu from "../components/Menu";
 
 import { BrowserRouter as Router } from "react-router-dom";
+import SessionProvider from "../components/SessionProvider";
 
 test("renders create game", () => {
   render(
     <Router>
-      <Menu />
+      <SessionProvider>
+        <Menu />
+      </SessionProvider>
     </Router>
   );
   const buttonElement = screen.getByText(/crear partida privada/i);
@@ -17,7 +20,9 @@ test("renders create game", () => {
 test("renders title", () => {
   render(
     <Router>
-      <Menu />
+      <SessionProvider>
+        <Menu />
+      </SessionProvider>
     </Router>
   );
   const titleElement = screen.getByText(/gatovid/i);

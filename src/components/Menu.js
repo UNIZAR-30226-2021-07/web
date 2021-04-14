@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -11,7 +12,11 @@ import shop from "../assets/common/icons/tienda.svg";
 import user from "../assets/common/icons/perfil.svg";
 import coins from "../assets/common/icons/huella.svg";
 
+import { SessionContext } from "./SessionProvider";
+
 function Menu() {
+  const session = useContext(SessionContext);
+
   return (
     <Container
       id="menu"
@@ -33,7 +38,7 @@ function Menu() {
                   </Row>
                   <Row className="coins justify-content-center align-items-center">
                     <span id="number-coins" className="mr-2">
-                      100
+                      {session.userData.coins}
                     </span>
                     <Image src={coins} alt="Tienda" />
                   </Row>
@@ -56,7 +61,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={() => renderCreateGamePopup("1234")}
+            onClick={() => renderCreateGamePopup(session)}
           >
             CREAR PARTIDA PRIVADA
           </Button>

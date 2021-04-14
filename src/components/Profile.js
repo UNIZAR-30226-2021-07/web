@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Container,
   Row,
@@ -10,15 +10,17 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import { logoutUser, getUserStats, getUserData } from "../utils/api";
+import { logoutUser, getUserStats } from "../utils/api";
 
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import profile_pics from "../assets/common/profile_pics.json";
 
-function Profile({ token, setToken }) {
-  const [username, setUserName] = useState("");
-  const [email, setEmail] = useState("");
+import { SessionContext } from "./SessionProvider";
+
+function Profile() {
+  const session = useContext(SessionContext);
+
   const [picture, setPicture] = useState("");
   const [games, setGames] = useState(0);
   const [wins, setWins] = useState(0);
@@ -26,24 +28,21 @@ function Profile({ token, setToken }) {
   const [timePlayed, setTimePlayed] = useState(0);
 
   useEffect(() => {
-    getUserData({ token }).then((response) => {
-      if ("error" in response) {
-        console.error(response.error);
-      } else {
-        setUserName(response.name);
-        setEmail(response.email);
+    if (session.userData.length === 0) return;
 
-        //Url a la imagen disponible en la carpeta public
-        let pictureURL =
-          process.env.PUBLIC_URL + "/" + profile_pics[response.picture].image;
-        setPicture(pictureURL);
-      }
-    });
-  }, []);
+    // Url to the image available in "public" directory
+    let pictureURL =
+      process.env.PUBLIC_URL +
+      "/" +
+      profile_pics[session.userData.picture].image;
+    setPicture(pictureURL);
+  }, [session.userData.picture]);
 
   useEffect(() => {
-    if (username === "") return;
+    if (!session.userData.name) return;
 
+    // Get user stats
+    let username = session.userData.name;
     getUserStats({ username }).then((response) => {
       if ("error" in response) {
         console.error(response.error);
@@ -54,16 +53,14 @@ function Profile({ token, setToken }) {
         setTimePlayed(response.playtime_mins);
       }
     });
-  }, [username]);
+  }, [session.userData.name]);
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const response = await logoutUser({
-      token,
-    });
+    const response = await logoutUser(session);
 
     if ("message" in response) {
-      setToken(null);
+      session.setToken(null);
     } else {
       renderErrorPopup(response.error);
     }
@@ -92,10 +89,10 @@ function Profile({ token, setToken }) {
                 ></Image>
               </Row>
               <Row className="align-items-center justify-content-center">
-                <Card.Text>{username}</Card.Text>
+                <Card.Text>{session.userData.name}</Card.Text>
               </Row>
               <Row className="align-items-center justify-content-center mb-2">
-                <Card.Text>{email}</Card.Text>
+                <Card.Text>{session.userData.email}</Card.Text>
               </Row>
               <Row className="align-items-center justify-content-center">
                 <Link to="/editProfile">

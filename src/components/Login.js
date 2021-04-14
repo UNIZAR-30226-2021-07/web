@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Card, Form, Button, Container, Row } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 
@@ -6,7 +6,10 @@ import { loginUser } from "../utils/api";
 
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
-function Login({ setToken }) {
+import { SessionContext } from "./SessionProvider";
+
+function Login() {
+  const session = useContext(SessionContext);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const history = useHistory();
@@ -19,7 +22,9 @@ function Login({ setToken }) {
     });
 
     if ("access_token" in response) {
-      setToken(response.access_token);
+      let token = response.access_token;
+      session.setToken(token);
+
       history.push("/home");
     } else {
       renderErrorPopup(response.error);
