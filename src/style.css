@@ -29,6 +29,11 @@ body,
   max-height: 35vh;
 }
 
+.menu-icon.user-profile-image {
+  width: 17vh;
+  height: 17vh;
+}
+
 .menu-icons {
   height: 12vh;
 }
@@ -201,6 +206,7 @@ body,
   height: 200px;
   margin-bottom: 10px;
 }
+
 
 #profile td:nth-child(2) {
   text-align: right;
