@@ -20,30 +20,31 @@ function App() {
   const session = useContext(SessionContext);
 
   useEffect(() => {
-
     if (!session.token || session.userData.length !== 0) {
       return;
     }
     console.log("fetching user data");
     // Se piden los datos del usuario
-    getUserData(session).then((response) => {
-      if ("error" in response) {
-        console.error(response);
-      } else {
-        session.setUserData({
-          email: response.email,
-          name: response.name,
-          coins: response.coins,
-          picture: response.picture,
-          board: response.board,
-          purchases: response.purchases,
-        });
-      }
-    }).catch((status) => {
-      if (status === 401) {
-        session.setToken(null);
-      }
-    });
+    getUserData(session)
+      .then((response) => {
+        if ("error" in response) {
+          console.error(response);
+        } else {
+          session.setUserData({
+            email: response.email,
+            name: response.name,
+            coins: response.coins,
+            picture: response.picture,
+            board: response.board,
+            purchases: response.purchases,
+          });
+        }
+      })
+      .catch((status) => {
+        if (status === 401) {
+          session.setToken(null);
+        }
+      });
   }, [session.token]);
 
   useEffect(() => {
@@ -67,7 +68,7 @@ function App() {
         alert("Game started");
       });
 
-     session.socket.current.on("players_waiting", function (n) {
+      session.socket.current.on("players_waiting", function (n) {
         console.log(n);
       });
       /*
@@ -96,7 +97,6 @@ function App() {
 
         <Route path="/signup" component={SignUp} />
 
-
         <ProtectedRoute path="/home" token={session.token} component={Menu} />
 
         <ProtectedRoute path="/match" token={session.token} component={Match} />
@@ -121,8 +121,8 @@ function App() {
           {session.token != null ? (
             <Redirect to="/home" />
           ) : (
-              <Redirect to="/login" />
-            )}
+            <Redirect to="/login" />
+          )}
         </Route>
       </Switch>
     </div>
@@ -137,8 +137,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
         rest.token != null ? (
           <Component {...rest} {...props} />
         ) : (
-            <Redirect to="/login" />
-          )
+          <Redirect to="/login" />
+        )
       }
     />
   );

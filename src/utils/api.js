@@ -71,13 +71,13 @@ export async function getUserData({ token }) {
     headers: { Authorization: "Bearer " + token },
   };
 
-  return fetch("https://gatovid.herokuapp.com/data/user_data", requestOptions)
-    .then((data) => {
-      if (data.status !== 200)
-        throw data.status;
-      else
-        return data.json();
-    });
+  return fetch(
+    "https://gatovid.herokuapp.com/data/user_data",
+    requestOptions
+  ).then((data) => {
+    if (data.status !== 200) throw data.status;
+    else return data.json();
+  });
 }
 
 export async function modifyUser({ token, data }) {
@@ -87,12 +87,12 @@ export async function modifyUser({ token, data }) {
     body: data,
   };
 
-  return fetch("https://gatovid.herokuapp.com/data/modify_user", requestOptions)
-    .then((data) => {
-    if (data.status !== 200)
-      throw data.status;
-    else
-      return data.json();
+  return fetch(
+    "https://gatovid.herokuapp.com/data/modify_user",
+    requestOptions
+  ).then((data) => {
+    if (data.status !== 200) throw data.status;
+    else return data.json();
   });
 }
 

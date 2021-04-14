@@ -28,8 +28,7 @@ function Profile() {
   const [timePlayed, setTimePlayed] = useState(0);
 
   useEffect(() => {
-    if (session.userData.length === 0)
-      return;
+    if (session.userData.length === 0) return;
 
     // Url to the image available in "public" directory
     let pictureURL =

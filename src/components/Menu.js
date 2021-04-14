@@ -16,7 +16,7 @@ import { SessionContext } from "./SessionProvider";
 
 function Menu() {
   const session = useContext(SessionContext);
-  
+
   return (
     <Container
       id="menu"

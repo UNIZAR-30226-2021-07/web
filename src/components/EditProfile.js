@@ -36,8 +36,8 @@ function EditProfile() {
     // Url to the image available in "public" directory
     setPictureURL(
       process.env.PUBLIC_URL +
-      "/" +
-      profile_pics[session.userData.picture].image
+        "/" +
+        profile_pics[session.userData.picture].image
     );
   }, [session.userData.picture]);
 
