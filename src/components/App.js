@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useContext } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import io from "socket.io-client";
@@ -20,12 +20,11 @@ function App() {
   const session = useContext(SessionContext);
 
   useEffect(() => {
-    console.log("fetching user data");
 
     if (!session.token || session.userData.length !== 0) {
       return;
     }
-
+    console.log("fetching user data");
     // Se piden los datos del usuario
     getUserData(session).then((response) => {
       if ("error" in response) {

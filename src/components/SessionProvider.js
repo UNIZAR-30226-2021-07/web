@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export var SessionContext = React.createContext();
 
@@ -23,13 +23,18 @@ function getLocalStorage(key, initialValue) {
 
 function SessionProvider({ children }) {
   const [token, setToken] = useState(() => getLocalStorage("token", null));
-  const [socket, setSocket] = useState(null);
+  const [socket, setSocket] = useRef(null);
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
+    console.log(token);
     // Guardamos el token cuando se actualiza
     setLocalStorage("token", token);
   }, [token]);
+
+  useEffect(() => {
+    console.log(socket);
+  }, [socket]);
 
   return (
     <SessionContext.Provider
