@@ -77,7 +77,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={renderPreparingGamePopup}
+            onClick={() => renderPreparingGamePopup(session)}
           >
             UNIRSE PARTIDA PÚBLICA
           </Button>
