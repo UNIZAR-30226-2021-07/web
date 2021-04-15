@@ -8,6 +8,7 @@ import {
   Form,
   Image,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { renderDeleteAccountPopup } from "./popups/DeleteAccountPopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
@@ -125,9 +126,11 @@ function EditProfile() {
                 className="align-items-center justify-content-center mb-2"
                 style={{ position: "relative" }}
               >
-                <Button className="primary-button">
-                  <Image src={camera} fluid></Image>
-                </Button>
+                <Link to="/shop">
+                  <Button className="primary-button">
+                    <Image src={camera} fluid></Image>
+                  </Button>
+                </Link>
                 <Image
                   src={pictureURL}
                   className="user-profile-image mt-3"
@@ -196,22 +199,27 @@ function EditProfile() {
                         <Form.Label>Cambiar Tablero</Form.Label>
                       </Col>
                       <Col id="imgCambioTablero">
-                        <Image
-                          rounded
-                          src={boardURL}
-                          onClick={changeBoard}
-                        ></Image>
+                        <Link to="/shop">
+                          <Image
+                            rounded
+                            src={boardURL}
+                            onClick={changeBoard}
+                            alt="Tablero"
+                          ></Image>
+                        </Link>
                       </Col>
                     </Form.Row>
                   </Form.Group>
                   <Row className="align-items-center justify-content-center">
-                    <Button
-                      className="primary-button"
-                      type="submit"
-                      style={{ width: "40vh" }}
-                    >
-                      GUARDAR
-                    </Button>
+                    <Link to="/profile">
+                      <Button
+                        className="primary-button"
+                        type="submit"
+                        style={{ width: "40vh" }}
+                      >
+                        GUARDAR
+                      </Button>
+                    </Link>
                   </Row>
                 </Form>
               </Card.Body>
