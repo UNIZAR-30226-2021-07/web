@@ -16,13 +16,15 @@ export default function JoinGamePopup({ socket }) {
     e.preventDefault();
 
     socket.current.emit("join", code, (response) => {
-      console.log(response);
       if (response && response.error) {
         renderErrorPopup(response.error);
-      } else {
-        renderPreparingGamePopup();
       }
     });
+
+    socket.current.on("users_waiting", (numUsers) => {
+      renderPreparingGamePopup(socket, numUsers);
+    });
+    
   };
   return (
     <Popup title="Unirse a partida" icon={check} close={true}>

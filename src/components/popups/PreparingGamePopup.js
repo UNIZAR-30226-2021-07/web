@@ -1,30 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Image } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
+import { renderErrorPopup } from "./ErrorPopup";
 
 import loadArrow from "../../assets/common/icons/flecha-cargar.svg";
 
-const curiosities = [
-  "Los gatos tricolores siempre son hembras",
-  "Todos los gatos recién nacidos tienen los ojos azules.",
-];
+export default function PreparingGamePopup({ socket, initialUsers }) {
+  const history = useHistory();
+  const [ready, setReady] = useState(initialUsers);
+  const total = "6";
 
-export default function PreparingGamePopup() {
+  useEffect(() => {
+    socket.current.on("users_waiting", (users) => {
+      setReady(users);
+    });
+  }, []);
+
+  useEffect(() => {
+    socket.current.on("start_game", (response) => {
+      if (response && response.error) {
+        renderErrorPopup(response.error);
+      } else {
+        PopupboxManager.close();
+        history.push("/match");
+      }
+    });
+  }, []);
+
   return (
     <Popup title="Preparando partida...">
       <Row className="justify-content-center mb-3 mt-3">
         <Image src={loadArrow} fluid></Image>
       </Row>
-      <Row className="justify-content-center">¿Lo sabías?</Row>
-      <Row className="justify-content-center">{curiosities[0]}</Row>
+      <Row className="justify-content-center">
+        <p className="h5 text-center mb-3">
+          {ready}/{total} usuarios preparados
+        </p>
+      </Row>
     </Popup>
   );
 }
 
-export function renderPreparingGamePopup() {
-  const content = <PreparingGamePopup />;
+export function renderPreparingGamePopup(socket, numUsers) {
+  const content = (
+    <PreparingGamePopup socket={socket} initialUsers={numUsers} />
+  );
   PopupboxManager.open({
     content,
     config: {
