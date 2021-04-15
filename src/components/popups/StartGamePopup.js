@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 
-export default function StartGamePopup({socket}) {
+export default function StartGamePopup({ socket }) {
   const history = useHistory();
   const [ready, setReady] = useState("1");
   const total = "6";
@@ -48,7 +48,7 @@ export default function StartGamePopup({socket}) {
 }
 
 export function renderStartGamePopup(socket) {
-  const content = <StartGamePopup  socket={socket} />;
+  const content = <StartGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {

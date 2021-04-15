@@ -24,7 +24,6 @@ export default function JoinGamePopup({ socket }) {
     socket.current.on("users_waiting", (numUsers) => {
       renderPreparingGamePopup(socket, numUsers);
     });
-    
   };
   return (
     <Popup title="Unirse a partida" icon={check} close={true}>
