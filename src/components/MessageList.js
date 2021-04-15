@@ -15,6 +15,8 @@ function MessageList({ username, messages }) {
   // (condición/guarda entre []), al hacerlo ejecuta la f. scrollToBottom
   useEffect(scrollToBottom, [messages]);
 
+  console.log(messages);
+
   return (
     <ListGroup>
       {messages.map((msg, idx) => (

@@ -63,13 +63,7 @@ function App() {
       session.socket.current.on("connect_error", function (e) {
         console.error("not connected", e);
       });
-
-      /*
-      session.socket.current.on("chat", function ({ owner, msg }) {
-        console.log(owner, msg);
-        setMessages((prev) => [...prev, { userid: owner, text: msg }]);
-      });
-      */
+      
       return () => {
         session.socket.current.close();
         session.socket.current = null;

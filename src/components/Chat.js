@@ -1,7 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Image, Container, Row, Form } from "react-bootstrap";
-
-import { getUserData } from "../utils/api";
 
 import MessageList from "./MessageList";
 
@@ -9,43 +7,26 @@ import send from "../assets/common/icons/send.svg";
 
 import { SessionContext } from "./SessionProvider";
 
+
+function listenToMessages(socket) {
+  const [messages] = useState([]);
+
+  console.log(socket);
+  /*
+  socket.current.on("chat", function ({ owner, msg }) {
+    console.log(owner, msg);
+    setMessages((prev) => [...prev, { userid: owner, text: msg }]);
+  });
+  */
+  return messages;
+
+}
+
 function Chat() {
   const session = useContext(SessionContext);
   const [message, setMessage] = useState("");
-  const [codeInput, setCodeInput] = useState("");
 
-  // TODO: Hardcodeado provisional para pedir el username
-  const [username, setUserName] = useState("");
-
-  useEffect(() => {
-    getUserData(session).then((response) => {
-      if ("error" in response) {
-        console.log(response.error);
-      } else {
-        setUserName(response.name);
-      }
-    });
-  }, []);
-
-  const startGame = async (e) => {
-    e.preventDefault();
-    session.socket.current.emit("start_game", callback);
-  };
-
-  const joinGame = async (e) => {
-    e.preventDefault();
-    if (codeInput) {
-      console.log(codeInput);
-      session.socket.current.emit("join", codeInput, callback);
-      setCodeInput();
-    }
-  };
-
-  function callback(data) {
-    if (data && data.error) {
-      console.error(data.error);
-    }
-  }
+  const { messages } = listenToMessages(session.socket);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -54,6 +35,12 @@ function Chat() {
     }
     setMessage("");
   };
+    
+  function callback(data) {
+    if (data && data.error) {
+      console.error(data.error);
+    }
+  }
 
   return (
     <Container className="chat-container">
@@ -61,8 +48,7 @@ function Chat() {
         <h4>Chat de partida</h4>
       </Row>
       <Row className="message-list px-3">
-        {/* TODO: PONER MESSAGES */}
-        <MessageList username={username} messages={[]} />
+        <MessageList username={session.userData.username} messages={messages} />
       </Row>
       <Form className="send-message input-group mt-2" onSubmit={sendMessage}>
         <input
@@ -78,18 +64,6 @@ function Chat() {
           </Button>
         </div>
       </Form>
-      <button id="start-game" onClick={startGame}>
-        Start game
-      </button>
-      <button id="leave-room">Leave room</button>
-      <form id="join-room-form" onSubmit={joinGame}>
-        <input
-          id="code-input"
-          autoComplete="off"
-          onChange={(e) => setCodeInput(e.target.value)}
-        />
-        <button>Join room</button>
-      </form>
     </Container>
   );
 }
