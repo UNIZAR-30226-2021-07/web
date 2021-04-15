@@ -14,12 +14,11 @@ export default function PreparingGamePopup({ socket, initialUsers }) {
   const total = "6";
 
   useEffect(() => {
+    // Setup del socket
     socket.current.on("users_waiting", (users) => {
       setReady(users);
     });
-  }, []);
 
-  useEffect(() => {
     socket.current.on("start_game", (response) => {
       if (response && response.error) {
         renderErrorPopup(response.error);

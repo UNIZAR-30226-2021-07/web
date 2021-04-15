@@ -15,14 +15,14 @@ export default function JoinGamePopup({ socket }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    socket.current.on("users_waiting", (numUsers) => {
+      renderPreparingGamePopup(socket, numUsers);
+    });
+
     socket.current.emit("join", code, (response) => {
       if (response && response.error) {
         renderErrorPopup(response.error);
       }
-    });
-
-    socket.current.on("users_waiting", (numUsers) => {
-      renderPreparingGamePopup(socket, numUsers);
     });
   };
   return (
