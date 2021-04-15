@@ -8,7 +8,7 @@ import { renderPreparingGamePopup } from "./PreparingGamePopup";
 
 import check from "../../assets/common/icons/check.svg";
 
-export default function JoinGamePopup() {
+export default function JoinPrivateGamePopup() {
   return (
     <Popup title="Unirse a partida" icon={check} close={true}>
       <Row className="justify-content-center">
@@ -40,8 +40,8 @@ export default function JoinGamePopup() {
   );
 }
 
-export function renderJoinGamePopup() {
-  const content = <JoinGamePopup />;
+export function renderJoinPrivateGamePopup() {
+  const content = <JoinPrivateGamePopup />;
   PopupboxManager.open({
     content,
     config: {

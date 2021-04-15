@@ -4,8 +4,8 @@ import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { renderCreateGamePopup } from "./popups/CreateGamePopup";
-import { renderJoinGamePopup } from "./popups/JoinGamePopup";
-import { renderPreparingGamePopup } from "./popups/PreparingGamePopup";
+import { renderJoinPrivateGamePopup } from "./popups/JoinPrivateGamePopup";
+import { renderJoinPublicGamePopup } from "./popups/JoinPublicGamePopup";
 
 import logo from "../assets/common/logo/logo.svg";
 import shop from "../assets/common/icons/tienda.svg";
@@ -69,7 +69,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={renderJoinGamePopup}
+            onClick={() => renderJoinPrivateGamePopup(session)}
           >
             UNIRSE PARTIDA PRIVADA
           </Button>
@@ -77,7 +77,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={() => renderPreparingGamePopup(session)}
+            onClick={() => renderJoinPublicGamePopup(session)}
           >
             UNIRSE PARTIDA PÚBLICA
           </Button>
