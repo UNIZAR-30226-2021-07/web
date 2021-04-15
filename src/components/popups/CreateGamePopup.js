@@ -65,7 +65,10 @@ export default function CreateGamePopup({ socket }) {
             aria-describedby="inputGroup-sizing-default"
           />
         </div>
-        <Button className="primary-button" onClick={renderStartGamePopup}>
+        <Button
+          className="primary-button"
+          onClick={() => renderStartGamePopup(socket)}
+        >
           CONFIRMAR
         </Button>
       </Row>
