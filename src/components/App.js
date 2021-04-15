@@ -64,13 +64,6 @@ function App() {
         console.error("not connected", e);
       });
 
-      session.socket.current.on("start_game", function () {
-        alert("Game started");
-      });
-
-      session.socket.current.on("users_waiting", function (n) {
-        console.log(n);
-      });
       /*
       session.socket.current.on("chat", function ({ owner, msg }) {
         console.log(owner, msg);
