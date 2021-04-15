@@ -14,6 +14,9 @@ export default function PreparingGamePopup({ socket, initialUsers }) {
   const total = "6";
 
   useEffect(() => {
+    if (!socket || !socket.current)
+      return;
+
     // Setup del socket
     socket.current.on("users_waiting", (users) => {
       setReady(users);

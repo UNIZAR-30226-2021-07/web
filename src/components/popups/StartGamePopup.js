@@ -6,12 +6,15 @@ import { useHistory } from "react-router-dom";
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 
-export default function StartGamePopup({ socket, initialUsers }) {
+export default function StartGamePopup({ socket, initialUsers = 0 }) {
   const history = useHistory();
   const [ready, setReady] = useState(initialUsers);
   const total = 6;
 
   useEffect(() => {
+    if (!socket || !socket.current)
+      return;
+
     socket.current.on("users_waiting", (users) => {
       setReady(users);
     });
@@ -47,7 +50,9 @@ export default function StartGamePopup({ socket, initialUsers }) {
 }
 
 export function renderStartGamePopup(socket, initialUsers) {
-  const content = <StartGamePopup socket={socket} initialUsers={initialUsers} />;
+  const content = (
+    <StartGamePopup socket={socket} initialUsers={initialUsers} />
+  );
   PopupboxManager.open({
     content,
     config: {
