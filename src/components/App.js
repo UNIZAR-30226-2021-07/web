@@ -68,7 +68,7 @@ function App() {
         alert("Game started");
       });
 
-      session.socket.current.on("players_waiting", function (n) {
+      session.socket.current.on("users_waiting", function (n) {
         console.log(n);
       });
       /*

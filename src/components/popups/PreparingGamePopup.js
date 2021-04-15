@@ -12,6 +12,7 @@ const curiosities = [
 ];
 
 export default function PreparingGamePopup() {
+  
   return (
     <Popup title="Preparando partida...">
       <Row className="justify-content-center mb-3 mt-3">
