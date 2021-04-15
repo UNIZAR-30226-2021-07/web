@@ -11,11 +11,10 @@ import loadArrow from "../../assets/common/icons/flecha-cargar.svg";
 export default function PreparingGamePopup({ socket, initialUsers }) {
   const history = useHistory();
   const [ready, setReady] = useState(initialUsers);
-  const total = "6";
+  const total = 6;
 
   useEffect(() => {
-    if (!socket || !socket.current)
-      return;
+    if (!socket || !socket.current) return;
 
     // Setup del socket
     socket.current.on("users_waiting", (users) => {

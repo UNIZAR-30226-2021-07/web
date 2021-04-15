@@ -12,8 +12,7 @@ export default function StartGamePopup({ socket, initialUsers = 0 }) {
   const total = 6;
 
   useEffect(() => {
-    if (!socket || !socket.current)
-      return;
+    if (!socket || !socket.current) return;
 
     socket.current.on("users_waiting", (users) => {
       setReady(users);
