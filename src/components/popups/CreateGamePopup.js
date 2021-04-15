@@ -17,14 +17,18 @@ function copyCode() {
 
 export default function CreateGamePopup({ socket }) {
   const [code, setCode] = useState("");
+  const [ready, setReady] = useState(1);
 
   useEffect(() => {
-    socket.current.emit("create_game", callback);
+    socket.current.on("users_waiting", (users) => {
+      setReady(users);
+    });
+
     socket.current.on("create_game", (response) => {
-      console.log("CREATE GAME RECIBIDO");
-      console.log(response);
       setCode(response.code);
     });
+
+    socket.current.emit("create_game", callback);
   }, []);
 
   function callback(data) {
@@ -67,7 +71,7 @@ export default function CreateGamePopup({ socket }) {
         </div>
         <Button
           className="primary-button"
-          onClick={() => renderStartGamePopup(socket)}
+          onClick={() => renderStartGamePopup(socket, ready)}
         >
           CONFIRMAR
         </Button>

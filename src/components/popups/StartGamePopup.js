@@ -6,10 +6,10 @@ import { useHistory } from "react-router-dom";
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 
-export default function StartGamePopup({ socket }) {
+export default function StartGamePopup({ socket, initialUsers }) {
   const history = useHistory();
-  const [ready, setReady] = useState("1");
-  const total = "6";
+  const [ready, setReady] = useState(initialUsers);
+  const total = 6;
 
   useEffect(() => {
     socket.current.on("users_waiting", (users) => {
@@ -21,7 +21,6 @@ export default function StartGamePopup({ socket }) {
     e.preventDefault();
 
     socket.current.emit("start_game", (response) => {
-      console.log(response);
       if (response && response.error) {
         renderErrorPopup(response.error);
       } else {
