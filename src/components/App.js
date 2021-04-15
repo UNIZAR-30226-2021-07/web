@@ -49,7 +49,7 @@ function App() {
 
   useEffect(() => {
     if (session.token != null) {
-      session.socket.current = io.connect("ws://gatovid.herokuapp.com", {
+      session.socket.current = io.connect("wss://gatovid.herokuapp.com", {
         extraHeaders: {
           Authorization: "Bearer " + session.token,
         },
