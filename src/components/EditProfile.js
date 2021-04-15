@@ -45,9 +45,7 @@ function EditProfile() {
 
     // Url to the image available in "public" directory
     let boardURL =
-      process.env.PUBLIC_URL +
-      "/" +
-      boards[session.userData.board].image;
+      process.env.PUBLIC_URL + "/" + boards[session.userData.board].image;
     setBoard(boardURL);
   }, [session.userData.board]);
 
@@ -188,11 +186,7 @@ function EditProfile() {
                       </Col>
                       <Col id="imgCambioTablero">
                         <Link to="/shop">
-                          <Image
-                            rounded
-                            src={board}
-                            alt="Tablero"
-                          ></Image>
+                          <Image rounded src={board} alt="Tablero"></Image>
                         </Link>
                       </Col>
                     </Form.Row>
