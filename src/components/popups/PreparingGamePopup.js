@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
+import { renderStartGamePopup } from "./StartGamePopup";
 
 import loadArrow from "../../assets/common/icons/flecha-cargar.svg";
 
@@ -29,6 +30,11 @@ export default function PreparingGamePopup({ socket, initialUsers }) {
         history.push("/match");
       }
     });
+
+    socket.current.on("game_owner", () => {
+      renderStartGamePopup(socket, ready);
+    });
+    
   }, []);
 
   return (
