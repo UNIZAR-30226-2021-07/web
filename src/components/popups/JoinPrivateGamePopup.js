@@ -9,7 +9,7 @@ import { renderErrorPopup } from "./ErrorPopup";
 
 import check from "../../assets/common/icons/check.svg";
 
-export default function JoinGamePopup({ socket }) {
+export default function JoinPrivateGamePopup({ socket }) {
   const [code, setCode] = useState("");
 
   const handleSubmit = async (e) => {
@@ -24,6 +24,7 @@ export default function JoinGamePopup({ socket }) {
       }
     });
   };
+
   return (
     <Popup title="Unirse a partida" icon={check} close={true}>
       <Row className="justify-content-center">
@@ -53,8 +54,8 @@ export default function JoinGamePopup({ socket }) {
   );
 }
 
-export function renderJoinGamePopup({ socket }) {
-  const content = <JoinGamePopup socket={socket} />;
+export function renderJoinPrivateGamePopup({ socket }) {
+  const content = <JoinPrivateGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {
