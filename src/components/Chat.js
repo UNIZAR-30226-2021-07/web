@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Button, Image, Container, Row, Form } from "react-bootstrap";
 
 import MessageList from "./MessageList";
@@ -9,16 +9,16 @@ import { SessionContext } from "./SessionProvider";
 
 
 function listenToMessages(socket) {
-  const [messages] = useState([]);
-
-  console.log(socket);
-  /*
-  socket.current.on("chat", function ({ owner, msg }) {
-    console.log(owner, msg);
-    setMessages((prev) => [...prev, { userid: owner, text: msg }]);
-  });
-  */
-  return messages;
+  const [messages, setMessages] = useState([]);
+  
+  useEffect(() => {
+    socket.current.on("chat", function ({ owner, msg }) {
+      console.log(owner, msg);
+      setMessages((prev) => [...prev, { userid: owner, text: msg }]);
+    });
+  }, [socket]);
+  
+  return { messages };
 
 }
 

@@ -54,8 +54,7 @@ function App() {
           Authorization: "Bearer " + session.token,
         },
       });
-
-      console.log(session.socket.current);
+      
       session.socket.current.on("connect", function () {
         console.log("connected");
       });
