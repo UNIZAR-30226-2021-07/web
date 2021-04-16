@@ -8,6 +8,7 @@ import {
   Form,
   Image,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { renderDeleteAccountPopup } from "./popups/DeleteAccountPopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
@@ -22,10 +23,8 @@ import { SessionContext } from "./SessionProvider";
 function EditProfile() {
   const session = useContext(SessionContext);
 
-  const [pictureURL, setPictureURL] = useState("");
-  const [boardURL, setBoardURL] = useState("");
-  const [picture, setPicture] = useState(session.userData.picture);
-  const [board, setBoard] = useState(session.userData.board);
+  const [picture, setPicture] = useState("");
+  const [board, setBoard] = useState("");
   const [newUserName, setNewUserName] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -34,21 +33,20 @@ function EditProfile() {
     if (session.userData.length === 0) return;
 
     // Url to the image available in "public" directory
-    setPictureURL(
+    let pictureURL =
       process.env.PUBLIC_URL +
-        "/" +
-        profile_pics[session.userData.picture].image
-    );
+      "/" +
+      profile_pics[session.userData.picture].image;
+    setPicture(pictureURL);
   }, [session.userData.picture]);
 
   useEffect(() => {
     if (session.userData.length === 0) return;
 
-    // Url to the board available in "public" directory
-    setBoardURL(
-      process.env.PUBLIC_URL + "/" + boards[session.userData.board].image
-    );
-    console.log(boardURL);
+    // Url to the image available in "public" directory
+    let boardURL =
+      process.env.PUBLIC_URL + "/" + boards[session.userData.board].image;
+    setBoard(boardURL);
   }, [session.userData.board]);
 
   const handleSubmit = async (e) => {
@@ -96,16 +94,6 @@ function EditProfile() {
     }
   };
 
-  const changePicture = async (e) => {
-    e.preventDefault();
-    setPicture(picture + 1);
-  };
-
-  const changeBoard = async (e) => {
-    e.preventDefault();
-    setBoard(board + 1);
-  };
-
   return (
     <Container
       id="editProfile"
@@ -125,15 +113,16 @@ function EditProfile() {
                 className="align-items-center justify-content-center mb-2"
                 style={{ position: "relative" }}
               >
-                <Button className="primary-button">
-                  <Image src={camera} fluid></Image>
-                </Button>
+                <Link to="/shop">
+                  <Button className="primary-button">
+                    <Image src={camera} fluid></Image>
+                  </Button>
+                </Link>
                 <Image
-                  src={pictureURL}
+                  src={picture}
                   className="user-profile-image mt-3"
                   roundedCircle
                   thumbnail
-                  onClick={changePicture}
                 ></Image>
               </Row>
               <Row className="align-items-center justify-content-center">
@@ -196,22 +185,22 @@ function EditProfile() {
                         <Form.Label>Cambiar Tablero</Form.Label>
                       </Col>
                       <Col id="imgCambioTablero">
-                        <Image
-                          rounded
-                          src={boardURL}
-                          onClick={changeBoard}
-                        ></Image>
+                        <Link to="/shop">
+                          <Image rounded src={board} alt="Tablero"></Image>
+                        </Link>
                       </Col>
                     </Form.Row>
                   </Form.Group>
                   <Row className="align-items-center justify-content-center">
-                    <Button
-                      className="primary-button"
-                      type="submit"
-                      style={{ width: "40vh" }}
-                    >
-                      GUARDAR
-                    </Button>
+                    <Link to="/profile">
+                      <Button
+                        className="primary-button"
+                        type="submit"
+                        style={{ width: "40vh" }}
+                      >
+                        GUARDAR
+                      </Button>
+                    </Link>
                   </Row>
                 </Form>
               </Card.Body>

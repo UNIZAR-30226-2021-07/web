@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Row, Button } from "react-bootstrap";
+import { Row, Button, Form } from "react-bootstrap";
 
 import Popup from "./PopUp";
 
 import { renderPreparingGamePopup } from "./PreparingGamePopup";
+import { renderErrorPopup } from "./ErrorPopup";
 
 import check from "../../assets/common/icons/check.svg";
 
-export default function JoinPrivateGamePopup() {
+export default function JoinPrivateGamePopup({ socket }) {
+  const [code, setCode] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    socket.current.emit("join", code, (response) => {
+      console.log(response);
+      if (response && response.error) {
+        renderErrorPopup(response.error);
+      } else {
+        renderPreparingGamePopup();
+      }
+    });
+  };
+
   return (
     <Popup title="Unirse a partida" icon={check} close={true}>
       <Row className="justify-content-center">
@@ -18,7 +34,7 @@ export default function JoinPrivateGamePopup() {
         </p>
       </Row>
       <Row className="justify-content-center">
-        <div>
+        <Form className="input-group" onSubmit={handleSubmit}>
           <input
             id="game-code"
             type="text"
@@ -27,21 +43,19 @@ export default function JoinPrivateGamePopup() {
             maxLength="6"
             placeholder="Código"
             className="text-center form-control h-100 button-rouded"
+            onChange={(e) => setCode(e.target.value)}
           ></input>
-        </div>
-        <Button
-          className="primary-button ml-2"
-          onClick={renderPreparingGamePopup}
-        >
-          CONFIRMAR
-        </Button>
+          <Button className="primary-button ml-2" type="submit">
+            CONFIRMAR
+          </Button>
+        </Form>
       </Row>
     </Popup>
   );
 }
 
-export function renderJoinPrivateGamePopup() {
-  const content = <JoinPrivateGamePopup />;
+export function renderJoinPrivateGamePopup({ socket }) {
+  const content = <JoinPrivateGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {

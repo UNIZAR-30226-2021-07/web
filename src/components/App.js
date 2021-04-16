@@ -49,20 +49,34 @@ function App() {
 
   useEffect(() => {
     if (session.token != null) {
-      session.socket.current = io.connect("ws://gatovid.herokuapp.com", {
+      session.socket.current = io.connect("wss://gatovid.herokuapp.com", {
         extraHeaders: {
           Authorization: "Bearer " + session.token,
         },
       });
-      
-      session.socket.current.on("connect", function () {
+
+      session.socket.current.on("connect", function() {
         console.log("connected");
       });
 
-      session.socket.current.on("connect_error", function (e) {
+      session.socket.current.on("connect_error", function(e) {
         console.error("not connected", e);
       });
-      
+
+      session.socket.current.on("start_game", function() {
+        alert("Game started");
+      });
+
+      session.socket.current.on("users_waiting", function(n) {
+        console.log(n);
+      });
+      /*
+      session.socket.current.on("chat", function ({ owner, msg }) {
+        console.log(owner, msg);
+        setMessages((prev) => [...prev, { userid: owner, text: msg }]);
+      });
+      */
+
       return () => {
         session.socket.current.close();
         session.socket.current = null;
@@ -107,8 +121,8 @@ function App() {
           {session.token != null ? (
             <Redirect to="/home" />
           ) : (
-            <Redirect to="/login" />
-          )}
+              <Redirect to="/login" />
+            )}
         </Route>
       </Switch>
     </div>
@@ -123,8 +137,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
         rest.token != null ? (
           <Component {...rest} {...props} />
         ) : (
-          <Redirect to="/login" />
-        )
+            <Redirect to="/login" />
+          )
       }
     />
   );
