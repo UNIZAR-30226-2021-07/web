@@ -55,19 +55,19 @@ function App() {
         },
       });
 
-      session.socket.current.on("connect", function() {
+      session.socket.current.on("connect", function () {
         console.log("connected");
       });
 
-      session.socket.current.on("connect_error", function(e) {
+      session.socket.current.on("connect_error", function (e) {
         console.error("not connected", e);
       });
 
-      session.socket.current.on("start_game", function() {
+      session.socket.current.on("start_game", function () {
         alert("Game started");
       });
 
-      session.socket.current.on("users_waiting", function(n) {
+      session.socket.current.on("users_waiting", function (n) {
         console.log(n);
       });
       /*
@@ -121,8 +121,8 @@ function App() {
           {session.token != null ? (
             <Redirect to="/home" />
           ) : (
-              <Redirect to="/login" />
-            )}
+            <Redirect to="/login" />
+          )}
         </Route>
       </Switch>
     </div>
@@ -137,8 +137,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
         rest.token != null ? (
           <Component {...rest} {...props} />
         ) : (
-            <Redirect to="/login" />
-          )
+          <Redirect to="/login" />
+        )
       }
     />
   );

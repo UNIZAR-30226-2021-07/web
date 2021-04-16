@@ -11,7 +11,7 @@ function Match() {
 
   const leaveGame = async (e) => {
     e.preventDefault();
-      session.socket.current.emit("leave", callback);
+    session.socket.current.emit("leave", callback);
   };
 
   function callback(data) {
@@ -28,7 +28,7 @@ function Match() {
         <Container className="app-container">
           <Row className="h-100">
             <Col className="md-9">
-                <Button onClick={leaveGame}>Salir de la partida</Button>
+              <Button onClick={leaveGame}>Salir de la partida</Button>
             </Col>
             <Col className="md-3"></Col>
           </Row>

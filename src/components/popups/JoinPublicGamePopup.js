@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -25,12 +25,12 @@ export default function JoinPublicGamePopup({ socket }) {
       socket.current.emit("join", response.code, callback);
       // Wait to "start_game" or "game_cancelled"
       socket.current.on("start_game", (response) => {
-          if (response && response.error) {
-            renderErrorPopup(response.error);
-          } else {
-            PopupboxManager.close();
-            history.push("/match");
-          }
+        if (response && response.error) {
+          renderErrorPopup(response.error);
+        } else {
+          PopupboxManager.close();
+          history.push("/match");
+        }
       });
       socket.current.on("game_cancelled", (response) => {
         console.log(response);

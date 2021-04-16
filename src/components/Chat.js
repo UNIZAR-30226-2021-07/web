@@ -7,19 +7,17 @@ import send from "../assets/common/icons/send.svg";
 
 import { SessionContext } from "./SessionProvider";
 
-
 function listenToMessages(socket) {
   const [messages, setMessages] = useState([]);
-  
+
   useEffect(() => {
     socket.current.on("chat", function ({ owner, msg }) {
       console.log(owner, msg);
       setMessages((prev) => [...prev, { userid: owner, text: msg }]);
     });
   }, [socket]);
-  
-  return { messages };
 
+  return { messages };
 }
 
 function Chat() {
@@ -35,7 +33,7 @@ function Chat() {
     }
     setMessage("");
   };
-    
+
   function callback(data) {
     if (data && data.error) {
       console.error(data.error);
