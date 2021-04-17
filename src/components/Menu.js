@@ -41,7 +41,6 @@ function Menu() {
               alt="Perfil"
               className="menu-icon user-profile-image"
               roundedCircle
-              thumbnail
             />
           </Link>
         </Col>
