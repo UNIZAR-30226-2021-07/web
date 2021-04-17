@@ -25,6 +25,7 @@ function SessionProvider({ children }) {
   const [token, setToken] = useState(() => getLocalStorage("token", null));
   // Para poder coger el valor que se le asigna desde el useEffect
   // con current se referencia a este objeto desde fuera
+  const [socket, setToken] = useState(() => getLocalStorage("token", null));
   const socket = useRef(null);
   const [userData, setUserData] = useState([]);
 

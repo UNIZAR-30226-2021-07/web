@@ -13,7 +13,10 @@ function Chat() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    console.log("2: " + session.socket);
+
+    if (!session.socket.current) {
+      return;
+    }
     session.socket.current.on("chat", function ({ owner, msg }) {
       console.log(owner, msg);
       setMessages((prev) => [...prev, { userid: owner, text: msg }]);
