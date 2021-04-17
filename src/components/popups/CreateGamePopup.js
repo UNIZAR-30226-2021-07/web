@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button, Image } from "react-bootstrap";
 
@@ -8,6 +8,7 @@ import { renderErrorPopup } from "./ErrorPopup";
 
 import check from "../../assets/common/icons/check.svg";
 import clipboard from "../../assets/common/icons/clipboard.svg";
+import { NumUsersContext } from "../Menu";
 
 function copyCode() {
   const codeField = document.getElementById("game-code");
@@ -18,6 +19,9 @@ function copyCode() {
 
 export default function CreateGamePopup({ socket }) {
   const [code, setCode] = useState("");
+  const usersContext = useContext(NumUsersContext);
+
+  console.log(usersContext.users);
 
   useEffect(() => {
 

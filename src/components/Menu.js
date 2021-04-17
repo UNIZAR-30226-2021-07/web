@@ -14,16 +14,8 @@ import profile_pics from "../assets/common/profile_pics.json";
 
 import { SessionContext } from "./SessionProvider";
 
-/*
-export function listenToNumUsers({ socket, setUsers }){
-  useEffect(() => {
-    socket.current.on("users_waiting", (users) => {
-      console.log(users);
-      setUsers(users);
-    });
-  }, [socket]);
-}
-*/
+
+export var NumUsersContext = React.createContext();
 
 function Menu() {
   const session = useContext(SessionContext);
@@ -31,8 +23,8 @@ function Menu() {
   const [users, setUsers] = useState(0);
 
   useEffect(() => {
-    if (!session.socket) return;
-    
+    if (!session.socket.current) return;
+
     session.socket.current.on("users_waiting", (users) => {
       console.log(users);
       setUsers(users);
@@ -49,11 +41,6 @@ function Menu() {
     setPicture(pictureURL);
   }, [session.userData.picture]);
 
-  /*
-  useEffect(() => {
-      console.log(session.socket.current.id);
-  }, []);
-*/
   return (
     <Container
       id="menu"
@@ -99,14 +86,16 @@ function Menu() {
         />
         <h1 className="logo-title ml-4">GATOVID</h1>
       </Row>
+      <NumUsersContext.Provider value={{ users: users }}>
       <Row className="align-items-center">
         <Col lg={true}>
           <Button
-            className="primary-button d-block mx-auto m-2"
-            onClick={() => renderCreateGamePopup(session)}
-          >
-            CREAR PARTIDA PRIVADA
-          </Button>
+              className="primary-button d-block mx-auto m-2"
+              onClick={() => renderCreateGamePopup(session)}
+            >
+              CREAR PARTIDA PRIVADA
+            </Button>
+       
         </Col>
         <Col lg={true}>
           <Button
@@ -125,6 +114,7 @@ function Menu() {
           </Button>
         </Col>
       </Row>
+      </NumUsersContext.Provider>
     </Container>
   );
 }
