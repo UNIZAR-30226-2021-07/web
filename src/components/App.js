@@ -55,7 +55,6 @@ function App() {
         },
       });
 
-      console.log(session.socket.current);
       session.socket.current.on("connect", function () {
         console.log("connected");
       });
@@ -70,6 +69,7 @@ function App() {
         setMessages((prev) => [...prev, { userid: owner, text: msg }]);
       });
       */
+
       return () => {
         session.socket.current.close();
         session.socket.current = null;
