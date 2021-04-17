@@ -16,7 +16,7 @@ function MessageList({ username, messages }) {
   useEffect(scrollToBottom, [messages]);
 
   return (
-    <ListGroup>
+    <ListGroup className="w-100">
       {messages.map((msg, idx) => (
         <Message
           className="align-items-center justify-content-center text-align-center"
