@@ -18,11 +18,7 @@ function MessageList({ username, messages }) {
   return (
     <ListGroup className="w-100">
       {messages.map((msg, idx) => (
-        <Message
-          key={idx}
-          username={username}
-          message={msg}
-        />
+        <Message key={idx} username={username} message={msg} />
       ))}
       <div ref={messagesEndRef} />
     </ListGroup>
