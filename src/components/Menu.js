@@ -49,6 +49,11 @@ function Menu() {
     setPicture(pictureURL);
   }, [session.userData.picture]);
 
+  /*
+  useEffect(() => {
+      console.log(session.socket.current.id);
+  }, []);
+*/
   return (
     <Container
       id="menu"
