@@ -17,6 +17,8 @@ import { SessionContext } from "./SessionProvider";
 function Menu() {
   const session = useContext(SessionContext);
 
+  console.log(session.socket.current);
+
   return (
     <Container
       id="menu"

@@ -18,6 +18,7 @@ export default function JoinPublicGamePopup({ socket }) {
 
   useEffect(() => {
     socket.current.emit("search_game", callback);
+    console.log("SEARCHING GAME: " + socket.current.id);
     // Listen to receive a game code
     socket.current.on("found_game", (response) => {
       console.log(response.code);
@@ -62,6 +63,7 @@ export default function JoinPublicGamePopup({ socket }) {
 }
 
 export function renderJoinPublicGamePopup({ socket }) {
+  console.log(socket.current);
   const content = <JoinPublicGamePopup socket={socket} />;
   PopupboxManager.open({
     content,

@@ -13,7 +13,6 @@ function Chat() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-
     if (!session.socket.current) {
       return;
     }

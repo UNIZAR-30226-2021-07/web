@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Button, Container, Col, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
@@ -9,18 +9,26 @@ function Match() {
   const session = useContext(SessionContext);
   const history = useHistory();
 
-  const leaveGame = async (e) => {
-    e.preventDefault();
-    session.socket.current.emit("leave", callback);
-  };
-
-  function callback(data) {
-    if (data && data.error) {
-      console.error(data.error);
-    } else {
+  useEffect(() => {
+    // If socket null, (e.g. when disconnected) go back to menu
+    if (!session.socket.current) {
+      session.setUpdateSocket((session.updateSocket + 1) % 2);
       history.push("/home");
     }
-  }
+  }, []);
+
+  const leaveGame = async (e) => {
+    e.preventDefault();
+    session.socket.current.emit("leave", (data) => {
+      if (data && data.error) {
+        console.error(data.error);
+      } else {
+        // When leaving, change updateSocket to get a new socket
+        session.setUpdateSocket((session.updateSocket + 1) % 2);
+        history.push("/home");
+      }
+    });
+  };
 
   return (
     <Row className="m-0">

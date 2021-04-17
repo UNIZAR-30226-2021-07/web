@@ -25,12 +25,14 @@ function SessionProvider({ children }) {
   const [token, setToken] = useState(() => getLocalStorage("token", null));
   // Para poder coger el valor que se le asigna desde el useEffect
   // con current se referencia a este objeto desde fuera
-  const [socket, setToken] = useState(() => getLocalStorage("token", null));
   const socket = useRef(null);
+  // Actua como un flag. En el momento en el que se cambia se dispara la
+  // obtención de un nuevo socket en "App".
+  const [updateSocket, setUpdateSocket] = useState(1);
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    console.log(token);
+    //console.log(token);
     // Guardamos el token cuando se actualiza
     setLocalStorage("token", token);
   }, [token]);
@@ -40,8 +42,10 @@ function SessionProvider({ children }) {
       value={{
         token: token,
         socket: socket,
+        updateSocket: updateSocket,
         userData: userData,
         setToken: (token) => setToken(token),
+        setUpdateSocket: (updateSocket) => setUpdateSocket(updateSocket),
         setUserData: (userData) => setUserData(userData),
       }}
     >

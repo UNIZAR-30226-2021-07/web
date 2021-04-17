@@ -57,22 +57,19 @@ function App() {
 
       session.socket.current.on("connect", function () {
         console.log("connected");
-        console.log(session.socket.current.id)
+        console.log(session.socket.current.id);
       });
 
       session.socket.current.on("connect_error", function (e) {
         console.error("not connected", e);
       });
 
-      
       return () => {
-        //session.socket.current.close();
-        //session.socket.current = null;
-        console.log("RETURN");
+        session.socket.current.close();
+        session.socket.current = null;
       };
-      
     }
-  }, [session.token]);
+  }, [session.token, session.updateSocket]);
   // De esta forma el useEffect se ejecutará si cambia el token, volviendo
   // a hacer el connect
 
