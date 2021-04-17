@@ -49,13 +49,12 @@ function App() {
 
   useEffect(() => {
     if (session.token != null) {
-      session.socket.current = io.connect("ws://gatovid.herokuapp.com", {
+      session.socket.current = io.connect("wss://gatovid.herokuapp.com", {
         extraHeaders: {
           Authorization: "Bearer " + session.token,
         },
       });
 
-      console.log(session.socket.current);
       session.socket.current.on("connect", function () {
         console.log("connected");
       });
@@ -68,7 +67,7 @@ function App() {
         alert("Game started");
       });
 
-      session.socket.current.on("players_waiting", function (n) {
+      session.socket.current.on("users_waiting", function (n) {
         console.log(n);
       });
       /*
@@ -77,6 +76,7 @@ function App() {
         setMessages((prev) => [...prev, { userid: owner, text: msg }]);
       });
       */
+
       return () => {
         session.socket.current.close();
         session.socket.current = null;
