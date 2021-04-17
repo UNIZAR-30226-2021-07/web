@@ -16,9 +16,7 @@ const curiosities = [
 export default function JoinPublicGamePopup({ socket }) {
   const history = useHistory();
 
-
   useEffect(() => {
-
     if (!socket.current) {
       renderErrorPopup("No hay conexión con el servidor, vuelva a intentarlo");
     }
@@ -47,7 +45,6 @@ export default function JoinPublicGamePopup({ socket }) {
         history.push("/menu");
       });
     });
-
   });
 
   function callback(data) {
