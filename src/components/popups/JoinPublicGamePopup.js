@@ -16,9 +16,13 @@ const curiosities = [
 export default function JoinPublicGamePopup({ socket }) {
   const history = useHistory();
 
+
   useEffect(() => {
+
+    if (!socket.current) {
+      renderErrorPopup("No hay conexión con el servidor, vuelva a intentarlo");
+    }
     socket.current.emit("search_game", callback);
-    console.log("SEARCHING GAME: " + socket.current.id);
     // Listen to receive a game code
     socket.current.on("found_game", (response) => {
       console.log(response.code);
@@ -43,7 +47,8 @@ export default function JoinPublicGamePopup({ socket }) {
         history.push("/menu");
       });
     });
-  }, []);
+
+  });
 
   function callback(data) {
     if (data && data.error) {
@@ -63,7 +68,7 @@ export default function JoinPublicGamePopup({ socket }) {
 }
 
 export function renderJoinPublicGamePopup({ socket }) {
-  console.log(socket.current);
+  console.log(socket.current.id);
   const content = <JoinPublicGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
