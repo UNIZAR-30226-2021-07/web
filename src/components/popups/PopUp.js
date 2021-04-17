@@ -2,7 +2,13 @@ import React from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Container, Row, Image, Button } from "react-bootstrap";
 
-export default function Popup({ title, icon, close, children }) {
+export default function Popup({
+  title,
+  icon,
+  close,
+  onClose = PopupboxManager.close,
+  children,
+}) {
   return (
     <Container>
       <Row className="justify-content-center mb-2 align-items-center">
@@ -14,7 +20,7 @@ export default function Popup({ title, icon, close, children }) {
         ></Image>
         <h2 className="popup-title mb-0">{title}</h2>
         {close && (
-          <Button className="close" onClick={PopupboxManager.close}>
+          <Button className="close" onClick={onClose}>
             &times;
           </Button>
         )}

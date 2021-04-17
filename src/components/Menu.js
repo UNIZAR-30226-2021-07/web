@@ -14,10 +14,31 @@ import profile_pics from "../assets/common/profile_pics.json";
 
 import { SessionContext } from "./SessionProvider";
 
+/*
+export function listenToNumUsers({ socket, setUsers }){
+  useEffect(() => {
+    socket.current.on("users_waiting", (users) => {
+      console.log(users);
+      setUsers(users);
+    });
+  }, [socket]);
+}
+*/
+
 function Menu() {
   const session = useContext(SessionContext);
   const [picture, setPicture] = useState("");
+  const [users, setUsers] = useState(0);
 
+  useEffect(() => {
+    if (!session.socket.current) return;
+    
+    session.socket.current.on("users_waiting", (users) => {
+      console.log(users);
+      setUsers(users);
+    });
+  });
+  
   useEffect(() => {
     if (session.userData.length === 0) return;
 
@@ -82,7 +103,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={() => renderCreateGamePopup(session)}
+            onClick={() => renderCreateGamePopup(session, users)}
           >
             CREAR PARTIDA PRIVADA
           </Button>
@@ -90,7 +111,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={() => renderJoinPrivateGamePopup(session)}
+            onClick={() => renderJoinPrivateGamePopup(session, users)}
           >
             UNIRSE PARTIDA PRIVADA
           </Button>

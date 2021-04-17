@@ -1,30 +1,54 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Row, Image } from "react-bootstrap";
+import { Row } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
+import { renderErrorPopup } from "./ErrorPopup";
+import { renderStartGamePopup } from "./StartGamePopup";
 
-import loadArrow from "../../assets/common/icons/flecha-cargar.svg";
+export default function PreparingGamePopup({ socket, users }) {
+  const history = useHistory();
+  const total = 6;
 
-const curiosities = [
-  "Los gatos tricolores siempre son hembras",
-  "Todos los gatos recién nacidos tienen los ojos azules.",
-];
+  useEffect(() => {
+    if (!socket || !socket.current) return;
 
-export default function PreparingGamePopup() {
+    socket.current.on("start_game", (response) => {
+      if (response && response.error) {
+        renderErrorPopup(response.error);
+      } else {
+        PopupboxManager.close();
+        history.push("/match");
+      }
+    });
+
+    socket.current.on("game_owner", () => {
+      PopupboxManager.close();
+      renderStartGamePopup(socket);
+    });
+  });
+
   return (
     <Popup title="Preparando partida...">
       <Row className="justify-content-center mb-3 mt-3">
-        <Image src={loadArrow} fluid></Image>
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
       </Row>
-      <Row className="justify-content-center">¿Lo sabías?</Row>
-      <Row className="justify-content-center">{curiosities[0]}</Row>
+      <Row className="justify-content-center">
+        <p className="h5 text-center mb-3">
+          {users}/{total} usuarios preparados
+        </p>
+      </Row>
     </Popup>
   );
 }
 
-export function renderPreparingGamePopup() {
-  const content = <PreparingGamePopup />;
+export function renderPreparingGamePopup(socket, users) {
+  const content = (
+    <PreparingGamePopup socket={socket} users={users} />
+  );
   PopupboxManager.open({
     content,
     config: {

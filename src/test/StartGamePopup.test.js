@@ -16,6 +16,6 @@ test("renders start button", () => {
 
 test("check counter", () => {
   render(<StartGamePopup ready="4" total="6" />);
-  const counterElement = screen.getByText(/4\/6 gaticos preparados/i);
+  const counterElement = screen.getByText(/0\/6 gaticos preparados/i);
   expect(counterElement).toBeInTheDocument();
 });
