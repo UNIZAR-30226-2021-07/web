@@ -31,13 +31,13 @@ function Menu() {
   const [users, setUsers] = useState(0);
 
   useEffect(() => {
-    if (!session.socket.current) return;
+    if (!session.socket) return;
     
     session.socket.current.on("users_waiting", (users) => {
       console.log(users);
       setUsers(users);
     });
-  });
+  }, []);
   
   useEffect(() => {
     if (session.userData.length === 0) return;
@@ -98,7 +98,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={() => renderCreateGamePopup(session, users)}
+            onClick={() => renderCreateGamePopup(session)}
           >
             CREAR PARTIDA PRIVADA
           </Button>
@@ -106,7 +106,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={() => renderJoinPrivateGamePopup(session, users)}
+            onClick={() => renderJoinPrivateGamePopup(session)}
           >
             UNIRSE PARTIDA PRIVADA
           </Button>

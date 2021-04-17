@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -6,13 +6,11 @@ import { useHistory } from "react-router-dom";
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 
-export default function StartGamePopup({ socket, users }) {
+export default function StartGamePopup({ socket }) {
   const history = useHistory();
   const total = 6;
-
-  useEffect(() => {
-    console.log(users);
-  }, [users]);
+  
+  var users = 0;
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -43,9 +41,9 @@ export default function StartGamePopup({ socket, users }) {
   );
 }
 
-export function renderStartGamePopup(socket, users) {
+export function renderStartGamePopup(socket) {
   const content = (
-    <StartGamePopup socket={socket} users={users} />
+    <StartGamePopup socket={socket} />
   );
   PopupboxManager.open({
     content,
