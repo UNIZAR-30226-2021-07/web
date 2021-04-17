@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -9,13 +9,24 @@ import { renderJoinPublicGamePopup } from "./popups/JoinPublicGamePopup";
 
 import logo from "../assets/common/logo/logo.svg";
 import shop from "../assets/common/icons/tienda.svg";
-import user from "../assets/common/icons/perfil.svg";
 import coins from "../assets/common/icons/huella.svg";
+import profile_pics from "../assets/common/profile_pics.json";
 
 import { SessionContext } from "./SessionProvider";
 
 function Menu() {
   const session = useContext(SessionContext);
+  const [picture, setPicture] = useState("");
+
+  useEffect(() => {
+    if (session.userData.length === 0) return;
+
+    const pictureURL =
+      process.env.PUBLIC_URL +
+      "/" +
+      profile_pics[session.userData.picture].image;
+    setPicture(pictureURL);
+  }, [session.userData.picture]);
 
   return (
     <Container
@@ -25,7 +36,12 @@ function Menu() {
       <Row className="justify-content-between menu-icons">
         <Col className="h-100">
           <Link to="/profile" className="d-block h-100">
-            <Image src={user} alt="Perfil" className="menu-icon" />
+            <Image
+              src={picture}
+              alt="Perfil"
+              className="menu-icon user-profile-image"
+              roundedCircle
+            />
           </Link>
         </Col>
         <Col className="h-100">
