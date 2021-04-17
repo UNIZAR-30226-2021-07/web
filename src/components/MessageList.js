@@ -19,7 +19,6 @@ function MessageList({ username, messages }) {
     <ListGroup className="w-100">
       {messages.map((msg, idx) => (
         <Message
-          className="align-items-center justify-content-center text-align-center"
           key={idx}
           username={username}
           message={msg}
