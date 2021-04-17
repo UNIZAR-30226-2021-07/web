@@ -29,6 +29,12 @@ body,
   max-height: 35vh;
 }
 
+.menu-icon.user-profile-image {
+  width: 17vh;
+  height: 17vh;
+  border: 0.5vh solid #6a1b9a;
+}
+
 .menu-icons {
   height: 12vh;
 }
