@@ -32,7 +32,6 @@ function SessionProvider({ children }) {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    //console.log(token);
     // Guardamos el token cuando se actualiza
     setLocalStorage("token", token);
   }, [token]);

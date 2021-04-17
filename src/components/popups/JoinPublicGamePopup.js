@@ -23,7 +23,6 @@ export default function JoinPublicGamePopup({ socket }) {
     socket.current.emit("search_game", callback);
     // Listen to receive a game code
     socket.current.on("found_game", (response) => {
-      console.log(response.code);
       // Join public game with the given code
       socket.current.emit("join", response.code, callback);
       // Wait to "start_game" or "game_cancelled"
@@ -36,7 +35,6 @@ export default function JoinPublicGamePopup({ socket }) {
         }
       });
       socket.current.on("game_cancelled", (response) => {
-        console.log(response);
         // TODO: ¿Qué hacer si se recibe game_cancelled?
         // De momento se le manda a menu, pero se podría hacer
         // que volviese a intentar el search_game... de nuevo sin
@@ -65,7 +63,6 @@ export default function JoinPublicGamePopup({ socket }) {
 }
 
 export function renderJoinPublicGamePopup({ socket }) {
-  console.log(socket.current.id);
   const content = <JoinPublicGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
