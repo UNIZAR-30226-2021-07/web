@@ -17,6 +17,9 @@ export default function JoinPublicGamePopup({ socket }) {
   const history = useHistory();
 
   useEffect(() => {
+    if (!socket.current) {
+      renderErrorPopup("No hay conexión con el servidor, vuelva a intentarlo");
+    }
     socket.current.emit("search_game", callback);
     // Listen to receive a game code
     socket.current.on("found_game", (response) => {
@@ -42,7 +45,7 @@ export default function JoinPublicGamePopup({ socket }) {
         history.push("/menu");
       });
     });
-  }, []);
+  });
 
   function callback(data) {
     if (data && data.error) {
@@ -62,6 +65,7 @@ export default function JoinPublicGamePopup({ socket }) {
 }
 
 export function renderJoinPublicGamePopup({ socket }) {
+  console.log(socket.current.id);
   const content = <JoinPublicGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
