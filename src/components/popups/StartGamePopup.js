@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -6,18 +6,13 @@ import { useHistory } from "react-router-dom";
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 
-export default function StartGamePopup({ socket, initialUsers = 0 }) {
+export default function StartGamePopup({ socket, users }) {
   const history = useHistory();
-  const [ready, setReady] = useState(initialUsers);
   const total = 6;
 
   useEffect(() => {
-    if (!socket || !socket.current) return;
-
-    socket.current.on("users_waiting", (users) => {
-      setReady(users);
-    });
-  }, []);
+    console.log(users);
+  }, [users]);
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -36,7 +31,7 @@ export default function StartGamePopup({ socket, initialUsers = 0 }) {
     <Popup title="¿Empezar partida?">
       <Row className="justify-content-center">
         <p className="h5 text-center mb-3">
-          {ready}/{total} gaticos preparados
+          {users}/{total} gaticos preparados
         </p>
       </Row>
       <Row className="justify-content-center">
@@ -48,9 +43,9 @@ export default function StartGamePopup({ socket, initialUsers = 0 }) {
   );
 }
 
-export function renderStartGamePopup(socket, initialUsers) {
+export function renderStartGamePopup(socket, users) {
   const content = (
-    <StartGamePopup socket={socket} initialUsers={initialUsers} />
+    <StartGamePopup socket={socket} users={users} />
   );
   PopupboxManager.open({
     content,

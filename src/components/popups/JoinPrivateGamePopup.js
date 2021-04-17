@@ -9,19 +9,20 @@ import { renderErrorPopup } from "./ErrorPopup";
 
 import check from "../../assets/common/icons/check.svg";
 
-export default function JoinPrivateGamePopup({ socket }) {
+function JoinPrivateGamePopup({ socket, users }) {
+  
   const [code, setCode] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    socket.current.on("users_waiting", (numUsers) => {
-      renderPreparingGamePopup(socket, numUsers);
-    });
-
     socket.current.emit("join", code, (response) => {
       if (response && response.error) {
         renderErrorPopup(response.error);
+      }
+      else {
+        PopupboxManager.close();
+        renderPreparingGamePopup(socket, users);
       }
     });
   };
@@ -53,10 +54,11 @@ export default function JoinPrivateGamePopup({ socket }) {
       </Row>
     </Popup>
   );
+
 }
 
-export function renderJoinPrivateGamePopup({ socket }) {
-  const content = <JoinPrivateGamePopup socket={socket} />;
+export function renderJoinPrivateGamePopup({ socket, users }) {
+  const content = <JoinPrivateGamePopup socket={socket} users={users} />;
   PopupboxManager.open({
     content,
     config: {

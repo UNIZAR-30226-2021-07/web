@@ -16,15 +16,10 @@ function copyCode() {
   document.execCommand("copy");
 }
 
-export default function CreateGamePopup({ socket }) {
+export default function CreateGamePopup({ socket, users }) {
   const [code, setCode] = useState("");
-  const [ready, setReady] = useState(1);
 
   useEffect(() => {
-    socket.current.on("users_waiting", (users) => {
-      setReady(users);
-    });
-
     socket.current.on("create_game", (response) => {
       setCode(response.code);
     });
@@ -86,7 +81,7 @@ export default function CreateGamePopup({ socket }) {
         </div>
         <Button
           className="primary-button"
-          onClick={() => renderStartGamePopup(socket, ready)}
+          onClick={() => renderStartGamePopup(socket, users)}
         >
           CONFIRMAR
         </Button>
@@ -95,8 +90,8 @@ export default function CreateGamePopup({ socket }) {
   );
 }
 
-export function renderCreateGamePopup({ socket }) {
-  const content = <CreateGamePopup socket={socket} />;
+export function renderCreateGamePopup({ socket, users }) {
+  const content = <CreateGamePopup socket={socket} users={users} />;
   PopupboxManager.open({
     content,
     config: {

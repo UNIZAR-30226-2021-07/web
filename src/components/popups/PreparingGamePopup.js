@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -7,18 +7,12 @@ import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 import { renderStartGamePopup } from "./StartGamePopup";
 
-export default function PreparingGamePopup({ socket, initialUsers }) {
+export default function PreparingGamePopup({ socket, users }) {
   const history = useHistory();
-  const [ready, setReady] = useState(initialUsers);
   const total = 6;
 
   useEffect(() => {
     if (!socket || !socket.current) return;
-
-    // Setup del socket
-    socket.current.on("users_waiting", (users) => {
-      setReady(users);
-    });
 
     socket.current.on("start_game", (response) => {
       if (response && response.error) {
@@ -30,9 +24,10 @@ export default function PreparingGamePopup({ socket, initialUsers }) {
     });
 
     socket.current.on("game_owner", () => {
-      renderStartGamePopup(socket, ready);
+      PopupboxManager.close();
+      renderStartGamePopup(socket);
     });
-  }, []);
+  });
 
   return (
     <Popup title="Preparando partida...">
@@ -43,16 +38,16 @@ export default function PreparingGamePopup({ socket, initialUsers }) {
       </Row>
       <Row className="justify-content-center">
         <p className="h5 text-center mb-3">
-          {ready}/{total} usuarios preparados
+          {users}/{total} usuarios preparados
         </p>
       </Row>
     </Popup>
   );
 }
 
-export function renderPreparingGamePopup(socket, numUsers) {
+export function renderPreparingGamePopup(socket, users) {
   const content = (
-    <PreparingGamePopup socket={socket} initialUsers={numUsers} />
+    <PreparingGamePopup socket={socket} users={users} />
   );
   PopupboxManager.open({
     content,
