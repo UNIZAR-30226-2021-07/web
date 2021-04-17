@@ -10,7 +10,6 @@ import { renderErrorPopup } from "./ErrorPopup";
 import check from "../../assets/common/icons/check.svg";
 
 function JoinPrivateGamePopup({ socket }) {
-  
   const [code, setCode] = useState("");
 
   const handleSubmit = async (e) => {
@@ -19,8 +18,7 @@ function JoinPrivateGamePopup({ socket }) {
     socket.current.emit("join", code, (response) => {
       if (response && response.error) {
         renderErrorPopup(response.error);
-      }
-      else {
+      } else {
         PopupboxManager.close();
         renderPreparingGamePopup(socket);
       }
@@ -54,7 +52,6 @@ function JoinPrivateGamePopup({ socket }) {
       </Row>
     </Popup>
   );
-
 }
 
 export function renderJoinPrivateGamePopup({ socket }) {

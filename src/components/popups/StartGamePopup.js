@@ -42,9 +42,7 @@ export default function StartGamePopup({ socket }) {
 }
 
 export function renderStartGamePopup(socket) {
-  const content = (
-    <StartGamePopup socket={socket} />
-  );
+  const content = <StartGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {

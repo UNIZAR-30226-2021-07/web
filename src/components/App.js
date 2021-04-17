@@ -17,7 +17,6 @@ import { getUserData } from "../utils/api";
 import { SessionContext } from "./SessionProvider";
 import { NumUsersContext } from "./UsersProvider";
 
-
 function App() {
   const session = useContext(SessionContext);
   const usersProvider = useContext(NumUsersContext);

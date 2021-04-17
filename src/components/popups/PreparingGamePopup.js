@@ -48,9 +48,7 @@ export default function PreparingGamePopup({ socket }) {
 }
 
 export function renderPreparingGamePopup(socket) {
-  const content = (
-    <PreparingGamePopup socket={socket} />
-  );
+  const content = <PreparingGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {

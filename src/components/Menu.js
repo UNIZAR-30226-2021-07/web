@@ -17,7 +17,7 @@ import { SessionContext } from "./SessionProvider";
 function Menu() {
   const session = useContext(SessionContext);
   const [picture, setPicture] = useState("");
-  
+
   useEffect(() => {
     if (session.userData.length === 0) return;
 
@@ -76,12 +76,11 @@ function Menu() {
       <Row className="align-items-center">
         <Col lg={true}>
           <Button
-              className="primary-button d-block mx-auto m-2"
-              onClick={() => renderCreateGamePopup(session)}
-            >
-              CREAR PARTIDA PRIVADA
-            </Button>
-       
+            className="primary-button d-block mx-auto m-2"
+            onClick={() => renderCreateGamePopup(session)}
+          >
+            CREAR PARTIDA PRIVADA
+          </Button>
         </Col>
         <Col lg={true}>
           <Button
