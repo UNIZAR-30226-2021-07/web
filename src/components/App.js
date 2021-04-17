@@ -15,9 +15,12 @@ import Help from "./Help";
 import { getUserData } from "../utils/api";
 
 import { SessionContext } from "./SessionProvider";
+import { NumUsersContext } from "./UsersProvider";
+
 
 function App() {
   const session = useContext(SessionContext);
+  const usersProvider = useContext(NumUsersContext);
 
   useEffect(() => {
     if (!session.token || session.userData.length !== 0) {
@@ -61,6 +64,11 @@ function App() {
 
       session.socket.current.on("connect_error", function (e) {
         console.error("not connected", e);
+      });
+
+      session.socket.current.on("users_waiting", (users) => {
+        console.log(users);
+        usersProvider.setUsers(users);
       });
 
       return () => {

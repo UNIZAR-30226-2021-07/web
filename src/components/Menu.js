@@ -14,22 +14,9 @@ import profile_pics from "../assets/common/profile_pics.json";
 
 import { SessionContext } from "./SessionProvider";
 
-
-export var NumUsersContext = React.createContext();
-
 function Menu() {
   const session = useContext(SessionContext);
   const [picture, setPicture] = useState("");
-  const [users, setUsers] = useState(0);
-
-  useEffect(() => {
-    if (!session.socket.current) return;
-
-    session.socket.current.on("users_waiting", (users) => {
-      console.log(users);
-      setUsers(users);
-    });
-  }, []);
   
   useEffect(() => {
     if (session.userData.length === 0) return;
@@ -86,7 +73,6 @@ function Menu() {
         />
         <h1 className="logo-title ml-4">GATOVID</h1>
       </Row>
-      <NumUsersContext.Provider value={{ users: users }}>
       <Row className="align-items-center">
         <Col lg={true}>
           <Button
@@ -114,7 +100,6 @@ function Menu() {
           </Button>
         </Col>
       </Row>
-      </NumUsersContext.Provider>
     </Container>
   );
 }

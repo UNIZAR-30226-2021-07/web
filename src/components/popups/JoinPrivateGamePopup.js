@@ -9,7 +9,7 @@ import { renderErrorPopup } from "./ErrorPopup";
 
 import check from "../../assets/common/icons/check.svg";
 
-function JoinPrivateGamePopup({ socket, users }) {
+function JoinPrivateGamePopup({ socket }) {
   
   const [code, setCode] = useState("");
 
@@ -22,7 +22,7 @@ function JoinPrivateGamePopup({ socket, users }) {
       }
       else {
         PopupboxManager.close();
-        renderPreparingGamePopup(socket, users);
+        renderPreparingGamePopup(socket);
       }
     });
   };
@@ -57,8 +57,8 @@ function JoinPrivateGamePopup({ socket, users }) {
 
 }
 
-export function renderJoinPrivateGamePopup({ socket, users }) {
-  const content = <JoinPrivateGamePopup socket={socket} users={users} />;
+export function renderJoinPrivateGamePopup({ socket }) {
+  const content = <JoinPrivateGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {

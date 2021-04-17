@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
+import { NumUsersContext } from "../UsersProvider";
 
 export default function StartGamePopup({ socket }) {
   const history = useHistory();
+  const userContext = useContext(NumUsersContext);
   const total = 6;
-  
-  var users = 0;
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ export default function StartGamePopup({ socket }) {
     <Popup title="¿Empezar partida?">
       <Row className="justify-content-center">
         <p className="h5 text-center mb-3">
-          {users}/{total} gaticos preparados
+          {userContext.users}/{total} gaticos preparados
         </p>
       </Row>
       <Row className="justify-content-center">

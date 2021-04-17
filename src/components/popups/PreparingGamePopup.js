@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -6,9 +6,11 @@ import { useHistory } from "react-router-dom";
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 import { renderStartGamePopup } from "./StartGamePopup";
+import { NumUsersContext } from "../UsersProvider";
 
-export default function PreparingGamePopup({ socket, users }) {
+export default function PreparingGamePopup({ socket }) {
   const history = useHistory();
+  const userContext = useContext(NumUsersContext);
   const total = 6;
 
   useEffect(() => {
@@ -38,16 +40,16 @@ export default function PreparingGamePopup({ socket, users }) {
       </Row>
       <Row className="justify-content-center">
         <p className="h5 text-center mb-3">
-          {users}/{total} usuarios preparados
+          {userContext.users}/{total} usuarios preparados
         </p>
       </Row>
     </Popup>
   );
 }
 
-export function renderPreparingGamePopup(socket, users) {
+export function renderPreparingGamePopup(socket) {
   const content = (
-    <PreparingGamePopup socket={socket} users={users} />
+    <PreparingGamePopup socket={socket} />
   );
   PopupboxManager.open({
     content,
