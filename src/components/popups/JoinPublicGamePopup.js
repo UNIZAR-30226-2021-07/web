@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 
-
 const curiosities = [
   "Los gatos tricolores siempre son hembras",
   "Todos los gatos recién nacidos tienen los ojos azules.",
@@ -52,11 +51,11 @@ export default function JoinPublicGamePopup({ socket }) {
   return (
     <Popup title="Preparando partida...">
       <Row className="justify-content-center mb-3 mt-3">
-      <Row className="justify-content-center mb-3 mt-3">
-        <div className="spinner-border" role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      </Row>
+        <Row className="justify-content-center mb-3 mt-3">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </Row>
       </Row>
       <Row className="justify-content-center">¿Lo sabías?</Row>
       <Row className="justify-content-center">{curiosities[0]}</Row>
