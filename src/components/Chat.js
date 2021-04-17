@@ -7,24 +7,20 @@ import send from "../assets/common/icons/send.svg";
 
 import { SessionContext } from "./SessionProvider";
 
-function listenToMessages(socket) {
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    socket.current.on("chat", function ({ owner, msg }) {
-      console.log(owner, msg);
-      setMessages((prev) => [...prev, { userid: owner, text: msg }]);
-    });
-  }, [socket]);
-
-  return { messages };
-}
-
 function Chat() {
   const session = useContext(SessionContext);
   const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
 
-  const { messages } = listenToMessages(session.socket);
+  useEffect(() => {
+    if (!session.socket.current) {
+      return;
+    }
+    session.socket.current.on("chat", function ({ owner, msg }) {
+      console.log(owner, msg);
+      setMessages((prev) => [...prev, { userid: owner, text: msg }]);
+    });
+  }, []);
 
   const sendMessage = async (e) => {
     e.preventDefault();
