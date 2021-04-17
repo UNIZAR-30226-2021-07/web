@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Row, Image } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 
-import loadArrow from "../../assets/common/icons/flecha-cargar.svg";
 
 const curiosities = [
   "Los gatos tricolores siempre son hembras",
@@ -53,7 +52,11 @@ export default function JoinPublicGamePopup({ socket }) {
   return (
     <Popup title="Preparando partida...">
       <Row className="justify-content-center mb-3 mt-3">
-        <Image src={loadArrow} fluid></Image>
+      <Row className="justify-content-center mb-3 mt-3">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </Row>
       </Row>
       <Row className="justify-content-center">¿Lo sabías?</Row>
       <Row className="justify-content-center">{curiosities[0]}</Row>

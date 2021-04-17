@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Row, Image } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 import { renderStartGamePopup } from "./StartGamePopup";
-
-import loadArrow from "../../assets/common/icons/flecha-cargar.svg";
 
 export default function PreparingGamePopup({ socket, initialUsers }) {
   const history = useHistory();
@@ -34,13 +32,14 @@ export default function PreparingGamePopup({ socket, initialUsers }) {
     socket.current.on("game_owner", () => {
       renderStartGamePopup(socket, ready);
     });
-    
   }, []);
 
   return (
     <Popup title="Preparando partida...">
       <Row className="justify-content-center mb-3 mt-3">
-        <Image src={loadArrow} fluid></Image>
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
       </Row>
       <Row className="justify-content-center">
         <p className="h5 text-center mb-3">
