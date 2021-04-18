@@ -73,7 +73,6 @@ function EditProfile() {
         if ("error" in response) {
           renderErrorPopup(response.error);
         } else {
-  
           // Update local user_data as server has just updated
           getUserData(session).then((response) => {
             if ("error" in response) {
