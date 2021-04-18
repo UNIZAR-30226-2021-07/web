@@ -3,11 +3,11 @@
 
 name: CI
 
+# Solo se ejecuta el CI con commits en master o en pull requests.
 on:
-  push:
-    branches: [master]
   pull_request:
-    branches: [master]
+  push:
+    branches: master
 
 jobs:
   build:
