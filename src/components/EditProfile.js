@@ -8,7 +8,7 @@ import {
   Form,
   Image,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { renderDeleteAccountPopup } from "./popups/DeleteAccountPopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
@@ -22,6 +22,7 @@ import { SessionContext } from "./SessionProvider";
 
 function EditProfile() {
   const session = useContext(SessionContext);
+  const history = useHistory();
 
   const [picture, setPicture] = useState("");
   const [board, setBoard] = useState("");
@@ -68,29 +69,29 @@ function EditProfile() {
       data.append(`picture`, picture);
       */
 
-      const response = await modifyUser({ token: session.token, data });
-
-      console.log(response);
-      if ("error" in response) {
-        renderErrorPopup(response.error);
-      } else {
-        console.log("Datos actualizados correctamente");
-        // Update local user_data as server has just updated
-        getUserData(session).then((response) => {
-          if ("error" in response) {
-            console.error(response.error);
-          } else {
-            session.setUserData({
-              email: response.email,
-              name: response.name,
-              coins: response.coins,
-              picture: response.picture,
-              board: response.board,
-              purchases: response.purchases,
-            });
-          }
-        });
-      }
+      modifyUser({ token: session.token, data }).then((response) => {
+        if ("error" in response) {
+          renderErrorPopup(response.error);
+        } else {
+  
+          // Update local user_data as server has just updated
+          getUserData(session).then((response) => {
+            if ("error" in response) {
+              console.error(response.error);
+            } else {
+              session.setUserData({
+                email: response.email,
+                name: response.name,
+                coins: response.coins,
+                picture: response.picture,
+                board: response.board,
+                purchases: response.purchases,
+              });
+              history.push("/profile");
+            }
+          });
+        }
+      });
     }
   };
 
@@ -192,15 +193,13 @@ function EditProfile() {
                     </Form.Row>
                   </Form.Group>
                   <Row className="align-items-center justify-content-center">
-                    <Link to="/profile">
-                      <Button
-                        className="primary-button"
-                        type="submit"
-                        style={{ width: "40vh" }}
-                      >
-                        GUARDAR
-                      </Button>
-                    </Link>
+                    <Button
+                      className="primary-button"
+                      type="submit"
+                      style={{ width: "40vh" }}
+                    >
+                      GUARDAR
+                    </Button>
                   </Row>
                 </Form>
               </Card.Body>
