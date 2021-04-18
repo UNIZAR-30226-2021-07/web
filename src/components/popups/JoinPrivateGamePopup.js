@@ -9,7 +9,7 @@ import { renderErrorPopup } from "./ErrorPopup";
 
 import check from "../../assets/common/icons/check.svg";
 
-function JoinPrivateGamePopup({ socket }) {
+export default function JoinPrivateGamePopup({ socket }) {
   const [code, setCode] = useState("");
 
   const handleSubmit = async (e) => {

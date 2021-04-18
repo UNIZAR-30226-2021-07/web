@@ -42,7 +42,7 @@ function Chat() {
         <h4>Chat de partida</h4>
       </Row>
       <Row className="message-list px-3">
-        <MessageList username={session.userData.username} messages={messages} />
+        <MessageList username={session.userData.name} messages={messages} />
       </Row>
       <Form className="send-message input-group mt-2" onSubmit={sendMessage}>
         <input
