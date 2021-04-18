@@ -7,7 +7,7 @@ test("renders title", () => {
   render(
     <NumUsersContext.Provider value={{ users: 5, setUsers: jest.fn() }}>
       <PreparingGamePopup />
-    </ NumUsersContext.Provider >
+    </NumUsersContext.Provider>
   );
   const titleElement = screen.getByText(/Preparando partida\.\.\./i);
   expect(titleElement).toBeInTheDocument();
