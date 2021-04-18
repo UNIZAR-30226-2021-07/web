@@ -18,13 +18,8 @@ function copyCode() {
 
 export default function CreateGamePopup({ socket }) {
   const [code, setCode] = useState("");
-  const [ready, setReady] = useState(1);
 
   useEffect(() => {
-    socket.current.on("users_waiting", (users) => {
-      setReady(users);
-    });
-
     socket.current.on("create_game", (response) => {
       setCode(response.code);
     });
