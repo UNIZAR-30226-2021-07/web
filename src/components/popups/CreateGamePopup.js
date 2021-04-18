@@ -86,7 +86,7 @@ export default function CreateGamePopup({ socket }) {
         </div>
         <Button
           className="primary-button"
-          onClick={() => renderStartGamePopup(socket, ready)}
+          onClick={() => renderStartGamePopup(socket)}
         >
           CONFIRMAR
         </Button>

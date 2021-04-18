@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -6,19 +6,15 @@ import { useHistory } from "react-router-dom";
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 import { renderStartGamePopup } from "./StartGamePopup";
+import { NumUsersContext } from "../UsersProvider";
 
-export default function PreparingGamePopup({ socket, initialUsers }) {
+export default function PreparingGamePopup({ socket }) {
   const history = useHistory();
-  const [ready, setReady] = useState(initialUsers);
+  const userContext = useContext(NumUsersContext);
   const total = 6;
 
   useEffect(() => {
     if (!socket || !socket.current) return;
-
-    // Setup del socket
-    socket.current.on("users_waiting", (users) => {
-      setReady(users);
-    });
 
     socket.current.on("start_game", (response) => {
       if (response && response.error) {
@@ -30,9 +26,10 @@ export default function PreparingGamePopup({ socket, initialUsers }) {
     });
 
     socket.current.on("game_owner", () => {
-      renderStartGamePopup(socket, ready);
+      PopupboxManager.close();
+      renderStartGamePopup(socket);
     });
-  }, []);
+  });
 
   return (
     <Popup title="Preparando partida...">
@@ -43,17 +40,15 @@ export default function PreparingGamePopup({ socket, initialUsers }) {
       </Row>
       <Row className="justify-content-center">
         <p className="h5 text-center mb-3">
-          {ready}/{total} usuarios preparados
+          {userContext.users}/{total} usuarios preparados
         </p>
       </Row>
     </Popup>
   );
 }
 
-export function renderPreparingGamePopup(socket, numUsers) {
-  const content = (
-    <PreparingGamePopup socket={socket} initialUsers={numUsers} />
-  );
+export function renderPreparingGamePopup(socket) {
+  const content = <PreparingGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {

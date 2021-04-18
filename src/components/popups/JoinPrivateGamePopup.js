@@ -9,7 +9,7 @@ import { renderErrorPopup } from "./ErrorPopup";
 
 import check from "../../assets/common/icons/check.svg";
 
-export default function JoinPrivateGamePopup({ socket }) {
+function JoinPrivateGamePopup({ socket }) {
   const [code, setCode] = useState("");
 
   const handleSubmit = async (e) => {
@@ -22,6 +22,9 @@ export default function JoinPrivateGamePopup({ socket }) {
     socket.current.emit("join", code, (response) => {
       if (response && response.error) {
         renderErrorPopup(response.error);
+      } else {
+        PopupboxManager.close();
+        renderPreparingGamePopup(socket);
       }
     });
   };
