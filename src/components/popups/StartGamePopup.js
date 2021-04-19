@@ -28,7 +28,9 @@ export default function StartGamePopup({ socket }) {
     });
   };
   return (
-    <Popup title="¿Empezar partida?" close={true}>
+    <Popup title="¿Empezar partida?" 
+      close={true}
+      onCloseAction={() => leaveGame(socket)}>
       <Row className="justify-content-center">
         <p className="h5 text-center mb-3">
           {userContext.users}/{total} gaticos preparados

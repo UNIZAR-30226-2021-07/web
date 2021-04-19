@@ -4,10 +4,10 @@ import { Row, Button, Image } from "react-bootstrap";
 
 import Popup from "./PopUp";
 import { renderStartGamePopup } from "./StartGamePopup";
-import { renderErrorPopup } from "./ErrorPopup";
 
 import check from "../../assets/common/icons/check.svg";
 import clipboard from "../../assets/common/icons/clipboard.svg";
+import { leaveGame } from "../WebSockets";
 
 function copyCode() {
   const codeField = document.getElementById("game-code");
@@ -27,15 +27,6 @@ export default function CreateGamePopup({ socket }) {
     socket.current.emit("create_game", callback);
   }, []);
 
-  const onClose = () => {
-    PopupboxManager.close();
-    socket.current.emit("leave", (response) => {
-      if (response && response.error) {
-        renderErrorPopup(response.error);
-      }
-    });
-  };
-
   function callback(data) {
     if (data && data.error) {
       console.error(data.error);
@@ -47,7 +38,7 @@ export default function CreateGamePopup({ socket }) {
       title="Partida privada lista"
       icon={check}
       close={true}
-      onClose={onClose}
+      onCloseAction={() => leaveGame(socket)}
     >
       <Row className="justify-content-center">
         <p className="text-center">
