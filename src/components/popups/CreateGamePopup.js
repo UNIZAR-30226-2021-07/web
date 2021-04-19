@@ -4,6 +4,7 @@ import { Row, Button, Image } from "react-bootstrap";
 
 import Popup from "./PopUp";
 import { renderStartGamePopup } from "./StartGamePopup";
+import { renderErrorPopup } from "./ErrorPopup";
 
 import check from "../../assets/common/icons/check.svg";
 import clipboard from "../../assets/common/icons/clipboard.svg";
@@ -19,13 +20,21 @@ export default function CreateGamePopup({ socket }) {
   const [code, setCode] = useState("");
 
   useEffect(() => {
-    socket.current.emit("create_game", callback);
     socket.current.on("create_game", (response) => {
-      console.log("CREATE GAME RECIBIDO");
-      console.log(response);
       setCode(response.code);
     });
+
+    socket.current.emit("create_game", callback);
   }, []);
+
+  const onClose = () => {
+    PopupboxManager.close();
+    socket.current.emit("leave", (response) => {
+      if (response && response.error) {
+        renderErrorPopup(response.error);
+      }
+    });
+  };
 
   function callback(data) {
     if (data && data.error) {
@@ -34,7 +43,12 @@ export default function CreateGamePopup({ socket }) {
   }
 
   return (
-    <Popup title="Partida privada lista" icon={check} close={true}>
+    <Popup
+      title="Partida privada lista"
+      icon={check}
+      close={true}
+      onClose={onClose}
+    >
       <Row className="justify-content-center">
         <p className="text-center">
           Comparte el siguiente código con tus
@@ -65,7 +79,10 @@ export default function CreateGamePopup({ socket }) {
             aria-describedby="inputGroup-sizing-default"
           />
         </div>
-        <Button className="primary-button" onClick={renderStartGamePopup}>
+        <Button
+          className="primary-button"
+          onClick={() => renderStartGamePopup(socket)}
+        >
           CONFIRMAR
         </Button>
       </Row>
@@ -80,6 +97,8 @@ export function renderCreateGamePopup({ socket }) {
     config: {
       fadeIn: true,
       fadeInSpeed: 400,
+      escClose: false,
+      overlayClose: false,
     },
   });
 }

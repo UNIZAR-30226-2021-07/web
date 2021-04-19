@@ -16,11 +16,11 @@ export default function JoinPrivateGamePopup({ socket }) {
     e.preventDefault();
 
     socket.current.emit("join", code, (response) => {
-      console.log(response);
       if (response && response.error) {
         renderErrorPopup(response.error);
       } else {
-        renderPreparingGamePopup();
+        PopupboxManager.close();
+        renderPreparingGamePopup(socket);
       }
     });
   };

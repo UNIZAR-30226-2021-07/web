@@ -15,9 +15,11 @@ import Help from "./Help";
 import { getUserData } from "../utils/api";
 
 import { SessionContext } from "./SessionProvider";
+import { NumUsersContext } from "./UsersProvider";
 
 function App() {
   const session = useContext(SessionContext);
+  const usersProvider = useContext(NumUsersContext);
 
   useEffect(() => {
     if (!session.token || session.userData.length !== 0) {
@@ -63,26 +65,17 @@ function App() {
         console.error("not connected", e);
       });
 
-      session.socket.current.on("start_game", function () {
-        alert("Game started");
+      session.socket.current.on("users_waiting", (users) => {
+        console.log(users);
+        usersProvider.setUsers(users);
       });
-
-      session.socket.current.on("users_waiting", function (n) {
-        console.log(n);
-      });
-      /*
-      session.socket.current.on("chat", function ({ owner, msg }) {
-        console.log(owner, msg);
-        setMessages((prev) => [...prev, { userid: owner, text: msg }]);
-      });
-      */
 
       return () => {
         session.socket.current.close();
         session.socket.current = null;
       };
     }
-  }, [session.token]);
+  }, [session.token, session.updateSocket]);
   // De esta forma el useEffect se ejecutará si cambia el token, volviendo
   // a hacer el connect
 
