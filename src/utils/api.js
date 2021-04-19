@@ -11,9 +11,24 @@ export async function loginUser({ email, password }) {
   };
 
   return fetch(baseUrl + "/data/login", requestOptions)
-    .then((data) => data.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw response.status;
+      }
+      return response.json();
+    })
     .catch((error) => {
-      console.error("Error:", error);
+      switch (error) {
+        case 400:
+          console.log('Error 400');
+          break;
+        case 401:
+          console.log('Token caducado');
+          break;
+        default:
+          console.log('Error:' + error);
+          break;
+      }
     });
 }
 
