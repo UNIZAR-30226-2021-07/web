@@ -21,13 +21,15 @@ function Login() {
       password,
     });
 
-    if ("access_token" in response) {
-      let token = response.access_token;
-      session.setToken(token);
+    if (response != null) {
+      if ("access_token" in response) {
+        let token = response.access_token;
+        session.setToken(token);
 
-      history.push("/home");
-    } else {
-      renderErrorPopup(response.error);
+        history.push("/home");
+      } else {
+        renderErrorPopup(response.error);
+      }
     }
   };
 
