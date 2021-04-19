@@ -29,6 +29,8 @@ function SessionProvider({ children }) {
   // Actua como un flag. En el momento en el que se cambia se dispara la
   // obtención de un nuevo socket en "App".
   const [updateSocket, setUpdateSocket] = useState(1);
+  // Flag de estar o no en partida
+  const [onMatch, setOnMatch] = useState(false);
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
@@ -42,9 +44,11 @@ function SessionProvider({ children }) {
         token: token,
         socket: socket,
         updateSocket: updateSocket,
+        onMatch: onMatch,
         userData: userData,
         setToken: (token) => setToken(token),
         setUpdateSocket: (updateSocket) => setUpdateSocket(updateSocket),
+        setOnMatch: (onMatch) => setOnMatch(onMatch),
         setUserData: (userData) => setUserData(userData),
       }}
     >
