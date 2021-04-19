@@ -1,8 +1,9 @@
+/*
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import PreparingGamePopup from "../components/popups/PreparingGamePopup";
 import { NumUsersContext } from "../components/UsersProvider";
-
+*/
 test("renders title", () => {
   /*
   render(
