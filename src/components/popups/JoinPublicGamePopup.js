@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
+import { SessionContext } from "../SessionProvider";
 
 const curiosities = [
   "Los gatos tricolores siempre son hembras",
@@ -13,10 +14,12 @@ const curiosities = [
 
 export default function JoinPublicGamePopup({ socket }) {
   const history = useHistory();
+  const session = useContext(SessionContext);
 
   useEffect(() => {
     if (!socket.current) {
       renderErrorPopup("No hay conexión con el servidor, vuelva a intentarlo");
+      return;
     }
     socket.current.emit("search_game", callback);
     // Listen to receive a game code
@@ -29,6 +32,7 @@ export default function JoinPublicGamePopup({ socket }) {
           renderErrorPopup(response.error);
         } else {
           PopupboxManager.close();
+          session.setOnMatch(true);
           history.push("/match");
         }
       });
@@ -41,7 +45,7 @@ export default function JoinPublicGamePopup({ socket }) {
         history.push("/menu");
       });
     });
-  });
+  }, []);
 
   function callback(data) {
     if (data && data.error) {

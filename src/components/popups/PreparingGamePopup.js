@@ -7,10 +7,12 @@ import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 import { renderStartGamePopup } from "./StartGamePopup";
 import { NumUsersContext } from "../UsersProvider";
+import { SessionContext } from "../SessionProvider";
 
 export default function PreparingGamePopup({ socket }) {
   const history = useHistory();
   const userContext = useContext(NumUsersContext);
+  const session = useContext(SessionContext);
   const total = 6;
 
   useEffect(() => {
@@ -21,6 +23,7 @@ export default function PreparingGamePopup({ socket }) {
         renderErrorPopup(response.error);
       } else {
         PopupboxManager.close();
+        session.setOnMatch(true);
         history.push("/match");
         socket.current.off("game_owner", onChangeLeader);
       }

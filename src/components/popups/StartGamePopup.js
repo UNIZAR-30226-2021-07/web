@@ -6,10 +6,12 @@ import { useHistory } from "react-router-dom";
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 import { NumUsersContext } from "../UsersProvider";
+import { SessionContext } from "../SessionProvider";
 
 export default function StartGamePopup({ socket }) {
   const history = useHistory();
   const userContext = useContext(NumUsersContext);
+  const session = useContext(SessionContext);
   const total = 6;
 
   const handleClick = async (e) => {
@@ -20,6 +22,7 @@ export default function StartGamePopup({ socket }) {
         renderErrorPopup(response.error);
       } else {
         PopupboxManager.close();
+        session.setOnMatch(true);
         history.push("/match");
       }
     });
