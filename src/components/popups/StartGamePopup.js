@@ -7,6 +7,7 @@ import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 import { NumUsersContext } from "../UsersProvider";
 import { SessionContext } from "../SessionProvider";
+import { leaveGame } from "../WebSockets";
 
 export default function StartGamePopup({ socket }) {
   const history = useHistory();

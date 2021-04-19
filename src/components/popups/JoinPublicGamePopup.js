@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 import { SessionContext } from "../SessionProvider";
+import { leaveGame } from "../WebSockets";
 
 const curiosities = [
   "Los gatos tricolores siempre son hembras",
