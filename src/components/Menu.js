@@ -21,7 +21,7 @@ function Menu() {
   useEffect(() => {
     // Prevents going to match if user is not in a match
     session.setOnMatch(false);
-    
+
     if (!session.socket.current) return;
     session.socket.current.emit("leave", (data) => {
       if (data && data.error) {

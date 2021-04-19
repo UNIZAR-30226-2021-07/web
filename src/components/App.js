@@ -91,12 +91,13 @@ function App() {
         <Route path="/signup" component={SignUp} />
 
         <ProtectedRoute path="/home" token={session.token} component={Menu} />
-        
-        <ProtectedMatchRoute 
-          path="/match" 
+
+        <ProtectedMatchRoute
+          path="/match"
           token={session.token}
           onMatch={session.onMatch}
-          component={Match} />
+          component={Match}
+        />
 
         <ProtectedRoute
           path="/profile"
@@ -153,7 +154,7 @@ const ProtectedMatchRoute = ({ component: Component, ...rest }) => {
             <Redirect to="/home" />
           )
         ) : (
-            <Redirect to="/login" />
+          <Redirect to="/login" />
         )
       }
     />
