@@ -92,7 +92,12 @@ function App() {
 
         <ProtectedRoute path="/home" token={session.token} component={Menu} />
 
-        <ProtectedRoute path="/match" token={session.token} component={Match} />
+        <ProtectedMatchRoute
+          path="/match"
+          token={session.token}
+          onMatch={session.onMatch}
+          component={Match}
+        />
 
         <ProtectedRoute
           path="/profile"
@@ -129,6 +134,25 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
       render={(props) =>
         rest.token != null ? (
           <Component {...rest} {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
+      }
+    />
+  );
+};
+
+const ProtectedMatchRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        rest.token != null ? (
+          rest.onMatch ? (
+            <Component {...rest} {...props} />
+          ) : (
+            <Redirect to="/home" />
+          )
         ) : (
           <Redirect to="/login" />
         )
