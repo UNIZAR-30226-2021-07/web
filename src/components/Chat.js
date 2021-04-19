@@ -48,6 +48,7 @@ function Chat() {
         <input
           type="text"
           className="form-control"
+          maxLength="240"
           value={message}
           placeholder="Escribir Mensaje"
           onChange={(e) => setMessage(e.target.value)}

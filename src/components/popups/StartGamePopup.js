@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Row, Button } from "react-bootstrap";
+import { Row, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
@@ -24,7 +24,6 @@ export default function StartGamePopup({ socket }) {
       }
     });
   };
-
   return (
     <Popup title="¿Empezar partida?">
       <Row className="justify-content-center">
@@ -33,9 +32,24 @@ export default function StartGamePopup({ socket }) {
         </p>
       </Row>
       <Row className="justify-content-center">
-        <Button className="primary-button" onClick={handleClick}>
-          Empezar partida
-        </Button>
+        {userContext.users > 1 ? (
+          <Button className="primary-button" onClick={handleClick}>
+            Empezar partida
+          </Button>
+        ) : (
+          <OverlayTrigger
+            placement="bottom"
+            overlay={
+              <Tooltip id="tooltip-disabled">
+                Se necesitan al menos dos jugadores para comenzar la partida
+              </Tooltip>
+            }
+          >
+            <Button className="primary-button" disabled>
+              Empezar partida
+            </Button>
+          </OverlayTrigger>
+        )}
       </Row>
     </Popup>
   );

@@ -46,7 +46,7 @@ export default function PreparingGamePopup({ socket }) {
       </Row>
       <Row className="justify-content-center">
         <p className="h5 text-center mb-3">
-          {userContext.users}/{total} usuarios preparados
+          {userContext.users}/{total} gaticos preparados
         </p>
       </Row>
     </Popup>
