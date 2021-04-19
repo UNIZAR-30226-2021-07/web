@@ -38,7 +38,7 @@ export default function PreparingGamePopup({ socket }) {
   };
 
   return (
-    <Popup title="Preparando partida...">
+    <Popup title="Preparando partida..." close={true}>
       <Row className="justify-content-center mb-3 mt-3">
         <div className="spinner-border" role="status">
           <span className="sr-only">Loading...</span>
