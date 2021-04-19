@@ -25,10 +25,7 @@ function Chat() {
   const sendMessage = async (e) => {
     e.preventDefault();
     if (message) {
-      if (!/^\s+$/.test(message)) {
-        //Not only whitespaces
-        session.socket.current.emit("chat", message, callback);
-      }
+      session.socket.current.emit("chat", message, callback);
     }
     setMessage("");
   };
