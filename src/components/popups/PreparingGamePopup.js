@@ -14,6 +14,7 @@ export default function PreparingGamePopup({ socket }) {
   const total = 6;
 
   useEffect(() => {
+
     if (!socket || !socket.current) return;
 
     socket.current.on("start_game", (response) => {
@@ -25,6 +26,7 @@ export default function PreparingGamePopup({ socket }) {
         socket.current.off("game_owner", onChangeLeader);
       }
     });
+
   }, []);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function PreparingGamePopup({ socket }) {
     console.log("GAME_OWNER_MSG");
     PopupboxManager.close();
     renderStartGamePopup(socket);
-  };
+  }
 
   return (
     <Popup title="Preparando partida...">
@@ -51,6 +53,7 @@ export default function PreparingGamePopup({ socket }) {
       </Row>
     </Popup>
   );
+
 }
 
 export function renderPreparingGamePopup(socket) {
@@ -64,5 +67,4 @@ export function renderPreparingGamePopup(socket) {
       overlayClose: false,
     },
   });
-  console.log("FASE 3");
 }
