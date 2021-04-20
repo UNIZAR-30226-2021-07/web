@@ -50,6 +50,7 @@ function App() {
   }, [session.token]);
 
   useEffect(() => {
+    console.log(session.token);
     if (session.token != null) {
       session.socket.current = io.connect("wss://gatovid.herokuapp.com", {
         extraHeaders: {
