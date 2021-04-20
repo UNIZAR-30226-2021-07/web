@@ -2,12 +2,15 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "ShortStack";
+  src: url("./assets/common/fonts/ShortStack.ttf");
+}
+
 body {
   color: #00344a !important;
   background-image: url("assets/common/background.jpg");
 }
-
-@import url(https://allfont.es/allfont.css?fonts=short-stack);
 
 html,
 body,
@@ -66,7 +69,7 @@ body,
 
 .logo-title {
   font-size: 15vh;
-  font-family: "Short Stack", Arial, Helvetica, sans-serif;
+  font-family: "ShortStack", Arial, Helvetica, sans-serif;
 }
 
 .menu-container {
