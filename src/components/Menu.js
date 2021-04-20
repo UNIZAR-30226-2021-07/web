@@ -13,6 +13,7 @@ import coins from "../assets/common/icons/huella.svg";
 import profile_pics from "../assets/common/profile_pics.json";
 
 import { SessionContext } from "./SessionProvider";
+import { leaveGame } from "./WebSockets";
 
 function Menu() {
   const session = useContext(SessionContext);
@@ -23,13 +24,7 @@ function Menu() {
     session.setOnMatch(false);
 
     if (!session.socket.current) return;
-    session.socket.current.emit("leave", (data) => {
-      if (data && data.error) {
-        console.log(data.error);
-      } else {
-        console.log("leaving game");
-      }
-    });
+    leaveGame(session);
   }, []);
 
   useEffect(() => {

@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 import { SessionContext } from "../SessionProvider";
+import { leaveGame } from "../WebSockets";
 
 const curiosities = [
   "Los gatos tricolores siempre son hembras",
@@ -54,7 +55,11 @@ export default function JoinPublicGamePopup({ socket }) {
   }
 
   return (
-    <Popup title="Preparando partida...">
+    <Popup
+      title="Preparando partida..."
+      close={true}
+      onClose={() => leaveGame({ socket })}
+    >
       <Row className="justify-content-center mb-3 mt-3">
         <Row className="justify-content-center mb-3 mt-3">
           <div className="spinner-border" role="status">

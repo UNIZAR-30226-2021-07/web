@@ -9,6 +9,11 @@ export default function Popup({
   onClose = PopupboxManager.close,
   children,
 }) {
+  function handleClose() {
+    PopupboxManager.close();
+    onClose();
+  }
+
   return (
     <Container>
       <Row className="justify-content-center mb-2 align-items-center">
@@ -20,7 +25,7 @@ export default function Popup({
         ></Image>
         <h2 className="popup-title mb-0">{title}</h2>
         {close && (
-          <Button className="close" onClick={onClose}>
+          <Button className="close" onClick={handleClose}>
             &times;
           </Button>
         )}
@@ -30,8 +35,15 @@ export default function Popup({
   );
 }
 
-export function openPopup(title, icon, close) {
-  const content = <Popup title={title} icon={icon} close={close} />;
+export function openPopup(title, icon, close, onCloseAction) {
+  const content = (
+    <Popup
+      title={title}
+      icon={icon}
+      close={close}
+      onCloseAction={onCloseAction}
+    />
+  );
   PopupboxManager.open({
     content,
     config: {

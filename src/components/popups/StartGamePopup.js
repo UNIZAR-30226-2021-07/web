@@ -7,6 +7,7 @@ import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 import { NumUsersContext } from "../UsersProvider";
 import { SessionContext } from "../SessionProvider";
+import { leaveGame } from "../WebSockets";
 
 export default function StartGamePopup({ socket }) {
   const history = useHistory();
@@ -28,7 +29,11 @@ export default function StartGamePopup({ socket }) {
     });
   };
   return (
-    <Popup title="¿Empezar partida?">
+    <Popup
+      title="¿Empezar partida?"
+      close={true}
+      onClose={() => leaveGame({ socket })}
+    >
       <Row className="justify-content-center">
         <p className="h5 text-center mb-3">
           {userContext.users}/{total} gaticos preparados
@@ -58,7 +63,7 @@ export default function StartGamePopup({ socket }) {
   );
 }
 
-export function renderStartGamePopup(socket) {
+export function renderStartGamePopup({ socket }) {
   const content = <StartGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
