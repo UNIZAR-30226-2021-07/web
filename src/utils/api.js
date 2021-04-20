@@ -1,4 +1,4 @@
-const baseUrl = "https://gatovid.herokuapp.com";
+const baseUrl = "https://gatovid.herokuapp.com/data";
 
 
 function serverRequest(path, requestOptions) {
@@ -36,7 +36,7 @@ export async function loginUser({ email, password }) {
     body: data,
   };
 
-  const path = "/data/login";
+  const path = "/login";
 
   return serverRequest(path, requestOptions);
 }
@@ -48,7 +48,7 @@ export async function logoutUser({ token }) {
       Authorization: "Bearer " + token,
     },
   };
-  const path = "/data/logout";
+  const path = "/logout";
 
   return serverRequest(path, requestOptions);
 }
@@ -64,7 +64,7 @@ export async function signUpUser({ name, email, password }) {
     body: data,
   };
 
-  const path = "/data/signup";
+  const path = "/signup";
 
   return serverRequest(path, requestOptions);
 }
@@ -77,7 +77,7 @@ export async function deleteUser({ token }) {
     },
   };
 
-  const path = "/data/remove_user";
+  const path = "/remove_user";
 
   return serverRequest(path, requestOptions);
 }
@@ -88,7 +88,7 @@ export async function getUserData({ token }) {
     headers: { Authorization: "Bearer " + token },
   };
 
-  const path = "/data/user_data";
+  const path = "/user_data";
 
   return serverRequest(path, requestOptions);
 }
@@ -100,7 +100,7 @@ export async function modifyUser({ token, data }) {
     body: data,
   };
 
-  const path = "/data/modify_user";
+  const path = "/modify_user";
 
   return serverRequest(path, requestOptions);
 }
@@ -108,13 +108,13 @@ export async function modifyUser({ token, data }) {
 export async function getUserStats({ username }) {
   let data = new URLSearchParams();
   data.append(`name`, username);
-  
+
   const requestOptions = {
     method: "POST",
     body: data,
   };
 
-  path = "/data/user_stats";
+  const path = "/user_stats";
 
   return serverRequest(path, requestOptions);
 }
