@@ -9,15 +9,15 @@ import { renderErrorPopup } from "./popups/ErrorPopup";
 function SignUp() {
   const history = useHistory();
 
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //Revisa que las contraseñas sean iguales
+    // Revisa que las contraseñas sean iguales
     if (password != confirmPassword) {
       renderErrorPopup("Las contraseñas no coiciden.");
       return;
@@ -27,12 +27,15 @@ function SignUp() {
       name,
       email,
       password,
+      setToken: () => {},
     });
 
-    if ("user" in response) {
-      history.push("/login");
-    } else {
-      renderErrorPopup(response.error);
+    if (response != null) {
+      if ("error" in response) {
+        renderErrorPopup(response.error);
+      } else {
+        history.push("/login");
+      }
     }
   };
 

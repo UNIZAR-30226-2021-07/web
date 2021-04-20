@@ -1,6 +1,32 @@
-const baseUrl = "https://gatovid.herokuapp.com";
+const baseUrl = "https://gatovid.herokuapp.com/data";
 
-export async function loginUser({ email, password }) {
+function serverRequest(path, requestOptions, setToken) {
+  return fetch(baseUrl + path, requestOptions)
+    .then((response) => {
+      if (!response.ok) {
+        throw response;
+      } else {
+        return response.json();
+      }
+    })
+    .catch((response) => {
+      switch (response.status) {
+        case 400:
+          console.log("Error 400");
+          return response.json();
+        case 401:
+          console.log("Token caducado");
+          // Token to null and return to login
+          setToken(null);
+          return null;
+        default:
+          console.log("Error:" + response.status);
+          return null;
+      }
+    });
+}
+
+export async function loginUser({ email, password, setToken }) {
   let data = new URLSearchParams();
   data.append(`email`, email);
   data.append(`password`, password);
@@ -10,29 +36,24 @@ export async function loginUser({ email, password }) {
     body: data,
   };
 
-  return fetch(baseUrl + "/data/login", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  const path = "/login";
+
+  return serverRequest(path, requestOptions, setToken);
 }
 
-export async function logoutUser({ token }) {
+export async function logoutUser({ token, setToken }) {
   const requestOptions = {
     method: "POST",
     headers: {
       Authorization: "Bearer " + token,
     },
   };
+  const path = "/logout";
 
-  return fetch(baseUrl + "/data/logout", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  return serverRequest(path, requestOptions, setToken);
 }
 
-export async function signUpUser({ name, email, password }) {
+export async function signUpUser({ name, email, password, setToken }) {
   let data = new URLSearchParams();
   data.append(`name`, name);
   data.append(`email`, email);
@@ -43,14 +64,12 @@ export async function signUpUser({ name, email, password }) {
     body: data,
   };
 
-  return fetch(baseUrl + "/data/signup", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  const path = "/signup";
+
+  return serverRequest(path, requestOptions, setToken);
 }
 
-export async function deleteUser({ token }) {
+export async function deleteUser({ token, setToken }) {
   const requestOptions = {
     method: "POST",
     headers: {
@@ -58,48 +77,44 @@ export async function deleteUser({ token }) {
     },
   };
 
-  return fetch(baseUrl + "/data/remove_user", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  const path = "/remove_user";
+
+  return serverRequest(path, requestOptions, setToken);
 }
 
-export async function getUserData({ token }) {
+export async function getUserData({ token, setToken }) {
   const requestOptions = {
     method: "POST",
     headers: { Authorization: "Bearer " + token },
   };
 
-  return fetch(
-    "https://gatovid.herokuapp.com/data/user_data",
-    requestOptions
-  ).then((data) => {
-    if (data.status !== 200) throw data.status;
-    else return data.json();
-  });
+  const path = "/user_data";
+
+  return serverRequest(path, requestOptions, setToken);
 }
 
-export async function modifyUser({ token, data }) {
+export async function modifyUser({ token, data, setToken }) {
   const requestOptions = {
     method: "POST",
     headers: { Authorization: "Bearer " + token },
     body: data,
   };
 
-  return fetch(
-    "https://gatovid.herokuapp.com/data/modify_user",
-    requestOptions
-  ).then((data) => {
-    if (data.status !== 200) throw data.status;
-    else return data.json();
-  });
+  const path = "/modify_user";
+
+  return serverRequest(path, requestOptions, setToken);
 }
 
-export async function getUserStats({ username }) {
-  return fetch(baseUrl + "/data/user_stats?name=" + username)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+export async function getUserStats({ username, setToken }) {
+  let data = new URLSearchParams();
+  data.append(`name`, username);
+
+  const requestOptions = {
+    method: "POST",
+    body: data,
+  };
+
+  const path = "/user_stats";
+
+  return serverRequest(path, requestOptions, setToken);
 }

@@ -26,9 +26,9 @@ function EditProfile() {
 
   const [picture, setPicture] = useState("");
   const [board, setBoard] = useState("");
-  const [newUserName, setNewUserName] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [newUserName, setNewUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
     if (session.userData.length === 0) return;
@@ -68,27 +68,34 @@ function EditProfile() {
       data.append(`board`, board);
       data.append(`picture`, picture);
       */
-
-      modifyUser({ token: session.token, data }).then((response) => {
-        if ("error" in response) {
-          renderErrorPopup(response.error);
-        } else {
-          // Update local user_data as server has just updated
-          getUserData(session).then((response) => {
-            if ("error" in response) {
-              console.error(response.error);
-            } else {
-              session.setUserData({
-                email: response.email,
-                name: response.name,
-                coins: response.coins,
-                picture: response.picture,
-                board: response.board,
-                purchases: response.purchases,
-              });
-              history.push("/profile");
-            }
-          });
+      modifyUser({
+        token: session.token,
+        data,
+        setToken: session.setToken,
+      }).then((response) => {
+        if (response != null) {
+          if ("message" in response) {
+            // Update local user_data as server has just updated
+            getUserData(session).then((response) => {
+              if (response != null) {
+                if ("error" in response) {
+                  console.error(response.error);
+                } else {
+                  session.setUserData({
+                    email: response.email,
+                    name: response.name,
+                    coins: response.coins,
+                    picture: response.picture,
+                    board: response.board,
+                    purchases: response.purchases,
+                  });
+                  history.push("/profile");
+                }
+              }
+            });
+          } else {
+            renderErrorPopup(response.error);
+          }
         }
       });
     }

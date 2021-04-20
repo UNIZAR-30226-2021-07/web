@@ -10,27 +10,27 @@ import { SessionContext } from "./SessionProvider";
 
 function Login() {
   const session = useContext(SessionContext);
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const history = useHistory();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const response = await loginUser({
+    loginUser({
       email,
       password,
-    });
-
-    if (response != null) {
-      if ("access_token" in response) {
-        let token = response.access_token;
-        session.setToken(token);
-
-        history.push("/home");
-      } else {
-        renderErrorPopup(response.error);
+      setToken: session.setToken,
+    }).then((response) => {
+      if (response != null) {
+        if ("access_token" in response) {
+          let token = response.access_token;
+          session.setToken(token);
+          history.push("/home");
+        } else {
+          renderErrorPopup(response.error);
+        }
       }
-    }
+    });
   };
 
   return (

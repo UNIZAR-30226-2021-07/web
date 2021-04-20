@@ -27,8 +27,8 @@ function App() {
     }
 
     // Se piden los datos del usuario
-    getUserData(session)
-      .then((response) => {
+    getUserData(session).then((response) => {
+      if (response != null) {
         if ("error" in response) {
           console.error(response);
         } else {
@@ -41,12 +41,8 @@ function App() {
             purchases: response.purchases,
           });
         }
-      })
-      .catch((status) => {
-        if (status === 401) {
-          session.setToken(null);
-        }
-      });
+      }
+    });
   }, [session.token]);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button, Image } from "react-bootstrap";
 
@@ -16,29 +16,15 @@ function copyCode() {
   document.execCommand("copy");
 }
 
-export default function CreateGamePopup({ socket }) {
-  const [code, setCode] = useState("");
-
-  useEffect(() => {
-    socket.current.on("create_game", (response) => {
-      setCode(response.code);
-    });
-
-    socket.current.emit("create_game", callback);
-  }, []);
-
-  function callback(data) {
-    if (data && data.error) {
-      console.error(data.error);
-    }
-  }
-
+export default function CreateGamePopup({ socket, code }) {
   return (
     <Popup
       title="Partida privada lista"
       icon={check}
       close={true}
-      onClose={() => leaveGame({ socket })}
+      onClose={() => {
+        leaveGame({ socket });
+      }}
     >
       <Row className="justify-content-center">
         <p className="text-center">
@@ -82,14 +68,24 @@ export default function CreateGamePopup({ socket }) {
 }
 
 export function renderCreateGamePopup({ socket }) {
-  const content = <CreateGamePopup socket={socket} />;
-  PopupboxManager.open({
-    content,
-    config: {
-      fadeIn: true,
-      fadeInSpeed: 400,
-      escClose: false,
-      overlayClose: false,
-    },
+  socket.current.emit("create_game", callback);
+
+  socket.current.on("create_game", (response) => {
+    const content = <CreateGamePopup socket={socket} code={response.code} />;
+    PopupboxManager.open({
+      content,
+      config: {
+        fadeIn: true,
+        fadeInSpeed: 400,
+        escClose: false,
+        overlayClose: false,
+      },
+    });
   });
+
+  function callback(data) {
+    if (data && data.error) {
+      console.error(data.error);
+    }
+  }
 }
