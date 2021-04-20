@@ -19,7 +19,7 @@ export default function JoinPublicGamePopup({ socket }) {
 
   useEffect(() => {
     if (!socket.current) {
-      renderErrorPopup("No hay conexión con el servidor, vuelva a intentarlo");
+      // renderErrorPopup("No hay conexión con el servidor, vuelva a intentarlo");
       return;
     }
     socket.current.emit("search_game", callback);
@@ -46,7 +46,7 @@ export default function JoinPublicGamePopup({ socket }) {
         history.push("/menu");
       });
     });
-  }, []);
+  });
 
   function callback(data) {
     if (data && data.error) {
