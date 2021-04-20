@@ -21,7 +21,6 @@ function Login() {
       password,
     })
     .then((response) => {
-      console.log(response);
       if (response != null) {
         if ("access_token" in response) {
           let token = response.access_token;

@@ -2,6 +2,7 @@ const baseUrl = "https://gatovid.herokuapp.com/data";
 
 
 function serverRequest(path, requestOptions) {
+
   return fetch(baseUrl + path, requestOptions)
     .then((response) => {
       if (!response.ok) {
