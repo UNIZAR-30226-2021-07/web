@@ -4,10 +4,10 @@ import { Row, Button, Image } from "react-bootstrap";
 
 import Popup from "./PopUp";
 import { renderStartGamePopup } from "./StartGamePopup";
+import { leaveGame } from "../WebSockets";
 
 import check from "../../assets/common/icons/check.svg";
 import clipboard from "../../assets/common/icons/clipboard.svg";
-import { leaveGame } from "../WebSockets";
 
 function copyCode() {
   const codeField = document.getElementById("game-code");
@@ -38,7 +38,7 @@ export default function CreateGamePopup({ socket }) {
       title="Partida privada lista"
       icon={check}
       close={true}
-      onClose={() => leaveGame(socket)}
+      onClose={() => leaveGame({socket})}
     >
       <Row className="justify-content-center">
         <p className="text-center">
@@ -72,7 +72,7 @@ export default function CreateGamePopup({ socket }) {
         </div>
         <Button
           className="primary-button"
-          onClick={() => renderStartGamePopup(socket)}
+          onClick={() => renderStartGamePopup({socket})}
         >
           CONFIRMAR
         </Button>

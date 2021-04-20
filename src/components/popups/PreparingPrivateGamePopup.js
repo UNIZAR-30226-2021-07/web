@@ -10,7 +10,7 @@ import { NumUsersContext } from "../UsersProvider";
 import { SessionContext } from "../SessionProvider";
 import { leaveGame } from "../WebSockets";
 
-export default function PreparingGamePopup({ socket }) {
+export default function PreparingPrivateGamePopup({ socket }) {
   const history = useHistory();
   const userContext = useContext(NumUsersContext);
   const session = useContext(SessionContext);
@@ -32,19 +32,20 @@ export default function PreparingGamePopup({ socket }) {
   }, []);
 
   useEffect(() => {
+    if (!socket || !socket.current) return;
     socket.current.on("game_owner", onChangeLeader);
   }, []);
 
   const onChangeLeader = () => {
     console.log("GAME_OWNER_MSG");
     PopupboxManager.close();
-    renderStartGamePopup(socket);
+    renderStartGamePopup({socket});
   };
 
   return (
     <Popup title="Preparando partida..." 
           close={true}
-          onCloseAction={() => leaveGame(socket)}>
+          onClose={() => leaveGame({socket})}>
       <Row className="justify-content-center mb-3 mt-3">
         <div className="spinner-border" role="status">
           <span className="sr-only">Loading...</span>
@@ -59,8 +60,8 @@ export default function PreparingGamePopup({ socket }) {
   );
 }
 
-export function renderPreparingGamePopup(socket) {
-  const content = <PreparingGamePopup socket={socket} />;
+export function renderPreparingPrivateGamePopup({ socket }) {
+  const content = <PreparingPrivateGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {

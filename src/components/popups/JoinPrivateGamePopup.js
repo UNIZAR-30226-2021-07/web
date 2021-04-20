@@ -4,7 +4,7 @@ import { Row, Button, Form } from "react-bootstrap";
 
 import Popup from "./PopUp";
 
-import { renderPreparingGamePopup } from "./PreparingGamePopup";
+import { renderPreparingPrivateGamePopup } from "./PreparingPrivateGamePopup";
 import { renderErrorPopup } from "./ErrorPopup";
 
 import check from "../../assets/common/icons/check.svg";
@@ -20,7 +20,7 @@ export default function JoinPrivateGamePopup({ socket }) {
         renderErrorPopup(response.error);
       } else {
         PopupboxManager.close();
-        renderPreparingGamePopup(socket);
+        renderPreparingPrivateGamePopup({socket});
       }
     });
   };
