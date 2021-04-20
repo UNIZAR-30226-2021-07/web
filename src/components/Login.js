@@ -20,8 +20,7 @@ function Login() {
       email,
       password,
       setToken: session.setToken,
-    })
-    .then((response) => {
+    }).then((response) => {
       if (response != null) {
         if ("access_token" in response) {
           let token = response.access_token;
@@ -31,7 +30,7 @@ function Login() {
           renderErrorPopup(response.error);
         }
       }
-    })
+    });
   };
 
   return (

@@ -30,7 +30,7 @@ function SignUp() {
       password,
       setToken: () => {},
     });
-    
+
     if (response != null) {
       if ("user" in response) {
         history.push("/login");

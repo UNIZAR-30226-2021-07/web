@@ -60,7 +60,7 @@ function Profile() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    
+
     // TODO: PONER ADAPTADO A NUEVO TRATAMIENTO DE ERROR EN API.JS
     const response = await logoutUser(session);
     if (response != null) {

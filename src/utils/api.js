@@ -1,8 +1,6 @@
 const baseUrl = "https://gatovid.herokuapp.com/data";
 
-
 function serverRequest(path, requestOptions, setToken) {
-
   return fetch(baseUrl + path, requestOptions)
     .then((response) => {
       if (!response.ok) {
@@ -14,15 +12,15 @@ function serverRequest(path, requestOptions, setToken) {
     .catch((response) => {
       switch (response.status) {
         case 400:
-          console.log('Error 400');
+          console.log("Error 400");
           return response.json();
         case 401:
-          console.log('Token caducado');
+          console.log("Token caducado");
           // Token to null and return to login
           setToken(null);
           return null;
         default:
-          console.log('Error:' + response.status);
+          console.log("Error:" + response.status);
           break;
       }
     });

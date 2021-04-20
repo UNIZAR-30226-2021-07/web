@@ -68,10 +68,13 @@ function EditProfile() {
       data.append(`board`, board);
       data.append(`picture`, picture);
       */
-      
+
       // TODO: PONER ADAPTADO A NUEVO TRATAMIENTO DE ERROR EN API.JS
-      modifyUser({ token: session.token, data, setToken: session.setToken })
-      .then((response) => {
+      modifyUser({
+        token: session.token,
+        data,
+        setToken: session.setToken,
+      }).then((response) => {
         if (response != null) {
           if ("error" in response) {
             renderErrorPopup(response.error);
