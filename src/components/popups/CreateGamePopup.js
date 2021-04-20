@@ -38,7 +38,7 @@ export default function CreateGamePopup({ socket }) {
       title="Partida privada lista"
       icon={check}
       close={true}
-      onCloseAction={() => leaveGame(socket)}
+      onClose={() => leaveGame(socket)}
     >
       <Row className="justify-content-center">
         <p className="text-center">

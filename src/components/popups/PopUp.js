@@ -6,13 +6,13 @@ export default function Popup({
   title,
   icon,
   close,
-  onCloseAction = PopupboxManager.close,
+  onClose = PopupboxManager.close,
   children,
 }) {
 
-  function onClose() {
+  function handleClose() {
     PopupboxManager.close();
-    onCloseAction();
+    onClose();
   }
 
   return (
@@ -26,7 +26,7 @@ export default function Popup({
         ></Image>
         <h2 className="popup-title mb-0">{title}</h2>
         {close && (
-          <Button className="close" onClick={onClose}>
+          <Button className="close" onClick={handleClose}>
             &times;
           </Button>
         )}
