@@ -25,7 +25,7 @@ function App() {
     if (!session.token || session.userData.length !== 0) {
       return;
     }
-    console.log("fetching user data");
+
     // Se piden los datos del usuario
     getUserData(session)
       .then((response) => {
@@ -50,7 +50,7 @@ function App() {
   }, [session.token]);
 
   useEffect(() => {
-    console.log(session.token);
+
     if (session.token != null) {
       session.socket.current = io.connect("wss://gatovid.herokuapp.com", {
         extraHeaders: {
@@ -67,7 +67,6 @@ function App() {
       });
 
       session.socket.current.on("users_waiting", (users) => {
-        console.log(users);
         usersProvider.setUsers(users);
       });
 
