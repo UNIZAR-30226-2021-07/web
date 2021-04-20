@@ -43,28 +43,34 @@ function Profile() {
 
     // Get user stats
     let username = session.userData.name;
-    getUserStats({ username }).then((response) => {
-      if ("error" in response) {
-        console.error(response.error);
-      } else {
-        setGames(response.games);
-        setWins(response.wins);
-        setLosses(response.losses);
-        setTimePlayed(response.playtime_mins);
+    // TODO: PONER ADAPTADO A NUEVO TRATAMIENTO DE ERROR EN API.JS
+    getUserStats({ username, setToken: session.setToken }).then((response) => {
+      if (response != null) {
+        if ("error" in response) {
+          console.error(response.error);
+        } else {
+          setGames(response.games);
+          setWins(response.wins);
+          setLosses(response.losses);
+          setTimePlayed(response.playtime_mins);
+        }
       }
     });
   }, [session.userData.name]);
 
   const handleClick = async (e) => {
     e.preventDefault();
+    
+    // TODO: PONER ADAPTADO A NUEVO TRATAMIENTO DE ERROR EN API.JS
     const response = await logoutUser(session);
-
-    if ("message" in response) {
-      session.setToken(null);
-      // Clean user data
-      session.setUserData([]);
-    } else {
-      renderErrorPopup(response.error);
+    if (response != null) {
+      if ("message" in response) {
+        session.setToken(null);
+        // Clean user data
+        session.setUserData([]);
+      } else {
+        renderErrorPopup(response.error);
+      }
     }
   };
 

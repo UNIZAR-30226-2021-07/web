@@ -17,22 +17,26 @@ function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //Revisa que las contraseñas sean iguales
+    // Revisa que las contraseñas sean iguales
     if (password != confirmPassword) {
       renderErrorPopup("Las contraseñas no coiciden.");
       return;
     }
 
+    // TODO: PONER ADAPTADO A NUEVO TRATAMIENTO DE ERROR EN API.JS
     const response = await signUpUser({
       name,
       email,
       password,
+      setToken: () => {},
     });
-
-    if ("user" in response) {
-      history.push("/login");
-    } else {
-      renderErrorPopup(response.error);
+    
+    if (response != null) {
+      if ("user" in response) {
+        history.push("/login");
+      } else {
+        renderErrorPopup(response.error);
+      }
     }
   };
 

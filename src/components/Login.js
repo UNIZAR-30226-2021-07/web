@@ -19,6 +19,7 @@ function Login() {
     loginUser({
       email,
       password,
+      setToken: session.setToken,
     })
     .then((response) => {
       if (response != null) {

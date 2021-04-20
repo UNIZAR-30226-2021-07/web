@@ -27,26 +27,24 @@ function App() {
     }
 
     // Se piden los datos del usuario
+    // TODO: PONER ADAPTADO A NUEVO TRATAMIENTO DE ERROR EN API.JS
     getUserData(session)
       .then((response) => {
-        if ("error" in response) {
-          console.error(response);
-        } else {
-          session.setUserData({
-            email: response.email,
-            name: response.name,
-            coins: response.coins,
-            picture: response.picture,
-            board: response.board,
-            purchases: response.purchases,
-          });
+        if (response != null) {
+          if ("error" in response) {
+            console.error(response);
+          } else {
+            session.setUserData({
+              email: response.email,
+              name: response.name,
+              coins: response.coins,
+              picture: response.picture,
+              board: response.board,
+              purchases: response.purchases,
+            });
+          }
         }
       })
-      .catch((status) => {
-        if (status === 401) {
-          session.setToken(null);
-        }
-      });
   }, [session.token]);
 
   useEffect(() => {
