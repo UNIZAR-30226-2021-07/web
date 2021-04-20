@@ -43,8 +43,7 @@ function Profile() {
 
     // Get user stats
     let username = session.userData.name;
-    getUserStats({ username, setToken: session.setToken })
-    .then((response) => {
+    getUserStats({ username, setToken: session.setToken }).then((response) => {
       if (response != null) {
         if ("error" in response) {
           console.error(response.error);

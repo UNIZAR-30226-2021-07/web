@@ -15,7 +15,7 @@ export default function DeleteAccountPopup({ token, setToken }) {
     e.preventDefault();
 
     const response = await deleteUser({ token });
-    
+
     if (response != null) {
       if ("message" in response) {
         setToken(null);
