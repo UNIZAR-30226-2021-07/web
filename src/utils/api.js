@@ -1,5 +1,31 @@
 const baseUrl = "https://gatovid.herokuapp.com";
 
+
+function serverRequest(path, requestOptions) {
+  return fetch(baseUrl + path, requestOptions)
+    .then((response) => {
+      if (!response.ok) {
+        throw response;
+      } else {
+        return response.json();
+      }
+    })
+    .catch((response) => {
+      switch (response.status) {
+        case 400:
+          console.log('Error 400');
+          return response.json();
+        case 401:
+          console.log('Token caducado');
+
+          break;
+        default:
+          console.log('Error:' + response.status);
+          break;
+      }
+    });
+}
+
 export async function loginUser({ email, password }) {
   let data = new URLSearchParams();
   data.append(`email`, email);
@@ -10,26 +36,9 @@ export async function loginUser({ email, password }) {
     body: data,
   };
 
-  return fetch(baseUrl + "/data/login", requestOptions)
-    .then((response) => {
-      if (!response.ok) {
-        throw response.status;
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      switch (error) {
-        case 400:
-          console.log('Error 400');
-          break;
-        case 401:
-          console.log('Token caducado');
-          break;
-        default:
-          console.log('Error:' + error);
-          break;
-      }
-    });
+  const path = "/data/login";
+
+  return serverRequest(path, requestOptions);
 }
 
 export async function logoutUser({ token }) {
@@ -39,12 +48,9 @@ export async function logoutUser({ token }) {
       Authorization: "Bearer " + token,
     },
   };
+  const path = "/data/logout";
 
-  return fetch(baseUrl + "/data/logout", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  return serverRequest(path, requestOptions);
 }
 
 export async function signUpUser({ name, email, password }) {
@@ -58,11 +64,9 @@ export async function signUpUser({ name, email, password }) {
     body: data,
   };
 
-  return fetch(baseUrl + "/data/signup", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  const path = "/data/signup";
+
+  return serverRequest(path, requestOptions);
 }
 
 export async function deleteUser({ token }) {
@@ -73,11 +77,9 @@ export async function deleteUser({ token }) {
     },
   };
 
-  return fetch(baseUrl + "/data/remove_user", requestOptions)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  const path = "/data/remove_user";
+
+  return serverRequest(path, requestOptions);
 }
 
 export async function getUserData({ token }) {
@@ -86,13 +88,9 @@ export async function getUserData({ token }) {
     headers: { Authorization: "Bearer " + token },
   };
 
-  return fetch(
-    "https://gatovid.herokuapp.com/data/user_data",
-    requestOptions
-  ).then((data) => {
-    if (data.status !== 200) throw data.status;
-    else return data.json();
-  });
+  const path = "/data/user_data";
+
+  return serverRequest(path, requestOptions);
 }
 
 export async function modifyUser({ token, data }) {
@@ -102,19 +100,21 @@ export async function modifyUser({ token, data }) {
     body: data,
   };
 
-  return fetch(
-    "https://gatovid.herokuapp.com/data/modify_user",
-    requestOptions
-  ).then((data) => {
-    if (data.status !== 200) throw data.status;
-    else return data.json();
-  });
+  const path = "/data/modify_user";
+
+  return serverRequest(path, requestOptions);
 }
 
 export async function getUserStats({ username }) {
-  return fetch(baseUrl + "/data/user_stats?name=" + username)
-    .then((data) => data.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  let data = new URLSearchParams();
+  data.append(`name`, username);
+  
+  const requestOptions = {
+    method: "POST",
+    body: data,
+  };
+
+  path = "/data/user_stats";
+
+  return serverRequest(path, requestOptions);
 }

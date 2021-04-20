@@ -14,21 +14,26 @@ function Login() {
   const [password, setPassword] = useState();
   const history = useHistory();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const response = await loginUser({
+    loginUser({
       email,
       password,
-    });
+    })
+    .then((response) => {
+      console.log(response);
+      if (response != null) {
+        if ("access_token" in response) {
+          let token = response.access_token;
+          session.setToken(token);
+          history.push("/home");
+        } else {
+          renderErrorPopup(response.error);
+        }
+      }
+    })
 
-    if ("access_token" in response) {
-      let token = response.access_token;
-      session.setToken(token);
-
-      history.push("/home");
-    } else {
-      renderErrorPopup(response.error);
-    }
+    
   };
 
   return (
