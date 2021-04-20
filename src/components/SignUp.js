@@ -9,10 +9,10 @@ import { renderErrorPopup } from "./popups/ErrorPopup";
 function SignUp() {
   const history = useHistory();
 
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +23,6 @@ function SignUp() {
       return;
     }
 
-    // TODO: PONER ADAPTADO A NUEVO TRATAMIENTO DE ERROR EN API.JS
     const response = await signUpUser({
       name,
       email,
@@ -32,10 +31,10 @@ function SignUp() {
     });
 
     if (response != null) {
-      if ("user" in response) {
-        history.push("/login");
-      } else {
+      if ("error" in response) {
         renderErrorPopup(response.error);
+      } else {
+        history.push("/login");
       }
     }
   };

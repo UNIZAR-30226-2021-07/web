@@ -27,7 +27,6 @@ function App() {
     }
 
     // Se piden los datos del usuario
-    // TODO: PONER ADAPTADO A NUEVO TRATAMIENTO DE ERROR EN API.JS
     getUserData(session).then((response) => {
       if (response != null) {
         if ("error" in response) {

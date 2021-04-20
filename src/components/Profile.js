@@ -43,8 +43,8 @@ function Profile() {
 
     // Get user stats
     let username = session.userData.name;
-    // TODO: PONER ADAPTADO A NUEVO TRATAMIENTO DE ERROR EN API.JS
-    getUserStats({ username, setToken: session.setToken }).then((response) => {
+    getUserStats({ username, setToken: session.setToken })
+    .then((response) => {
       if (response != null) {
         if ("error" in response) {
           console.error(response.error);
@@ -61,7 +61,6 @@ function Profile() {
   const handleClick = async (e) => {
     e.preventDefault();
 
-    // TODO: PONER ADAPTADO A NUEVO TRATAMIENTO DE ERROR EN API.JS
     const response = await logoutUser(session);
     if (response != null) {
       if ("message" in response) {

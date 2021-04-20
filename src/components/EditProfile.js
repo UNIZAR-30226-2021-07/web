@@ -26,9 +26,9 @@ function EditProfile() {
 
   const [picture, setPicture] = useState("");
   const [board, setBoard] = useState("");
-  const [newUserName, setNewUserName] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [newUserName, setNewUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
     if (session.userData.length === 0) return;
@@ -68,17 +68,13 @@ function EditProfile() {
       data.append(`board`, board);
       data.append(`picture`, picture);
       */
-
-      // TODO: PONER ADAPTADO A NUEVO TRATAMIENTO DE ERROR EN API.JS
       modifyUser({
         token: session.token,
         data,
         setToken: session.setToken,
       }).then((response) => {
         if (response != null) {
-          if ("error" in response) {
-            renderErrorPopup(response.error);
-          } else {
+          if ("message" in response) {
             // Update local user_data as server has just updated
             getUserData(session).then((response) => {
               if (response != null) {
@@ -97,6 +93,8 @@ function EditProfile() {
                 }
               }
             });
+          } else {
+            renderErrorPopup(response.error);
           }
         }
       });

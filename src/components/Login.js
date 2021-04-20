@@ -10,8 +10,8 @@ import { SessionContext } from "./SessionProvider";
 
 function Login() {
   const session = useContext(SessionContext);
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const history = useHistory();
 
   const handleSubmit = (e) => {

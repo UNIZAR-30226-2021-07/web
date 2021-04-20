@@ -21,7 +21,7 @@ function serverRequest(path, requestOptions, setToken) {
           return null;
         default:
           console.log("Error:" + response.status);
-          break;
+          return null;
       }
     });
 }

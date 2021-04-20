@@ -15,13 +15,15 @@ export default function DeleteAccountPopup({ token, setToken }) {
     e.preventDefault();
 
     const response = await deleteUser({ token });
-
-    if ("message" in response) {
-      setToken(null);
-      PopupboxManager.close();
-      history.push("/login");
-    } else {
-      renderErrorPopup(response.error);
+    
+    if (response != null) {
+      if ("message" in response) {
+        setToken(null);
+        PopupboxManager.close();
+        history.push("/login");
+      } else {
+        renderErrorPopup(response.error);
+      }
     }
   };
 
