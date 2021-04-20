@@ -17,13 +17,14 @@ function copyCode() {
 }
 
 export default function CreateGamePopup({ socket, code }) {
-
   return (
     <Popup
       title="Partida privada lista"
       icon={check}
       close={true}
-      onClose={() => {leaveGame({ socket });}}
+      onClose={() => {
+        leaveGame({ socket });
+      }}
     >
       <Row className="justify-content-center">
         <p className="text-center">
