@@ -55,9 +55,11 @@ export default function JoinPublicGamePopup({ socket }) {
   }
 
   return (
-    <Popup title="Preparando partida..." 
-           close={true}
-           onClose={() => leaveGame({socket})}>
+    <Popup
+      title="Preparando partida..."
+      close={true}
+      onClose={() => leaveGame({ socket })}
+    >
       <Row className="justify-content-center mb-3 mt-3">
         <Row className="justify-content-center mb-3 mt-3">
           <div className="spinner-border" role="status">

@@ -9,7 +9,6 @@ export default function Popup({
   onClose = PopupboxManager.close,
   children,
 }) {
-
   function handleClose() {
     PopupboxManager.close();
     onClose();
@@ -37,7 +36,14 @@ export default function Popup({
 }
 
 export function openPopup(title, icon, close, onCloseAction) {
-  const content = <Popup title={title} icon={icon} close={close} onCloseAction={onCloseAction} />;
+  const content = (
+    <Popup
+      title={title}
+      icon={icon}
+      close={close}
+      onCloseAction={onCloseAction}
+    />
+  );
   PopupboxManager.open({
     content,
     config: {

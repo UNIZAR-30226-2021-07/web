@@ -38,7 +38,7 @@ export default function CreateGamePopup({ socket }) {
       title="Partida privada lista"
       icon={check}
       close={true}
-      onClose={() => leaveGame({socket})}
+      onClose={() => leaveGame({ socket })}
     >
       <Row className="justify-content-center">
         <p className="text-center">
@@ -72,7 +72,7 @@ export default function CreateGamePopup({ socket }) {
         </div>
         <Button
           className="primary-button"
-          onClick={() => renderStartGamePopup({socket})}
+          onClick={() => renderStartGamePopup({ socket })}
         >
           CONFIRMAR
         </Button>

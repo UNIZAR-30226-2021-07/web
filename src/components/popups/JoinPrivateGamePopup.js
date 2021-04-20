@@ -20,7 +20,7 @@ export default function JoinPrivateGamePopup({ socket }) {
         renderErrorPopup(response.error);
       } else {
         PopupboxManager.close();
-        renderPreparingPrivateGamePopup({socket});
+        renderPreparingPrivateGamePopup({ socket });
       }
     });
   };
