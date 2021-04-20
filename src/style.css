@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "ShortStack";
+  src: url("./assets/common/fonts/ShortStack.ttf");
+}
+
 body {
   color: #00344a !important;
   background-image: url("assets/common/background.jpg");
@@ -63,7 +68,8 @@ body,
 }
 
 .logo-title {
-  font-size: 10vh;
+  font-size: 15vh;
+  font-family: "ShortStack", Arial, Helvetica, sans-serif;
 }
 
 .menu-container {
@@ -287,6 +293,7 @@ body,
   border: none !important;
   border-radius: 10px !important;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: fit-content;
 }
 
 .gatovid-message {

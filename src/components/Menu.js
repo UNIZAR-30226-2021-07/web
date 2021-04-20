@@ -13,10 +13,19 @@ import coins from "../assets/common/icons/huella.svg";
 import profile_pics from "../assets/common/profile_pics.json";
 
 import { SessionContext } from "./SessionProvider";
+import { leaveGame } from "./WebSockets";
 
 function Menu() {
   const session = useContext(SessionContext);
   const [picture, setPicture] = useState("");
+
+  useEffect(() => {
+    // Prevents going to match if user is not in a match
+    session.setOnMatch(false);
+
+    if (!session.socket.current) return;
+    leaveGame(session);
+  }, []);
 
   useEffect(() => {
     if (session.userData.length === 0) return;

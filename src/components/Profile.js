@@ -61,6 +61,8 @@ function Profile() {
 
     if ("message" in response) {
       session.setToken(null);
+      // Clean user data
+      session.setUserData([]);
     } else {
       renderErrorPopup(response.error);
     }

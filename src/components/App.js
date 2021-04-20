@@ -15,15 +15,17 @@ import Help from "./Help";
 import { getUserData } from "../utils/api";
 
 import { SessionContext } from "./SessionProvider";
+import { NumUsersContext } from "./UsersProvider";
 
 function App() {
   const session = useContext(SessionContext);
+  const usersProvider = useContext(NumUsersContext);
 
   useEffect(() => {
     if (!session.token || session.userData.length !== 0) {
       return;
     }
-    console.log("fetching user data");
+
     // Se piden los datos del usuario
     getUserData(session)
       .then((response) => {
@@ -63,26 +65,16 @@ function App() {
         console.error("not connected", e);
       });
 
-      session.socket.current.on("start_game", function () {
-        alert("Game started");
+      session.socket.current.on("users_waiting", (users) => {
+        usersProvider.setUsers(users);
       });
-
-      session.socket.current.on("users_waiting", function (n) {
-        console.log(n);
-      });
-      /*
-      session.socket.current.on("chat", function ({ owner, msg }) {
-        console.log(owner, msg);
-        setMessages((prev) => [...prev, { userid: owner, text: msg }]);
-      });
-      */
 
       return () => {
         session.socket.current.close();
         session.socket.current = null;
       };
     }
-  }, [session.token]);
+  }, [session.token, session.updateSocket]);
   // De esta forma el useEffect se ejecutará si cambia el token, volviendo
   // a hacer el connect
 
@@ -99,7 +91,12 @@ function App() {
 
         <ProtectedRoute path="/home" token={session.token} component={Menu} />
 
-        <ProtectedRoute path="/match" token={session.token} component={Match} />
+        <ProtectedMatchRoute
+          path="/match"
+          token={session.token}
+          onMatch={session.onMatch}
+          component={Match}
+        />
 
         <ProtectedRoute
           path="/profile"
@@ -136,6 +133,25 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
       render={(props) =>
         rest.token != null ? (
           <Component {...rest} {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
+      }
+    />
+  );
+};
+
+const ProtectedMatchRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        rest.token != null ? (
+          rest.onMatch ? (
+            <Component {...rest} {...props} />
+          ) : (
+            <Redirect to="/home" />
+          )
         ) : (
           <Redirect to="/login" />
         )

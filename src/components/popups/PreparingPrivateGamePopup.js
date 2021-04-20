@@ -1,70 +1,69 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { PopupboxManager } from "react-popupbox";
-import { Row, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
+import { renderStartGamePopup } from "./StartGamePopup";
 import { NumUsersContext } from "../UsersProvider";
 import { SessionContext } from "../SessionProvider";
 import { leaveGame } from "../WebSockets";
 
-export default function StartGamePopup({ socket }) {
+export default function PreparingPrivateGamePopup({ socket }) {
   const history = useHistory();
   const userContext = useContext(NumUsersContext);
   const session = useContext(SessionContext);
   const total = 6;
 
-  const handleClick = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (!socket || !socket.current) return;
 
-    socket.current.emit("start_game", (response) => {
+    socket.current.on("start_game", (response) => {
       if (response && response.error) {
         renderErrorPopup(response.error);
       } else {
         PopupboxManager.close();
         session.setOnMatch(true);
         history.push("/match");
+        socket.current.off("game_owner", onChangeLeader);
       }
     });
+  }, []);
+
+  useEffect(() => {
+    if (!socket || !socket.current) return;
+    socket.current.on("game_owner", onChangeLeader);
+  }, []);
+
+  const onChangeLeader = () => {
+    console.log("GAME_OWNER_MSG");
+    PopupboxManager.close();
+    renderStartGamePopup({ socket });
   };
+
   return (
     <Popup
-      title="¿Empezar partida?"
+      title="Preparando partida..."
       close={true}
       onClose={() => leaveGame({ socket })}
     >
+      <Row className="justify-content-center mb-3 mt-3">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </Row>
       <Row className="justify-content-center">
         <p className="h5 text-center mb-3">
           {userContext.users}/{total} gaticos preparados
         </p>
       </Row>
-      <Row className="justify-content-center">
-        {userContext.users > 1 ? (
-          <Button className="primary-button" onClick={handleClick}>
-            Empezar partida
-          </Button>
-        ) : (
-          <OverlayTrigger
-            placement="bottom"
-            overlay={
-              <Tooltip id="tooltip-disabled">
-                Se necesitan al menos dos jugadores para comenzar la partida
-              </Tooltip>
-            }
-          >
-            <Button className="primary-button" disabled>
-              Empezar partida
-            </Button>
-          </OverlayTrigger>
-        )}
-      </Row>
     </Popup>
   );
 }
 
-export function renderStartGamePopup({ socket }) {
-  const content = <StartGamePopup socket={socket} />;
+export function renderPreparingPrivateGamePopup({ socket }) {
+  const content = <PreparingPrivateGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {

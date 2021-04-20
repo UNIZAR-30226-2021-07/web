@@ -26,10 +26,14 @@ function SessionProvider({ children }) {
   // Para poder coger el valor que se le asigna desde el useEffect
   // con current se referencia a este objeto desde fuera
   const socket = useRef(null);
+  // Actua como un flag. En el momento en el que se cambia se dispara la
+  // obtención de un nuevo socket en "App".
+  const [updateSocket, setUpdateSocket] = useState(1);
+  // Flag de estar o no en partida
+  const [onMatch, setOnMatch] = useState(false);
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    console.log(token);
     // Guardamos el token cuando se actualiza
     setLocalStorage("token", token);
   }, [token]);
@@ -39,8 +43,12 @@ function SessionProvider({ children }) {
       value={{
         token: token,
         socket: socket,
+        updateSocket: updateSocket,
+        onMatch: onMatch,
         userData: userData,
         setToken: (token) => setToken(token),
+        setUpdateSocket: (updateSocket) => setUpdateSocket(updateSocket),
+        setOnMatch: (onMatch) => setOnMatch(onMatch),
         setUserData: (userData) => setUserData(userData),
       }}
     >
