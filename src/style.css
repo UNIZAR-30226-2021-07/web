@@ -7,6 +7,8 @@ body {
   background-image: url("assets/common/background.jpg");
 }
 
+@import url(https://allfont.es/allfont.css?fonts=short-stack);
+
 html,
 body,
 #root,
@@ -63,7 +65,8 @@ body,
 }
 
 .logo-title {
-  font-size: 10vh;
+  font-size: 15vh;
+  font-family: "Short Stack", Arial, Helvetica, sans-serif;
 }
 
 .menu-container {
