@@ -26,21 +26,16 @@ export default function PreparingPrivateGamePopup({ socket }) {
         PopupboxManager.close();
         session.setOnMatch(true);
         history.push("/match");
-        socket.current.off("game_owner", onChangeLeader);
+        socket.current.off("game_owner");
       }
     });
-  }, []);
 
-  useEffect(() => {
-    if (!socket || !socket.current) return;
-    socket.current.on("game_owner", onChangeLeader);
+    socket.current.once("game_owner", () => {
+      PopupboxManager.close();
+      socket.current.off("start_game");
+      renderStartGamePopup({ socket });
+    });
   }, []);
-
-  const onChangeLeader = () => {
-    console.log("GAME_OWNER_MSG");
-    PopupboxManager.close();
-    renderStartGamePopup({ socket });
-  };
 
   return (
     <Popup

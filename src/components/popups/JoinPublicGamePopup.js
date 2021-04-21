@@ -48,11 +48,11 @@ export function renderJoinPublicGamePopup(session, history) {
   }
   socket.current.emit("search_game", callback);
   // Listen to receive a game code
-  socket.current.on("found_game", (response) => {
+  socket.current.once("found_game", (response) => {
     // Join public game with the given code
     socket.current.emit("join", response.code, callback);
     // Wait to "start_game" or "game_cancelled"
-    socket.current.on("start_game", (response) => {
+    socket.current.once("start_game", (response) => {
       if (response && response.error) {
         renderErrorPopup(response.error);
       } else {
@@ -61,7 +61,7 @@ export function renderJoinPublicGamePopup(session, history) {
         history.push("/match");
       }
     });
-    socket.current.on("game_cancelled", () => {
+    socket.current.once("game_cancelled", () => {
       PopupboxManager.close();
       history.push("/menu");
     });
