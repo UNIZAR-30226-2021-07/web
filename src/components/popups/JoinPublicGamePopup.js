@@ -6,20 +6,19 @@ import { Row } from "react-bootstrap";
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 // import { SessionContext } from "../SessionProvider";
-// import { stopSearchingGame } from "../WebSockets";
+import { stopSearchingGame } from "../WebSockets";
 
 const curiosities = [
   "Los gatos tricolores siempre son hembras",
   "Todos los gatos recién nacidos tienen los ojos azules.",
 ];
 
-export default function JoinPublicGamePopup() {
+export default function JoinPublicGamePopup({ socket }) {
   return (
     <Popup
       title="Preparando partida..."
-      // TODO: Abandonar lista de espera para poder salir del popup
-      // close={false}
-      // onClose={() => stopSearchingGame({ socket })}
+      close={true}
+      onClose={() => stopSearchingGame({ socket })}
     >
       <Row className="justify-content-center mb-3 mt-3">
         <Row className="justify-content-center mb-3 mt-3">
@@ -43,7 +42,6 @@ export function renderJoinPublicGamePopup(session, history) {
     }
   }
 
-  console.log(socket.current);
   if (!socket.current) {
     renderErrorPopup("No hay conexión con el servidor, vuelva a intentarlo");
     return;
@@ -73,7 +71,7 @@ export function renderJoinPublicGamePopup(session, history) {
     });
   });
 
-  const content = <JoinPublicGamePopup session={session} socket={socket} />;
+  const content = <JoinPublicGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {
