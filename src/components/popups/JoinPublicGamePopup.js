@@ -62,10 +62,6 @@ export function renderJoinPublicGamePopup(session, history) {
       }
     });
     socket.current.on("game_cancelled", () => {
-      // TODO: ¿Qué hacer si se recibe game_cancelled?
-      // De momento se le manda a menu, pero se podría hacer
-      // que volviese a intentar el search_game... de nuevo sin
-      // quitar el popup
       PopupboxManager.close();
       history.push("/menu");
     });
