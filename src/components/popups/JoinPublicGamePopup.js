@@ -1,11 +1,11 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
-import { SessionContext } from "../SessionProvider";
+// import { SessionContext } from "../SessionProvider";
 // import { stopSearchingGame } from "../WebSockets";
 
 const curiosities = [
@@ -13,47 +13,7 @@ const curiosities = [
   "Todos los gatos recién nacidos tienen los ojos azules.",
 ];
 
-export default function JoinPublicGamePopup({ socket }) {
-  const history = useHistory();
-  const session = useContext(SessionContext);
-
-  useEffect(() => {
-    if (!socket.current) {
-      // renderErrorPopup("No hay conexión con el servidor, vuelva a intentarlo");
-      return;
-    }
-    socket.current.emit("search_game", callback);
-    // Listen to receive a game code
-    socket.current.on("found_game", (response) => {
-      // Join public game with the given code
-      socket.current.emit("join", response.code, callback);
-      // Wait to "start_game" or "game_cancelled"
-      socket.current.on("start_game", (response) => {
-        if (response && response.error) {
-          renderErrorPopup(response.error);
-        } else {
-          PopupboxManager.close();
-          session.setOnMatch(true);
-          history.push("/match");
-        }
-      });
-      socket.current.on("game_cancelled", () => {
-        // TODO: ¿Qué hacer si se recibe game_cancelled?
-        // De momento se le manda a menu, pero se podría hacer
-        // que volviese a intentar el search_game... de nuevo sin
-        // quitar el popup
-        PopupboxManager.close();
-        history.push("/menu");
-      });
-    });
-  });
-
-  function callback(data) {
-    if (data && data.error) {
-      console.error(data.error);
-    }
-  }
-
+export default function JoinPublicGamePopup() {
   return (
     <Popup
       title="Preparando partida..."
@@ -74,8 +34,46 @@ export default function JoinPublicGamePopup({ socket }) {
   );
 }
 
-export function renderJoinPublicGamePopup({ socket }) {
-  const content = <JoinPublicGamePopup socket={socket} />;
+export function renderJoinPublicGamePopup(session, history) {
+  const socket = session.socket;
+
+  function callback(data) {
+    if (data && data.error) {
+      console.error(data.error);
+    }
+  }
+
+  console.log(socket.current);
+  if (!socket.current) {
+    renderErrorPopup("No hay conexión con el servidor, vuelva a intentarlo");
+    return;
+  }
+  socket.current.emit("search_game", callback);
+  // Listen to receive a game code
+  socket.current.on("found_game", (response) => {
+    // Join public game with the given code
+    socket.current.emit("join", response.code, callback);
+    // Wait to "start_game" or "game_cancelled"
+    socket.current.on("start_game", (response) => {
+      if (response && response.error) {
+        renderErrorPopup(response.error);
+      } else {
+        PopupboxManager.close();
+        session.setOnMatch(true);
+        history.push("/match");
+      }
+    });
+    socket.current.on("game_cancelled", () => {
+      // TODO: ¿Qué hacer si se recibe game_cancelled?
+      // De momento se le manda a menu, pero se podría hacer
+      // que volviese a intentar el search_game... de nuevo sin
+      // quitar el popup
+      PopupboxManager.close();
+      history.push("/menu");
+    });
+  });
+
+  const content = <JoinPublicGamePopup session={session} socket={socket} />;
   PopupboxManager.open({
     content,
     config: {

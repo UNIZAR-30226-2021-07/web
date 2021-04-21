@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -17,6 +18,7 @@ import { leaveGame } from "./WebSockets";
 
 function Menu() {
   const session = useContext(SessionContext);
+  const history = useHistory();
   const [picture, setPicture] = useState("");
 
   useEffect(() => {
@@ -102,7 +104,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={() => renderJoinPublicGamePopup(session)}
+            onClick={() => renderJoinPublicGamePopup(session, history)}
           >
             UNIRSE PARTIDA PÚBLICA
           </Button>
