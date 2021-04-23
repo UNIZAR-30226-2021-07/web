@@ -332,3 +332,10 @@ body,
   color: #000 !important;
   transition: none !important;
 }
+
+/* --------------------------- Match ------------------------ */
+
+.game-icon {
+  width: 8vh;
+  height: 8vh;
+}
