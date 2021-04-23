@@ -3,8 +3,7 @@ import { Container, Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Chat from "./Chat";
-//import Card from "./game/Card";
-import CardStack from "./game/CardStack";
+import Body from "./game/Body";
 
 import { renderPausePopup } from "./popups/PausePopup";
 import { SessionContext } from "./SessionProvider";
@@ -45,6 +44,8 @@ function Match() {
     { type: "hand", number: "1" },
   ];
 
+  const cardStacks = [cards, cards, cards, cards];
+
   return (
     <Row className="m-0">
       <Col>
@@ -64,15 +65,8 @@ function Match() {
               }}
             />
           </Row>
-          {/* 
           <Row>
-            <Card type="hand" number="0" />
-            <Card type="body" number="1" />
-            <Card type="rival" number="3" />
-          </Row>
-           */}
-          <Row>
-            <CardStack cards={cards} />
+            <Body cardStacks={cardStacks} />
           </Row>
         </Container>
       </Col>
