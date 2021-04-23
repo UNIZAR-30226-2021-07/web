@@ -359,3 +359,7 @@ body,
   width: fit-content;
   height: fit-content;
 }
+
+.game-card:hover {
+  transform: scale(1.3);
+}
