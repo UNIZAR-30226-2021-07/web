@@ -59,11 +59,13 @@ export function renderJoinPublicGamePopup(session, history) {
         PopupboxManager.close();
         session.setOnMatch(true);
         history.push("/match");
+        socket.current.off("game_cancelled");
       }
     });
     socket.current.once("game_cancelled", () => {
       PopupboxManager.close();
       history.push("/menu");
+      socket.current.off("start_game");
     });
   });
 
