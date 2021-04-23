@@ -70,7 +70,7 @@ export default function CreateGamePopup({ socket, code }) {
 export function renderCreateGamePopup({ socket }) {
   socket.current.emit("create_game", callback);
 
-  socket.current.on("create_game", (response) => {
+  socket.current.once("create_game", (response) => {
     const content = <CreateGamePopup socket={socket} code={response.code} />;
     PopupboxManager.open({
       content,

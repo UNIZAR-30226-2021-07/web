@@ -4,30 +4,35 @@ import { Button } from "react-bootstrap";
 
 import Popup from "./PopUp";
 
-import warning from "../../assets/common/icons/warning.svg";
+import pause from "../../assets/common/icons/pause.svg";
 
-export default function ErrorPopup({ body, title = "¡Atención!" }) {
+export default function PausePopup() {
   return (
-    <Popup title={title} icon={warning}>
-      <p className="text-center">{body}</p>
+    <Popup title="Partida pausada" icon={pause}>
+      <p className="text-center">
+        Se ha pausado la partida, los gaticos <br />
+        están esperando...
+      </p>
       <Button
         className="primary-button"
         onClick={PopupboxManager.close}
         style={{ width: "100%" }}
       >
-        Aceptar
+        Reanudar Partida
       </Button>
     </Popup>
   );
 }
 
-export function renderErrorPopup(body, title) {
-  const content = <ErrorPopup title={title} body={body} />;
+export function renderPausePopup() {
+  const content = <PausePopup />;
   PopupboxManager.open({
     content,
     config: {
       fadeIn: true,
       fadeInSpeed: 400,
+      escClose: false,
+      overlayClose: false,
     },
   });
 }

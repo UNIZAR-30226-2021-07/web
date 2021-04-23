@@ -1,10 +1,16 @@
 import React, { useContext, useEffect } from "react";
-import { Button, Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Chat from "./Chat";
 import Card from "./game/Card";
+
+import { renderPausePopup } from "./popups/PausePopup";
 import { SessionContext } from "./SessionProvider";
+
+import pause from "../assets/common/icons/pause.svg";
+import exit from "../assets/common/icons/logout.svg";
+import help from "../assets/common/icons/help.svg";
 
 function Match() {
   const session = useContext(SessionContext);
@@ -35,12 +41,23 @@ function Match() {
     <Row className="m-0">
       <Col>
         <Container className="app-container">
-          <Row className="h-100">
-            <Col className="md-9">
-              <Button onClick={leaveGame}>Salir de la partida</Button>
-            </Col>
-            <Col className="md-3"></Col>
-            <Card type="hand" number="0"/>
+          <Row className="w-100 justify-content-between no-wrap">
+            <Image src={exit} className="game-icon" onClick={leaveGame} />
+            <Image
+              src={pause}
+              className="game-icon"
+              onClick={renderPausePopup}
+            />
+            <Image
+              src={help}
+              className="game-icon"
+              onClick={() => {
+                alert("Help");
+              }}
+            />
+          </Row>
+          <Row>
+            <Card type="hand" number="0" />
             <Card type="body" number="1" />
             <Card type="rival" number="3" />
           </Row>
