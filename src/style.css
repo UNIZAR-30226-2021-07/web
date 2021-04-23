@@ -359,3 +359,10 @@ body,
   width: fit-content;
   height: fit-content;
 }
+
+/* --------------------------- Pila de Cartas ------------------------ */
+
+.stackCard {
+  position: relative;
+  height: 5%;
+}
