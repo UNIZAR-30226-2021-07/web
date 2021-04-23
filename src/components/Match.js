@@ -40,7 +40,10 @@ function Match() {
 
   // ---------------------------------------------------------------------------
   // F: Pruebas CardStack
-  const cards = [{type:"hand", number:"0"}, {type:"hand", number:"1"}];
+  const cards = [
+    { type: "hand", number: "0" },
+    { type: "hand", number: "1" },
+  ];
 
   return (
     <Row className="m-0">
@@ -69,7 +72,7 @@ function Match() {
           </Row>
            */}
           <Row>
-            <CardStack cards={cards}/>
+            <CardStack cards={cards} />
           </Row>
         </Container>
       </Col>

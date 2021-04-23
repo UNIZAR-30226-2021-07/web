@@ -97,13 +97,12 @@ function App() {
         />
          */}
 
-         <ProtectedRoute
+        <ProtectedRoute
           path="/match"
           token={session.token}
           onMatch={session.onMatch}
           component={Match}
         />
-
 
         <ProtectedRoute
           path="/profile"
