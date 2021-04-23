@@ -11,7 +11,7 @@ export default function PausePopup() {
     <Popup title="Partida pausada" icon={pause}>
       <Row className="justify-content-center">
         <p className="text-center">
-          Se ha pausado la partida, los gaticos <br/>
+          Se ha pausado la partida, los gaticos <br />
           están esperando...
         </p>
       </Row>
