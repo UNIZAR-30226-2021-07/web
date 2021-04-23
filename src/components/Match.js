@@ -3,6 +3,7 @@ import { Button, Container, Col, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Chat from "./Chat";
+import Card from "./game/Card";
 import { SessionContext } from "./SessionProvider";
 
 function Match() {
@@ -39,6 +40,9 @@ function Match() {
               <Button onClick={leaveGame}>Salir de la partida</Button>
             </Col>
             <Col className="md-3"></Col>
+            <Card type="hand" number="0"/>
+            <Card type="body" number="1" />
+            <Card type="rival" number="3" />
           </Row>
         </Container>
       </Col>
