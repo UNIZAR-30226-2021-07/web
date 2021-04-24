@@ -67,7 +67,7 @@ function Match() {
           </Row>
           <Row>
             <Col>
-              <PlayerBox username='José' photo="0" body={body}  />
+              <PlayerBox username="José" photo="0" body={body} />
             </Col>
           </Row>
         </Container>
