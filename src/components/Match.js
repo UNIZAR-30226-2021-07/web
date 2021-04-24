@@ -3,6 +3,7 @@ import { Container, Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Chat from "./Chat";
+import PlayerBox from "./game/PlayerBox";
 
 import { renderPausePopup } from "./popups/PausePopup";
 import { SessionContext } from "./SessionProvider";
@@ -36,6 +37,15 @@ function Match() {
     });
   };
 
+  // ---------------------------------------------------------------------------
+  const cardsStack = [
+    { type: "rival", number: "3" },
+    { type: "rival", number: "1" },
+    { type: "rival", number: "2" },
+  ];
+
+  const body = [cardsStack, cardsStack, cardsStack, cardsStack];
+
   return (
     <Row className="m-0">
       <Col>
@@ -54,6 +64,11 @@ function Match() {
                 alert("Help");
               }}
             />
+          </Row>
+          <Row>
+            <Col>
+              <PlayerBox username="José" photo="0" body={body} />
+            </Col>
           </Row>
         </Container>
       </Col>
