@@ -102,7 +102,7 @@ function Profile() {
               </Row>
               <Row className="align-items-center justify-content-center">
                 <Link to="/editProfile">
-                  <Button className="tertiary-button">Editar Perfil</Button>
+                  <Button className="primary-button">Editar Perfil</Button>
                 </Link>
               </Row>
             </Col>
