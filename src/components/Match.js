@@ -40,8 +40,8 @@ function Match() {
 
   // ---------------------------------------------------------------------------
   const cardsStack = [
-    { type: "hand", number: "0" },
-    { type: "hand", number: "1" },
+    { type: "body", number: "0" },
+    { type: "body", number: "1" },
   ];
   // F: Pruebas Hand
   const cardsHand = [{ number: "0" }, { number: "1" }, { number: "2" }];
@@ -66,8 +66,12 @@ function Match() {
             />
           </Row>
           <Row>
-            <CardStack cards={cards} />
-            <Hand cards={cards} />
+            <Col>
+              <CardStack cards={cardsStack} />
+            </Col>
+            <Col>
+              <Hand cards={cardsHand} />
+            </Col>
           </Row>
         </Container>
       </Col>

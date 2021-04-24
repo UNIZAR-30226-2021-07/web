@@ -344,6 +344,9 @@ body,
 
 .hand-card {
   width: 10vh;
+}
+
+.hand-card:hover {
   transform: scale(1.3);
 }
 
@@ -366,3 +369,4 @@ body,
 .stack-card {
   position: relative;
   height: 2vh;
+}
