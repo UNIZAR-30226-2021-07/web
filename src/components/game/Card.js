@@ -10,7 +10,7 @@ function Card({ number, type }) {
   const card = process.env.PUBLIC_URL + "/" + cards[number].image;
 
   return (
-    <CardBs className="game-card mx-1 bg-dark">
+    <CardBs className="list-item game-card mx-1 bg-dark">
       <Image className={`${type}-card`} src={card} />
     </CardBs>
   );
