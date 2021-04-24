@@ -3,7 +3,8 @@ import { Container, Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Table from "./game/Table";
-import Carta from "./game/Carta";
+import Mano from "./game/Mano";
+import Card from "./game/Card";
 import Chat from "./Chat";
 //import CardStack from "./game/CardStack";
 //import Hand from "./game/Hand";
@@ -52,6 +53,12 @@ function Match() {
 
   const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
 */
+
+  const cardsHand = [{ id: "card-hand-1", number: "0", draggable: "true" }, 
+                      { id: "card-hand-2", number: "1", draggable: "true" },
+                      { id: "card-hand-3", number: "2", draggable: "true" }];
+
+
   return (
     <Row className="m-0">
       <Col>
@@ -62,7 +69,7 @@ function Match() {
               src={pause}
               className="game-icon"
               onClick={renderPausePopup}
-            />
+            />s
             <Image
               src={help}
               className="game-icon"
@@ -86,15 +93,9 @@ function Match() {
           */}
           <Row className="flexbox">
             <Table id="table-1" className="table">
-              <Carta id="card-1" className="carta" draggable="true">
-                <p>Carta uno</p>
-              </Carta>
+              <Card id="carta-1" number="2" type="hand" draggable="false" />
             </Table>
-            <Table id="table-2" className="table">
-              <Carta id="card-2" className="carta" draggable="true">
-                <p>Carta dos</p>
-              </Carta>
-            </Table>
+            <Mano id="mano" cards={cardsHand}/>
           </Row>
         </Container>
       </Col>

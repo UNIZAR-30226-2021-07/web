@@ -1,12 +1,14 @@
 import React from "react";
+import { ListGroup } from "react-bootstrap";
+import Card from "./Card";
 
-
-function Table(props) {
+function Mano({id, cards}) {
 
 
   const drop = e => {
-    e.preventDefault();
+    //e.preventDefault();
     // Obtain card_id of card in event e
+
     const card_id = e.dataTransfer.getData('card_id');
 
     // Obtain card element with the id
@@ -17,20 +19,17 @@ function Table(props) {
     e.target.appendChild(card);
   }
 
-  const dragOver = e => {
-    e.preventDefault();
-  }
 
   return (
-    <div 
-      id={props.id}
-      className={props.className}
+    <ListGroup horizontal
+      id={id}
       onDrop={drop}
-      onDragOver={dragOver}
       >
-      { props.children }
-    </div>
+       {cards.map((card, idx) => (
+          <Card key={idx} id={card.id} number={card.number} type="hand" draggable={card.draggable} />
+        ))}
+    </ListGroup>
   )
 }
 
-export default Table
+export default Mano

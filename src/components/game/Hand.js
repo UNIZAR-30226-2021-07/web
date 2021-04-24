@@ -7,7 +7,6 @@ import Card from "./Card";
  * Siempre 3 del tipo "hand"
  */
 function Hand({ cards }) {
-  // TODO: PONER ZONA DE DRAG
     return (
       <ListGroup horizontal>
         {cards.map((card, idx) => (
