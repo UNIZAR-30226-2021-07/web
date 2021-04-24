@@ -363,3 +363,9 @@ body,
 .game-card:hover {
   transform: scale(1.3);
 }
+
+/* --------------------------- Pila de Cartas ------------------------ */
+.stackCard {
+  position: relative;
+  height: 5%;
+}
