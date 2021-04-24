@@ -3,9 +3,7 @@ import { Container, Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Chat from "./Chat";
-import CardStack from "./game/CardStack";
-import Hand from "./game/Hand";
-import Body from "./game/Body";
+import PlayerBox from "./game/PlayerBox";
 
 import { renderPausePopup } from "./popups/PausePopup";
 import { SessionContext } from "./SessionProvider";
@@ -13,6 +11,8 @@ import { SessionContext } from "./SessionProvider";
 import pause from "../assets/common/icons/pause.svg";
 import exit from "../assets/common/icons/logout.svg";
 import help from "../assets/common/icons/help.svg";
+
+import profile from "../assets/common/icons/perfil.svg";
 
 function Match() {
   const session = useContext(SessionContext);
@@ -42,12 +42,10 @@ function Match() {
   // ---------------------------------------------------------------------------
   const cardsStack = [
     { type: "body", number: "0" },
-    { type: "body", number: "1" },
+ //   { type: "body", number: "1" },
   ];
-  // F: Pruebas Hand
-  const cardsHand = [{ number: "0" }, { number: "1" }, { number: "2" }];
 
-  const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
+  const body = [cardsStack, cardsStack, cardsStack, cardsStack];
 
   return (
     <Row className="m-0">
@@ -70,13 +68,7 @@ function Match() {
           </Row>
           <Row>
             <Col>
-              <CardStack cards={cardsStack} />
-            </Col>
-            <Col>
-              <Hand cards={cardsHand} />
-            </Col>
-            <Col>
-              <Body cardStacks={cardBody} />
+              <PlayerBox username='José' photo={profile} body={body}  />
             </Col>
           </Row>
         </Container>
