@@ -360,6 +360,10 @@ body,
   height: fit-content;
 }
 
+.game-card:hover {
+  transform: scale(1.3);
+}
+
 /* --------------------------- Pila de Cartas ------------------------ */
 
 .stackCard {
