@@ -76,7 +76,7 @@ function Match() {
               <Hand cards={cardsHand} />
             </Col>
             <Col>
-            <Body cardStacks={cardBody} />
+              <Body cardStacks={cardBody} />
             </Col>
           </Row>
         </Container>
