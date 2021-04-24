@@ -41,8 +41,9 @@ function Match() {
 
   // ---------------------------------------------------------------------------
   const cardsStack = [
-    { type: "body", number: "0" },
- //   { type: "body", number: "1" },
+    { type: "rival", number: "3" },
+    { type: "rival", number: "1" },
+    { type: "rival", number: "2" },
   ];
 
   const body = [cardsStack, cardsStack, cardsStack, cardsStack];

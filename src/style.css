@@ -368,5 +368,21 @@ body,
 
 .stack-card {
   position: relative;
-  height: 2vh;
+  height: 1.5vh;
+}
+
+/* --------------------------- Recuadro Jugador ------------------------ */
+
+.player-image {
+  width: 6vh;
+}
+
+.player-box {
+  width: fit-content;
+  height: fit-content;
+  background-color: #C4C4C4 !important;
+}
+
+.player-body {
+  height: 20vh;
 }
