@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { Container, Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
+import Board from "./Board"
 import Chat from "./Chat";
-import Hand from "./game/Hand";
 import { renderPausePopup } from "./popups/PausePopup";
 import { SessionContext } from "./SessionProvider";
 
@@ -36,10 +36,6 @@ function Match() {
     });
   };
 
-  // ---------------------------------------------------------------------------
-  // F: Pruebas Hand
-  const cards = [{ number: "0" }, { number: "1" }, { number: "2" }];
-
   return (
     <Row className="m-0">
       <Col>
@@ -60,7 +56,7 @@ function Match() {
             />
           </Row>
           <Row>
-            <Hand cards={cards} />
+            <Board/>
           </Row>
         </Container>
       </Col>

@@ -10,6 +10,7 @@ function Card({ number, type }) {
   const card = process.env.PUBLIC_URL + "/" + cards[number].image;
 
   return (
+    // TODO: Sólo si el type es hand mejor?
     <CardBs className="game-card mx-1 bg-dark">
       <Image className={`${type}-card`} src={card} />
     </CardBs>
