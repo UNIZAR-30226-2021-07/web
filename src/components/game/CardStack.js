@@ -11,18 +11,13 @@ import Card from "./Card";
 function CardStack({ cards }) {
   // TODO: PONER ZONA DE DROP
   return (
-    <Droppable droppableId="cards">
-    {(provided) => (
-      <ListGroup {...provided.droppableProps} ref={provided.innerRef}>
-        {cards.map((card, idx) => (
-          <div className="stackCard" key={idx}>
-            <Card key={idx} number={card.number} type={card.type} />
-          </div>
-        ))}
-        {provided.placeholder}
-      </ListGroup>
-    )}
-    </Droppable>
+    <ListGroup>
+      {cards.map((card, idx) => (
+        <div className="stack-card" key={idx}>
+          <Card key={idx} number={card.number} type={card.type} />
+        </div>
+      ))}
+    </ListGroup>
   );
 }
 

@@ -346,6 +346,10 @@ body,
   width: 10vh;
 }
 
+.hand-card:hover {
+  transform: scale(1.3);
+}
+
 .body-card {
   width: 8vh;
 }
@@ -360,6 +364,7 @@ body,
   height: fit-content;
 }
 
+<<<<<<< HEAD
 
 /* F: Hover quitado provisionalmente para hacer pruebas
 .game-card:hover {
@@ -367,8 +372,11 @@ body,
 }
 */
 
+=======
+>>>>>>> 3206174799161966db6139fb3c4c51eb707ff0a6
 /* --------------------------- Pila de Cartas ------------------------ */
-.stackCard {
+
+.stack-card {
   position: relative;
-  height: 5%;
+  height: 2vh;
 }

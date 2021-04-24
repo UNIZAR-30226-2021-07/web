@@ -4,6 +4,10 @@ import { useHistory } from "react-router-dom";
 
 import Board from "./Board"
 import Chat from "./Chat";
+import CardStack from "./game/CardStack";
+import Hand from "./game/Hand";
+import Body from "./game/Body";
+
 import { renderPausePopup } from "./popups/PausePopup";
 import { SessionContext } from "./SessionProvider";
 
@@ -36,6 +40,16 @@ function Match() {
     });
   };
 
+  // ---------------------------------------------------------------------------
+  const cardsStack = [
+    { type: "body", number: "0" },
+    { type: "body", number: "1" },
+  ];
+  // F: Pruebas Hand
+  const cardsHand = [{ number: "0" }, { number: "1" }, { number: "2" }];
+
+  const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
+
   return (
     <Row className="m-0">
       <Col>
@@ -56,7 +70,15 @@ function Match() {
             />
           </Row>
           <Row>
-            <Board/>
+            <Col>
+              <CardStack cards={cardsStack} />
+            </Col>
+            <Col>
+              <Hand cards={cardsHand} />
+            </Col>
+            <Col>
+              <Body cardStacks={cardBody} />
+            </Col>
           </Row>
         </Container>
       </Col>
