@@ -12,8 +12,6 @@ import pause from "../assets/common/icons/pause.svg";
 import exit from "../assets/common/icons/logout.svg";
 import help from "../assets/common/icons/help.svg";
 
-import profile from "../assets/common/icons/perfil.svg";
-
 function Match() {
   const session = useContext(SessionContext);
   const history = useHistory();
@@ -69,7 +67,7 @@ function Match() {
           </Row>
           <Row>
             <Col>
-              <PlayerBox username='José' photo={profile} body={body}  />
+              <PlayerBox username='José' photo="0" body={body}  />
             </Col>
           </Row>
         </Container>

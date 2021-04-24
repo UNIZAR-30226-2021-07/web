@@ -381,6 +381,7 @@ body,
   width: fit-content;
   height: fit-content;
   background-color: #C4C4C4 !important;
+  border-radius: 2vh;
 }
 
 .player-body {
