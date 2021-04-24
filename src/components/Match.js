@@ -38,11 +38,7 @@ function Match() {
 
   // ---------------------------------------------------------------------------
   // F: Pruebas Hand
-  const cards = [
-    { number: "0" },
-    { number: "1" },
-    { number: "2" },
-  ];
+  const cards = [{ number: "0" }, { number: "1" }, { number: "2" }];
 
   return (
     <Row className="m-0">
