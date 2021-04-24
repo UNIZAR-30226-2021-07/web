@@ -339,3 +339,34 @@ body,
   width: 8vh;
   height: 8vh;
 }
+
+/* --------------------------- Cartas ------------------------ */
+
+.hand-card {
+  width: 10vh;
+}
+
+.hand-card:hover {
+  transform: scale(1.3);
+}
+
+.body-card {
+  width: 8vh;
+}
+
+.rival-card {
+  width: 6vh;
+}
+
+.game-card {
+  padding: 0;
+  width: fit-content;
+  height: fit-content;
+}
+
+/* --------------------------- Pila de Cartas ------------------------ */
+
+.stack-card {
+  position: relative;
+  height: 2vh;
+}

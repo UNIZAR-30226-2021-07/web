@@ -3,6 +3,7 @@ import { Container, Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Chat from "./Chat";
+
 import { renderPausePopup } from "./popups/PausePopup";
 import { SessionContext } from "./SessionProvider";
 
