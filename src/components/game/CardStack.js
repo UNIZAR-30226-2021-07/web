@@ -1,6 +1,5 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
-import { Droppable } from 'react-beautiful-dnd';
 
 
 import Card from "./Card";

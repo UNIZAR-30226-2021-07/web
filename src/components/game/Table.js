@@ -1,16 +1,8 @@
 import React from "react";
 
 
-function Board(props) {
+function Table(props) {
 
-  // ---------------------------------------------------------------------------
-  // F: Pruebas Hand
-  const cards = [{ number: "0" }, { number: "1" }, { number: "2" }];
-  /*
-  const cardsInStack = [{ type:"body", number: "0" }, 
-                        { type:"body" , number: "1" }, 
-                        { type:"body" , number: "2" }];
-  */
 
   const drop = e => {
     e.preventDefault();
@@ -42,4 +34,4 @@ function Board(props) {
   )
 }
 
-export default Board
+export default Table

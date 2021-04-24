@@ -364,7 +364,6 @@ body,
   height: fit-content;
 }
 
-<<<<<<< HEAD
 
 /* F: Hover quitado provisionalmente para hacer pruebas
 .game-card:hover {
@@ -372,11 +371,43 @@ body,
 }
 */
 
-=======
->>>>>>> 3206174799161966db6139fb3c4c51eb707ff0a6
 /* --------------------------- Pila de Cartas ------------------------ */
 
 .stack-card {
   position: relative;
   height: 2vh;
+}
+
+/* ------------------------- Drag&Drop Testing ------------------------ */
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: fit-content;
+  height: 100vh;
+
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.flexbox .table {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 300px;
+
+  background-color: #313131;
+
+  padding: 15px;
+}
+
+.flexbox .table .carta {
+  padding: 15px 25px;
+  background-color: #f3f3f3;
+
+  cursor: pointer;
+  margin-bottom: 15px;
 }

@@ -2,11 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { Container, Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-import Board from "./Board"
+import Table from "./game/Table";
+import Carta from "./game/Carta";
 import Chat from "./Chat";
-import CardStack from "./game/CardStack";
-import Hand from "./game/Hand";
-import Body from "./game/Body";
+//import CardStack from "./game/CardStack";
+//import Hand from "./game/Hand";
+//import Body from "./game/Body";
 
 import { renderPausePopup } from "./popups/PausePopup";
 import { SessionContext } from "./SessionProvider";
@@ -41,6 +42,7 @@ function Match() {
   };
 
   // ---------------------------------------------------------------------------
+  /*
   const cardsStack = [
     { type: "body", number: "0" },
     { type: "body", number: "1" },
@@ -49,7 +51,7 @@ function Match() {
   const cardsHand = [{ number: "0" }, { number: "1" }, { number: "2" }];
 
   const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
-
+*/
   return (
     <Row className="m-0">
       <Col>
@@ -69,6 +71,7 @@ function Match() {
               }}
             />
           </Row>
+          {/*  
           <Row>
             <Col>
               <CardStack cards={cardsStack} />
@@ -79,6 +82,19 @@ function Match() {
             <Col>
               <Body cardStacks={cardBody} />
             </Col>
+          </Row>
+          */}
+          <Row className="flexbox">
+            <Table id="table-1" className="table">
+              <Carta id="card-1" className="carta" draggable="true">
+                <p>Carta uno</p>
+              </Carta>
+            </Table>
+            <Table id="table-2" className="table">
+              <Carta id="card-2" className="carta" draggable="true">
+                <p>Carta dos</p>
+              </Carta>
+            </Table>
           </Row>
         </Container>
       </Col>
