@@ -39,9 +39,9 @@ function Match() {
   // ---------------------------------------------------------------------------
   // F: Pruebas Hand
   const cards = [
-    { type: "hand", number: "0" },
-    { type: "hand", number: "1" },
-    { type: "hand", number: "2" },
+    { number: "0" },
+    { number: "1" },
+    { number: "2" },
   ];
 
   return (
