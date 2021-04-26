@@ -2,13 +2,14 @@ import React, { useContext, useEffect } from "react";
 import { Container, Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-import Table from "./game/Table";
-import Mano from "./game/Mano";
-import Card from "./game/Card";
+//import Table from "./game/Table";
+//import Mano from "./game/Mano";
+//import Hand from "./game/Hand";
+//import Card from "./game/Card";
 import Chat from "./Chat";
 //import CardStack from "./game/CardStack";
 //import Hand from "./game/Hand";
-//import Body from "./game/Body";
+import Body from "./game/Body";
 
 import { renderPausePopup } from "./popups/PausePopup";
 import { SessionContext } from "./SessionProvider";
@@ -16,6 +17,7 @@ import { SessionContext } from "./SessionProvider";
 import pause from "../assets/common/icons/pause.svg";
 import exit from "../assets/common/icons/logout.svg";
 import help from "../assets/common/icons/help.svg";
+
 
 function Match() {
   const session = useContext(SessionContext);
@@ -43,21 +45,21 @@ function Match() {
   };
 
   // ---------------------------------------------------------------------------
-  /*
-  const cardsStack = [
-    { type: "body", number: "0" },
-    { type: "body", number: "1" },
-  ];
+  
   // F: Pruebas Hand
-  const cardsHand = [{ number: "0" }, { number: "1" }, { number: "2" }];
-
+  // TODO: Construir un id automáticamente desde el mapeo en body?
+  // Dependiendo del id del stack y del body corresp
+  const cardsStack = [
+    { id: "stack-card", type: "body", number: "0", draggable: "false" },
+    { id: "stack-card", type: "body", number: "1", draggable: "false" },
+  ];
   const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
-*/
 
+  /*
   const cardsHand = [{ id: "card-hand-1", number: "0", draggable: "true" }, 
                       { id: "card-hand-2", number: "1", draggable: "true" },
                       { id: "card-hand-3", number: "2", draggable: "true" }];
-
+  */
 
   return (
     <Row className="m-0">
@@ -69,7 +71,7 @@ function Match() {
               src={pause}
               className="game-icon"
               onClick={renderPausePopup}
-            />s
+            />
             <Image
               src={help}
               className="game-icon"
@@ -78,25 +80,11 @@ function Match() {
               }}
             />
           </Row>
-          {/*  
-          <Row>
-            <Col>
-              <CardStack cards={cardsStack} />
-            </Col>
-            <Col>
-              <Hand cards={cardsHand} />
-            </Col>
-            <Col>
-              <Body cardStacks={cardBody} />
-            </Col>
+          <Row className="w-100 justify-content-between no-wrap">
+            <Body cardStacks={cardBody}/>
           </Row>
-          */}
-          <Row className="flexbox">
-            <Table id="table-1" className="table">
-              <Card id="carta-1" number="2" type="hand" draggable="false" />
-            </Table>
-            <Mano id="mano" cards={cardsHand}/>
-          </Row>
+           
+          {/* <Hand cards={cardsHand}/> */}
         </Container>
       </Col>
       <Col className="p-0">

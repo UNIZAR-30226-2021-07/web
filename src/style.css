@@ -376,12 +376,30 @@ body,
 
 /* --------------------------- Pila de Cartas ------------------------ */
 
-.stack-card {
+.stackBase {
   position: relative;
-  height: 2vh;
+  margin-left: 5vh;
+  margin-right: 5vh;
+}
+
+.stackCard {
+  position: absolute;
+}
+
+.stackCard-0 {
+  top: 0;
+}
+
+.stackCard-1 {
+  top: 1.5vh;
+}
+
+.stackCard-2 {
+  top: 3vh;
 }
 
 /* ------------------------- Drag&Drop Testing ------------------------ */
+/*
 .flexbox {
   display: flex;
   justify-content: space-between;
@@ -434,3 +452,4 @@ body,
   cursor: pointer;
   margin-bottom: 15px;
 }
+*/
