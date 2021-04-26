@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 //import Hand from "./game/Hand";
 //import Card from "./game/Card";
 import Chat from "./Chat";
-// import Hand from "./game/Hand";
+import Hand from "./game/Hand";
 import Body from "./game/Body";
 
 import { renderPausePopup } from "./popups/PausePopup";
@@ -49,16 +49,16 @@ function Match() {
   // TODO: Construir un id automáticamente desde el mapeo en body?
   // Dependiendo del id del stack y del body corresp
   const cardsStack = [
-    { id: "stack-card", type: "body", number: "0", draggable: "false" },
-    { id: "stack-card", type: "body", number: "1", draggable: "false" },
-    { id: "stack-card", type: "body", number: "2", draggable: "false" },
+    { type: "body", number: "0", draggable: "false" },
+    { type: "body", number: "1", draggable: "false" },
+    // { id: "stack-card", type: "body", number: "2", draggable: "false" },
   ];
   const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
 
   
-  // const cardsHand = [{ id: "card-hand-1", number: "0", draggable: "true" }, 
-  //                     { id: "card-hand-2", number: "1", draggable: "true" },
-  //                     { id: "card-hand-3", number: "2", draggable: "true" }];
+  const cardsHand = [{ id: "card-hand-1", number: "0", draggable: "true" }, 
+                      { id: "card-hand-2", number: "1", draggable: "true" },
+                      { id: "card-hand-3", number: "2", draggable: "true" }];
   
 
   return (
@@ -81,7 +81,7 @@ function Match() {
             />
           </Row>
             <Body id="body" cardStacks={cardBody}/>
-            {/* <Hand cards={cardsHand}/> */}
+            <Hand cards={cardsHand}/>
         </Container>
       </Col>
       <Col className="p-0">

@@ -6,7 +6,7 @@ import cards from "../../assets/common/cards.json";
 /**
  * @param  type Three types: hand, body, rival
  */
-function Card({ id, number, type, draggable }) {
+function Card({ id, number, type, draggable, className }) {
   const cardImage = process.env.PUBLIC_URL + "/" + cards[number].image;
 
   const dragStart = e => {
@@ -31,7 +31,7 @@ function Card({ id, number, type, draggable }) {
   return (
     // TODO: Sólo si el type es hand mejor?
     <CardBs id={id}
-            className="game-card mx-1 bg-dark"
+            className={`game-card mx-1 bg-dark ${className}`}
             draggable={draggable}
             onDragStart={dragStart}
             onDragOver={dragOver}

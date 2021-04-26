@@ -378,7 +378,8 @@ body,
 
 .stackBase {
   position: relative;
-  display: inline-block;
+  display: block;
+  height: 16vh ;
 }
 
 .stackCard {
@@ -386,15 +387,15 @@ body,
 } 
 
 .stackCard-0 {
-  top: 0;
+  top: 0vh;
 }
 
 .stackCard-1 {
-  top: 10vh;
+  top: -10vh;
 }
 
 .stackCard-2 {
-  top: 20vh;
+  top: -20vh;
 }
 
 /* ------------------------- Drag&Drop Testing ------------------------ */
