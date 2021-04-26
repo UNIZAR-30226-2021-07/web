@@ -376,22 +376,25 @@ body,
 
 /* --------------------------- Pila de Cartas ------------------------ */
 
-.stackCard {
-  padding: 0 !important;
-  background: none !important;
-  border: none !important;
+.stackBase {
+  position: relative;
+  display: inline-block;
 }
+
+.stackCard {
+  position: absolute;
+} 
 
 .stackCard-0 {
   top: 0;
 }
 
 .stackCard-1 {
-  top: -10vh;
+  top: 10vh;
 }
 
 .stackCard-2 {
-  top: -20vh;
+  top: 20vh;
 }
 
 /* ------------------------- Drag&Drop Testing ------------------------ */

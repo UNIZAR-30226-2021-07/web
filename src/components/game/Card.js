@@ -31,7 +31,7 @@ function Card({ id, number, type, draggable }) {
   return (
     // TODO: Sólo si el type es hand mejor?
     <CardBs id={id}
-            className="game-card mx-1 bg-dark" 
+            className="game-card mx-1 bg-dark"
             draggable={draggable}
             onDragStart={dragStart}
             onDragOver={dragOver}

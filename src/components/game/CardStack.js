@@ -1,7 +1,4 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
-
-
 import Card from "./Card";
 
 /**
@@ -11,6 +8,7 @@ function CardStack({id, cards }) {
 
   const drop = e => {
     e.preventDefault();
+    console.log(id);
     // Obtain card_id of card in event e
     const card_id = e.dataTransfer.getData('card_id');
 
@@ -27,16 +25,17 @@ function CardStack({id, cards }) {
   }
 
   return (
-    <ListGroup
+    <div
       id={id}
+      className="stackBase"
       onDrop={drop}
       onDragOver={dragOver}>
       {cards.map((card, idx) => (
-          <ListGroup.Item key={idx} className={`stackCard stackCard-${idx}`}>
+          <div key={idx} className={`stackCard stackCard-${idx}`} >
             <Card key={idx} number={card.number} type={card.type} />
-          </ListGroup.Item>
+          </div>
       ))}
-    </ListGroup>
+    </div>
   );
 }
 

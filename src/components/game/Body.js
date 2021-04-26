@@ -1,5 +1,4 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
 
 import CardStack from "./CardStack";
 
@@ -9,6 +8,7 @@ import CardStack from "./CardStack";
  */
 function Body({id, cardStacks }) {
 
+  /*
   const drop = e => {
     e.preventDefault();
 
@@ -27,16 +27,15 @@ function Body({id, cardStacks }) {
   const dragOver = e => {
     e.preventDefault();
   }
+  */
 
   return (
-    <ListGroup horizontal
-      id={id}
-      onDrop={drop}
-      onDragOver={dragOver}>
+    <div
+      id={id}>
       {cardStacks.map((cards, idx) => (
-        <CardStack id={`body-${id}-cs-${idx}`} key={idx} cards={cards} />
+          <CardStack id={`body-${id}-cs-${idx}`} key={idx} cards={cards} />
       ))}
-    </ListGroup>
+    </div>
   );
 }
 
