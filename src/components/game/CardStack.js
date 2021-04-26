@@ -10,11 +10,11 @@ import Card from "./Card";
 function CardStack({ cards }) {
   // TODO: PONER ZONA DE DROP
   return (
-    <ListGroup className="stackBase">
+    <ListGroup>
       {cards.map((card, idx) => (
-          <div key={idx} className={`stackCard stackCard-${idx}`}>
-          <Card key={idx} number={card.number} type={card.type} />
-          </div>
+          <ListGroup.Item key={idx} className={`stackCard stackCard-${idx}`}>
+            <Card key={idx} number={card.number} type={card.type} />
+          </ListGroup.Item>
       ))}
     </ListGroup>
   );

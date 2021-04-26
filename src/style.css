@@ -376,14 +376,10 @@ body,
 
 /* --------------------------- Pila de Cartas ------------------------ */
 
-.stackBase {
-  position: relative;
-  margin-left: 5vh;
-  margin-right: 5vh;
-}
-
 .stackCard {
-  position: absolute;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
 }
 
 .stackCard-0 {
@@ -391,11 +387,11 @@ body,
 }
 
 .stackCard-1 {
-  top: 1.5vh;
+  top: -10vh;
 }
 
 .stackCard-2 {
-  top: 3vh;
+  top: -20vh;
 }
 
 /* ------------------------- Drag&Drop Testing ------------------------ */

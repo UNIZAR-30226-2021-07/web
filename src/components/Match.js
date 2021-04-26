@@ -7,7 +7,6 @@ import { useHistory } from "react-router-dom";
 //import Hand from "./game/Hand";
 //import Card from "./game/Card";
 import Chat from "./Chat";
-//import CardStack from "./game/CardStack";
 //import Hand from "./game/Hand";
 import Body from "./game/Body";
 
@@ -52,6 +51,7 @@ function Match() {
   const cardsStack = [
     { id: "stack-card", type: "body", number: "0", draggable: "false" },
     { id: "stack-card", type: "body", number: "1", draggable: "false" },
+    //{ id: "stack-card", type: "body", number: "2", draggable: "false" },
   ];
   const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
 
@@ -59,7 +59,7 @@ function Match() {
   const cardsHand = [{ id: "card-hand-1", number: "0", draggable: "true" }, 
                       { id: "card-hand-2", number: "1", draggable: "true" },
                       { id: "card-hand-3", number: "2", draggable: "true" }];
-  */
+*/
 
   return (
     <Row className="m-0">
@@ -80,11 +80,13 @@ function Match() {
               }}
             />
           </Row>
-          <Row className="w-100 justify-content-between no-wrap">
-            <Body cardStacks={cardBody}/>
-          </Row>
-           
-          {/* <Hand cards={cardsHand}/> */}
+            <Row>
+              <Body cardStacks={cardBody}/>
+            </Row>
+
+            {/* <Row>
+            <Hand cards={cardsHand}/>
+            </Row> */}
         </Container>
       </Col>
       <Col className="p-0">
