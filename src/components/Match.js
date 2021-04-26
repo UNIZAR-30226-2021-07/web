@@ -41,18 +41,18 @@ function Match() {
 
   // ---------------------------------------------------------------------------
 
-  const cardsStack1 = [
+  const cardsStack = [
     { type: "body", number: "0", draggable: "false" },
     { type: "body", number: "1", draggable: "false" },
   ];
-  const cardsStack2 = [
-    { type: "rival", number: "3" },
-    { type: "rival", number: "1" },
-    { type: "rival", number: "2" },
+  const cardsStack1 = [
+    { type: "rival", number: "3", draggable: "false" },
+    { type: "rival", number: "1", draggable: "false" },
+    { type: "rival", number: "2", draggable: "false" },
   ];
 
   const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
-  const body = [cardsStack2, cardsStack2, cardsStack2, cardsStack2];
+  const body = [cardsStack1, cardsStack1, cardsStack1, cardsStack1];
 
   const cardsHand = [
     { id: "card-hand-1", number: "0", draggable: "true" },

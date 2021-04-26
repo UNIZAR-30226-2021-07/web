@@ -87,7 +87,13 @@ function App() {
 
         <ProtectedRoute path="/home" token={session.token} component={Menu} />
 
-        <ProtectedMatchRoute
+        {/* <ProtectedMatchRoute
+          path="/match"
+          token={session.token}
+          onMatch={session.onMatch}
+          component={Match}
+        /> */}
+        <ProtectedRoute
           path="/match"
           token={session.token}
           onMatch={session.onMatch}
@@ -137,6 +143,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   );
 };
 
+// TODO: DESCOMENTAR - TESTING MATCH
+/* 
 const ProtectedMatchRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
@@ -155,5 +163,6 @@ const ProtectedMatchRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
+*/
 
 export default App;
