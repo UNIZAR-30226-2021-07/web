@@ -390,3 +390,20 @@ body,
 .stackCard-2 {
   top: -20vh;
 }
+
+/* --------------------------- Recuadro Jugador ------------------------ */
+
+.player-image {
+  width: 6vh;
+}
+
+.player-box {
+  width: fit-content;
+  height: fit-content;
+  background-color: #c4c4c4 !important;
+  border-radius: 2vh;
+}
+
+.player-body {
+  height: 20vh;
+}
