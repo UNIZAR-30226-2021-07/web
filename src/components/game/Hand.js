@@ -6,10 +6,9 @@ import Card from "./Card";
  * @param cards -> son las cartas de la mano un jugador
  * Siempre 3 del tipo "hand"
  */
-function Hand({ cards, className }) {
+function Hand({ cards }) {
     return (
-      <ListGroup horizontal
-        className={className}>
+      <ListGroup horizontal>
         {cards.map((card, idx) => (
           <Card key={idx} id={card.id} number={card.number} type="hand" draggable={card.draggable} />
         ))}

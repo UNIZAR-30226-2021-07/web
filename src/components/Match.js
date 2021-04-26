@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 //import Hand from "./game/Hand";
 //import Card from "./game/Card";
 import Chat from "./Chat";
-//import Hand from "./game/Hand";
+import Hand from "./game/Hand";
 import Body from "./game/Body";
 
 import { renderPausePopup } from "./popups/PausePopup";
@@ -55,17 +55,16 @@ function Match() {
   ];
   const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
 
-  /*
   const cardsHand = [{ id: "card-hand-1", number: "0", draggable: "true" }, 
                       { id: "card-hand-2", number: "1", draggable: "true" },
                       { id: "card-hand-3", number: "2", draggable: "true" }];
-*/
+
 
   return (
     <Row className="m-0">
       <Col>
         <Container className="app-container">
-          <Row className="w-100 justify-content-between no-wrap">
+          <Row className="w-100 justify-content-between no-wrap mb-4">
             <Image src={exit} className="game-icon" onClick={leaveGame} />
             <Image
               src={pause}
@@ -80,13 +79,8 @@ function Match() {
               }}
             />
           </Row>
-            <Row>
-              <Body cardStacks={cardBody}/>
-            </Row>
-
-            {/* <Row>
+            <Body id="body" cardStacks={cardBody}/>
             <Hand cards={cardsHand}/>
-            </Row> */}
         </Container>
       </Col>
       <Col className="p-0">

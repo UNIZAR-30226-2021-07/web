@@ -11,6 +11,8 @@ function Body({id, cardStacks }) {
 
   const drop = e => {
     e.preventDefault();
+
+    console.log(id);
     // Obtain card_id of card in event e
     const card_id = e.dataTransfer.getData('card_id');
 
@@ -32,7 +34,7 @@ function Body({id, cardStacks }) {
       onDrop={drop}
       onDragOver={dragOver}>
       {cardStacks.map((cards, idx) => (
-        <CardStack key={idx} cards={cards} />
+        <CardStack id={`body-${id}-cs-${idx}`} key={idx} cards={cards} />
       ))}
     </ListGroup>
   );
