@@ -2,10 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { Container, Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-//import Table from "./game/Table";
-//import Mano from "./game/Mano";
-//import Hand from "./game/Hand";
-//import Card from "./game/Card";
 import Chat from "./Chat";
 import Hand from "./game/Hand";
 import Body from "./game/Body";
@@ -44,14 +40,10 @@ function Match() {
   };
 
   // ---------------------------------------------------------------------------
-  
-  // F: Pruebas Hand
-  // TODO: Construir un id automáticamente desde el mapeo en body?
-  // Dependiendo del id del stack y del body corresp
+
   const cardsStack = [
     { type: "body", number: "0", draggable: "false" },
     { type: "body", number: "1", draggable: "false" },
-    // { id: "stack-card", type: "body", number: "2", draggable: "false" },
   ];
   const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
 

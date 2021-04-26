@@ -13,6 +13,9 @@ function Card({ id, number, type, draggable, className }) {
     //const target = e.target;
 
     //console.log(e.target);
+    if (draggable == "false") { 
+      return;
+    }
 
     e.dataTransfer.setData('card_id', id);
 
@@ -24,17 +27,12 @@ function Card({ id, number, type, draggable, className }) {
     */
   }
 
-  const dragOver = e => {
-      e.stopPropagation();
-  }
-
   return (
     // TODO: Sólo si el type es hand mejor?
     <CardBs id={id}
             className={`game-card mx-1 bg-dark ${className}`}
             draggable={draggable}
             onDragStart={dragStart}
-            onDragOver={dragOver}
     >
       <Image className={`${type}-card`} src={cardImage} />
     </CardBs>
