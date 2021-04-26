@@ -13,7 +13,6 @@ import pause from "../assets/common/icons/pause.svg";
 import exit from "../assets/common/icons/logout.svg";
 import help from "../assets/common/icons/help.svg";
 
-
 function Match() {
   const session = useContext(SessionContext);
   const history = useHistory();
@@ -47,11 +46,11 @@ function Match() {
   ];
   const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
 
-  
-  const cardsHand = [{ id: "card-hand-1", number: "0", draggable: "true" }, 
-                      { id: "card-hand-2", number: "1", draggable: "true" },
-                      { id: "card-hand-3", number: "2", draggable: "true" }];
-  
+  const cardsHand = [
+    { id: "card-hand-1", number: "0", draggable: "true" },
+    { id: "card-hand-2", number: "1", draggable: "true" },
+    { id: "card-hand-3", number: "2", draggable: "true" },
+  ];
 
   return (
     <Row className="m-0">
@@ -72,8 +71,8 @@ function Match() {
               }}
             />
           </Row>
-            <Body id="body" cardStacks={cardBody}/>
-            <Hand cards={cardsHand}/>
+          <Body id="body" cardStacks={cardBody} />
+          <Hand cards={cardsHand} />
         </Container>
       </Col>
       <Col className="p-0">
