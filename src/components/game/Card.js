@@ -10,10 +10,11 @@ function Card({ id, number, type, draggable, className }) {
   const cardImage = process.env.PUBLIC_URL + "/" + cards[number].image;
 
   const drag = (e) => {
-    if (draggable == "false") {
+    if (draggable === false) {
       return;
     }
 
+    console.log(id);
     e.dataTransfer.setData("card_id", id);
   };
 

@@ -369,27 +369,54 @@ body,
 
 /* --------------------------- Pila de Cartas ------------------------ */
 
-.stack-base {
+/* ---- Rival ---- */
+
+.stack-base-rival {
   position: relative;
   display: block;
   height: 14vh;
 }
 
-.stack-card {
+.stack-card-rival {
   position: absolute;
 }
 
-.stack-card-0 {
+.stack-card-rival-0 {
   top: 0vh;
 }
 
-.stack-card-1 {
+.stack-card-rival-1 {
   top: -7.5vh;
 }
 
-.stack-card-2 {
+.stack-card-rival-2 {
   top: -15vh;
 }
+
+/* ---- Own user-body ---- */
+
+.stack-base-body {
+  position: relative;
+  display: block;
+  height: 16vh;
+}
+
+.stack-card-body {
+  position: absolute;
+}
+
+.stack-card-body-0 {
+  top: 0vh;
+}
+
+.stack-card-body-1 {
+  top: -10vh;
+}
+
+.stack-card-body-2 {
+  top: -20vh;
+}
+
 
 /* --------------------------- Recuadro Jugador ------------------------ */
 
