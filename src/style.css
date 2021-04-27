@@ -369,26 +369,26 @@ body,
 
 /* --------------------------- Pila de Cartas ------------------------ */
 
-.stackBase {
+.stack-base {
   position: relative;
   display: block;
-  height: 16vh;
+  height: 14vh;
 }
 
-.stackCard {
+.stack-card {
   position: absolute;
 }
 
-.stackCard-0 {
+.stack-card-0 {
   top: 0vh;
 }
 
-.stackCard-1 {
-  top: -10vh;
+.stack-card-1 {
+  top: -7.5vh;
 }
 
-.stackCard-2 {
-  top: -20vh;
+.stack-card-2 {
+  top: -15vh;
 }
 
 /* --------------------------- Recuadro Jugador ------------------------ */

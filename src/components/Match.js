@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 import Chat from "./Chat";
 import Hand from "./game/Hand";
-import Body from "./game/Body";
 import PlayerBox from "./game/PlayerBox";
 
 import { renderPausePopup } from "./popups/PausePopup";
@@ -42,17 +41,11 @@ function Match() {
   // ---------------------------------------------------------------------------
 
   const cardsStack = [
-    { type: "body", number: "0", draggable: "false" },
-    { type: "body", number: "1", draggable: "false" },
-  ];
-  const cardsStack1 = [
-    { type: "rival", number: "3", draggable: "false" },
+    { type: "rival", number: "0", draggable: "false" },
     { type: "rival", number: "1", draggable: "false" },
-    { type: "rival", number: "2", draggable: "false" },
   ];
 
-  const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
-  const body = [cardsStack1, cardsStack1, cardsStack1, cardsStack1];
+  const body = [cardsStack, cardsStack, cardsStack, cardsStack];
 
   const cardsHand = [
     { id: "card-hand-1", number: "0", draggable: "true" },
@@ -79,11 +72,10 @@ function Match() {
               }}
             />
           </Row>
-          <Body id="body" cardStacks={cardBody} />
-          <Hand cards={cardsHand} />
           <Row>
             <Col>
               <PlayerBox username="José" photo="0" body={body} />
+              <Hand cards={cardsHand} />  
             </Col>
           </Row>
         </Container>

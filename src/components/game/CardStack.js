@@ -19,9 +19,9 @@ function CardStack({ id, cards }) {
     const card = document.getElementById(card_id);
     // Convert hand-car to body-card in the selected CardStack
     card.id = id + "-card-" + stackSize;
-    card.className = card.className + " stackCard stackCard-" + stackSize;
+    card.className = card.className + " stack-card stack-card-" + stackSize;
     card.draggable = "false";
-    card.firstChild.setAttribute("class", "body-card");
+    card.firstChild.setAttribute("class", "rival-card");
 
     // To set the card in the stack
     stackSize = stackSize + 1;
@@ -35,7 +35,7 @@ function CardStack({ id, cards }) {
   return (
     <div
       id={id}
-      className="stackBase"
+      className="stack-base"
       onDrop={dropHandler}
       onDragOver={dragOver}
     >
@@ -43,7 +43,7 @@ function CardStack({ id, cards }) {
         <Card
           key={idx}
           id={`${id}-card-${idx}`}
-          className={`stackCard stackCard-${idx}`}
+          className={`stack-card stack-card-${idx}`}
           number={card.number}
           type={card.type}
           draggable="false"

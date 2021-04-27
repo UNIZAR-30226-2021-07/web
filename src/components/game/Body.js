@@ -8,7 +8,7 @@ import CardStack from "./CardStack";
  */
 function Body({ id, cardStacks }) {
   return (
-    <div className="row" id={id}>
+    <div className="row mx-0" id={id}>
       {cardStacks.map((cards, idx) => (
         <CardStack id={`stack-${idx}`} key={idx} cards={cards} />
       ))}
