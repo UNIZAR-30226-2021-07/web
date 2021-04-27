@@ -3,6 +3,9 @@ import { Container, Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Chat from "./Chat";
+import Hand from "./game/Hand";
+
+import Body from "./game/Body";
 import PlayerBox from "./game/PlayerBox";
 
 import { renderPausePopup } from "./popups/PausePopup";
@@ -38,19 +41,30 @@ function Match() {
   };
 
   // ---------------------------------------------------------------------------
+
   const cardsStack = [
-    { type: "rival", number: "3" },
-    { type: "rival", number: "1" },
-    { type: "rival", number: "2" },
+    { type: "body", number: "0", draggable: "false" },
+    { type: "body", number: "1", draggable: "false" },
+  ];
+  const cardsStack1 = [
+    { type: "rival", number: "3", draggable: "false" },
+    { type: "rival", number: "1", draggable: "false" },
   ];
 
-  const body = [cardsStack, cardsStack, cardsStack, cardsStack];
+  const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
+  const body = [cardsStack1, cardsStack1, cardsStack1, cardsStack1];
+
+  const cardsHand = [
+    { id: "card-hand-1", number: "0", draggable: "true" },
+    { id: "card-hand-2", number: "1", draggable: "true" },
+    { id: "card-hand-3", number: "2", draggable: "true" },
+  ];
 
   return (
     <Row className="m-0">
       <Col>
         <Container className="app-container">
-          <Row className="w-100 justify-content-between no-wrap">
+          <Row className="w-100 justify-content-between no-wrap mb-4">
             <Image src={exit} className="game-icon" onClick={leaveGame} />
             <Image
               src={pause}
@@ -68,6 +82,8 @@ function Match() {
           <Row>
             <Col>
               <PlayerBox username="José" photo="0" body={body} />
+              <Body id="user-body" cardStacks={cardBody} playerKind="body" />
+              <Hand cards={cardsHand} />
             </Col>
           </Row>
         </Container>

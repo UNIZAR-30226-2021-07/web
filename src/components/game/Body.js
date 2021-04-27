@@ -1,5 +1,4 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
 
 import CardStack from "./CardStack";
 
@@ -7,13 +6,18 @@ import CardStack from "./CardStack";
  * @param cardStacks -> son las pilas de cartas posibles en el cuerpo
  * Entre 0 y 4 pilas
  */
-function Body({ cardStacks }) {
+function Body({ id, cardStacks, playerKind }) {
   return (
-    <ListGroup horizontal>
+    <div className="row mx-0" id={id}>
       {cardStacks.map((cards, idx) => (
-        <CardStack key={idx} cards={cards} />
+        <CardStack
+          id={`${id}-stack-${idx}`}
+          key={idx}
+          cards={cards}
+          playerKind={playerKind}
+        />
       ))}
-    </ListGroup>
+    </div>
   );
 }
 

@@ -346,9 +346,12 @@ body,
   width: 10vh;
 }
 
+/* TODO: DEJAR DESCOMENTADO */
+/*
 .hand-card:hover {
   transform: scale(1.3);
 }
+*/
 
 .body-card {
   width: 8vh;
@@ -366,9 +369,52 @@ body,
 
 /* --------------------------- Pila de Cartas ------------------------ */
 
-.stack-card {
+/* ---- Rival ---- */
+
+.stack-base-rival {
   position: relative;
-  height: 1.5vh;
+  display: block;
+  height: 14vh;
+}
+
+.stack-card-rival {
+  position: absolute;
+}
+
+.stack-card-rival-0 {
+  top: 0vh;
+}
+
+.stack-card-rival-1 {
+  top: -7.5vh;
+}
+
+.stack-card-rival-2 {
+  top: -15vh;
+}
+
+/* ---- Own user-body ---- */
+
+.stack-base-body {
+  position: relative;
+  display: block;
+  height: 16vh;
+}
+
+.stack-card-body {
+  position: absolute;
+}
+
+.stack-card-body-0 {
+  top: 0vh;
+}
+
+.stack-card-body-1 {
+  top: -10vh;
+}
+
+.stack-card-body-2 {
+  top: -20vh;
 }
 
 /* --------------------------- Recuadro Jugador ------------------------ */

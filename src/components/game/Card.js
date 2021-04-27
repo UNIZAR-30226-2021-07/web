@@ -6,12 +6,25 @@ import cards from "../../assets/common/cards.json";
 /**
  * @param  type Three types: hand, body, rival
  */
-function Card({ number, type }) {
-  const card = process.env.PUBLIC_URL + "/" + cards[number].image;
+function Card({ id, number, type, draggable, className }) {
+  const cardImage = process.env.PUBLIC_URL + "/" + cards[number].image;
+
+  const drag = (e) => {
+    // Only allow to move hand cards
+    if (!e.target.id.match("card-hand-*")) {
+      return;
+    }
+    e.dataTransfer.setData("card_id", id);
+  };
 
   return (
-    <CardBs className="list-item game-card mx-1 bg-dark">
-      <Image className={`${type}-card`} src={card} />
+    <CardBs
+      id={id}
+      className={`game-card mx-1 bg-dark ${className}`}
+      draggable={draggable}
+      onDragStart={drag}
+    >
+      <Image id={`${id}-img`} className={`${type}-card`} src={cardImage} />
     </CardBs>
   );
 }
