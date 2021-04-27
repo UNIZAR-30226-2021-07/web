@@ -9,31 +9,20 @@ import cards from "../../assets/common/cards.json";
 function Card({ id, number, type, draggable, className }) {
   const cardImage = process.env.PUBLIC_URL + "/" + cards[number].image;
 
-  const dragStart = (e) => {
-    //const target = e.target;
-
-    //console.log(e.target);
+  const drag = (e) => {
     if (draggable == "false") {
       return;
     }
 
     e.dataTransfer.setData("card_id", id);
-
-    console.log(id);
-    /*
-    setTimeout(() => {
-        target.style.display = "none";
-    }, 0);
-    */
   };
 
   return (
-    // TODO: Sólo si el type es hand mejor?
     <CardBs
       id={id}
       className={`game-card mx-1 bg-dark ${className}`}
       draggable={draggable}
-      onDragStart={dragStart}
+      onDragStart={drag}
     >
       <Image className={`${type}-card`} src={cardImage} />
     </CardBs>

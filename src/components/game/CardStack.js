@@ -8,9 +8,10 @@ function CardStack({ id, cards }) {
   //const cardsStack = cards;
   var stackSize = cards.length;
 
-  const dropHandler = (e) => {
-    e.preventDefault();
+  const drop = (e) => {
     if (stackSize >= 3) return;
+
+    e.preventDefault();
 
     // Obtain card_id of card in event e
     const card_id = e.dataTransfer.getData("card_id");
@@ -25,20 +26,16 @@ function CardStack({ id, cards }) {
 
     // To set the card in the stack
     stackSize = stackSize + 1;
+
     document.getElementById(id).appendChild(card);
   };
 
-  const dragOver = (e) => {
+  const allowDrop = (e) => {
     e.preventDefault();
   };
 
   return (
-    <div
-      id={id}
-      className="stack-base"
-      onDrop={dropHandler}
-      onDragOver={dragOver}
-    >
+    <div id={id} className="stack-base" onDrop={drop} onDragOver={allowDrop}>
       {cards.map((card, idx) => (
         <Card
           key={idx}

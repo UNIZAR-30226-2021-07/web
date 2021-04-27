@@ -75,7 +75,7 @@ function Match() {
           <Row>
             <Col>
               <PlayerBox username="José" photo="0" body={body} />
-              <Hand cards={cardsHand} />  
+              <Hand cards={cardsHand} />
             </Col>
           </Row>
         </Container>
