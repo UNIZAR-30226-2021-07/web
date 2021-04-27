@@ -10,11 +10,10 @@ function Card({ id, number, type, draggable, className }) {
   const cardImage = process.env.PUBLIC_URL + "/" + cards[number].image;
 
   const drag = (e) => {
-    if (draggable === false) {
+    // Only allow to move hand cards
+    if (!e.target.id.match("card-hand-*")) {
       return;
     }
-
-    console.log(id);
     e.dataTransfer.setData("card_id", id);
   };
 
@@ -25,7 +24,7 @@ function Card({ id, number, type, draggable, className }) {
       draggable={draggable}
       onDragStart={drag}
     >
-      <Image className={`${type}-card`} src={cardImage} />
+      <Image id={`${id}-img`} className={`${type}-card`} src={cardImage} />
     </CardBs>
   );
 }

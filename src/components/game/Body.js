@@ -10,7 +10,12 @@ function Body({ id, cardStacks, playerKind }) {
   return (
     <div className="row mx-0" id={id}>
       {cardStacks.map((cards, idx) => (
-        <CardStack id={`${id}-stack-${idx}`} key={idx} cards={cards} playerKind={playerKind} />
+        <CardStack
+          id={`${id}-stack-${idx}`}
+          key={idx}
+          cards={cards}
+          playerKind={playerKind}
+        />
       ))}
     </div>
   );
