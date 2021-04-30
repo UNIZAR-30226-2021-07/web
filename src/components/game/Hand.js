@@ -12,10 +12,9 @@ function Hand({ cards }) {
       {cards.map((card, idx) => (
         <Card
           key={idx}
-          id={card.id}
-          number={card.number}
-          type="hand"
-          draggable={card.draggable}
+          id={`card-hand-${idx}`}
+          card={card}
+          kind="hand"
         />
       ))}
     </ListGroup>
