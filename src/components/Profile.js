@@ -14,7 +14,7 @@ import { logoutUser, getUserStats } from "../utils/api";
 
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
-import profile_pics from "../assets/common/profile_pics.json";
+import { getProfile } from "../utils/json";
 
 import { SessionContext } from "./SessionProvider";
 
@@ -31,10 +31,7 @@ function Profile() {
     if (session.userData.length === 0) return;
 
     // Url to the image available in "public" directory
-    let pictureURL =
-      process.env.PUBLIC_URL +
-      "/" +
-      profile_pics[session.userData.picture].image;
+    let pictureURL = getProfile(session.userData.picture);
     setPicture(pictureURL);
   }, [session.userData.picture]);
 

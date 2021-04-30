@@ -1,12 +1,12 @@
 import React from "react";
 import { Row, Card, Image } from "react-bootstrap";
 
-import profile_pics from "../../assets/common/profile_pics.json";
+import { getProfile } from "../../utils/json";
 
 import Body from "./Body";
 
 function PlayerBox({ username, photo, body }) {
-  let profile = process.env.PUBLIC_URL + "/" + profile_pics[photo].image;
+  let profile = getProfile(photo);
   return (
     <Card className="player-box">
       <Card.Body className="player-body p-0">
