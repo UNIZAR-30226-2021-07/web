@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Container, Row } from "react-bootstrap";
 
 import { SessionContext } from "./SessionProvider";
 
@@ -74,11 +75,21 @@ function Board() {
   ];
 
   return (
-    <div>
-      <PlayerBox username="José" photo="0" body={body} />
-      <Body cardStacks={cardBody} />
-      <Hand cards={cardsHand} />
-    </div>
+    <Container>
+      <Row className="justify-content-around">
+        <PlayerBox username="José" photo="0" body={body} />
+        <PlayerBox username="José" photo="0" body={body} />
+        <PlayerBox username="José" photo="0" body={body} />
+        <PlayerBox username="José" photo="0" body={body} />
+        <PlayerBox username="José" photo="0" body={body} />
+      </Row>
+      <Row className="justify-content-center">
+        <Body cardStacks={cardBody} />
+      </Row>
+      <Row className="justify-content-center">
+        <Hand cards={cardsHand} />
+      </Row>
+    </Container>
   );
 }
 
