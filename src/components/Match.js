@@ -85,23 +85,23 @@ function Match() {
   };
 
   // ---------------------------------------------------------------------------
-  
+
   const cardsStack = [
-    {card_type: "organ", color: "red"},
-    {card_type: "virus", color: "green"},
+    { card_type: "organ", color: "red" },
+    { card_type: "virus", color: "green" },
   ];
   const cardsStack1 = [
-    { card_type: "organ", color:"blue" },
-    { card_type: "organ", color:"blue" },
+    { card_type: "organ", color: "blue" },
+    { card_type: "organ", color: "blue" },
   ];
 
   const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
   const body = [cardsStack1, cardsStack1, cardsStack1, cardsStack1];
 
   const cardsHand = [
-    { card_type: "organ", color:"blue" },
-    { card_type: "organ", color:"blue" },
-    { card_type: "organ", color:"blue" },
+    { card_type: "organ", color: "blue" },
+    { card_type: "organ", color: "blue" },
+    { card_type: "organ", color: "blue" },
   ];
 
   return (
@@ -126,7 +126,7 @@ function Match() {
           <Row>
             <Col>
               <PlayerBox username="José" photo="0" body={body} />
-              <Body cardStacks={cardBody}/>
+              <Body cardStacks={cardBody} />
               <Hand cards={cardsHand} />
             </Col>
           </Row>
