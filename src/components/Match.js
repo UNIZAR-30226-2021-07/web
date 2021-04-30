@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Container, Col, Row, Image } from "react-bootstrap";
+import { Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import Chat from "./Chat";
@@ -106,31 +106,25 @@ function Match() {
 
   return (
     <Row className="m-0">
-      <Col>
-        <Container className="app-container">
-          <Row className="w-100 justify-content-between no-wrap mb-4">
-            <Image src={exit} className="game-icon" onClick={leaveGame} />
-            <Image
-              src={pause}
-              className="game-icon"
-              onClick={renderPausePopup}
-            />
-            <Image
-              src={help}
-              className="game-icon"
-              onClick={() => {
-                alert("Help");
-              }}
-            />
-          </Row>
-          <Row>
-            <Col>
-              <PlayerBox username="José" photo="0" body={body} />
-              <Body cardStacks={cardBody} />
-              <Hand cards={cardsHand} />
-            </Col>
-          </Row>
-        </Container>
+      <Col >
+        <Row className="w-100 justify-content-between no-wrap mb-4">
+          <Image src={exit} className="game-icon" onClick={leaveGame} />
+          <Image src={pause} className="game-icon" onClick={renderPausePopup} />
+          <Image
+            src={help}
+            className="game-icon"
+            onClick={() => {
+              alert("Help");
+            }}
+          />
+        </Row>
+        <Row>
+          <Col>
+            <PlayerBox username="José" photo="0" body={body} />
+            <Body cardStacks={cardBody} />
+            <Hand cards={cardsHand} />
+          </Col>
+        </Row>
       </Col>
       <Col className="p-0">
         <Chat />
