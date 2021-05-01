@@ -6,15 +6,15 @@ import CardStack from "./CardStack";
  * @param cardStacks -> son las pilas de cartas posibles en el cuerpo
  * Entre 0 y 4 pilas
  */
-function Body({ id, cardStacks, playerKind }) {
+function Body({ cardStacks, kind = "body" }) {
   return (
-    <div className="row mx-0" id={id}>
+    <div className="row mx-0" id={`user-${kind}`}>
       {cardStacks.map((cards, idx) => (
         <CardStack
-          id={`${id}-stack-${idx}`}
+          id={`user-${kind}-stack-${idx}`}
           key={idx}
           cards={cards}
-          playerKind={playerKind}
+          kind={kind}
         />
       ))}
     </div>

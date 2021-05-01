@@ -1,13 +1,13 @@
 import React from "react";
 import { Card as CardBs, Image } from "react-bootstrap";
 
-import cards from "../../assets/common/cards.json";
+import { getCard } from "../../utils/json";
 
 /**
  * @param  type Three types: hand, body, rival
  */
-function Card({ id, number, type, draggable, className }) {
-  const cardImage = process.env.PUBLIC_URL + "/" + cards[number].image;
+function Card({ id, card, kind, className }) {
+  const cardImg = getCard(card);
 
   const drag = (e) => {
     // Only allow to move hand cards
@@ -21,10 +21,9 @@ function Card({ id, number, type, draggable, className }) {
     <CardBs
       id={id}
       className={`game-card mx-1 bg-dark ${className}`}
-      draggable={draggable}
       onDragStart={drag}
     >
-      <Image id={`${id}-img`} className={`${type}-card`} src={cardImage} />
+      <Image id={`${id}-img`} className={`${kind}-card`} src={cardImg} />
     </CardBs>
   );
 }

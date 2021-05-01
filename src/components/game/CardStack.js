@@ -4,7 +4,7 @@ import Card from "./Card";
 /**
  * @param
  */
-function CardStack({ id, cards, playerKind }) {
+function CardStack({ id, cards, kind }) {
   var stackSize = cards.length;
 
   const drop = (e) => {
@@ -31,13 +31,13 @@ function CardStack({ id, cards, playerKind }) {
     card.className =
       card.className +
       " stack-card-" +
-      playerKind +
+      kind +
       " stack-card-" +
-      playerKind +
+      kind +
       "-" +
       stackSize;
     card.draggable = false;
-    card.firstChild.setAttribute("class", playerKind + "-card");
+    card.firstChild.setAttribute("class", kind + "-card");
     // Change img child id
     card.firstChild.setAttribute("id", id + "-card-" + stackSize + "-img");
     // To set the card in the stack
@@ -53,7 +53,7 @@ function CardStack({ id, cards, playerKind }) {
   return (
     <div
       id={id}
-      className={`stack-base-${playerKind}`}
+      className={`stack-base-${kind}`}
       onDrop={drop}
       onDragOver={allowDrop}
     >
@@ -61,10 +61,9 @@ function CardStack({ id, cards, playerKind }) {
         <Card
           key={idx}
           id={`${id}-card-${idx}`}
-          className={`stack-card-${playerKind} stack-card-${playerKind}-${idx}`}
-          number={card.number}
-          type={card.type}
-          draggable="false"
+          className={`stack-card-${kind} stack-card-${kind}-${idx}`}
+          card={card}
+          kind={kind}
         />
       ))}
     </div>

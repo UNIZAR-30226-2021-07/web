@@ -1,12 +1,12 @@
 import React from "react";
 import { Row, Card, Image } from "react-bootstrap";
 
-import profile_pics from "../../assets/common/profile_pics.json";
+import { getProfile } from "../../utils/json";
 
 import Body from "./Body";
 
 function PlayerBox({ username, photo, body }) {
-  let profile = process.env.PUBLIC_URL + "/" + profile_pics[photo].image;
+  let profile = getProfile(photo);
   return (
     <Card className="player-box">
       <Card.Body className="player-body p-0">
@@ -20,7 +20,7 @@ function PlayerBox({ username, photo, body }) {
             <h4 className="align-self-center my-0">{username} </h4>
           </Row>
         </Card.Title>
-        <Body id="rival-body" cardStacks={body} playerKind="rival" />
+        <Body cardStacks={body} kind="rival" />
       </Card.Body>
     </Card>
   );

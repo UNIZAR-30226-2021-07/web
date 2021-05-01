@@ -11,7 +11,8 @@ import { renderJoinPublicGamePopup } from "./popups/JoinPublicGamePopup";
 import logo from "../assets/common/logo/logo.svg";
 import shop from "../assets/common/icons/tienda.svg";
 import coins from "../assets/common/icons/huella.svg";
-import profile_pics from "../assets/common/profile_pics.json";
+
+import { getProfile } from "../utils/json";
 
 import { SessionContext } from "./SessionProvider";
 import { leaveGame } from "./WebSockets";
@@ -32,10 +33,7 @@ function Menu() {
   useEffect(() => {
     if (session.userData.length === 0) return;
 
-    const pictureURL =
-      process.env.PUBLIC_URL +
-      "/" +
-      profile_pics[session.userData.picture].image;
+    const pictureURL = getProfile(session.userData.picture);
     setPicture(pictureURL);
   }, [session.userData.picture]);
 
