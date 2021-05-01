@@ -71,6 +71,17 @@ function Match() {
     }
   }, []);
 
+  // Listen to "game_update" events from server
+  useEffect(() => {
+    if (!session.socket.current) {
+      return;
+    }
+    session.socket.current.on("game_update", (response) => {
+      console.log(response);
+    });
+
+  }, []);
+
   const leaveGame = async (e) => {
     e.preventDefault();
     session.socket.current.emit("leave", (data) => {
