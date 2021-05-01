@@ -11,7 +11,7 @@ function Body({ cardStacks, kind = "body" }) {
     <div className="row mx-0" id={`user-${kind}`}>
       {cardStacks.map((cards, idx) => (
         <CardStack
-          id={`user-${kind}-stack-${idx}`}
+          id={`${kind}-stack-${idx}`}
           key={idx}
           cards={cards}
           kind={kind}
