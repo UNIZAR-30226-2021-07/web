@@ -36,15 +36,14 @@ function GameProvider({ children }) {
   //     ],
   //     // ...
   // },
-  
-  // TODO: De momento se trata como una lista con todos los bodys de 
+
+  // TODO: De momento se trata como una lista con todos los bodys de
   // todos los jugadores, siendo el primero el del propio jugador
   const [bodies, setBodies] = useState([]);
 
   const [currentTurn, setCurrentTurn] = useState("");
 
   const [players, setPlayers] = useState([]);
-
 
   useEffect(() => {
     if (!session.socket.current) {
@@ -62,26 +61,26 @@ function GameProvider({ children }) {
     };
   }, [session.socketChange]);
 
-    // Listen to "game_update" events from server
-    useEffect(() => {
-      if (!session.socket.current) {
-        return;
-      }
-      session.socket.current.on("game_update", (response) => {
-        console.log(response);
-        console.log(hand);
-      });
+  // Listen to "game_update" events from server
+  useEffect(() => {
+    if (!session.socket.current) {
+      return;
+    }
+    session.socket.current.on("game_update", (response) => {
+      // TODO: SET VARIABLES QUE CAMBIEN
+      console.log(response);
+      console.log(hand);
+    });
 
-      return () => {
-        // Delete previous listenings and clean variables
-        setHand([]);
-        setBodies([]);
-        setCurrentTurn("");
-        setPlayers([]);
-        session.socket.current.off("chat");
-      };
-
-    }, [session.socketChange]);
+    return () => {
+      // Delete previous listenings and clean variables
+      setHand([]);
+      setBodies([]);
+      setCurrentTurn("");
+      setPlayers([]);
+      session.socket.current.off("chat");
+    };
+  }, [session.socketChange]);
 
   return (
     <GameContext.Provider
