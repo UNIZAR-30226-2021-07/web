@@ -10,17 +10,6 @@ import { SessionContext } from "./SessionProvider";
 function Chat() {
   const session = useContext(SessionContext);
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    if (!session.socket.current) {
-      return;
-    }
-    session.socket.current.on("chat", function ({ owner, msg }) {
-      console.log(owner, msg);
-      setMessages((prev) => [...prev, { userid: owner, text: msg }]);
-    });
-  }, []);
 
   const sendMessage = async (e) => {
     e.preventDefault();

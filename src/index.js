@@ -6,6 +6,7 @@ import { HashRouter as Router } from "react-router-dom";
 
 import SessionProvider from "./components/SessionProvider";
 import UsersProvider from "./components/UsersProvider";
+import GameProvider from "./components/GameProvider";
 
 (async function () {
   await import("./style.css");
@@ -20,10 +21,12 @@ import App from "./components/App";
 ReactDOM.render(
   <Router basename={process.env.PUBLIC_URL}>
     <SessionProvider>
-      <UsersProvider>
-        <PopupboxContainer />
-        <App />
-      </UsersProvider>
+      <GameProvider>
+        <UsersProvider>
+          <PopupboxContainer />
+          <App />
+        </UsersProvider>
+      </GameProvider>
     </SessionProvider>
   </Router>,
   document.getElementById("root")
