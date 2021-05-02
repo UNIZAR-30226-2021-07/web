@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-
-import { SessionContext } from "./SessionProvider";
 
 import Hand from "./game/Hand";
 import Body from "./game/Body";
@@ -53,9 +51,6 @@ const loadHand = (game_update) => {
 }*/
 
 function Board() {
-  const session = useContext(SessionContext);
-  console.log(session);
-
   const numPlayers = 4;
 
   const cardsStack = [
@@ -117,10 +112,10 @@ function Board() {
           <Player5 />
         </Col>
       </Row>
-      <Row className="">
+      <Row className="justify-content-center">
         <Body cardStacks={cardBody} />
       </Row>
-      <Row className="">
+      <Row className="justify-content-center">
         <Hand cards={cardsHand} />
       </Row>
     </Container>
