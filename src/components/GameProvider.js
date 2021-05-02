@@ -7,7 +7,45 @@ function GameProvider({ children }) {
   const session = useContext(SessionContext);
   const [messages, setMessages] = useState([]);
 
-  // TODO
+  // Game variables
+
+  //   "hand": [
+  //   {"card_type": "organ", "color": "red"},
+  //   {"card_type": "virus", "color": "green"},
+  //   {"card_type": "treatment", "treatment_type": "infection"},
+  // ],
+  const [hand, setHand] = useState([]);
+
+  // Los cuerpos de los jugadores.
+  //   "bodies": {
+  //     // Pila del jugador, siempre de longitud 4.
+  //     "marcuspkz": [
+  //         {
+  //             // Puede ser nulo si no hay nada en esa posición.
+  //             "organ": {
+  //                 "card_type": "organ",
+  //                 "color": "red"
+  //             }
+  //             // Puede estar vacío si no hay modificadores.
+  //             "modifiers": [
+  //                 {"card_type": "virus", "color": "red"},
+  //                 // ...
+  //             ]
+  //         },
+  //             // ....
+  //     ],
+  //     // ...
+  // },
+  
+  // TODO: De momento se trata como una lista con todos los bodys de 
+  // todos los jugadores, siendo el primero el del propio jugador
+  const [bodies, setBodies] = useState([]);
+
+  const [currentTurn, setCurrentTurn] = useState("");
+
+  const [players, setPlayers] = useState([]);
+
+
   useEffect(() => {
     if (!session.socket.current) {
       return;
@@ -31,12 +69,18 @@ function GameProvider({ children }) {
       }
       session.socket.current.on("game_update", (response) => {
         console.log(response);
+        console.log(hand);
       });
 
       return () => {
         // Delete previous listenings and clean variables
-        // TODO
+        setHand([]);
+        setBodies([]);
+        setCurrentTurn("");
+        setPlayers([]);
+        session.socket.current.off("chat");
       };
+
     }, [session.socketChange]);
 
   return (
@@ -44,6 +88,10 @@ function GameProvider({ children }) {
       value={{
         messages: messages,
         setMessages: (msgs) => setMessages(msgs),
+        hand: hand,
+        bodies: bodies,
+        currentTurn: currentTurn,
+        players: players,
       }}
     >
       {children}
