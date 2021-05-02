@@ -117,10 +117,10 @@ function Board() {
           <Player5 />
         </Col>
       </Row>
-      <Row className="justify-content-center">
+      <Row className="">
         <Body cardStacks={cardBody} />
       </Row>
-      <Row className="justify-content-center">
+      <Row className="">
         <Hand cards={cardsHand} />
       </Row>
     </Container>
