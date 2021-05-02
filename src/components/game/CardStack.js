@@ -22,9 +22,15 @@ function CardStack({ id, cards, kind }) {
     // Obtain card element with the id
     const card = document.getElementById(card_id);
 
-    console.log(card.draggable);
     console.log(id);
+    console.log(card.id);
 
+    // TODO: "playCard" call
+    // Do "playCard" to server
+    // Temporary delete current card from DOM
+    // card.remove();
+
+    /*
     // Convert hand-car to body-card or rival-card in the selected CardStack
     card.id = id + "-card-" + stackSize;
 
@@ -36,7 +42,6 @@ function CardStack({ id, cards, kind }) {
       kind +
       "-" +
       stackSize;
-    card.draggable = false;
     card.firstChild.setAttribute("class", kind + "-card");
     // Change img child id
     card.firstChild.setAttribute("id", id + "-card-" + stackSize + "-img");
@@ -44,6 +49,7 @@ function CardStack({ id, cards, kind }) {
     stackSize = stackSize + 1;
 
     document.getElementById(id).appendChild(card);
+    */
   };
 
   const allowDrop = (e) => {
