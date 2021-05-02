@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Image, Container, Row, Form } from "react-bootstrap";
 
 import MessageList from "./MessageList";
@@ -6,9 +6,11 @@ import MessageList from "./MessageList";
 import send from "../assets/common/icons/send.svg";
 
 import { SessionContext } from "./SessionProvider";
+import { GameContext } from "./GameProvider";
 
 function Chat() {
   const session = useContext(SessionContext);
+  const game = useContext(GameContext);
   const [message, setMessage] = useState("");
 
   const sendMessage = async (e) => {
@@ -31,7 +33,10 @@ function Chat() {
         <h4>Chat de partida</h4>
       </Row>
       <Row className="message-list px-3">
-        <MessageList username={session.userData.name} messages={messages} />
+        <MessageList
+          username={session.userData.name}
+          messages={game.messages}
+        />
       </Row>
       <Form className="send-message input-group mt-2" onSubmit={sendMessage}>
         <input

@@ -79,7 +79,6 @@ function Match() {
     session.socket.current.on("game_update", (response) => {
       console.log(response);
     });
-
   }, []);
 
   const leaveGame = async (e) => {
