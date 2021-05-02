@@ -9,23 +9,35 @@ function GameProvider({ children }) {
 
   // TODO
   useEffect(() => {
-    console.log("GAME PROVIDER");
     if (!session.socket.current) {
       return;
     }
-    console.log("LISTENING TO MSGS");
     session.socket.current.on("chat", function ({ owner, msg }) {
       console.log(owner, msg);
       setMessages((prev) => [...prev, { userid: owner, text: msg }]);
     });
 
     return () => {
-      // Delete previous listenings
-      console.log("USE EFFECT RETURN");
+      // Delete previous listenings and clean variables
       setMessages([]);
       session.socket.current.off("chat");
     };
   }, [session.socketChange]);
+
+    // Listen to "game_update" events from server
+    useEffect(() => {
+      if (!session.socket.current) {
+        return;
+      }
+      session.socket.current.on("game_update", (response) => {
+        console.log(response);
+      });
+
+      return () => {
+        // Delete previous listenings and clean variables
+        // TODO
+      };
+    }, [session.socketChange]);
 
   return (
     <GameContext.Provider
