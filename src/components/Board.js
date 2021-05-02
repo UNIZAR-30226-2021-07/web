@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 import { SessionContext } from "./SessionProvider";
 
@@ -56,6 +56,8 @@ function Board() {
   const session = useContext(SessionContext);
   console.log(session);
 
+  const numPlayers = 4;
+
   const cardsStack = [
     { card_type: "organ", color: "red" },
     { card_type: "virus", color: "green" },
@@ -74,14 +76,46 @@ function Board() {
     { card_type: "organ", color: "blue" },
   ];
 
+  const Player1 = () => {
+    return numPlayers == 5 || numPlayers == 6 ? (
+      <PlayerBox username="José" photo="0" body={body} />
+    ) : null;
+  };
+  const Player2 = () => {
+    return numPlayers != 2 ? (
+      <PlayerBox username="José" photo="0" body={body} />
+    ) : null;
+  };
+  const Player3 = () => {
+    return numPlayers == 2 || numPlayers == 4 || numPlayers == 6 ? (
+      <PlayerBox username="José" photo="0" body={body} />
+    ) : null;
+  };
+  const Player4 = () => {
+    return numPlayers != 2 ? (
+      <PlayerBox username="José" photo="0" body={body} />
+    ) : null;
+  };
+  const Player5 = () => {
+    return numPlayers == 5 || numPlayers == 6 ? (
+      <PlayerBox username="José" photo="0" body={body} />
+    ) : null;
+  };
+
   return (
     <Container>
-      <Row className="justify-content-around">
-        <PlayerBox username="José" photo="0" body={body} />
-        <PlayerBox username="José" photo="0" body={body} />
-        <PlayerBox username="José" photo="0" body={body} />
-        <PlayerBox username="José" photo="0" body={body} />
-        <PlayerBox username="José" photo="0" body={body} />
+      <Row className="flex-nowrap">
+        <Col className="">
+          <Player1 />
+          <Player2 />
+        </Col>
+        <Col className="">
+          <Player3 />
+        </Col>
+        <Col className="">
+          <Player4 />
+          <Player5 />
+        </Col>
       </Row>
       <Row className="justify-content-center">
         <Body cardStacks={cardBody} />
