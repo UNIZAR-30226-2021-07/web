@@ -52,7 +52,7 @@ const loadHand = (game_update) => {
   return hand;
 }*/
 
-function Board() {
+function Board(col1, col2, col3) {
   const session = useContext(SessionContext);
   console.log(session);
 
@@ -77,6 +77,27 @@ function Board() {
   return (
     <Container>
       <Row className="justify-content-around">
+        <Col>
+          {col1.map((player) => (
+            <PlayerBox >
+
+            </PlayerBox>
+          ))}
+        </Col>
+        <Col>
+          {col2.map((player) => (
+            <PlayerBox >
+
+            </PlayerBox>
+          ))}
+        </Col>
+        <Col>
+          {col3.map((player) => (
+            <PlayerBox >
+
+            </PlayerBox>
+          ))}
+        </Col>
         <PlayerBox username="José" photo="0" body={body} />
         <PlayerBox username="José" photo="0" body={body} />
         <PlayerBox username="José" photo="0" body={body} />
