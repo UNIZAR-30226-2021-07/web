@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import Hand from "./game/Hand";
@@ -13,7 +13,7 @@ function Board() {
   useEffect(() => {
     //console.log(game.hand);
     //console.log(game.currentTurn);
-    console.log('Numero de jugadores: ' + game.players);
+    console.log("Numero de jugadores: " + game.players);
   }, [game.players]);
 
   const cardsStack = [

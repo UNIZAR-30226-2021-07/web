@@ -109,7 +109,6 @@ function GameProvider({ children }) {
           });
           setBodies(rivals);
         }
-        
       }
     });
 
