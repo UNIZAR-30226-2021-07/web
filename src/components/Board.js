@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import Hand from "./game/Hand";
@@ -13,15 +13,14 @@ function Board() {
 
   useEffect(() => {
     setNumRivals(game.players.length);
-    console.log(game.players);
   }, [game.players]);
 
   const cardsStack = [
-    { card_type: "organ", color: "red" },
+    { card_type: "organ", color: "blue" },
     { card_type: "virus", color: "green" },
   ];
   const cardsStack1 = [
-    { card_type: "organ", color: "blue" },
+    { card_type: "organ", color: "yellow" },
     { card_type: "organ", color: "blue" },
   ];
 
@@ -29,9 +28,9 @@ function Board() {
   const body = [cardsStack1, cardsStack1, cardsStack1, cardsStack1];
 
   const cardsHand = [
-    { card_type: "organ", color: "blue" },
-    { card_type: "organ", color: "blue" },
-    { card_type: "organ", color: "blue" },
+    { card_type: "organ", color: "yellow" },
+    { card_type: "virus", color: "green" },
+    { card_type: "treatment", treatment_type: "infection" },
   ];
 
   const Player1 = () => {
