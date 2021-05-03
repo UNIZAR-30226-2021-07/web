@@ -38,9 +38,9 @@ function Match() {
   };
 
   return (
-    <Row className="m-0">
-      <Col className="col-md-8 p-0">
-        <Row className="w-100 justify-content-around no-wrap mx-0 mb-4">
+    <Row className="m-0 p-0">
+      <Col md={8} className="p-0">
+        <Row className="mx-0 justify-content-around">
           <Image src={exit} className="game-icon" onClick={leaveGame} />
           <Image src={pause} className="game-icon" onClick={renderPausePopup} />
           <Image
@@ -55,7 +55,7 @@ function Match() {
           <Board />
         </Row>
       </Col>
-      <Col className="p-0">
+      <Col md={4} className="p-0">
         <Chat />
       </Col>
     </Row>
