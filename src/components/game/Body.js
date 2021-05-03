@@ -8,7 +8,7 @@ import CardStack from "./CardStack";
  */
 function Body({ cardStacks, kind = "body" }) {
   return (
-    <div className="row mx-0" id={`user-${kind}`}>
+    <div className="row mx-0 flex-nowrap" id={`user-${kind}`}>
       {cardStacks.map((cards, idx) => (
         <CardStack
           id={`${kind}-stack-${idx}`}
