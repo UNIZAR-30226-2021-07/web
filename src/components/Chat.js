@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Button, Image, Col, Row, Form } from "react-bootstrap";
+import { Button, Image, Container, Row, Form } from "react-bootstrap";
 
 import MessageList from "./MessageList";
 
@@ -37,37 +37,29 @@ function Chat() {
   }
 
   return (
-    <Col style={{ height: "100%", padding: "0" }}>
-      <Row
-        style={{ marginRight: "0", marginLeft: "0" }}
-        className="chat-header justify-content-center align-items-center"
-      >
+    <Container className="chat-container">
+      <Row className="chat-header justify-content-center align-items-center">
         <h4>Chat de partida</h4>
       </Row>
-      <Row
-        style={{ marginRight: "0", marginLeft: "0" }}
-        className="message-list px-3"
-      >
+      <Row className="message-list px-3">
         <MessageList username={session.userData.name} messages={messages} />
       </Row>
-      <Row style={{ marginRight: "0", marginLeft: "0" }}>
-        <Form className="send-message input-group mt-2" onSubmit={sendMessage}>
-          <input
-            type="text"
-            className="form-control"
-            maxLength="240"
-            value={message}
-            placeholder="Escribir Mensaje"
-            onChange={(e) => setMessage(e.target.value)}
-          ></input>
-          <div className="input-group-append pb-2">
-            <Button className="send-button" type="submit">
-              <Image src={send} style={{ height: "20px" }} />
-            </Button>
-          </div>
-        </Form>
-      </Row>
-    </Col>
+      <Form className="send-message input-group mt-2" onSubmit={sendMessage}>
+        <input
+          type="text"
+          className="form-control"
+          maxLength="240"
+          value={message}
+          placeholder="Escribir Mensaje"
+          onChange={(e) => setMessage(e.target.value)}
+        ></input>
+        <div className="input-group-append pb-2">
+          <Button className="send-button" type="submit">
+            <Image src={send} style={{ height: "20px" }} />
+          </Button>
+        </div>
+      </Form>
+    </Container>
   );
 }
 
