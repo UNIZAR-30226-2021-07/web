@@ -8,7 +8,7 @@ import Body from "./Body";
 function PlayerBox({ username, photo, body }) {
   let profile = getProfile(photo);
   return (
-    <Card className="player-box">
+    <Card className="player-box p-1 pb-2 m-3">
       <Card.Body className="player-body p-0">
         <Card.Title>
           <Row className="mx-0 justify-content-center flex-nowrap">
