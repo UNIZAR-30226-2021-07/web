@@ -68,13 +68,16 @@ function GameProvider({ children }) {
     }
     session.socket.current.on("game_update", (response) => {
       if (response != null) {
+        console.log('Respuesta: ' + response);
         if ("current_turn" in response) {
           setCurrentTurn(response.current_turn);
+          console.log('Turn: ' + response.current_turn);
         }
         if ("hand" in response) {
           setHand(response.hand);
         }
         if ("players" in response) {
+          console.log('Players: ' + response.players);
           // Set players on game -> {board, name, picture}
           let rivals = [];
           response.players.map((player) => {
@@ -86,7 +89,6 @@ function GameProvider({ children }) {
           setPlayers(rivals);
         }
         // TODO: Bodies, etc.
-        console.log(response);
       }
     });
 
