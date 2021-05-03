@@ -16,11 +16,11 @@ function Board() {
   }, [game.players]);
 
   const cardsStack = [
-    { card_type: "organ", color: "red" },
+    { card_type: "organ", color: "blue" },
     { card_type: "virus", color: "green" },
   ];
   const cardsStack1 = [
-    { card_type: "organ", color: "blue" },
+    { card_type: "organ", color: "yellow" },
     { card_type: "organ", color: "blue" },
   ];
 
@@ -28,7 +28,7 @@ function Board() {
   const body = [cardsStack1, cardsStack1, cardsStack1, cardsStack1];
 
   const cardsHand = [
-    { card_type: "organ", color: "blue" },
+    { card_type: "organ", color: "yellow" },
     { card_type: "virus", color: "green" },
     { card_type: "treatment", treatment_type: "infection" },
   ];
