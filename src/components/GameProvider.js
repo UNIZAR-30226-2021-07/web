@@ -86,14 +86,35 @@ function GameProvider({ children }) {
           });
           setPlayers(rivals);
         }
+
+        // TODO: Provisional -> bodies hardcodeado, para probar mapeo
+        response = ["bodies": {
+          // Pila del jugador, siempre de longitud 4.
+          "marcuspkz": [
+              {
+                  // Puede ser nulo si no hay nada en esa posición.
+                  "organ": {
+                      "card_type": "organ",
+                      "color": "red"
+                  }
+                  // Puede estar vacío si no hay modificadores.
+                  "modifiers": [
+                      {"card_type": "virus", "color": "red"},
+                      // ...
+                  ]
+              },
+                  // ....
+          ],
+          // ...
+      },
+    ]
         // TODO: Bodies, etc.
         if ("bodies" in response) {
-          // TODO: VER EN QUE ORDEN VIENEN LOS BODIES, SI EL PRIMERO ES EL DEL
-          // PROPIO USUARIO O SI HAY ALGO A PARTE DEL NAME PARA IDENTIFICAR
-          // BODY DEL USUARIO, EN CASO DE QUE NO SE HARÁ CON EL USERNAME GUARDADO
-          // EN USERDATA EN "SESSIONPROVIDER"
+          // Llegan sólo los bodies que hayan cambiado, con clave nombre del
+          // usuario al que pertenezca el body
 
           // NOTA 2: La clave de cada body es su nombre de usuario!?? -> Preguntar
+          // -> SÍ
 
           // ----------------------- Provisional! ------------------------------
           // Suponiendo body user el primer body
