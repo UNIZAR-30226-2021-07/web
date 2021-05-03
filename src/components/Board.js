@@ -30,8 +30,8 @@ function Board() {
 
   const cardsHand = [
     { card_type: "organ", color: "blue" },
-    { card_type: "organ", color: "blue" },
-    { card_type: "organ", color: "blue" },
+    { card_type: "virus", color: "green" },
+    { card_type: "treatment", treatment_type: "infection" },
   ];
 
   const Player1 = () => {
