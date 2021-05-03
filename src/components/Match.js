@@ -14,14 +14,7 @@ import help from "../assets/common/icons/help.svg";
 
 function Match() {
   const session = useContext(SessionContext);
-  const game = useContext(GameContext);
   const history = useHistory();
-
-  useEffect(() => {
-    //console.log(game.hand);
-    //console.log(game.currentTurn);
-    console.log(game.players);
-  }, [game.players]);
 
   useEffect(() => {
     // If socket null, (e.g. when disconnected) go back to menu
