@@ -13,7 +13,6 @@ function Board() {
   useEffect(() => {
     //console.log(game.hand);
     //console.log(game.currentTurn);
-    console.log("Numero de jugadores: " + game.players);
   }, [game.players]);
 
   const cardsStack = [
