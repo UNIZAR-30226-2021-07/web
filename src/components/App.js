@@ -55,10 +55,12 @@ function App() {
 
       session.socket.current.on("connect", function () {
         console.log("connected");
+        session.setSocketChange((session.socketChange + 1) % 2);
       });
 
       session.socket.current.on("connect_error", function (e) {
         console.error("not connected", e);
+        session.setSocketChange((session.socketChange + 1) % 2);
       });
 
       session.socket.current.on("users_waiting", (users) => {
