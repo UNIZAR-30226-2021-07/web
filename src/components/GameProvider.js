@@ -67,9 +67,27 @@ function GameProvider({ children }) {
       return;
     }
     session.socket.current.on("game_update", (response) => {
-      // TODO: SET VARIABLES QUE CAMBIEN
-      console.log(response);
-      console.log(hand);
+      if (response != null) {
+        if ("current_turn" in response) {
+          setCurrentTurn(response.current_turn);
+        }
+        if ("hand" in response) {
+          setHand(response.hand);
+        }
+        if ("players" in response) {
+          // Set players on game -> {board, name, picture}
+          let rivals = [];
+          response.players.map((player) => {
+            // Rival
+            if ("board" in player) {
+              rivals = [...rivals, player];
+            }
+          });
+          setPlayers(rivals);
+        }
+        // TODO: Bodies, etc.
+        console.log(response);
+      }
     });
 
     return () => {
@@ -78,7 +96,7 @@ function GameProvider({ children }) {
       setBodies([]);
       setCurrentTurn("");
       setPlayers([]);
-      session.socket.current.off("chat");
+      session.socket.current.off("game_update");
     };
   }, [session.socketChange]);
 
