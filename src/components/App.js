@@ -87,7 +87,8 @@ function App() {
 
         <ProtectedRoute path="/home" token={session.token} component={Menu} />
 
-        <ProtectedMatchRoute
+        {/* <ProtectedMatchRoute */}
+        <ProtectedRoute
           path="/match"
           token={session.token}
           onMatch={session.onMatch}
@@ -137,23 +138,23 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-const ProtectedMatchRoute = ({ component: Component, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        rest.token != null ? (
-          rest.onMatch ? (
-            <Component {...rest} {...props} />
-          ) : (
-            <Redirect to="/home" />
-          )
-        ) : (
-          <Redirect to="/login" />
-        )
-      }
-    />
-  );
-};
+// const ProtectedMatchRoute = ({ component: Component, ...rest }) => {
+//   return (
+//     <Route
+//       {...rest}
+//       render={(props) =>
+//         rest.token != null ? (
+//           rest.onMatch ? (
+//             <Component {...rest} {...props} />
+//           ) : (
+//             <Redirect to="/home" />
+//           )
+//         ) : (
+//           <Redirect to="/login" />
+//         )
+//       }
+//     />
+//   );
+// };
 
 export default App;

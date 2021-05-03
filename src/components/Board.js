@@ -51,7 +51,7 @@ const loadHand = (game_update) => {
 }*/
 
 function Board() {
-  const numPlayers = 4;
+  const numPlayers = 6;
 
   const cardsStack = [
     { card_type: "organ", color: "red" },
@@ -98,8 +98,8 @@ function Board() {
   };
 
   return (
-    <Container>
-      <Row className="flex-nowrap">
+    <Container className="mx-0 p-0">
+      <Row>
         <Col className="">
           <Player1 />
           <Player2 />
@@ -115,7 +115,7 @@ function Board() {
       <Row className="justify-content-center">
         <Body cardStacks={cardBody} />
       </Row>
-      <Row className="justify-content-center">
+      <Row className="justify-content-center mb-2">
         <Hand cards={cardsHand} />
       </Row>
     </Container>
