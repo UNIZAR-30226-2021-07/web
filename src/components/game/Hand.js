@@ -1,15 +1,20 @@
-import React from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { ListGroup } from "react-bootstrap";
 
 import Card from "./Card";
-/**
- * @param cards -> son las cartas de la mano un jugador
- * Siempre 3 del tipo "hand"
- */
-function Hand({ cards }) {
+import { GameContext } from "../GameProvider";
+
+function Hand() {
+  const game = useContext(GameContext);
+  const [hand, setHand] = useState([]);
+
+  useEffect(() => {
+    setHand(game.hand);
+  }, [game.hand]);
+
   return (
     <ListGroup horizontal>
-      {cards.map((card, idx) => (
+      {hand.map((card, idx) => (
         <Card key={idx} id={`card-hand-${idx}`} card={card} kind="hand" />
       ))}
     </ListGroup>

@@ -27,12 +27,6 @@ function Board() {
   const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
   const body = [cardsStack1, cardsStack1, cardsStack1, cardsStack1];
 
-  const cardsHand = [
-    { card_type: "organ", color: "yellow" },
-    { card_type: "virus", color: "green" },
-    { card_type: "treatment", treatment_type: "infection" },
-  ];
-
   const Player1 = () => {
     return numRivals == 4 || numRivals == 5 ? (
       <PlayerBox username="José" photo="0" body={body} />
@@ -78,7 +72,7 @@ function Board() {
         <Body cardStacks={cardBody} />
       </Row>
       <Row className="justify-content-center">
-        <Hand cards={cardsHand} />
+        <Hand />
       </Row>
     </Container>
   );
