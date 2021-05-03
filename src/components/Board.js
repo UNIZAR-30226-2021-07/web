@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import Hand from "./game/Hand";
@@ -9,11 +9,10 @@ import { GameContext } from "./GameProvider";
 
 function Board() {
   const game = useContext(GameContext);
+  const [numRivals, setNumRivals] = useState(game.players.length);
 
   useEffect(() => {
-    //console.log(game.hand);
-    //console.log(game.currentTurn);
-    console.log("Numero de jugadores: " + game.players);
+    setNumRivals(game.players.length);
   }, [game.players]);
 
   const cardsStack = [
@@ -35,27 +34,27 @@ function Board() {
   ];
 
   const Player1 = () => {
-    return game.players == 5 || game.players == 6 ? (
+    return numRivals == 4 || numRivals == 5 ? (
       <PlayerBox username="José" photo="0" body={body} />
     ) : null;
   };
   const Player2 = () => {
-    return game.players != 2 ? (
+    return numRivals != 1 ? (
       <PlayerBox username="José" photo="0" body={body} />
     ) : null;
   };
   const Player3 = () => {
-    return game.players == 2 || game.players == 4 || game.players == 6 ? (
+    return numRivals == 1 || numRivals == 3 || numRivals == 5 ? (
       <PlayerBox username="José" photo="0" body={body} />
     ) : null;
   };
   const Player4 = () => {
-    return game.players != 2 ? (
+    return numRivals != 1 ? (
       <PlayerBox username="José" photo="0" body={body} />
     ) : null;
   };
   const Player5 = () => {
-    return game.players == 5 || game.players == 6 ? (
+    return numRivals == 4 || numRivals == 5 ? (
       <PlayerBox username="José" photo="0" body={body} />
     ) : null;
   };
