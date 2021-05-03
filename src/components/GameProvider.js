@@ -88,23 +88,23 @@ function GameProvider({ children }) {
         }
 
         // TODO: Provisional -> bodies hardcodeado, para probar mapeo
-        response = ["bodies": {
-          // Pila del jugador, siempre de longitud 4.
-          "marcuspkz": [
-              {
-                  // Puede ser nulo si no hay nada en esa posición.
-                  "organ": {
-                      "card_type": "organ",
-                      "color": "red"
-                  }
-                  // Puede estar vacío si no hay modificadores.
-                  "modifiers": [
-                      {"card_type": "virus", "color": "red"},
-                      // ...
-                  ]
-              },
-                  // ....
-          ],
+        response = [ {"bodies": {
+                            // Pila del jugador, siempre de longitud 4.
+                            "marcuspkz": [
+                                {
+                                  // Puede ser nulo si no hay nada en esa posición.
+                                  "organ": {
+                                      "card_type": "organ",
+                                      "color": "red"
+                                  }
+                                // Puede estar vacío si no hay modificadores.
+                                "modifiers": [
+                                    {"card_type": "virus", "color": "red"},
+                                    // ...
+                                ]
+                                },
+                                // ....
+                              ],
           // ...
       },
     ]
