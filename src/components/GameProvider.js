@@ -37,8 +37,9 @@ function GameProvider({ children }) {
   //     // ...
   // },
 
-  // TODO: De momento se trata como una lista con todos los bodys de
-  // todos los jugadores, siendo el primero el del propio jugador
+  // Body del jugador
+  const [body, setBody] = useState("");
+  // Lista con los bodys de todos los jugadores rivales
   const [bodies, setBodies] = useState([]);
 
   const [currentTurn, setCurrentTurn] = useState("");
@@ -68,16 +69,13 @@ function GameProvider({ children }) {
     }
     session.socket.current.on("game_update", (response) => {
       if (response != null) {
-        console.log('Respuesta: ' + response);
         if ("current_turn" in response) {
           setCurrentTurn(response.current_turn);
-          console.log('Turn: ' + response.current_turn);
         }
         if ("hand" in response) {
           setHand(response.hand);
         }
         if ("players" in response) {
-          console.log('Players: ' + response.players);
           // Set players on game -> {board, name, picture}
           let rivals = [];
           response.players.map((player) => {
@@ -89,12 +87,36 @@ function GameProvider({ children }) {
           setPlayers(rivals);
         }
         // TODO: Bodies, etc.
+        if ("bodies" in response) {
+          // TODO: VER EN QUE ORDEN VIENEN LOS BODIES, SI EL PRIMERO ES EL DEL
+          // PROPIO USUARIO O SI HAY ALGO A PARTE DEL NAME PARA IDENTIFICAR
+          // BODY DEL USUARIO, EN CASO DE QUE NO SE HARÁ CON EL USERNAME GUARDADO
+          // EN USERDATA EN "SESSIONPROVIDER"
+
+          // NOTA 2: La clave de cada body es su nombre de usuario!?? -> Preguntar
+
+          // ----------------------- Provisional! ------------------------------
+          // Suponiendo body user el primer body
+          let rivals = [];
+          response.players.map((bodyElement, ind) => {
+            if (ind == 0) {
+              setBody(bodyElement);
+            }
+            // Rival
+            else {
+              rivals = [...rivals, bodyElement];
+            }
+          });
+          setBodies(rivals);
+        }
+        
       }
     });
 
     return () => {
       // Delete previous listenings and clean variables
       setHand([]);
+      setBody("");
       setBodies([]);
       setCurrentTurn("");
       setPlayers([]);
@@ -108,6 +130,7 @@ function GameProvider({ children }) {
         messages: messages,
         setMessages: (msgs) => setMessages(msgs),
         hand: hand,
+        body: body,
         bodies: bodies,
         currentTurn: currentTurn,
         players: players,
