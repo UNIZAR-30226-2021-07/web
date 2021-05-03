@@ -75,11 +75,10 @@ function GameProvider({ children }) {
           setHand(response.hand);
         }
         if ("players" in response) {
-          // Set players on game -> {board, name, picture}
           let rivals = [];
           response.players.map((player) => {
-            // Rival
-            if ("board" in player) {
+            // Is no rival
+            if (!("board" in player)) {
               rivals = [...rivals, player];
             }
           });

@@ -9,11 +9,10 @@ import { GameContext } from "./GameProvider";
 
 function Board() {
   const game = useContext(GameContext);
-  const [numRivals, setNumRivals] = useState(game.players.length);
+  const [numRivals, setNumRivals] = useState(0);
 
   useEffect(() => {
     setNumRivals(game.players.length);
-    console.log('Rivales: ' + numRivals);
     console.log(game.players);
   }, [game.players]);
 
