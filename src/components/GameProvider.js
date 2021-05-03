@@ -75,6 +75,7 @@ function GameProvider({ children }) {
           setHand(response.hand);
         }
         if ("players" in response) {
+
           let rivals = [];
           response.players.map((player) => {
             // Is no rival
