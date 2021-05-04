@@ -15,7 +15,7 @@ function searchCard(elem, card) {
 export function getCard(card) {
   let carta = cards.find((elem) => searchCard(elem, card));
 
-  /* ! Temporal hasta que servidor devuelva el tipo de tratamiento */
+  /* TODO: ! Temporal hasta que servidor devuelva el tipo de tratamiento */
   if (carta === undefined) {
     return process.env.PUBLIC_URL + "/cards/especial_operacion.svg";
   }

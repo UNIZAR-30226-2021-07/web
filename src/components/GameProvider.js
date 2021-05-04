@@ -63,34 +63,7 @@ function GameProvider({ children }) {
   const [messages, setMessages] = useState([]);
 
   // Game variables
-
-  //   "hand": [
-  //   {"card_type": "organ", "color": "red"},
-  //   {"card_type": "virus", "color": "green"},
-  //   {"card_type": "treatment", "treatment_type": "infection"},
-  // ],
   const [hand, setHand] = useState([]);
-
-  // Los cuerpos de los jugadores.
-  //   "bodies": {
-  //     // Pila del jugador, siempre de longitud 4.
-  //     "marcuspkz": [
-  //         {
-  //             // Puede ser nulo si no hay nada en esa posición.
-  //             "organ": {
-  //                 "card_type": "organ",
-  //                 "color": "red"
-  //             }
-  //             // Puede estar vacío si no hay modificadores.
-  //             "modifiers": [
-  //                 {"card_type": "virus", "color": "red"},
-  //                 // ...
-  //             ]
-  //         },
-  //             // ....
-  //     ],
-  //     // ...
-  // },
 
   // Diccionario con los bodys de todos los jugadores
   const [bodies, setBodies] = useState({});
