@@ -16,16 +16,11 @@ function Board() {
     setNumRivals(game.players.length);
   }, [game.players]);
 
-  const cardsStack = [
-    { card_type: "organ", color: "blue" },
-    { card_type: "virus", color: "green" },
-  ];
   const cardsStack1 = [
     { card_type: "organ", color: "yellow" },
     { card_type: "organ", color: "blue" },
   ];
 
-  const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
   const body = [cardsStack1, cardsStack1, cardsStack1, cardsStack1];
 
   const Player1 = () => {
@@ -70,7 +65,7 @@ function Board() {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Body cardStacks={cardBody} />
+        <Body />
       </Row>
       <Row className="justify-content-center">
         <Hand />
