@@ -155,8 +155,8 @@ function GameProvider({ children }) {
 
   // Body del jugador
   const [body, setBody] = useState([]);
-  // Lista con los bodys de todos los jugadores rivales
-  const [bodies, setBodies] = useState([]);
+  // Lista con los bodys de todos los jugadores rivales, 5 como máximo
+  const [bodies, setBodies] = useState([[],[],[],[],[]]);
 
   const [currentTurn, setCurrentTurn] = useState("");
 
@@ -193,11 +193,9 @@ function GameProvider({ children }) {
         }
         if ("players" in response) {
           // Set players on game -> {board, name, picture}
-          console.log(response.players);
           let rivals = [];
           response.players.map((player) => {
             // Rival
-            console.log(player);
             if (player.name != session.userData.name) {
               rivals = [...rivals, player];
             }
@@ -254,7 +252,7 @@ function GameProvider({ children }) {
       // Delete previous listenings and clean variables
       setHand([]);
       setBody([]);
-      setBodies([]);
+      setBodies([[],[],[],[],[]]);
       setCurrentTurn("");
       setPlayers([]);
       session.socket.current.off("game_update");
@@ -273,13 +271,7 @@ function GameProvider({ children }) {
     if ("bodies" in response) {
       // Llegan sólo los bodies que hayan cambiado, con clave nombre del
       // usuario al que pertenezca el body
-      // NOTA: La clave de cada body es su nombre de usuario
-      // NOTA1: De momento voy a meter todos los bodies rivales en un mismo
-      // array, para probar si haciendo useContext y accediento a bodies[index]
-      // se renderiza si cambia cualquier componente o se renderiza solo si
-      // cambia 1
       console.log(response.bodies);
-
       // Check if user or rival body
       // User body
       if (session.userData.name in response.bodies) {
@@ -287,19 +279,17 @@ function GameProvider({ children }) {
       }
       // Rival body
       else if (players) {
-        // Search for username in players and get its board index
-        console.log(Object.keys(response.bodies));
+        // Order bodies with same order in players -> get array position
+        // of this username's board in players
+        // Get body username
         let bodiesKeys = Object.keys(response.bodies);
         let rivalName = bodiesKeys[0];
-        //let rival = players.find((player) => player.name == rivalName);
-        console.log(players);
-        console.log(players.find((player) => player.name == rivalName));
-        // TODO: NO HACER CON BOARD SI NO CON NAME
-        // Take board value as index to bodies, to set that body
-        //let auxBodies = bodies;
-        //auxBodies[rival.board] = response.bodies[rivalName];
-        //console.log(auxBodies);
-        //setBodies(auxBodies);
+        let index = players.findIndex((player) => player.name == rivalName);
+        if (index != -1) {
+            let auxBodies = bodies;
+            auxBodies[index] = response.bodies[rivalName];
+            setBodies(auxBodies);
+        }
       }
     }
   }, [players]);
