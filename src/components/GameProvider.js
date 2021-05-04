@@ -266,12 +266,10 @@ function GameProvider({ children }) {
     //response = userBodyTest;
     let response = rivalBodyTest;
     // --------------------------------
-    console.log(response);
     // TODO: Bodies, etc.
     if ("bodies" in response) {
       // Llegan sólo los bodies que hayan cambiado, con clave nombre del
       // usuario al que pertenezca el body
-      console.log(response.bodies);
       // Check if user or rival body
       // User body
       if (session.userData.name in response.bodies) {
