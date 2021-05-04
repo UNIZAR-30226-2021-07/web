@@ -1,10 +1,12 @@
-import React from "react";
-import Card from "./Card";
+import React, { useContext } from "react";
 
-/**
- * @param
- */
+import Card from "./Card";
+import { playCard } from "../WebSockets";
+
+import { SessionContext } from "../SessionProvider";
+
 function CardStack({ id, cards, kind }) {
+  const session = useContext(SessionContext);
   var stackSize = cards.length;
 
   const drop = (e) => {
@@ -25,31 +27,13 @@ function CardStack({ id, cards, kind }) {
     console.log(id);
     console.log(card.id);
 
-    // TODO: "playCard" call
-    // Do "playCard" to server
-    // Temporary delete current card from DOM
-    // card.remove();
+    const data = {
+      slot: 1,
+      target: "test_user2",
+      organ_pile: 1,
+    };
 
-    /*
-    // Convert hand-car to body-card or rival-card in the selected CardStack
-    card.id = id + "-card-" + stackSize;
-
-    card.className =
-      card.className +
-      " stack-card-" +
-      kind +
-      " stack-card-" +
-      kind +
-      "-" +
-      stackSize;
-    card.firstChild.setAttribute("class", kind + "-card");
-    // Change img child id
-    card.firstChild.setAttribute("id", id + "-card-" + stackSize + "-img");
-    // To set the card in the stack
-    stackSize = stackSize + 1;
-
-    document.getElementById(id).appendChild(card);
-    */
+    playCard(session.socket, data);
   };
 
   const allowDrop = (e) => {
