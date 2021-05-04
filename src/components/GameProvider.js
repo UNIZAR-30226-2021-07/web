@@ -318,6 +318,25 @@ function GameProvider({ children }) {
     // --------------------------------
     // TODO: Bodies, etc.
     if ("bodies" in response) {
+      // Transform format of stacks in bodies to corresponding format
+
+          // Check if null?
+          console.log(cardStacks);
+          let auxStacks = [[],[],[],[]];
+          auxStacks = stacks;
+          // For each stack
+          cardStacks.map((stack, ind) => {
+            // Treat modifiers as single cards over first card
+            let newStack = [];
+            newStack = [...newStack, stack.organ];
+            stack.modifiers.map((modifier) => {
+              newStack = [...newStack, modifier];
+            })
+            // Update stack with index ind
+            auxStacks[ind] = newStack;
+          });
+          // Update stacks
+          setStacks(auxStacks);
       // Llegan sólo los bodies que hayan cambiado, con clave nombre del
       // usuario al que pertenezca el body
       // Check if user or rival body
@@ -335,33 +354,6 @@ function GameProvider({ children }) {
         let index = players.findIndex((player) => player.name == rivalName);
         if (index != -1) {
             let auxBodies = bodies;
-              // 4 stacks in each body
-  const [stacks, setStacks] = useState([[],[],[],[]]);
-
-  useEffect(() => {
-    // Check if null?
-    console.log(cardStacks);
-    let auxStacks = [[],[],[],[]];
-    auxStacks = stacks;
-    // For each stack
-    cardStacks.map((stack, ind) => {
-      // Treat modifiers as single cards over first card
-      let newStack = [];
-      newStack = [...newStack, stack.organ];
-      stack.modifiers.map((modifier) => {
-        newStack = [...newStack, modifier];
-      })
-      // Update stack with index ind
-      auxStacks[ind] = newStack;
-    });
-    // Update stacks
-    setStacks(auxStacks);
-
-
-    return () => {
-      setStacks([[],[],[],[]]); 
-    }
-  }, [cardStacks]);
             auxBodies[index] = response.bodies[rivalName];
             setBodies(auxBodies);
         }
@@ -379,7 +371,6 @@ function GameProvider({ children }) {
         bodies: bodies,
         currentTurn: currentTurn,
         players: players,
-        stacks: stacks,   // TESTING BODIES
       }}
     >
       {children}

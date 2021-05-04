@@ -35,54 +35,6 @@ function Board() {
   //const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
   //const body = [cardsStack1, cardsStack1, cardsStack1, cardsStack1];
 
-  const stacks =  [
-    // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
-    // PILA 0
-    {
-      // Puede ser nulo si no hay nada en esa posición.
-      organ: {
-        card_type: "organ",
-        color: "red",
-      },
-      // Puede estar vacío si no hay modificadores.
-      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-      modifiers: [{ card_type: "virus", color: "red" }],
-    },
-    // PILA 1
-    {
-      // Puede ser nulo si no hay nada en esa posición.
-      organ: {
-        card_type: "organ",
-        color: "blue",
-      },
-      // Puede estar vacío si no hay modificadores.
-      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-      modifiers: [{ card_type: "virus", color: "red" }],
-    },
-    // PILA 2
-    {
-      // Puede ser nulo si no hay nada en esa posición.
-      organ: {
-        card_type: "organ",
-        color: "red",
-      },
-      // Puede estar vacío si no hay modificadores.
-      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-      modifiers: [{ card_type: "virus", color: "red" }],
-    },
-    // PILA 3
-    {
-      // Puede ser nulo si no hay nada en esa posición.
-      organ: {
-        card_type: "organ",
-        color: "blue",
-      },
-      // Puede estar vacío si no hay modificadores.
-      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-      modifiers: [{ card_type: "virus", color: "red" }],
-    },
-  ];
-
   const cardsHand = [
     { card_type: "organ", color: "blue" },
     { card_type: "virus", color: "green" },
@@ -151,7 +103,7 @@ function Board() {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Body cardStacks={stacks} />
+        <Body cardStacks={game.body} />
       </Row> 
       <Row className="justify-content-center">
         <Hand cards={cardsHand} />
