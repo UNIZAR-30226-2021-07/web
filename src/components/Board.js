@@ -6,40 +6,29 @@ import Body from "./game/Body";
 //import PlayerBox from "./game/PlayerBox";
 
 import { GameContext } from "./GameProvider";
+import { SessionContext } from "./SessionProvider";
 
 function Board() {
+  const session = useContext(SessionContext);
   const game = useContext(GameContext);
   const [numPlayers, setNumPlayers] = useState(0);
 
   useEffect(() => {
     console.log(numPlayers);
-    if(game.players.length > 0) {
-      // +1 including user
-      setNumPlayers(game.players.length + 1);
+    if (game.players.length > 0) {
+      setNumPlayers(game.players.length);
+    }
+    return () => {
+      setNumPlayers(0);
     }
   }, [game.players]);
-
-  /*
-  const cardsStack = [
-    { card_type: "organ", color: "red" },
-    { card_type: "virus", color: "green" },
-  ];
-  */
-  /*
-  const cardsStack1 = [
-    { card_type: "organ", color: "blue" },
-    { card_type: "organ", color: "blue" },
-  ];
-  */
-
-  //const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
-  //const body = [cardsStack1, cardsStack1, cardsStack1, cardsStack1];
 
   const cardsHand = [
     { card_type: "organ", color: "blue" },
     { card_type: "virus", color: "green" },
     { card_type: "treatment", treatment_type: "infection" },
   ];
+
   /*
   const Player1 = () => {
     let index = 0;
@@ -80,12 +69,48 @@ function Board() {
     ) : null;
   };
   */
-  
-  const Player1 = () => { return null; };
-  const Player2 = () => { return null; };
-  const Player3 = () => { return null; };
-  const Player4 = () => { return null; };
-  const Player5 = () => { return null; };
+
+  const Player1 = () => {
+    return null;
+  };
+  const Player2 = () => {
+    return null;
+  };
+  const Player3 = () => {
+    return null;
+  };
+  const Player4 = () => {
+    return null;
+  };
+  const Player5 = () => {
+    return null;
+  };
+
+
+  // function getUserBody (userName) {
+  //   // Get the matching body & adapt to corresponding format
+  //   console.log(userName);
+  //   console.log(game.bodies);
+  //   let body = game.bodies[userName];
+  //   console.log(body);
+    
+  //   // Body to return
+  //   let auxBody = [[], [], [], []];
+  //   body.map((stack, ind) => {
+  //     // Treat modifiers as single cards over first card
+  //     let newStack = [];
+  //     newStack = [...newStack, stack.organ];
+  //     stack.modifiers.map((modifier) => {
+  //       newStack = [...newStack, modifier];
+  //     });
+  //     // Update stack with index ind
+  //     auxBody[ind] = newStack;
+  //   });
+
+  //   return auxBody;
+  // }
+
+  console.log(game.bodies);
 
   return (
     <Container>
@@ -103,8 +128,8 @@ function Board() {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Body cardStacks={game.body} />
-      </Row> 
+        <Body cardStacks={game.bodies[session.userData.name]} />
+      </Row>
       <Row className="justify-content-center">
         <Hand cards={cardsHand} />
       </Row>

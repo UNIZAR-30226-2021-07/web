@@ -8,6 +8,10 @@ import CardStack from "./CardStack";
  */
 function Body({ cardStacks, kind = "body" }) {
 
+  if (!cardStacks) {
+    return null;
+  }
+
   return (
     <div className="row mx-0 flex-nowrap" id={`user-${kind}`}>
       {cardStacks.map((cards, idx) => (

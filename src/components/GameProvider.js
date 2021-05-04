@@ -69,7 +69,7 @@ const rivalBodyTest = {
   bodies: {
     // Pila del jugador, siempre de longitud 4.
     // JUGADOR N
-    ordesa: [
+    fernandito: [
       // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
       // PILA 0
       {
@@ -120,56 +120,6 @@ const rivalBodyTest = {
 };
 
 function GameProvider({ children }) {
-
-  // TEST
-  const stacks =  [
-    // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
-    // PILA 0
-    {
-      // Puede ser nulo si no hay nada en esa posición.
-      organ: {
-        card_type: "organ",
-        color: "red",
-      },
-      // Puede estar vacío si no hay modificadores.
-      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-      modifiers: [{ card_type: "virus", color: "red" }],
-    },
-    // PILA 1
-    {
-      // Puede ser nulo si no hay nada en esa posición.
-      organ: {
-        card_type: "organ",
-        color: "blue",
-      },
-      // Puede estar vacío si no hay modificadores.
-      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-      modifiers: [{ card_type: "virus", color: "red" }],
-    },
-    // PILA 2
-    {
-      // Puede ser nulo si no hay nada en esa posición.
-      organ: {
-        card_type: "organ",
-        color: "red",
-      },
-      // Puede estar vacío si no hay modificadores.
-      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-      modifiers: [{ card_type: "virus", color: "red" }],
-    },
-    // PILA 3
-    {
-      // Puede ser nulo si no hay nada en esa posición.
-      organ: {
-        card_type: "organ",
-        color: "blue",
-      },
-      // Puede estar vacío si no hay modificadores.
-      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-      modifiers: [{ card_type: "virus", color: "red" }],
-    },
-  ];
-  //-----------------------------------------------------------
   const session = useContext(SessionContext);
   const [messages, setMessages] = useState([]);
 
@@ -204,9 +154,9 @@ function GameProvider({ children }) {
   // },
 
   // Body del jugador
-  const [body, setBody] = useState([]);
+  //const [body, setBody] = useState([]);
   // Lista con los bodys de todos los jugadores rivales, 5 como máximo
-  const [bodies, setBodies] = useState([[],[],[],[],[]]);
+  const [bodies, setBodies] = useState([]);
 
   const [currentTurn, setCurrentTurn] = useState("");
 
@@ -243,57 +193,22 @@ function GameProvider({ children }) {
         }
         if ("players" in response) {
           // Set players on game -> {board, name, picture}
-          let rivals = [];
+          let users = [];
+          // Set own user the first on the list of players
+          let ownUser = response.players.find((player) => player.name == session.userData.name);
+          users = [...users, ownUser];
           response.players.map((player) => {
-            // Rival
+            // Rivals
             if (player.name != session.userData.name) {
-              rivals = [...rivals, player];
+              users = [...users, player];
             }
           });
-          setPlayers(rivals);
+          setPlayers(users);
         }
         /* NOTA: No se puede probar hasta que llegue más de un update y por
         // tanto players tome valor dentro de este useEffect -> la primera
         // vez no lo tiene y por tanto no es probable
-        // TODO: Provisional -> bodies hardcodeado, para probar mapeo
-        // ----------- OJO QUITAR ---------
-        //response = userBodyTest;
-        response = rivalBodyTest;
-        // --------------------------------
-        console.log(response);
-        // TODO: Bodies, etc.
-        if ("bodies" in response) {
-          // Llegan sólo los bodies que hayan cambiado, con clave nombre del
-          // usuario al que pertenezca el body
-          // NOTA: La clave de cada body es su nombre de usuario
-          // NOTA1: De momento voy a meter todos los bodies rivales en un mismo
-          // array, para probar si haciendo useContext y accediento a bodies[index]
-          // se renderiza si cambia cualquier componente o se renderiza solo si 
-          // cambia 1
-          console.log(response.bodies);
-     
-          // Check if user or rival body
-          // User body
-          if (session.userData.name in response.bodies){
-            setBody(response.bodies[session.userData.name]);
-          }
-          // Rival body
-          else {
-            // Search for username in players and get its board index
-            console.log(Object.keys(response.bodies));
-            let bodiesKeys = Object.keys(response.bodies);
-            let rivalName = bodiesKeys[0];
-            //let rival = players.find((player) => player.name == rivalName);
-            console.log(players)
-            console.log(players.find((player) => player.name == rivalName))
-            // Take board value as index to bodies, to set that body
-            //let auxBodies = bodies;
-            //auxBodies[rival.board] = response.bodies[rivalName];
-            //console.log(auxBodies);
-            //setBodies(auxBodies);
-          }
-        
-        }
+        --> Código de abajo
         */
       }
     });
@@ -301,8 +216,7 @@ function GameProvider({ children }) {
     return () => {
       // Delete previous listenings and clean variables
       setHand([]);
-      setBody([]);
-      setBodies([[],[],[],[],[]]);
+      setBodies([]);
       setCurrentTurn("");
       setPlayers([]);
       session.socket.current.off("game_update");
@@ -312,51 +226,27 @@ function GameProvider({ children }) {
   // TODO: Test provisional BODY
   useEffect(() => {
     // TODO: Provisional -> bodies hardcodeado, para probar mapeo
-    // ----------- OJO QUITAR ---------
     //response = userBodyTest;
     let response = rivalBodyTest;
     // --------------------------------
-    // TODO: Bodies, etc.
     if ("bodies" in response) {
-      // Transform format of stacks in bodies to corresponding format
-
-          // Check if null?
-          console.log(cardStacks);
-          let auxStacks = [[],[],[],[]];
-          auxStacks = stacks;
-          // For each stack
-          cardStacks.map((stack, ind) => {
-            // Treat modifiers as single cards over first card
-            let newStack = [];
-            newStack = [...newStack, stack.organ];
-            stack.modifiers.map((modifier) => {
-              newStack = [...newStack, modifier];
-            })
-            // Update stack with index ind
-            auxStacks[ind] = newStack;
-          });
-          // Update stacks
-          setStacks(auxStacks);
       // Llegan sólo los bodies que hayan cambiado, con clave nombre del
       // usuario al que pertenezca el body
-      // Check if user or rival body
-      // User body
-      if (session.userData.name in response.bodies) {
-        setBody(response.bodies[session.userData.name]);
-      }
-      // Rival body
-      else if (players) {
-        // Order bodies with same order in players -> get array position
-        // of this username's board in players
-        // Get body username
+      if (players.length > 0) {
+        // Update corresponding component in bodies
+        // Get key in received body
         let bodiesKeys = Object.keys(response.bodies);
-        let rivalName = bodiesKeys[0];
-        let index = players.findIndex((player) => player.name == rivalName);
+        let userName = bodiesKeys[0];
+        // Get position to update by its key
+        let index = bodies.indexOf(userName);
+        let auxBodies = bodies;
         if (index != -1) {
-            let auxBodies = bodies;
-            auxBodies[index] = response.bodies[rivalName];
-            setBodies(auxBodies);
+          auxBodies[index] = response.bodies;
+        } else {
+          // If not created previously
+          auxBodies = [...auxBodies, response.bodies];
         }
+        setBodies(auxBodies);
       }
     }
   }, [players]);
@@ -367,7 +257,6 @@ function GameProvider({ children }) {
         messages: messages,
         setMessages: (msgs) => setMessages(msgs),
         hand: hand,
-        body: body,
         bodies: bodies,
         currentTurn: currentTurn,
         players: players,
