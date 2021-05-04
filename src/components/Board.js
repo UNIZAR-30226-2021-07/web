@@ -8,7 +8,6 @@ import PlayerBox from "./game/PlayerBox";
 import { GameContext } from "./GameProvider";
 
 function Board() {
-
   const game = useContext(GameContext);
   const [numRivals, setNumRivals] = useState(0);
 
