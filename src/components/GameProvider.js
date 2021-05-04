@@ -120,6 +120,56 @@ const rivalBodyTest = {
 };
 
 function GameProvider({ children }) {
+
+  // TEST
+  const stacks =  [
+    // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
+    // PILA 0
+    {
+      // Puede ser nulo si no hay nada en esa posición.
+      organ: {
+        card_type: "organ",
+        color: "red",
+      },
+      // Puede estar vacío si no hay modificadores.
+      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+      modifiers: [{ card_type: "virus", color: "red" }],
+    },
+    // PILA 1
+    {
+      // Puede ser nulo si no hay nada en esa posición.
+      organ: {
+        card_type: "organ",
+        color: "blue",
+      },
+      // Puede estar vacío si no hay modificadores.
+      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+      modifiers: [{ card_type: "virus", color: "red" }],
+    },
+    // PILA 2
+    {
+      // Puede ser nulo si no hay nada en esa posición.
+      organ: {
+        card_type: "organ",
+        color: "red",
+      },
+      // Puede estar vacío si no hay modificadores.
+      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+      modifiers: [{ card_type: "virus", color: "red" }],
+    },
+    // PILA 3
+    {
+      // Puede ser nulo si no hay nada en esa posición.
+      organ: {
+        card_type: "organ",
+        color: "blue",
+      },
+      // Puede estar vacío si no hay modificadores.
+      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+      modifiers: [{ card_type: "virus", color: "red" }],
+    },
+  ];
+  //-----------------------------------------------------------
   const session = useContext(SessionContext);
   const [messages, setMessages] = useState([]);
 
@@ -285,6 +335,33 @@ function GameProvider({ children }) {
         let index = players.findIndex((player) => player.name == rivalName);
         if (index != -1) {
             let auxBodies = bodies;
+              // 4 stacks in each body
+  const [stacks, setStacks] = useState([[],[],[],[]]);
+
+  useEffect(() => {
+    // Check if null?
+    console.log(cardStacks);
+    let auxStacks = [[],[],[],[]];
+    auxStacks = stacks;
+    // For each stack
+    cardStacks.map((stack, ind) => {
+      // Treat modifiers as single cards over first card
+      let newStack = [];
+      newStack = [...newStack, stack.organ];
+      stack.modifiers.map((modifier) => {
+        newStack = [...newStack, modifier];
+      })
+      // Update stack with index ind
+      auxStacks[ind] = newStack;
+    });
+    // Update stacks
+    setStacks(auxStacks);
+
+
+    return () => {
+      setStacks([[],[],[],[]]); 
+    }
+  }, [cardStacks]);
             auxBodies[index] = response.bodies[rivalName];
             setBodies(auxBodies);
         }
@@ -302,6 +379,7 @@ function GameProvider({ children }) {
         bodies: bodies,
         currentTurn: currentTurn,
         players: players,
+        stacks: stacks,   // TESTING BODIES
       }}
     >
       {children}

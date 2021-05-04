@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import Hand from "./game/Hand";
 import Body from "./game/Body";
-import PlayerBox from "./game/PlayerBox";
+//import PlayerBox from "./game/PlayerBox";
 
 import { GameContext } from "./GameProvider";
 
@@ -12,18 +12,19 @@ function Board() {
   const [numPlayers, setNumPlayers] = useState(0);
 
   useEffect(() => {
-    let index = 0;
-    console.log(index);
+    console.log(numPlayers);
     if(game.players.length > 0) {
       // +1 including user
       setNumPlayers(game.players.length + 1);
     }
   }, [game.players]);
 
+  /*
   const cardsStack = [
     { card_type: "organ", color: "red" },
     { card_type: "virus", color: "green" },
   ];
+  */
   /*
   const cardsStack1 = [
     { card_type: "organ", color: "blue" },
@@ -31,15 +32,63 @@ function Board() {
   ];
   */
 
-  const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
+  //const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
   //const body = [cardsStack1, cardsStack1, cardsStack1, cardsStack1];
+
+  const stacks =  [
+    // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
+    // PILA 0
+    {
+      // Puede ser nulo si no hay nada en esa posición.
+      organ: {
+        card_type: "organ",
+        color: "red",
+      },
+      // Puede estar vacío si no hay modificadores.
+      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+      modifiers: [{ card_type: "virus", color: "red" }],
+    },
+    // PILA 1
+    {
+      // Puede ser nulo si no hay nada en esa posición.
+      organ: {
+        card_type: "organ",
+        color: "blue",
+      },
+      // Puede estar vacío si no hay modificadores.
+      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+      modifiers: [{ card_type: "virus", color: "red" }],
+    },
+    // PILA 2
+    {
+      // Puede ser nulo si no hay nada en esa posición.
+      organ: {
+        card_type: "organ",
+        color: "red",
+      },
+      // Puede estar vacío si no hay modificadores.
+      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+      modifiers: [{ card_type: "virus", color: "red" }],
+    },
+    // PILA 3
+    {
+      // Puede ser nulo si no hay nada en esa posición.
+      organ: {
+        card_type: "organ",
+        color: "blue",
+      },
+      // Puede estar vacío si no hay modificadores.
+      // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+      modifiers: [{ card_type: "virus", color: "red" }],
+    },
+  ];
 
   const cardsHand = [
     { card_type: "organ", color: "blue" },
     { card_type: "virus", color: "green" },
     { card_type: "treatment", treatment_type: "infection" },
   ];
-
+  /*
   const Player1 = () => {
     let index = 0;
     return numPlayers > 2 ? (
@@ -78,14 +127,14 @@ function Board() {
       <PlayerBox username={game.players[index].name} photo={game.players[index].picture} body={game.bodies[index]} />
     ) : null;
   };
+  */
   
-  /*
   const Player1 = () => { return null; };
   const Player2 = () => { return null; };
   const Player3 = () => { return null; };
   const Player4 = () => { return null; };
   const Player5 = () => { return null; };
-*/
+
   return (
     <Container>
       <Row className="flex-nowrap">
@@ -102,8 +151,8 @@ function Board() {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Body cardStacks={cardBody} />
-      </Row>
+        <Body cardStacks={stacks} />
+      </Row> 
       <Row className="justify-content-center">
         <Hand cards={cardsHand} />
       </Row>
