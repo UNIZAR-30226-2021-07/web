@@ -6,15 +6,14 @@ import { getCard } from "../../utils/json";
 /**
  * @param  type Three types: hand, body, rival
  */
-function Card({ id, card, kind, className }) {
+function Card({ id, card, slot, kind, className }) {
   const cardImg = getCard(card);
-
+  
   const drag = (e) => {
     // Only allow to move hand cards
-    if (!e.target.id.match("card-hand-*")) {
-      return;
+    if (slot == 0|| slot == 1 || slot == 2) {
+      e.dataTransfer.setData("slot", slot);
     }
-    e.dataTransfer.setData("card_id", id);
   };
 
   return (

@@ -1,39 +1,33 @@
-import React, { useContext } from "react";
+import React/*, { useContext }*/ from "react";
 
 import Card from "./Card";
-import { playCard } from "../WebSockets";
+//import { playCard } from "../WebSockets";
 
-import { SessionContext } from "../SessionProvider";
+//import { SessionContext } from "../SessionProvider";
 
 function CardStack({ id, cards, kind }) {
-  const session = useContext(SessionContext);
-  var stackSize = cards.length;
+  //const session = useContext(SessionContext);
 
   const drop = (e) => {
     e.preventDefault();
 
-    if (stackSize >= 3) return;
-
     // Obtain card_id of card in event e
-    const card_id = e.dataTransfer.getData("card_id");
+    const slot = e.dataTransfer.getData("slot");
+    console.log(slot);
 
-    if (!card_id) {
+    if (!slot) {
       return;
     }
-
-    // Obtain card element with the id
-    const card = document.getElementById(card_id);
-
-    console.log(id);
-    console.log(card.id);
 
     const data = {
       slot: 1,
       target: "test_user2",
       organ_pile: 1,
     };
-
-    playCard(session.socket, data);
+    
+    console.log(id);
+    console.log(data);
+    //playCard(session.socket, data);
   };
 
   const allowDrop = (e) => {

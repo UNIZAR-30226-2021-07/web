@@ -14,6 +14,9 @@ function searchCard(elem, card) {
 // Create card url
 export function getCard(card) {
   let carta = cards.find((elem) => searchCard(elem, card));
+  
+  /* ! Temporal hasta que servidor devuelva el tipo de tratamiento */
+  if (carta === undefined) carta.image = "cards/especial_operacion.svg";
 
   return process.env.PUBLIC_URL + "/" + carta.image;
 }
