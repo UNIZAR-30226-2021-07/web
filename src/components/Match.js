@@ -38,7 +38,7 @@ function Match() {
   };
 
   return (
-    <Row className="m-0 p-0">
+    <Row className="m-0 p-0 flex-nowrap">
       <Col md={8} className="p-0">
         <Row className="mx-0 justify-content-around">
           <Image src={exit} className="game-icon" onClick={leaveGame} />

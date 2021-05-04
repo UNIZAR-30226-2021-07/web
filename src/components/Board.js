@@ -101,7 +101,7 @@ function Board() {
 
   return (
     <Container className="mx-0 p-0">
-      <Row className="flex-nowrap">
+      <Row>
         <Col className="">
           <Player1 />
           <Player2 />
