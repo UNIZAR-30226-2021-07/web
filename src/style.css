@@ -432,3 +432,10 @@ body,
 .player-body {
   height: 20vh;
 }
+
+/* --------------------------- Recuadro Jugador ------------------------ */
+
+.time {
+  font-size: 40px;
+  font-weight: bold;
+}
