@@ -3,43 +3,70 @@ import { SessionContext } from "./SessionProvider";
 
 export var GameContext = React.createContext();
 
+// ------------------------ PRUEBAS BODY ---------------------------------------
+const rivalBodyTest = {
+  bodies: {
+    // Pila del jugador, siempre de longitud 4.
+    // JUGADOR N
+    fernandito: [
+      // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
+      // PILA 0
+      {
+        // Puede ser nulo si no hay nada en esa posición.
+        organ: {
+          card_type: "organ",
+          color: "red",
+        },
+        // Puede estar vacío si no hay modificadores.
+        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+        modifiers: [{ card_type: "virus", color: "red" }],
+      },
+      // PILA 1
+      {
+        // Puede ser nulo si no hay nada en esa posición.
+        organ: {
+          card_type: "organ",
+          color: "blue",
+        },
+        // Puede estar vacío si no hay modificadores.
+        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+        modifiers: [{ card_type: "virus", color: "red" }],
+      },
+      // PILA 2
+      {
+        // Puede ser nulo si no hay nada en esa posición.
+        organ: {
+          card_type: "organ",
+          color: "red",
+        },
+        // Puede estar vacío si no hay modificadores.
+        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+        modifiers: [{ card_type: "virus", color: "red" }],
+      },
+      // PILA 3
+      {
+        // Puede ser nulo si no hay nada en esa posición.
+        organ: {
+          card_type: "organ",
+          color: "yellow",
+        },
+        // Puede estar vacío si no hay modificadores.
+        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+        modifiers: [{ card_type: "virus", color: "red" }],
+      },
+    ],
+  },
+};
+
 function GameProvider({ children }) {
   const session = useContext(SessionContext);
   const [messages, setMessages] = useState([]);
 
   // Game variables
-
-  //   "hand": [
-  //   {"card_type": "organ", "color": "red"},
-  //   {"card_type": "virus", "color": "green"},
-  //   {"card_type": "treatment", "treatment_type": "infection"},
-  // ],
   const [hand, setHand] = useState([]);
 
-  // Los cuerpos de los jugadores.
-  //   "bodies": {
-  //     // Pila del jugador, siempre de longitud 4.
-  //     "marcuspkz": [
-  //         {
-  //             // Puede ser nulo si no hay nada en esa posición.
-  //             "organ": {
-  //                 "card_type": "organ",
-  //                 "color": "red"
-  //             }
-  //             // Puede estar vacío si no hay modificadores.
-  //             "modifiers": [
-  //                 {"card_type": "virus", "color": "red"},
-  //                 // ...
-  //             ]
-  //         },
-  //             // ....
-  //     ],
-  //     // ...
-  // },
-
-  // TODO: De momento se trata como una lista con todos los bodys de
-  // todos los jugadores, siendo el primero el del propio jugador
-  const [bodies, setBodies] = useState([]);
+  // Diccionario con los bodys de todos los jugadores
+  const [bodies, setBodies] = useState({});
 
   const [currentTurn, setCurrentTurn] = useState("");
 
@@ -76,29 +103,58 @@ function GameProvider({ children }) {
         }
         if ("players" in response) {
           // Set players on game -> {board, name, picture}
-          let rivals = [];
+          let users = [];
+          // Set own user the first on the list of players
+          let ownUser = response.players.find(
+            (player) => player.name == session.userData.name
+          );
+          users = [...users, ownUser];
           response.players.map((player) => {
-            // Rival
-            if ("board" in player) {
-              rivals = [...rivals, player];
+            // Rivals
+            if (player.name != session.userData.name) {
+              users = [...users, player];
             }
           });
-          setPlayers(rivals);
+          setPlayers(users);
         }
-        // TODO: Bodies, etc.
-        console.log(response);
+        /* NOTA: No se puede probar hasta que llegue más de un update y por
+        // tanto players tome valor dentro de este useEffect -> la primera
+        // vez no lo tiene y por tanto no es probable
+        --> Código de abajo
+        */
       }
     });
 
     return () => {
       // Delete previous listenings and clean variables
       setHand([]);
-      setBodies([]);
+      setBodies({});
       setCurrentTurn("");
       setPlayers([]);
       session.socket.current.off("game_update");
     };
   }, [session.socketChange]);
+
+  // TODO: Test provisional BODY
+  useEffect(() => {
+    // TODO: Provisional -> bodies hardcodeado, para probar mapeo
+    //response = userBodyTest;
+    let response = rivalBodyTest;
+    // --------------------------------
+    if ("bodies" in response) {
+      // Llegan sólo los bodies que hayan cambiado, con clave nombre del
+      // usuario al que pertenezca el body
+      if (players.length > 0) {
+        // Update corresponding body in bodies -> if !exist create a new
+        // entry in the dictionary
+        // Get key in received body
+        let bodyKey = Object.keys(response.bodies);
+        let auxBodies = bodies;
+        auxBodies[bodyKey] = response.bodies[bodyKey];
+        setBodies(auxBodies);
+      }
+    }
+  }, [players]);
 
   return (
     <GameContext.Provider

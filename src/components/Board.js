@@ -1,99 +1,88 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import Hand from "./game/Hand";
 import Body from "./game/Body";
 import PlayerBox from "./game/PlayerBox";
 
-/*
-const game_update = {
-  "finished": false,
-  "leaderboard": {
-      "manolo22": {
-          "position": 1,
-          "coins": 50,
-      },
-  },
-  "playtime_mins": 4,
-  "current_turn": "manolo22",
-  "players": [
-      {
-          "name": "marcuspkz",
-          "picture": 4,
-          "board": 2,
-      },
-      // ...
-  ],
-  "hand": [
-      {"card_type": "organ", "color": "red"},
-      {"card_type": "virus", "color": "green"},
-      {"card_type": "treatment", "treatment_type": "infection"},
-  ],
-  "bodies": {
-      "marcuspkz": [
-          {
-              "organ": {
-                  "card_type": "organ",
-                  "color": "red"
-              },
-              "modifiers": [
-                  {"card_type": "virus", "color": "red"},
-              ]
-          },
-      ],
-  },
-};*/
-/*
-const loadHand = (game_update) => {
-  console.log('Load hand');
-  let hand = game_update.hand[0].card_type
-  return hand;
-}*/
+import { GameContext } from "./GameProvider";
+import { SessionContext } from "./SessionProvider";
 
 function Board() {
-  const numPlayers = 6;
+  const session = useContext(SessionContext);
+  const game = useContext(GameContext);
+  const [numRivals, setNumRivals] = useState(0);
 
-  const cardsStack = [
-    { card_type: "organ", color: "red" },
-    { card_type: "virus", color: "green" },
-  ];
-  const cardsStack1 = [
-    { card_type: "organ", color: "blue" },
-    { card_type: "organ", color: "blue" },
-  ];
-
-  const cardBody = [cardsStack, cardsStack, cardsStack, cardsStack];
-  const body = [cardsStack1, cardsStack1, cardsStack1, cardsStack1];
-
-  const cardsHand = [
-    { card_type: "organ", color: "blue" },
-    { card_type: "organ", color: "blue" },
-    { card_type: "organ", color: "blue" },
-  ];
+  useEffect(() => {
+    console.log(numRivals);
+    if (game.players.length > 0) {
+      setNumRivals(game.players.length);
+    }
+    return () => {
+      setNumRivals(0);
+    };
+  }, [game.players]);
 
   const Player1 = () => {
-    return numPlayers == 5 || numPlayers == 6 ? (
-      <PlayerBox username="José" photo="0" body={body} />
+    let index = 2;
+    return numRivals == 5 || numRivals == 6 ? (
+      <PlayerBox
+        username={game.players[index].name}
+        photo={game.players[index].picture}
+        body={game.bodies[game.players[index].name]}
+      />
     ) : null;
   };
+
   const Player2 = () => {
-    return numPlayers != 2 ? (
-      <PlayerBox username="José" photo="0" body={body} />
+    let index = 1;
+    return numRivals > 2 ? (
+      <PlayerBox
+        username={game.players[index].name}
+        photo={game.players[index].picture}
+        body={game.bodies[game.players[index].name]}
+      />
     ) : null;
   };
+
   const Player3 = () => {
-    return numPlayers == 2 || numPlayers == 4 || numPlayers == 6 ? (
-      <PlayerBox username="José" photo="0" body={body} />
+    let index = -1;
+    if (numRivals == 2) index = 1;
+    else if (numRivals == 4) index = 2;
+    else if (numRivals == 6) index = 3;
+    return index != -1 ? (
+      <PlayerBox
+        username={game.players[index].name}
+        photo={game.players[index].picture}
+        body={game.bodies[game.players[index].name]}
+      />
     ) : null;
   };
+
   const Player4 = () => {
-    return numPlayers != 2 ? (
-      <PlayerBox username="José" photo="0" body={body} />
+    let index = -1;
+    if (numRivals == 3) index = 2;
+    else if (numRivals == 4 || numRivals == 5) index = 3;
+    else if (numRivals == 6) index = 4;
+    return index != -1 ? (
+      <PlayerBox
+        username={game.players[index].name}
+        photo={game.players[index].picture}
+        body={game.bodies[game.players[index].name]}
+      />
     ) : null;
   };
+
   const Player5 = () => {
-    return numPlayers == 5 || numPlayers == 6 ? (
-      <PlayerBox username="José" photo="0" body={body} />
+    let index = -1;
+    if (numRivals == 5) index = 4;
+    else if (numRivals == 6) index = 5;
+    return index != -1 ? (
+      <PlayerBox
+        username={game.players[index].name}
+        photo={game.players[index].picture}
+        body={game.bodies[game.players[index].name]}
+      />
     ) : null;
   };
 
@@ -101,8 +90,8 @@ function Board() {
     <Container className="mx-0 p-0">
       <Row>
         <Col className="">
-          <Player1 />
           <Player2 />
+          <Player1 />
         </Col>
         <Col className="">
           <Player3 />
@@ -113,10 +102,10 @@ function Board() {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Body cardStacks={cardBody} />
+        <Body cardStacks={game.bodies[session.userData.name]} />
       </Row>
-      <Row className="justify-content-center mb-2">
-        <Hand cards={cardsHand} />
+      <Row className="justify-content-center">
+        <Hand />
       </Row>
     </Container>
   );
