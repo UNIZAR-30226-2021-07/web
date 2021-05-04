@@ -3,68 +3,7 @@ import { SessionContext } from "./SessionProvider";
 
 export var GameContext = React.createContext();
 
-// const userBodyTest = {
-//   "bodies": {
-//     // Pila del jugador, siempre de longitud 4.
-//     // JUGADOR N
-//     "fernandito": [
-//       // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
-//       // PILA 0
-//       {
-//         // Puede ser nulo si no hay nada en esa posición.
-//         "organ": {
-//           "card_type": "organ",
-//           "color": "red"
-//         },
-//         // Puede estar vacío si no hay modificadores.
-//         // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-//         "modifiers": [
-//           { "card_type": "virus", "color": "red" },
-//         ],
-//       },
-//       // PILA 1
-//       {
-//         // Puede ser nulo si no hay nada en esa posición.
-//         "organ": {
-//           "card_type": "organ",
-//           "color": "blue"
-//         },
-//         // Puede estar vacío si no hay modificadores.
-//         // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-//         "modifiers": [
-//           { "card_type": "virus", "color": "red" },
-//         ],
-//       },
-//       // PILA 2
-//       {
-//         // Puede ser nulo si no hay nada en esa posición.
-//         "organ": {
-//           "card_type": "organ",
-//           "color": "red"
-//         },
-//         // Puede estar vacío si no hay modificadores.
-//         // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-//         "modifiers": [
-//           { "card_type": "virus", "color": "red" },
-//         ],
-//       },
-//       // PILA 3
-//       {
-//         // Puede ser nulo si no hay nada en esa posición.
-//         "organ": {
-//           "card_type": "organ",
-//           "color": "blue"
-//         },
-//         // Puede estar vacío si no hay modificadores.
-//         // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-//         "modifiers": [
-//           { "card_type": "virus", "color": "red" },
-//         ],
-//       },
-//     ],
-//   }
-// };
-
+// ------------------------ PRUEBAS BODY ---------------------------------------
 const rivalBodyTest = {
   bodies: {
     // Pila del jugador, siempre de longitud 4.
@@ -109,7 +48,7 @@ const rivalBodyTest = {
         // Puede ser nulo si no hay nada en esa posición.
         organ: {
           card_type: "organ",
-          color: "blue",
+          color: "yellow",
         },
         // Puede estar vacío si no hay modificadores.
         // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
@@ -153,10 +92,8 @@ function GameProvider({ children }) {
   //     // ...
   // },
 
-  // Body del jugador
-  //const [body, setBody] = useState([]);
-  // Lista con los bodys de todos los jugadores rivales, 5 como máximo
-  const [bodies, setBodies] = useState([]);
+  // Diccionario con los bodys de todos los jugadores
+  const [bodies, setBodies] = useState({});
 
   const [currentTurn, setCurrentTurn] = useState("");
 
@@ -195,7 +132,9 @@ function GameProvider({ children }) {
           // Set players on game -> {board, name, picture}
           let users = [];
           // Set own user the first on the list of players
-          let ownUser = response.players.find((player) => player.name == session.userData.name);
+          let ownUser = response.players.find(
+            (player) => player.name == session.userData.name
+          );
           users = [...users, ownUser];
           response.players.map((player) => {
             // Rivals
@@ -216,7 +155,7 @@ function GameProvider({ children }) {
     return () => {
       // Delete previous listenings and clean variables
       setHand([]);
-      setBodies([]);
+      setBodies({});
       setCurrentTurn("");
       setPlayers([]);
       session.socket.current.off("game_update");
@@ -233,19 +172,12 @@ function GameProvider({ children }) {
       // Llegan sólo los bodies que hayan cambiado, con clave nombre del
       // usuario al que pertenezca el body
       if (players.length > 0) {
-        // Update corresponding component in bodies
+        // Update corresponding body in bodies -> if !exist create a new
+        // entry in the dictionary
         // Get key in received body
-        let bodiesKeys = Object.keys(response.bodies);
-        let userName = bodiesKeys[0];
-        // Get position to update by its key
-        let index = bodies.indexOf(userName);
+        let bodyKey = Object.keys(response.bodies);
         let auxBodies = bodies;
-        if (index != -1) {
-          auxBodies[index] = response.bodies;
-        } else {
-          // If not created previously
-          auxBodies = [...auxBodies, response.bodies];
-        }
+        auxBodies[bodyKey] = response.bodies[bodyKey];
         setBodies(auxBodies);
       }
     }
