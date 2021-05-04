@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
+import Timer from "./Timer";
+
 import Hand from "./game/Hand";
 import Body from "./game/Body";
 import PlayerBox from "./game/PlayerBox";
@@ -99,13 +101,14 @@ function Board() {
 
   return (
     <Container className="mx-0 p-0">
-      <Row>
+      <Row className="flex-nowrap">
         <Col className="">
           <Player1 />
           <Player2 />
         </Col>
-        <Col className="">
+        <Col className="justify-content-center">
           <Player3 />
+          <Timer />
         </Col>
         <Col className="">
           <Player4 />
