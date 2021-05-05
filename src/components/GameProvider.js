@@ -159,7 +159,9 @@ function GameProvider({ children }) {
           });
           setPlayers(users);
         }
+        // TODO: Quitar cuando ya se reciban los bodies del server
         response = rivalBodyTest;
+        // -------------------------------------------------------
         if ("bodies" in response) {
           // Llegan sólo los bodies que hayan cambiado, con clave nombre del
           // usuario al que pertenezca el body
