@@ -104,7 +104,7 @@ function Board() {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Body cardStacks={game.bodies[session.userData.name]} />
+        <Body cardStacks={game.bodies[session.userData.name]} username={session.userData.name} />
       </Row>
       <Row className="justify-content-center">
         <Hand />

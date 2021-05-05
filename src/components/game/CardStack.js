@@ -1,19 +1,19 @@
-import React /*, { useContext }*/ from "react";
+import React , { useContext } from "react";
 
 import Card from "./Card";
-//import { playCard } from "../WebSockets";
+import { playCard } from "../WebSockets";
 
-//import { SessionContext } from "../SessionProvider";
+import { SessionContext } from "../SessionProvider";
 
 function CardStack({ id, cards, kind, organ_pile, username }) {
-  //const session = useContext(SessionContext);
+  const session = useContext(SessionContext);
 
   const drop = (e) => {
     e.preventDefault();
 
     // Obtain card_id of card in event e
     const slot = e.dataTransfer.getData("slot");
-    const treatment_type = e.dataTransfer.getData("treatment");
+    const treatment_type = e.dataTransfer.getData("treatment_type");
 
     if (!slot) {
       return;
@@ -23,14 +23,10 @@ function CardStack({ id, cards, kind, organ_pile, username }) {
       slot: slot,
     };
 
-    console.log(treatment_type);
-    if (treatment_type == undefined) {
-      console.log("UNDEFINED");
-      //Organ, virus, medicine
+    if (treatment_type == "undefined") {
+      // Organ, virus, medicine
       data["organ_pile"] = organ_pile;
       data["target"] = username;
-      console.log(data);
-      console.log(organ_pile + " " + username);
     } else if (treatment_type == "transplant") {
       // TODO: Eleccin del segundo usuario
       data["targets"] = [username, username];
@@ -47,7 +43,7 @@ function CardStack({ id, cards, kind, organ_pile, username }) {
       data["target"] = username;
     }
     console.log(data);
-    //playCard(session.socket, data);
+    playCard(session, data);
   };
 
   const allowDrop = (e) => {

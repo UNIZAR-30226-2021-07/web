@@ -3,12 +3,13 @@ import { SessionContext } from "./SessionProvider";
 
 export var GameContext = React.createContext();
 
+/*
 // ------------------------ PRUEBAS BODY ---------------------------------------
 const rivalBodyTest = {
   bodies: {
     // Pila del jugador, siempre de longitud 4.
     // JUGADOR N
-    test_user1: [
+    ordesa: [
       // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
       // PILA 0
       {
@@ -57,6 +58,7 @@ const rivalBodyTest = {
     ],
   },
 };
+*/
 
 function GameProvider({ children }) {
   const session = useContext(SessionContext);
@@ -94,6 +96,7 @@ function GameProvider({ children }) {
       return;
     }
     session.socket.current.on("game_update", (response) => {
+      console.log(response);
       if (response != null) {
         if ("current_turn" in response) {
           setCurrentTurn(response.current_turn);
@@ -117,11 +120,19 @@ function GameProvider({ children }) {
           });
           setPlayers(users);
         }
-        /* NOTA: No se puede probar hasta que llegue más de un update y por
-        // tanto players tome valor dentro de este useEffect -> la primera
-        // vez no lo tiene y por tanto no es probable
-        --> Código de abajo
-        */
+        if ("bodies" in response) {
+          // Llegan sólo los bodies que hayan cambiado, con clave nombre del
+          // usuario al que pertenezca el body
+          if (players.length > 0) {
+            // Update corresponding body in bodies -> if !exist create a new
+            // entry in the dictionary
+            // Get key in received body
+            let bodyKey = Object.keys(response.bodies);
+            let auxBodies = bodies;
+            auxBodies[bodyKey] = response.bodies[bodyKey];
+            setBodies(auxBodies);
+          }
+        }
       }
     });
 
@@ -135,11 +146,12 @@ function GameProvider({ children }) {
     };
   }, [session.socketChange]);
 
+  /*
   // TODO: Test provisional BODY
   useEffect(() => {
     // TODO: Provisional -> bodies hardcodeado, para probar mapeo
     //response = userBodyTest;
-    let response = rivalBodyTest;
+    //let response = rivalBodyTest;
     // --------------------------------
     if ("bodies" in response) {
       // Llegan sólo los bodies que hayan cambiado, con clave nombre del
@@ -155,6 +167,7 @@ function GameProvider({ children }) {
       }
     }
   }, [players]);
+  */
 
   return (
     <GameContext.Provider
