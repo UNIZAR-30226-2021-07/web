@@ -169,15 +169,12 @@ function GameProvider({ children }) {
 
           // Get keys in received bodies
           let bodyKeys = Object.keys(response.bodies);
-          console.log(bodyKeys);
 
           let auxBodies = { ...bodiesRef.current };
 
           bodyKeys.map((bodyKey) => {
             auxBodies[bodyKey] = response.bodies[bodyKey];
           });
-          console.log(bodiesRef);
-          console.log(auxBodies);
           bodiesRef.current = auxBodies;
           setBodies(auxBodies);
         }
@@ -188,6 +185,7 @@ function GameProvider({ children }) {
     return () => {
       // Delete previous listenings and clean variables
       setHand([]);
+      bodiesRef.current = {};
       setBodies({});
       setCurrentTurn("");
       setPlayers([]);

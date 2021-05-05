@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 
 import CardStack from "./CardStack";
-import { SessionContext } from "../SessionProvider";
 
 /**
  * @param cardStacks -> lista de las pilas de cartas posibles en el cuerpo
@@ -27,7 +26,7 @@ function Body({ cardStacks, kind = "body", username }) {
 
   return (
     <div className="row mx-0 flex-nowrap" id={`user-${kind}`}>
-      {body.map((cards, idx) => (
+      {newBody.map((cards, idx) => (
         <CardStack
           id={`${kind}-stack-${idx}`}
           key={idx}

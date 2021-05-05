@@ -24,7 +24,7 @@ export function playCard({ socket }, data) {
     if (response && response.error) {
       console.log(response.error);
     } else {
-      console.log("play_card done");
+      console.log("play_card");
     }
   });
 }
