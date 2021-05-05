@@ -7,8 +7,12 @@ import { getCard } from "../../utils/json";
  * @param  type Three types: hand, body, rival
  */
 function Card({ id, card, slot, kind, className }) {
-  const cardImg = getCard(card);
-  
+  let cardImg;
+
+  if (card != null) {
+    cardImg = getCard(card);
+  }
+
   const drag = (e) => {
     // Only allow to move hand cards
     if (slot == 0|| slot == 1 || slot == 2) {
@@ -18,13 +22,19 @@ function Card({ id, card, slot, kind, className }) {
   };
 
   return (
+    ( card != null ? 
     <CardBs
       id={id}
       className={`game-card mx-1 bg-dark ${className}`}
       onDragStart={drag}
-    >
+    > 
       <Image id={`${id}-img`} className={`${kind}-card`} src={cardImg} />
-    </CardBs>
+    </CardBs> : 
+        <CardBs
+        id={id}
+        className={`game-card mx-1 bg-transparent border-secondary ${kind}-card`}
+        onDragStart={drag}
+      /> )
   );
 }
 

@@ -7,6 +7,7 @@ import CardStack from "./CardStack";
  * Entre 0 y 4 pilas
  */
 function Body({ cardStacks, kind = "body", username }) {
+  console.log(cardStacks);
   if (!cardStacks) {
     return null;
   }

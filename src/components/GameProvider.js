@@ -3,24 +3,21 @@ import { SessionContext } from "./SessionProvider";
 
 export var GameContext = React.createContext();
 
-/*
+
 // ------------------------ PRUEBAS BODY ---------------------------------------
 const rivalBodyTest = {
   bodies: {
     // Pila del jugador, siempre de longitud 4.
     // JUGADOR N
-    ordesa: [
+    fernandito: [
       // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
       // PILA 0
       {
         // Puede ser nulo si no hay nada en esa posición.
-        organ: {
-          card_type: "organ",
-          color: "red",
-        },
+        organ: null,
         // Puede estar vacío si no hay modificadores.
         // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-        modifiers: [{ card_type: "virus", color: "red" }],
+        modifiers: [],
       },
       // PILA 1
       {
@@ -58,7 +55,6 @@ const rivalBodyTest = {
     ],
   },
 };
-*/
 
 function GameProvider({ children }) {
   const session = useContext(SessionContext);
@@ -120,10 +116,11 @@ function GameProvider({ children }) {
           });
           setPlayers(users);
         }
+        response = rivalBodyTest;
         if ("bodies" in response) {
           // Llegan sólo los bodies que hayan cambiado, con clave nombre del
           // usuario al que pertenezca el body
-          if (players.length > 0) {
+          //if (players.length > 0) {
             // Update corresponding body in bodies -> if !exist create a new
             // entry in the dictionary
             // Get key in received body
@@ -131,7 +128,7 @@ function GameProvider({ children }) {
             let auxBodies = bodies;
             auxBodies[bodyKey] = response.bodies[bodyKey];
             setBodies(auxBodies);
-          }
+          //}
         }
       }
     });
@@ -145,29 +142,6 @@ function GameProvider({ children }) {
       session.socket.current.off("game_update");
     };
   }, [session.socketChange]);
-
-  /*
-  // TODO: Test provisional BODY
-  useEffect(() => {
-    // TODO: Provisional -> bodies hardcodeado, para probar mapeo
-    //response = userBodyTest;
-    //let response = rivalBodyTest;
-    // --------------------------------
-    if ("bodies" in response) {
-      // Llegan sólo los bodies que hayan cambiado, con clave nombre del
-      // usuario al que pertenezca el body
-      if (players.length > 0) {
-        // Update corresponding body in bodies -> if !exist create a new
-        // entry in the dictionary
-        // Get key in received body
-        let bodyKey = Object.keys(response.bodies);
-        let auxBodies = bodies;
-        auxBodies[bodyKey] = response.bodies[bodyKey];
-        setBodies(auxBodies);
-      }
-    }
-  }, [players]);
-  */
 
   return (
     <GameContext.Provider

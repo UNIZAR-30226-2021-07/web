@@ -342,7 +342,7 @@ body,
 /* --------------------------- Cartas ------------------------ */
 
 .hand-card {
-  width: 10vh;
+  width: 10vh !important;
 }
 
 /* TODO: DEJAR DESCOMENTADO */
@@ -353,11 +353,13 @@ body,
 */
 
 .body-card {
-  width: 8vh;
+  width: 8vh !important;
+  height: 11.25vh !important;
 }
 
 .rival-card {
-  width: 6vh;
+  width: 6vh !important;
+  height: 8.44vh !important;
 }
 
 .game-card {

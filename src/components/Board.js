@@ -87,6 +87,8 @@ function Board() {
     ) : null;
   };
 
+  console.log(game.bodies[session.userData.name]);
+
   return (
     <Container className="mx-0 p-0">
       <Row>
