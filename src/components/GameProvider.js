@@ -4,6 +4,7 @@ import { SessionContext } from "./SessionProvider";
 export var GameContext = React.createContext();
 
 // ------------------------ PRUEBAS BODY ---------------------------------------
+/*
 const rivalBodyTest = {
   bodies: {
     // Pila del jugador, siempre de longitud 4.
@@ -98,6 +99,7 @@ const rivalBodyTest = {
     ],
   },
 };
+*/
 
 function GameProvider({ children }) {
   const session = useContext(SessionContext);
@@ -160,7 +162,7 @@ function GameProvider({ children }) {
           setPlayers(users);
         }
         // TODO: Quitar cuando ya se reciban los bodies del server
-        response = rivalBodyTest;
+        // response = rivalBodyTest;
         // -------------------------------------------------------
         if ("bodies" in response) {
           // Llegan sólo los bodies que hayan cambiado, con clave nombre del

@@ -12,12 +12,12 @@ function CardStack({ id, cards, kind, organ_pile, username }) {
     e.preventDefault();
 
     // Obtain card_id of card in event e
-    const slot = e.dataTransfer.getData("slot");
-    const treatment_type = e.dataTransfer.getData("treatment_type");
-
+    let slot = e.dataTransfer.getData("slot");
     if (!slot) {
       return;
     }
+    slot = parseInt(slot);
+    const treatment_type = e.dataTransfer.getData("treatment_type");
 
     let data = {
       slot: slot,
@@ -42,7 +42,6 @@ function CardStack({ id, cards, kind, organ_pile, username }) {
     } else if (treatment_type == "medical_error") {
       data["target"] = username;
     }
-    console.log(data);
     playCard(session, data);
   };
 

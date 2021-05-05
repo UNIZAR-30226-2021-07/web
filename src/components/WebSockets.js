@@ -19,7 +19,8 @@ export function stopSearchingGame({ socket }) {
   });
 }
 
-export function playCard({ socket, data }) {
+export function playCard({ socket }, data) {
+  console.log(data);
   socket.current.emit("play_card", data, (response) => {
     if (response && response.error) {
       console.log(response.error);
