@@ -18,6 +18,11 @@ export function getCard(card) {
   /* ! Temporal hasta que servidor devuelva el tipo de tratamiento */
   if (carta === undefined) carta.image = "cards/especial_operacion.svg";
 
+  /* TODO: ! Temporal hasta que servidor devuelva el tipo de tratamiento */
+  if (carta === undefined) {
+    return process.env.PUBLIC_URL + "/cards/especial_operacion.svg";
+  }
+
   return process.env.PUBLIC_URL + "/" + carta.image;
 }
 
