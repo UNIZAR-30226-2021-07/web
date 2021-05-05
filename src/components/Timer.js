@@ -4,7 +4,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 const renderTime = ({ remainingTime }) => {
   if (remainingTime === 0) {
-    alert("Tiempo finalizado");
+    /*alert("Tiempo finalizado");*/
   }
 
   return (

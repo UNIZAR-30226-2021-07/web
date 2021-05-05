@@ -8,7 +8,7 @@ const rivalBodyTest = {
   bodies: {
     // Pila del jugador, siempre de longitud 4.
     // JUGADOR N
-    fernandito: [
+    test_user1: [
       // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
       // PILA 0
       {

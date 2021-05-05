@@ -1,11 +1,11 @@
-import React/*, { useContext }*/ from "react";
+import React /*, { useContext }*/ from "react";
 
 import Card from "./Card";
 //import { playCard } from "../WebSockets";
 
 //import { SessionContext } from "../SessionProvider";
 
-function CardStack({ id, cards, kind }) {
+function CardStack({ id, cards, kind, organ_pile, username }) {
   //const session = useContext(SessionContext);
 
   const drop = (e) => {
@@ -13,19 +13,39 @@ function CardStack({ id, cards, kind }) {
 
     // Obtain card_id of card in event e
     const slot = e.dataTransfer.getData("slot");
-    console.log(slot);
+    const treatment_type = e.dataTransfer.getData("treatment");
 
     if (!slot) {
       return;
     }
 
-    const data = {
-      slot: 1,
-      target: "test_user2",
-      organ_pile: 1,
+    let data = {
+      slot: slot,
     };
-    
-    console.log(id);
+
+    console.log(treatment_type);
+    if (treatment_type == undefined) {
+      console.log("UNDEFINED");
+      //Organ, virus, medicine
+      data["organ_pile"] = organ_pile;
+      data["target"] = username;
+      console.log(data);
+      console.log(organ_pile + " " + username);
+    } else if (treatment_type == "transplant") {
+      // TODO: Eleccin del segundo usuario
+      data["targets"] = [username, username];
+      alert("Transplante");
+    } else if (treatment_type == "organ_thief") {
+      data["target"] = username;
+    } else if (treatment_type == "infection") {
+       // TODO:
+      alert("Infection");
+    } else if (treatment_type == "latex_glove") {
+       // TODO:
+      alert("Latex_glove");
+    } else if (treatment_type == "medical_error") {
+      data["target"] = username;
+    }
     console.log(data);
     //playCard(session.socket, data);
   };

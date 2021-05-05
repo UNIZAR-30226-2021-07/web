@@ -13,16 +13,14 @@ function searchCard(elem, card) {
 
 // Create card url
 export function getCard(card) {
-  let carta = cards.find((elem) => searchCard(elem, card));
   
-  /* ! Temporal hasta que servidor devuelva el tipo de tratamiento */
-  if (carta === undefined) carta.image = "cards/especial_operacion.svg";
-
   /* TODO: ! Temporal hasta que servidor devuelva el tipo de tratamiento */
-  if (carta === undefined) {
-    return process.env.PUBLIC_URL + "/cards/especial_operacion.svg";
+  if (card.card_type == "treatment") {
+    card.treatment_type = "transplant";
   }
 
+  let carta = cards.find((elem) => searchCard(elem, card));
+  
   return process.env.PUBLIC_URL + "/" + carta.image;
 }
 

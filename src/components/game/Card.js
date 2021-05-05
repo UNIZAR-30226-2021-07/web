@@ -13,6 +13,7 @@ function Card({ id, card, slot, kind, className }) {
     // Only allow to move hand cards
     if (slot == 0|| slot == 1 || slot == 2) {
       e.dataTransfer.setData("slot", slot);
+      e.dataTransfer.setData("treatment", card.treatment_type);
     }
   };
 

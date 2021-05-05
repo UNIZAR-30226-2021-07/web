@@ -6,7 +6,7 @@ import CardStack from "./CardStack";
  * @param cardStacks -> lista de las pilas de cartas posibles en el cuerpo
  * Entre 0 y 4 pilas
  */
-function Body({ cardStacks, kind = "body" }) {
+function Body({ cardStacks, kind = "body", username }) {
   if (!cardStacks) {
     return null;
   }
@@ -31,6 +31,8 @@ function Body({ cardStacks, kind = "body" }) {
           key={idx}
           cards={cards}
           kind={kind}
+          organ_pile={idx}
+          username={username}
         />
       ))}
     </div>

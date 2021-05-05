@@ -16,7 +16,6 @@ function Board() {
   const [numRivals, setNumRivals] = useState(0);
 
   useEffect(() => {
-    console.log(numRivals);
     if (game.players.length > 0) {
       setNumRivals(game.players.length);
     }
