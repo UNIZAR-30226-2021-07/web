@@ -16,7 +16,7 @@ const renderTime = ({ remainingTime }) => {
 
 function Timer() {
   return (
-    <Row className="justify-content-center">
+    <Row className="justify-content-center mb-2">
       <CountdownCircleTimer
         isPlaying={true}
         duration={30}

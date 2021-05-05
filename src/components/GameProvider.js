@@ -52,6 +52,50 @@ const rivalBodyTest = {
         modifiers: [{ card_type: "virus", color: "red" }],
       },
     ],
+    ordesa: [
+      // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
+      // PILA 0
+      {
+        // Puede ser nulo si no hay nada en esa posición.
+        organ: null,
+        // Puede estar vacío si no hay modificadores.
+        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+        modifiers: [],
+      },
+      // PILA 1
+      {
+        // Puede ser nulo si no hay nada en esa posición.
+        organ: {
+          card_type: "organ",
+          color: "blue",
+        },
+        // Puede estar vacío si no hay modificadores.
+        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+        modifiers: [{ card_type: "virus", color: "yellow" }],
+      },
+      // PILA 2
+      {
+        // Puede ser nulo si no hay nada en esa posición.
+        organ: {
+          card_type: "organ",
+          color: "red",
+        },
+        // Puede estar vacío si no hay modificadores.
+        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+        modifiers: [{ card_type: "virus", color: "red" }],
+      },
+      // PILA 3
+      {
+        // Puede ser nulo si no hay nada en esa posición.
+        organ: {
+          card_type: "organ",
+          color: "yellow",
+        },
+        // Puede estar vacío si no hay modificadores.
+        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+        modifiers: [{ card_type: "virus", color: "red" }],
+      },
+    ],
   },
 };
 
@@ -119,15 +163,15 @@ function GameProvider({ children }) {
         if ("bodies" in response) {
           // Llegan sólo los bodies que hayan cambiado, con clave nombre del
           // usuario al que pertenezca el body
-          //if (players.length > 0) {
           // Update corresponding body in bodies -> if !exist create a new
           // entry in the dictionary
           // Get key in received body
-          let bodyKey = Object.keys(response.bodies);
+          let bodyKeys = Object.keys(response.bodies);
           let auxBodies = bodies;
-          auxBodies[bodyKey] = response.bodies[bodyKey];
+          bodyKeys.map((bodyKey) => {
+            auxBodies[bodyKey] = response.bodies[bodyKey];
+          });
           setBodies(auxBodies);
-          //}
         }
       }
     });
