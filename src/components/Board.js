@@ -13,10 +13,10 @@ import { SessionContext } from "./SessionProvider";
 function Board() {
   const session = useContext(SessionContext);
   const game = useContext(GameContext);
+
   const [numRivals, setNumRivals] = useState(0);
 
   useEffect(() => {
-    console.log(numRivals);
     if (game.players.length > 0) {
       setNumRivals(game.players.length);
     }
@@ -105,7 +105,10 @@ function Board() {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Body cardStacks={game.bodies[session.userData.name]} />
+        <Body
+          cardStacks={game.bodies[session.userData.name]}
+          username={session.userData.name}
+        />
       </Row>
       <Row className="justify-content-center">
         <Hand />

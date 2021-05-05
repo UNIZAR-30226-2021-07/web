@@ -15,7 +15,7 @@ function Hand() {
   return (
     <ListGroup horizontal>
       {hand.map((card, idx) => (
-        <Card key={idx} id={`card-hand-${idx}`} card={card} kind="hand" />
+        <Card key={idx} slot={idx} card={card} kind="hand" />
       ))}
     </ListGroup>
   );

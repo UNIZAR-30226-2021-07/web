@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { SessionContext } from "./SessionProvider";
 
 export var GameContext = React.createContext();
 
 // ------------------------ PRUEBAS BODY ---------------------------------------
+/*
 const rivalBodyTest = {
   bodies: {
     // Pila del jugador, siempre de longitud 4.
@@ -13,13 +14,10 @@ const rivalBodyTest = {
       // PILA 0
       {
         // Puede ser nulo si no hay nada en esa posición.
-        organ: {
-          card_type: "organ",
-          color: "red",
-        },
+        organ: null,
         // Puede estar vacío si no hay modificadores.
         // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-        modifiers: [{ card_type: "virus", color: "red" }],
+        modifiers: [],
       },
       // PILA 1
       {
@@ -55,8 +53,53 @@ const rivalBodyTest = {
         modifiers: [{ card_type: "virus", color: "red" }],
       },
     ],
+    ordesa: [
+      // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
+      // PILA 0
+      {
+        // Puede ser nulo si no hay nada en esa posición.
+        organ: null,
+        // Puede estar vacío si no hay modificadores.
+        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+        modifiers: [],
+      },
+      // PILA 1
+      {
+        // Puede ser nulo si no hay nada en esa posición.
+        organ: {
+          card_type: "organ",
+          color: "blue",
+        },
+        // Puede estar vacío si no hay modificadores.
+        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+        modifiers: [{ card_type: "virus", color: "yellow" }],
+      },
+      // PILA 2
+      {
+        // Puede ser nulo si no hay nada en esa posición.
+        organ: {
+          card_type: "organ",
+          color: "red",
+        },
+        // Puede estar vacío si no hay modificadores.
+        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+        modifiers: [{ card_type: "virus", color: "red" }],
+      },
+      // PILA 3
+      {
+        // Puede ser nulo si no hay nada en esa posición.
+        organ: {
+          card_type: "organ",
+          color: "yellow",
+        },
+        // Puede estar vacío si no hay modificadores.
+        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
+        modifiers: [{ card_type: "virus", color: "red" }],
+      },
+    ],
   },
 };
+*/
 
 function GameProvider({ children }) {
   const session = useContext(SessionContext);
@@ -67,7 +110,7 @@ function GameProvider({ children }) {
 
   // Diccionario con los bodys de todos los jugadores
   const [bodies, setBodies] = useState({});
-
+  const bodiesRef = useRef(bodies);
   const [currentTurn, setCurrentTurn] = useState("");
 
   const [players, setPlayers] = useState([]);
@@ -93,6 +136,7 @@ function GameProvider({ children }) {
     if (!session.socket.current) {
       return;
     }
+
     session.socket.current.on("game_update", (response) => {
       if (response != null) {
         if ("current_turn" in response) {
@@ -117,44 +161,37 @@ function GameProvider({ children }) {
           });
           setPlayers(users);
         }
-        /* NOTA: No se puede probar hasta que llegue más de un update y por
-        // tanto players tome valor dentro de este useEffect -> la primera
-        // vez no lo tiene y por tanto no es probable
-        --> Código de abajo
-        */
+        if ("bodies" in response) {
+          setBodies(response.bodies);
+
+          // Update corresponding body in bodies -> if !exist create a new
+          // entry in the dictionary
+
+          // Get keys in received bodies
+          let bodyKeys = Object.keys(response.bodies);
+
+          let auxBodies = { ...bodiesRef.current };
+
+          bodyKeys.map((bodyKey) => {
+            auxBodies[bodyKey] = response.bodies[bodyKey];
+          });
+          bodiesRef.current = auxBodies;
+          setBodies(auxBodies);
+        }
+        // TODO: Resto campos del game_update?
       }
     });
 
     return () => {
       // Delete previous listenings and clean variables
       setHand([]);
+      bodiesRef.current = {};
       setBodies({});
       setCurrentTurn("");
       setPlayers([]);
       session.socket.current.off("game_update");
     };
   }, [session.socketChange]);
-
-  // TODO: Test provisional BODY
-  useEffect(() => {
-    // TODO: Provisional -> bodies hardcodeado, para probar mapeo
-    //response = userBodyTest;
-    let response = rivalBodyTest;
-    // --------------------------------
-    if ("bodies" in response) {
-      // Llegan sólo los bodies que hayan cambiado, con clave nombre del
-      // usuario al que pertenezca el body
-      if (players.length > 0) {
-        // Update corresponding body in bodies -> if !exist create a new
-        // entry in the dictionary
-        // Get key in received body
-        let bodyKey = Object.keys(response.bodies);
-        let auxBodies = bodies;
-        auxBodies[bodyKey] = response.bodies[bodyKey];
-        setBodies(auxBodies);
-      }
-    }
-  }, [players]);
 
   return (
     <GameContext.Provider

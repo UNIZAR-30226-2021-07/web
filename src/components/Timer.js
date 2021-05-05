@@ -4,7 +4,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 const renderTime = ({ remainingTime }) => {
   if (remainingTime === 0) {
-    alert("Tiempo finalizado");
+    /*alert("Tiempo finalizado");*/
   }
 
   return (
@@ -16,7 +16,7 @@ const renderTime = ({ remainingTime }) => {
 
 function Timer() {
   return (
-    <Row className="justify-content-center">
+    <Row className="justify-content-center mb-2">
       <CountdownCircleTimer
         isPlaying={true}
         duration={30}

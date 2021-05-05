@@ -6,18 +6,22 @@ import { getCard } from "../../utils/json";
 /**
  * @param  type Three types: hand, body, rival
  */
-function Card({ id, card, kind, className }) {
-  const cardImg = getCard(card);
+function Card({ id, card, slot, kind, className }) {
+  let cardImg;
+
+  if (card != null) {
+    cardImg = getCard(card);
+  }
 
   const drag = (e) => {
     // Only allow to move hand cards
-    if (!e.target.id.match("card-hand-*")) {
-      return;
+    if (slot == 0 || slot == 1 || slot == 2) {
+      e.dataTransfer.setData("slot", slot);
+      e.dataTransfer.setData("treatment_type", card.treatment_type);
     }
-    e.dataTransfer.setData("card_id", id);
   };
 
-  return (
+  return card != null ? (
     <CardBs
       id={id}
       className={`game-card mx-1 bg-dark ${className}`}
@@ -25,6 +29,12 @@ function Card({ id, card, kind, className }) {
     >
       <Image id={`${id}-img`} className={`${kind}-card`} src={cardImg} />
     </CardBs>
+  ) : (
+    <CardBs
+      id={id}
+      className={`game-card mx-1 bg-transparent border-secondary ${kind}-card`}
+      onDragStart={drag}
+    />
   );
 }
 
