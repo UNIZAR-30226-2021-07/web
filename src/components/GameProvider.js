@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { SessionContext } from "./SessionProvider";
 
 export var GameContext = React.createContext();
@@ -110,7 +110,7 @@ function GameProvider({ children }) {
 
   // Diccionario con los bodys de todos los jugadores
   const [bodies, setBodies] = useState({});
-
+  const bodiesRef = useRef(bodies);
   const [currentTurn, setCurrentTurn] = useState("");
 
   const [players, setPlayers] = useState([]);
@@ -136,8 +136,8 @@ function GameProvider({ children }) {
     if (!session.socket.current) {
       return;
     }
-    session.socket.current.on("game_update", (response) => {
 
+    session.socket.current.on("game_update", (response) => {
       if (response != null) {
         if ("current_turn" in response) {
           setCurrentTurn(response.current_turn);
@@ -162,36 +162,24 @@ function GameProvider({ children }) {
           setPlayers(users);
         }
         if ("bodies" in response) {
-          console.log(bodies);
+          setBodies(response.bodies);
 
-          //console.log(response.bodies);
-          // Llegan sólo los bodies que hayan cambiado, con clave nombre del
-          // usuario al que pertenezca el body
           // Update corresponding body in bodies -> if !exist create a new
           // entry in the dictionary
-          // Get key in received body
-          
+
+          // Get keys in received bodies
           let bodyKeys = Object.keys(response.bodies);
           console.log(bodyKeys);
-          
-          let auxBodies = {};
-          /*
-          for (const key in bodies) {
-            console.log(key);
-            console.log("mogambo");
-            auxBodies[key] = bodies[key];
-            console.log(auxBodies);
-          }
-          */
-          console.log(bodies);
-          console.log(auxBodies);
+
+          let auxBodies = { ...bodiesRef.current };
+
           bodyKeys.map((bodyKey) => {
             auxBodies[bodyKey] = response.bodies[bodyKey];
-            console.log(auxBodies[bodyKey]);
           });
+          console.log(bodiesRef);
           console.log(auxBodies);
-          //setBodies(auxBodies);
-          
+          bodiesRef.current = auxBodies;
+          setBodies(auxBodies);
         }
         // TODO: Resto campos del game_update?
       }
@@ -206,12 +194,6 @@ function GameProvider({ children }) {
       session.socket.current.off("game_update");
     };
   }, [session.socketChange]);
-
-
-  useEffect(() => {
-    console.log("CAMBIO DE BODIES");
-    console.log(bodies);
-  }, [bodies]);
 
   return (
     <GameContext.Provider

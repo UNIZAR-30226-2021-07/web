@@ -8,12 +8,6 @@ import { SessionContext } from "../SessionProvider";
 function CardStack({ id, cards, kind, organ_pile, username }) {
   const session = useContext(SessionContext);
 
-  /*
-  if (cards[0] != null) {
-    console.log(cards);
-  }
-  */
-
   const drop = (e) => {
     e.preventDefault();
 
