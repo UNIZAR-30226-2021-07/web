@@ -3,7 +3,6 @@ import { SessionContext } from "./SessionProvider";
 
 export var GameContext = React.createContext();
 
-
 // ------------------------ PRUEBAS BODY ---------------------------------------
 const rivalBodyTest = {
   bodies: {
@@ -121,13 +120,13 @@ function GameProvider({ children }) {
           // Llegan sólo los bodies que hayan cambiado, con clave nombre del
           // usuario al que pertenezca el body
           //if (players.length > 0) {
-            // Update corresponding body in bodies -> if !exist create a new
-            // entry in the dictionary
-            // Get key in received body
-            let bodyKey = Object.keys(response.bodies);
-            let auxBodies = bodies;
-            auxBodies[bodyKey] = response.bodies[bodyKey];
-            setBodies(auxBodies);
+          // Update corresponding body in bodies -> if !exist create a new
+          // entry in the dictionary
+          // Get key in received body
+          let bodyKey = Object.keys(response.bodies);
+          let auxBodies = bodies;
+          auxBodies[bodyKey] = response.bodies[bodyKey];
+          setBodies(auxBodies);
           //}
         }
       }

@@ -87,8 +87,6 @@ function Board() {
     ) : null;
   };
 
-  console.log(game.bodies[session.userData.name]);
-
   return (
     <Container className="mx-0 p-0">
       <Row>
@@ -106,7 +104,10 @@ function Board() {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Body cardStacks={game.bodies[session.userData.name]} username={session.userData.name} />
+        <Body
+          cardStacks={game.bodies[session.userData.name]}
+          username={session.userData.name}
+        />
       </Row>
       <Row className="justify-content-center">
         <Hand />

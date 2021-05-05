@@ -13,14 +13,13 @@ function searchCard(elem, card) {
 
 // Create card url
 export function getCard(card) {
-  
   /* TODO: ! Temporal hasta que servidor devuelva el tipo de tratamiento */
   if (card.card_type == "treatment") {
     card.treatment_type = "transplant";
   }
 
   let carta = cards.find((elem) => searchCard(elem, card));
-  
+
   return process.env.PUBLIC_URL + "/" + carta.image;
 }
 

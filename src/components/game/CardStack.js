@@ -1,4 +1,4 @@
-import React , { useContext } from "react";
+import React, { useContext } from "react";
 
 import Card from "./Card";
 import { playCard } from "../WebSockets";
@@ -34,10 +34,10 @@ function CardStack({ id, cards, kind, organ_pile, username }) {
     } else if (treatment_type == "organ_thief") {
       data["target"] = username;
     } else if (treatment_type == "infection") {
-       // TODO:
+      // TODO:
       alert("Infection");
     } else if (treatment_type == "latex_glove") {
-       // TODO:
+      // TODO:
       alert("Latex_glove");
     } else if (treatment_type == "medical_error") {
       data["target"] = username;
