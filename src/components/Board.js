@@ -13,7 +13,9 @@ import { SessionContext } from "./SessionProvider";
 function Board() {
   const session = useContext(SessionContext);
   const game = useContext(GameContext);
+
   const [numRivals, setNumRivals] = useState(0);
+  const [userBody, setUserBody] = useState();
 
   useEffect(() => {
     if (game.players.length > 0) {
@@ -23,6 +25,13 @@ function Board() {
       setNumRivals(0);
     };
   }, [game.players]);
+
+
+  useEffect(() => {
+    //console.log("userBody");
+    setUserBody(game.bodies[session.userData.name]);
+  }, [game.bodies])
+
 
   const Player1 = () => {
     let index = 2;
@@ -105,7 +114,7 @@ function Board() {
       </Row>
       <Row className="justify-content-center">
         <Body
-          cardStacks={game.bodies[session.userData.name]}
+          cardStacks={userBody}
           username={session.userData.name}
         />
       </Row>

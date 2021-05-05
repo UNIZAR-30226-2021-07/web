@@ -137,7 +137,7 @@ function GameProvider({ children }) {
       return;
     }
     session.socket.current.on("game_update", (response) => {
-      console.log(response);
+
       if (response != null) {
         if ("current_turn" in response) {
           setCurrentTurn(response.current_turn);
@@ -161,22 +161,39 @@ function GameProvider({ children }) {
           });
           setPlayers(users);
         }
-        // TODO: Quitar cuando ya se reciban los bodies del server
-        // response = rivalBodyTest;
-        // -------------------------------------------------------
         if ("bodies" in response) {
+          console.log(bodies);
+
+          //console.log(response.bodies);
           // Llegan sólo los bodies que hayan cambiado, con clave nombre del
           // usuario al que pertenezca el body
           // Update corresponding body in bodies -> if !exist create a new
           // entry in the dictionary
           // Get key in received body
+          
           let bodyKeys = Object.keys(response.bodies);
-          let auxBodies = bodies;
+          console.log(bodyKeys);
+          
+          let auxBodies = {};
+          /*
+          for (const key in bodies) {
+            console.log(key);
+            console.log("mogambo");
+            auxBodies[key] = bodies[key];
+            console.log(auxBodies);
+          }
+          */
+          console.log(bodies);
+          console.log(auxBodies);
           bodyKeys.map((bodyKey) => {
             auxBodies[bodyKey] = response.bodies[bodyKey];
+            console.log(auxBodies[bodyKey]);
           });
-          setBodies(auxBodies);
+          console.log(auxBodies);
+          //setBodies(auxBodies);
+          
         }
+        // TODO: Resto campos del game_update?
       }
     });
 
@@ -189,6 +206,12 @@ function GameProvider({ children }) {
       session.socket.current.off("game_update");
     };
   }, [session.socketChange]);
+
+
+  useEffect(() => {
+    console.log("CAMBIO DE BODIES");
+    console.log(bodies);
+  }, [bodies]);
 
   return (
     <GameContext.Provider
