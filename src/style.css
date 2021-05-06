@@ -67,6 +67,14 @@ body,
   height: 2ex;
 }
 
+.coins.shop {
+  font-size: 5vh;
+  font-weight: bold;
+}
+.coins.shop img {
+  height: 4vh;
+}
+
 .logo-title {
   font-size: 15vh;
   font-family: "ShortStack", Arial, Helvetica, sans-serif;
@@ -103,6 +111,7 @@ body,
 .secondary-button,
 .tertiary-button,
 .alert-button,
+.success-button,
 .continue-button {
   padding: 10px 20px !important;
   border-radius: 30px !important;
@@ -161,6 +170,15 @@ body,
 
 .alert-button:hover {
   background-color: rgb(253, 66, 66) !important;
+}
+
+.success-button {
+  background-color: #10E73F !important;
+  border: none !important;
+}
+
+.success-button:hover {
+  background-color: #55e975 !important;
 }
 
 .primary-title {
