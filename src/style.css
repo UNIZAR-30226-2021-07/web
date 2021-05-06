@@ -111,28 +111,11 @@ body,
 .secondary-button,
 .tertiary-button,
 .alert-button,
-.success-button,
-.continue-button {
+.success-button {
   padding: 10px 20px !important;
   border-radius: 30px !important;
   font-weight: bold !important;
   text-transform: uppercase !important;
-}
-
-.alert-button,
-.continue-button {
-  background-color: white !important;
-  border: 2px solid !important;
-}
-
-.continue-button:hover {
-  background-color: grey !important;
-  color: white !important;
-}
-
-.continue-button {
-  border-color: grey !important;
-  color: grey !important;
 }
 
 .primary-button:hover {
@@ -163,13 +146,17 @@ body,
   border: none !important;
 }
 
+.alert-button:hover {
+  background-color: rgb(253, 66, 66) !important;
+}
+
 .alert-button {
   background-color: red !important;
   border: none !important;
 }
 
-.alert-button:hover {
-  background-color: rgb(253, 66, 66) !important;
+.success-button:hover {
+  background-color: #55e975 !important;
 }
 
 .success-button {
@@ -177,9 +164,6 @@ body,
   border: none !important;
 }
 
-.success-button:hover {
-  background-color: #55e975 !important;
-}
 
 .primary-title {
   font-size: 48px !important;
