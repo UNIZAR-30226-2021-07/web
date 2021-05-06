@@ -10,9 +10,7 @@ export default function ConfirmPurchasePopup({ price }) {
   return (
     <Popup title="¿Quiere comprar el artículo?" close={true}>
       <Row className="coins shop justify-content-center align-items-center">
-        <span className="mr-2">
-          {price}
-        </span>
+        <span className="mr-2">{price}</span>
         <Image src={coins} alt="Precio" />
       </Row>
       <Row>

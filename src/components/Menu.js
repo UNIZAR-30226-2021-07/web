@@ -62,9 +62,7 @@ function Menu() {
                     <Image src={shop} alt="Tienda" className="h-100" />
                   </Row>
                   <Row className="coins justify-content-center align-items-center">
-                    <span className="mr-2">
-                      {session.userData.coins}
-                    </span>
+                    <span className="mr-2">{session.userData.coins}</span>
                     <Image src={coins} alt="Tienda" />
                   </Row>
                 </Col>

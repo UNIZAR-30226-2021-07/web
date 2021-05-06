@@ -160,10 +160,9 @@ body,
 }
 
 .success-button {
-  background-color: #10E73F !important;
+  background-color: #10e73f !important;
   border: none !important;
 }
-
 
 .primary-title {
   font-size: 48px !important;
@@ -175,8 +174,6 @@ body,
   font-weight: bold !important;
 }
 
-/* TODO: Ahora tertiary es el antiguo secondary --> cambiar donde esté
-   en otras pantallas*/
 .tertiary-title {
   font-size: 24px;
   font-weight: bold;
