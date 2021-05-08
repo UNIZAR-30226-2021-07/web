@@ -445,8 +445,7 @@ body,
 .purchasable-component {
   width: fit-content;
   height: fit-content;
-  border-radius: 2vh;
-  background-color: #000 !important;
+  border-color: #000 !important;
 }
 
 .purchasable-component-image {
@@ -454,3 +453,12 @@ body,
   height: 100px;
 }
 
+.lock-image {
+  width: 40px;
+  height: 40px;
+}
+
+.coin-image {
+  width: 20px;
+  height: 2s0px;
+}
