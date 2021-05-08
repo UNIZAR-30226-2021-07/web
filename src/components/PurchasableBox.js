@@ -4,7 +4,8 @@ import { Card, Image } from "react-bootstrap";
 //import { getProfile } from "../utils/json";
 
 
-function PurchasableBox({ picture }) {
+function PurchasableBox({ picture, bought}) {
+  console.log(bought);
   // TODO: Get image to show in the box
   // let profile = getProfile(photo);
   return (
