@@ -9,7 +9,7 @@ function Shop() {
       <Row>
         <div>Saldo Gatuno 100</div>
       </Row>
-      <Row className="align-items-center">
+      <Row className="align-items-start mt-4">
         <Col>
           <PurchasablesList title="Tablero" type="board" />
         </Col>

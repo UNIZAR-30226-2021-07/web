@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Card, Row, Col } from "react-bootstrap";
 
 import PurchasableBox from "./PurchasableBox";
@@ -6,18 +6,7 @@ import PurchasableBox from "./PurchasableBox";
 import boards from "../assets/common/boards.json";
 import profile_pics from "../assets/common/profile_pics.json";
 
-import { SessionContext } from "./SessionProvider";
-
 function PurchasablesList({ title, type }) {
-  const session = useContext(SessionContext);
-
-  //Comprueba si el elemento esta comprado
-  const isBought = (id) => {
-    return session.userData.purchases.some(
-      (elem) => elem.type == type && elem.item_id == id
-    );
-  };
-
   let elements = type == "board" ? boards : profile_pics;
 
   return (
@@ -28,10 +17,10 @@ function PurchasablesList({ title, type }) {
             {title}
           </Card.Title>
         </Row>
-        <Row className="justify-content-center">
+        <Row className="justify-content-start">
           {elements.map((elem, idx) => (
-            <Col key={idx}>
-              <PurchasableBox boardIndex={idx} bought={isBought(idx)} />
+            <Col key={idx} md={4}>
+              <PurchasableBox index={idx} type={type} />
             </Col>
           ))}
         </Row>
