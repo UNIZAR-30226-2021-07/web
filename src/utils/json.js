@@ -30,12 +30,19 @@ export function getProfile(photo) {
 }
 
 // Create board url 
-export function getBoard(board) {
-  return (
+export function getBoard(board) {  return (
     [ process.env.PUBLIC_URL + "/" + boards[board].image, 
     boards[board].cost,
     boards[board].name ]
   );
 }
 
+// Create avatar url 
+export function getAvatar(avatar) {
+  return (
+    [ process.env.PUBLIC_URL + "/" + profile_pics[avatar].image, 
+    profile_pics[avatar].cost,
+    profile_pics[avatar].name ]
+  );
+}
 

@@ -7,11 +7,11 @@ import { Row/*, Button*/ } from "react-bootstrap";
 import PurchasableBox from "./PurchasableBox"
 
 function Shop() {
-  let boardIndex = 4;
+  let eltIndex = 4;
   return (
     <Row>
-    <PurchasableBox boardIndex={boardIndex} bought={true}/>
-    <PurchasableBox boardIndex={boardIndex} bought={false}/>
+    <PurchasableBox eltIndex={eltIndex} bought={true} board={true}/>
+    <PurchasableBox eltIndex={eltIndex} bought={false} board={false}/>
     </Row>
   ); 
     // <Button onClick={() => renderConfirmPurchasePopup(price)}>Tienda</Button>
