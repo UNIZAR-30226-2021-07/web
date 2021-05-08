@@ -6,22 +6,23 @@ import CardStack from "./CardStack";
  * @param cardStacks -> lista de las pilas de cartas posibles en el cuerpo
  * Entre 0 y 4 pilas
  */
-function Body({ cardStacks, kind = "body" }) {
-  if (!cardStacks) {
-    return null;
-  }
-  // Transform to cardStack format
+function Body({ cardStacks, kind = "body", username }) {
   let newBody = [[], [], [], []];
-  cardStacks.map((stack, ind) => {
-    // Treat modifiers as single cards over first card
-    let newStack = [];
-    newStack = [...newStack, stack.organ];
-    stack.modifiers.map((modifier) => {
-      newStack = [...newStack, modifier];
+  if (!cardStacks) {
+    newBody = [[null], [null], [null], [null]];
+  } else {
+    // Transform to cardStack format
+    cardStacks.map((stack, ind) => {
+      // Treat modifiers as single cards over first card
+      let newStack = [];
+      newStack = [...newStack, stack.organ];
+      stack.modifiers.map((modifier) => {
+        newStack = [...newStack, modifier];
+      });
+      // Update stack with index ind
+      newBody[ind] = newStack;
     });
-    // Update stack with index ind
-    newBody[ind] = newStack;
-  });
+  }
 
   return (
     <div className="row mx-0 flex-nowrap" id={`user-${kind}`}>
@@ -31,6 +32,8 @@ function Body({ cardStacks, kind = "body" }) {
           key={idx}
           cards={cards}
           kind={kind}
+          organ_pile={idx}
+          username={username}
         />
       ))}
     </div>

@@ -1,5 +1,8 @@
 import React from "react";
-import {Row} from "react-bootstrap";
+import { Row, Button } from "react-bootstrap";
+
+//import { renderConfirmPurchasePopup } from "./popups/ConfirmPurchasePopup";
+
 
 import PurchasableBox from "./PurchasableBox"
 
@@ -11,6 +14,7 @@ function Shop() {
     <PurchasableBox boardIndex={boardIndex} bought={false}/>
     </Row>
   ); 
+    // <Button onClick={() => renderConfirmPurchasePopup(price)}>Tienda</Button>
 }
 
 export default Shop;

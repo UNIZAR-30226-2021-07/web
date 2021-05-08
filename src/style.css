@@ -67,6 +67,14 @@ body,
   height: 2ex;
 }
 
+.coins.shop {
+  font-size: 5vh;
+  font-weight: bold;
+}
+.coins.shop img {
+  height: 4vh;
+}
+
 .logo-title {
   font-size: 15vh;
   font-family: "ShortStack", Arial, Helvetica, sans-serif;
@@ -103,27 +111,11 @@ body,
 .secondary-button,
 .tertiary-button,
 .alert-button,
-.continue-button {
+.success-button {
   padding: 10px 20px !important;
   border-radius: 30px !important;
   font-weight: bold !important;
   text-transform: uppercase !important;
-}
-
-.alert-button,
-.continue-button {
-  background-color: white !important;
-  border: 2px solid !important;
-}
-
-.continue-button:hover {
-  background-color: grey !important;
-  color: white !important;
-}
-
-.continue-button {
-  border-color: grey !important;
-  color: grey !important;
 }
 
 .primary-button:hover {
@@ -154,13 +146,22 @@ body,
   border: none !important;
 }
 
+.alert-button:hover {
+  background-color: rgb(253, 66, 66) !important;
+}
+
 .alert-button {
   background-color: red !important;
   border: none !important;
 }
 
-.alert-button:hover {
-  background-color: rgb(253, 66, 66) !important;
+.success-button:hover {
+  background-color: #55e975 !important;
+}
+
+.success-button {
+  background-color: #10e73f !important;
+  border: none !important;
 }
 
 .primary-title {
@@ -173,8 +174,6 @@ body,
   font-weight: bold !important;
 }
 
-/* TODO: Ahora tertiary es el antiguo secondary --> cambiar donde esté
-   en otras pantallas*/
 .tertiary-title {
   font-size: 24px;
   font-weight: bold;
@@ -342,7 +341,7 @@ body,
 /* --------------------------- Cartas ------------------------ */
 
 .hand-card {
-  width: 10vh;
+  width: 10vh !important;
 }
 
 /* TODO: DEJAR DESCOMENTADO */
@@ -353,11 +352,13 @@ body,
 */
 
 .body-card {
-  width: 8vh;
+  width: 8vh !important;
+  height: 11.25vh !important;
 }
 
 .rival-card {
-  width: 6vh;
+  width: 6vh !important;
+  height: 8.44vh !important;
 }
 
 .game-card {
