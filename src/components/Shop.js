@@ -1,13 +1,13 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 
-import { renderConfirmPurchasePopup } from "./popups/ConfirmPurchasePopup";
+import PurchasableBox from "./PurchasableBox"
+
+import board_pic from "../assets/common/boards/blue.svg";
 
 function Shop() {
-  let price = 10;
   return (
-    <Button onClick={() => renderConfirmPurchasePopup(price)}>Tienda</Button>
-  );
+    <PurchasableBox picture={board_pic}/>
+  ); 
 }
 
 export default Shop;
