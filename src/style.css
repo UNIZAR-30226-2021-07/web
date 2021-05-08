@@ -458,7 +458,14 @@ body,
   height: 40px;
 }
 
+.coins-box {
+  width: fit-content;
+  height: fit-content;
+  border-color: #000 !important;
+  border-radius: 2vh !important;
+}
+
 .coin-image {
   width: 20px;
-  height: 2s0px;
+  height: 20px;
 }

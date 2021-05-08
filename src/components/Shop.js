@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Button } from "react-bootstrap";
+import { Row/*, Button*/ } from "react-bootstrap";
 
 //import { renderConfirmPurchasePopup } from "./popups/ConfirmPurchasePopup";
 
@@ -7,7 +7,7 @@ import { Row, Button } from "react-bootstrap";
 import PurchasableBox from "./PurchasableBox"
 
 function Shop() {
-  let boardIndex = 5;
+  let boardIndex = 4;
   return (
     <Row>
     <PurchasableBox boardIndex={boardIndex} bought={true}/>
