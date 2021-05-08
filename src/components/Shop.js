@@ -3,13 +3,12 @@ import {Row} from "react-bootstrap";
 
 import PurchasableBox from "./PurchasableBox"
 
-import board_pic from "../assets/common/boards/blue.svg";
-
 function Shop() {
+  let boardIndex = 5;
   return (
     <Row>
-    <PurchasableBox picture={board_pic}/>
-    <PurchasableBox picture={board_pic}/>
+    <PurchasableBox boardIndex={boardIndex} bought={true}/>
+    <PurchasableBox boardIndex={boardIndex} bought={false}/>
     </Row>
   ); 
 }
