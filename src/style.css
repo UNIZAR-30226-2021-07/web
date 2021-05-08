@@ -441,9 +441,15 @@ body,
 }
 
 /* -------------------------------- Shop ------------------------------------ */
+.purchasable-component {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 2vh;
+  background-color: #000 !important;
+}
+
 .purchasable-component-image {
-  width: 200px;
-  height: 200px;
-  margin-bottom: 10px;
+  width: 100px;
+  height: 100px;
 }
 
