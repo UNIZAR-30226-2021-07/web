@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Row, } from "react-bootstrap";
+import { Card, Image, Row, Col } from "react-bootstrap";
 
 import { getBoard } from "../utils/json";
 
@@ -28,11 +28,18 @@ function PurchasableBox({ boardIndex, bought }) {
           />
         </Row>
         <Row className="align-items-center justify-content-center">
-            {boardPrice}
-            <Image
-              className="coin-image ml-1"
-              src={coinImg}
-            />
+          <Card className="coins-box">
+            <Row className="p-0 m-0 ml-2">
+              <Col className="p-0 flex-grow-0">
+                {boardPrice}
+              </Col>
+              <Col className="p-0 flex-grow-0 ml-1 mr-2">
+                <Image
+                  className="coin-image"
+                  src={coinImg} />
+              </Col>
+            </Row>
+          </Card>
         </Row>
       </Card.ImgOverlay>
     </Card>
