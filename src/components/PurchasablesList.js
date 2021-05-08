@@ -18,7 +18,7 @@ function PurchasablesList({ title, type }) {
     );
   };
 
-  let elements = (type == "board") ? boards : profile_pics;
+  let elements = type == "board" ? boards : profile_pics;
 
   return (
     <Card>
@@ -31,8 +31,7 @@ function PurchasablesList({ title, type }) {
         <Row className="justify-content-center">
           {elements.map((elem, idx) => (
             <Col key={idx}>
-              <PurchasableBox picture={idx} bought={isBought(idx)} />
-              { (idx + 1) % 3 == 0 && (<div className=""/>)}
+              <PurchasableBox boardIndex={idx} bought={isBought(idx)} />
             </Col>
           ))}
         </Row>

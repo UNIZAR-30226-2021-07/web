@@ -10,11 +10,11 @@ function Shop() {
         <div>Saldo Gatuno 100</div>
       </Row>
       <Row className="align-items-center">
-        <Col >
-          <PurchasablesList title="Tablero" />
+        <Col>
+          <PurchasablesList title="Tablero" type="board" />
         </Col>
-        <Col >
-          <PurchasablesList title="Avatar" />
+        <Col>
+          <PurchasablesList title="Avatar" type="profile_pics" />
         </Col>
       </Row>
     </Container>

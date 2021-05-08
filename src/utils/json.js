@@ -29,13 +29,11 @@ export function getProfile(photo) {
   return process.env.PUBLIC_URL + "/" + profile_pics[photo].image;
 }
 
-// Create board url 
+// Create board url
 export function getBoard(board) {
-  return (
-    [ process.env.PUBLIC_URL + "/" + boards[board].image, 
+  return [
+    process.env.PUBLIC_URL + "/" + boards[board].image,
     boards[board].cost,
-    boards[board].name ]
-  );
+    boards[board].name,
+  ];
 }
-
-
