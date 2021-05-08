@@ -473,7 +473,20 @@ body,
   border-radius: 2vh !important;
 }
 
+.money-box {
+  width: 250px;
+  height: fit-content;
+  background-color: #9c4dcc !important;
+  border-radius: 0vh !important;
+  color: white;
+}
+
 .coin-image {
   width: 20px;
   height: 20px;
+}
+
+.coin-image-money {
+  width: 28px;
+  height: 28px;
 }
