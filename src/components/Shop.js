@@ -1,13 +1,24 @@
 import React from "react";
+import { Row, Col, Container } from "react-bootstrap";
 
-import PurchasableBox from "./PurchasableBox"
-
-import board_pic from "../assets/common/boards/blue.svg";
+import PurchasablesList from "./PurchasablesList";
 
 function Shop() {
   return (
-    <PurchasableBox picture={board_pic}/>
-  ); 
+    <Container className="justify-content-center h-100">
+      <Row>
+        <div>Saldo Gatuno 100</div>
+      </Row>
+      <Row className="align-items-center">
+        <Col >
+          <PurchasablesList title="Tablero" />
+        </Col>
+        <Col >
+          <PurchasablesList title="Avatar" />
+        </Col>
+      </Row>
+    </Container>
+  );
 }
 
 export default Shop;
