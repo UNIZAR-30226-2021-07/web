@@ -1,9 +1,9 @@
 import React from "react";
-import { Card, Row,Col } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 
-function PurchasablesList({title}) {
+function PurchasablesList({ title, elements }) {
   return (
-    <Card className="w-100">
+    <Card>
       <Card.Body>
         <Row className="justify-content-center align-items-center ">
           <Card.Title className="primary-title text-align-center">
@@ -11,21 +11,10 @@ function PurchasablesList({title}) {
           </Card.Title>
         </Row>
         <Row className="justify-content-center">
-          <Col>Element</Col>
-          <Col>Element</Col>
-          <Col>Element</Col>
-          <div className="w-100"></div>
-          <Col>Element</Col>
-          <Col>Element</Col>
-          <Col>Element</Col>
-          <div className="w-100"></div>
-          <Col>Element</Col>
-          <Col>Element</Col>
-          <Col>Element</Col>
-          <div className="w-100"></div>
-          <Col>Element</Col>
-          <Col>Element</Col>
-          <Col>Element</Col>
+        {elements.map((elem, idx) => {
+            <Col>elem</Col>
+            {(idx + 1) % 3 == 0 && <div className="w-100"></div>}
+        })}
         </Row>
       </Card.Body>
     </Card>
