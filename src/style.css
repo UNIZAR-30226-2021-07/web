@@ -306,7 +306,8 @@ body,
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.message-list {
+.message-list,
+.shop-list {
   overflow-y: scroll;
   flex: 1;
 }
@@ -417,7 +418,7 @@ body,
   top: -20vh;
 }
 
-/* --------------------------- Recuadro Jugador ------------------------ */
+/* ------------------------------ PlayerBox --------------------------------- */
 
 .player-image {
   width: 6vh;
@@ -434,9 +435,62 @@ body,
   height: 20vh;
 }
 
-/* --------------------------- Recuadro Jugador ------------------------ */
+/* -------------------------------- Timer ----------------------------------- */
 
 .time {
   font-size: 40px;
   font-weight: bold;
+}
+
+/* -------------------------------- Shop ------------------------------------ */
+.purchasable-component {
+  width: fit-content;
+  height: fit-content;
+  border-color: #000 !important;
+}
+
+.purchasable-component-image {
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.box-image {
+  width: 40px;
+  height: 40px;
+}
+
+.check-image {
+  width: 40px;
+  height: 40px;
+  margin: 11px !important;
+  border: 1px solid #000 !important;
+}
+
+.coins-box {
+  width: fit-content;
+  height: fit-content;
+  border-color: #000 !important;
+  border-radius: 2vh !important;
+}
+
+.money-box {
+  width: 250px;
+  height: fit-content;
+  background-color: #9c4dcc !important;
+  border-radius: 0vh !important;
+  color: white;
+}
+
+.coin-image {
+  width: 20px;
+  height: 20px;
+}
+
+.coin-image-money {
+  width: 28px;
+  height: 28px;
+}
+
+.shop-card {
+  min-height: 550px !important;
 }
