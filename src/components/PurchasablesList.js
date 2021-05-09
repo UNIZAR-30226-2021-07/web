@@ -17,13 +17,7 @@ function PurchasablesList({ title, type }) {
             {title}
           </Card.Title>
         </Row>
-        <Row className="justify-content-start shop-list">
-          {elements.map((elem, idx) => (
-            <Col key={idx} md={4}>
-              <PurchasableBox index={idx} type={type} />
-            </Col>
-          ))}
-          {/*Solo para probar cuando hay demasiados elementos*/}
+        <Row className="justify-content-start">
           {elements.map((elem, idx) => (
             <Col key={idx} md={4}>
               <PurchasableBox index={idx} type={type} />
