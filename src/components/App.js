@@ -108,8 +108,7 @@ function App() {
           component={EditProfile}
         />
 
-        {/* <ProtectedRoute */}
-        <Route path="/shop" token={session.token} component={Shop} />
+        <ProtectedRoute path="/shop" token={session.token} component={Shop} />
 
         <ProtectedRoute path="/help" token={session.token} component={Help} />
 

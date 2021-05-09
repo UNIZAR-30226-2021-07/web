@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, Image, Row, Col } from "react-bootstrap";
 
 import { getBoard } from "../utils/json";
@@ -12,17 +12,23 @@ import { SessionContext } from "./SessionProvider";
 
 function PurchasableBox({ index, type }) {
   const session = useContext(SessionContext);
-
-  //Comprueba si el elemento esta comprado
-  const isBought = (id) => {
-    return session.userData.purchases.some(
-      (elem) => elem.type == type && elem.item_id == id
-    );
-  };
-
+  const [isBought, setIsBought] = useState(false);
   let [elt, eltPrice] = type == "board" ? getBoard(index) : getAvatar(index);
 
-  return isBought(index) ? (
+
+  console.log(session.userData.purchases);
+
+  useEffect(() => {
+    // Comprueba si el elemento esta comprado
+    if (session.userData.purchases) {
+      setIsBought(session.userData.purchases.some(
+        (elem) => elem.type == type && elem.item_id == index
+      ));
+    }
+
+  }, [session.userData.purchases])
+
+  return isBought ? (
     <Card className="purchasable-component p-0 m-3">
       <Card.Img
         className="purchasable-component-image"
