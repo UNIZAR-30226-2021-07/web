@@ -18,6 +18,8 @@ function Match() {
   const session = useContext(SessionContext);
   const history = useHistory();
 
+  let isPrivate = true;
+
   useEffect(() => {
     // If socket null, (e.g. when disconnected) go back to menu
     if (!session.socket.current) {
@@ -55,7 +57,7 @@ function Match() {
       <Col md={8} className="p-0">
         <Row className="mx-0 justify-content-around">
           <Image src={exit} className="game-icon" onClick={leaveGame} />
-          <Image src={pause} className="game-icon" onClick={pauseGame} />
+          {isPrivate && <Image src={pause} className="game-icon" onClick={pauseGame} />}
           <Image
             src={help}
             className="game-icon"
