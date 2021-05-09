@@ -1,19 +1,21 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Row, Col, Container, Image, Card } from "react-bootstrap";
 
 import PurchasablesList from "./PurchasablesList";
 
 import coinImg from "../assets/common/icons/huella.svg";
 
+import { SessionContext } from "./SessionProvider";
+
 function Shop() {
-  let money = 200;
+  const session = useContext(SessionContext);
   return (
     <Container className="justify-content-center h-100 d-flex-column">
       <Row className="pt-2 m-0">
         <Card className="money-box px-1 py-0">
           <Row className="m-0 mb-2 mt-2 ml-3">
             <h5 className="align-self-center my-0 font-weight-bold">
-              Saldo gatuno: {money}
+              Saldo gatuno: {session.userData.coins}
             </h5>
             <Image className="coin-image-money ml-2" src={coinImg} />
           </Row>
