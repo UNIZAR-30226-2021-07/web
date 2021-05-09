@@ -13,10 +13,7 @@ function Shop() {
         <Card className="money-box px-1 py-0">
           <Row className="m-0 mb-2 mt-2 ml-3">
             <h5 className="align-self-center my-0 font-weight-bold">
-              Saldo gatuno:{" "}
-            </h5>
-            <h5 className="align-self-center my-0 ml-4 font-weight-bold">
-              {money}
+              Saldo gatuno: {money}
             </h5>
             <Image className="coin-image-money ml-2" src={coinImg} />
           </Row>
