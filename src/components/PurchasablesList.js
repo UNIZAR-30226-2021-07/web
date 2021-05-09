@@ -19,7 +19,7 @@ function PurchasablesList({ title, type }) {
         </Row>
         <Row className="justify-content-start">
           {elements.map((elem, idx) => (
-            <Col key={idx} md={4}>
+            <Col key={idx} xs={12} md={6} lg={4} >
               <PurchasableBox index={idx} type={type} />
             </Col>
           ))}

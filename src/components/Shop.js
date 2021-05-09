@@ -8,7 +8,7 @@ import coinImg from "../assets/common/icons/huella.svg";
 function Shop() {
   let money = 200;
   return (
-    <Container className="justify-content-center h-100">
+    <Container className="justify-content-center h-100 d-flex-column">
       <Row className="pt-2 m-0">
         <Card className="money-box px-1 py-0">
           <Row className="m-0 mb-2 mt-2 ml-3">

@@ -165,17 +165,17 @@ body,
 }
 
 .primary-title {
-  font-size: 8vh !important;
+  font-size: 48px !important;
   font-weight: bold !important;
 }
 
 .secondary-title {
-  font-size: 5vh !important;
+  font-size: 30px !important;
   font-weight: bold !important;
 }
 
 .tertiary-title {
-  font-size: 4vh;
+  font-size: 24px;
   font-weight: bold;
   padding-bottom: 1%;
 }
@@ -444,26 +444,26 @@ body,
 
 /* -------------------------------- Shop ------------------------------------ */
 .purchasable-component {
-  width: 15vh;
+  width: fit-content;
   height: fit-content;
   border-color: #000 !important;
 }
 
 .purchasable-component-image {
-  width: 15vh;
-  height: 15vh;
+  width: 100px !important;
+  height: 100px !important;
 }
 
 .box-image {
-  width: 6vh;
-  height: 6vh;
+  width: 40px;
+  height: 40px;
 }
 
 .check-image {
-  width: 6vh;
-  height: 6vh;
-  margin: 1.5vh !important;
-  border: 0.25vh solid #000 !important;
+  width: 40px;
+  height: 40px;
+  margin: 11px !important;
+  border: 1px solid #000 !important;
 }
 
 .coins-box {
@@ -474,7 +474,7 @@ body,
 }
 
 .money-box {
-  width: fit-content;
+  width: 250px;
   height: fit-content;
   background-color: #9c4dcc !important;
   border-radius: 0vh !important;
