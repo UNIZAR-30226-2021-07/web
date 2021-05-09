@@ -18,11 +18,13 @@ function PurchasableBox({ index, type }) {
   useEffect(() => {
     // Comprueba si el elemento esta comprado
     if (session.userData.purchases) {
-      setIsBought(session.userData.purchases.some(
-        (elem) => elem.type == type && elem.item_id == index
-      ));
+      setIsBought(
+        session.userData.purchases.some(
+          (elem) => elem.type == type && elem.item_id == index
+        )
+      );
     }
-  }, [session.userData.purchases])
+  }, [session.userData.purchases]);
 
   return isBought ? (
     <Card className="purchasable-component p-0 my-3 ml-sm-4 ml-md-2">
