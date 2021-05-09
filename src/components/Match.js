@@ -9,6 +9,7 @@ import { renderPausePopup } from "./popups/PausePopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import { SessionContext } from "./SessionProvider";
+import { GameContext } from "./GameProvider";
 
 import pause from "../assets/common/icons/pause.svg";
 import exit from "../assets/common/icons/logout.svg";
@@ -16,9 +17,8 @@ import help from "../assets/common/icons/help.svg";
 
 function Match() {
   const session = useContext(SessionContext);
+  const game = useContext(GameContext);
   const history = useHistory();
-
-  let isPrivate = true;
 
   useEffect(() => {
     // If socket null, (e.g. when disconnected) go back to menu
@@ -57,7 +57,7 @@ function Match() {
       <Col md={8} className="p-0">
         <Row className="mx-0 justify-content-around">
           <Image src={exit} className="game-icon" onClick={leaveGame} />
-          {isPrivate && <Image src={pause} className="game-icon" onClick={pauseGame} />}
+          {game.isPrivate && <Image src={pause} className="game-icon" onClick={pauseGame} />}
           <Image
             src={help}
             className="game-icon"

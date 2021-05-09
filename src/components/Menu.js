@@ -15,10 +15,13 @@ import coins from "../assets/common/icons/huella.svg";
 import { getProfile } from "../utils/json";
 
 import { SessionContext } from "./SessionProvider";
+import { GameContext } from "./GameProvider";
+
 import { leaveGame } from "./WebSockets";
 
 function Menu() {
   const session = useContext(SessionContext);
+  const game = useContext(GameContext);
   const history = useHistory();
   const [picture, setPicture] = useState("");
 
@@ -100,7 +103,7 @@ function Menu() {
         <Col lg={true}>
           <Button
             className="primary-button d-block mx-auto m-2"
-            onClick={() => renderJoinPublicGamePopup(session, history)}
+            onClick={() => renderJoinPublicGamePopup(session, game, history)}
           >
             UNIRSE PARTIDA PÚBLICA
           </Button>
