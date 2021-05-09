@@ -15,9 +15,6 @@ function PurchasableBox({ index, type }) {
   const [isBought, setIsBought] = useState(false);
   let [elt, eltPrice] = type == "board" ? getBoard(index) : getAvatar(index);
 
-
-  console.log(session.userData.purchases);
-
   useEffect(() => {
     // Comprueba si el elemento esta comprado
     if (session.userData.purchases) {
@@ -25,7 +22,6 @@ function PurchasableBox({ index, type }) {
         (elem) => elem.type == type && elem.item_id == index
       ));
     }
-
   }, [session.userData.purchases])
 
   return isBought ? (

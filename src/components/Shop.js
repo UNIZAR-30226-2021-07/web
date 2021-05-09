@@ -27,7 +27,7 @@ function Shop() {
           <PurchasablesList title="Tablero" type="board" />
         </Col>
         <Col>
-          <PurchasablesList title="Avatar" type="profile_pics" />
+          <PurchasablesList title="Avatar" type="profile_pic" />
         </Col>
       </Row>
     </Container>
