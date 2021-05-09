@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Button } from "react-bootstrap";
 
@@ -11,6 +11,7 @@ import pause from "../../assets/common/icons/pause.svg";
 
 export default function PausePopup() {
   const session = useContext(SessionContext);
+  let pauseOwner = "test_user2";
 
   const restartGame = async (e) => {
     e.preventDefault();
@@ -25,17 +26,25 @@ export default function PausePopup() {
 
   return (
     <Popup title="Partida pausada" icon={pause}>
-      <p className="text-center">
-        Se ha pausado la partida, los gaticos <br />
-        están esperando...
-      </p>
-      <Button
-        className="primary-button"
-        onClick={restartGame}
-        style={{ width: "100%" }}
-      >
-        Reanudar Partida
-      </Button>
+      {pauseOwner == session.userData.name ? (
+        <p className="text-center">
+          Se ha pausado la partida, los gaticos <br />
+          están esperando...
+        </p>
+      ) : (
+        <p className="text-center">
+          El gatico <strong>{pauseOwner}</strong> ha parado la partida
+        </p>
+      )}
+      {pauseOwner == session.userData.name && (
+        <Button
+          className="primary-button"
+          onClick={restartGame}
+          style={{ width: "100%" }}
+        >
+          Reanudar Partida
+        </Button>
+      )}
     </Popup>
   );
 }
@@ -46,7 +55,7 @@ export function renderPausePopup() {
     content,
     config: {
       fadeIn: true,
-      fadeInSpeed: 400,
+      fadeInSpeed: 200,
       escClose: false,
       overlayClose: false,
     },
