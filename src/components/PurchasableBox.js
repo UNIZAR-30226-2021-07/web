@@ -25,7 +25,7 @@ function PurchasableBox({ index, type }) {
   }, [session.userData.purchases])
 
   return isBought ? (
-    <Card className="purchasable-component p-0 my-3">
+    <Card className="purchasable-component p-0 my-3 ml-sm-4 ml-md-2">
       <Card.Img
         className="purchasable-component-image"
         src={elt}
@@ -36,7 +36,7 @@ function PurchasableBox({ index, type }) {
       </Card.ImgOverlay>
     </Card>
   ) : (
-    <Card className="purchasable-component p-0 my-3">
+    <Card className="purchasable-component p-0 my-3 ml-sm-4 ml-md-2">
       <Card.Img
         className="purchasable-component-image"
         src={elt}

@@ -490,3 +490,7 @@ body,
   width: 28px;
   height: 28px;
 }
+
+.shop-card {
+  min-height: 550px !important;
+}

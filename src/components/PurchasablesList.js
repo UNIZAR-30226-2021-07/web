@@ -10,7 +10,7 @@ function PurchasablesList({ title, type }) {
   let elements = type == "board" ? boards : profile_pics;
 
   return (
-    <Card>
+    <Card className="shop-card">
       <Card.Body>
         <Row className="justify-content-center align-items-center ">
           <Card.Title className="primary-title text-align-center">
@@ -19,7 +19,7 @@ function PurchasablesList({ title, type }) {
         </Row>
         <Row className="justify-content-start">
           {elements.map((elem, idx) => (
-            <Col key={idx} xs={12} md={6} lg={4} >
+            <Col key={idx} sm={12} md={6} lg={4} >
               <PurchasableBox index={idx} type={type} />
             </Col>
           ))}
