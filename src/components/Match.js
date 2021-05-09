@@ -6,6 +6,8 @@ import Chat from "./Chat";
 import Board from "./Board";
 
 import { renderPausePopup } from "./popups/PausePopup";
+import { renderErrorPopup } from "./popups/ErrorPopup";
+
 import { SessionContext } from "./SessionProvider";
 
 import pause from "../assets/common/icons/pause.svg";
@@ -23,6 +25,17 @@ function Match() {
       history.push("/home");
     }
   }, []);
+
+  const pauseGame = async (e) => {
+    e.preventDefault();
+    session.socket.current.emit("pause_game", true, (data) => {
+      if (data && data.error) {
+        renderErrorPopup(data.error);
+      } else {
+        renderPausePopup();
+      }
+    });
+  };
 
   const leaveGame = async (e) => {
     e.preventDefault();
@@ -42,7 +55,7 @@ function Match() {
       <Col md={8} className="p-0">
         <Row className="mx-0 justify-content-around">
           <Image src={exit} className="game-icon" onClick={leaveGame} />
-          <Image src={pause} className="game-icon" onClick={renderPausePopup} />
+          <Image src={pause} className="game-icon" onClick={pauseGame} />
           <Image
             src={help}
             className="game-icon"

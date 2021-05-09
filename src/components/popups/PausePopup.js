@@ -1,12 +1,28 @@
-import React from "react";
+import React, {useContext} from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Button } from "react-bootstrap";
 
 import Popup from "./PopUp";
+import { renderErrorPopup } from "./ErrorPopup";
+
+import { SessionContext } from "../SessionProvider";
 
 import pause from "../../assets/common/icons/pause.svg";
 
 export default function PausePopup() {
+  const session = useContext(SessionContext);
+
+  const restartGame = async (e) => {
+    e.preventDefault();
+    session.socket.current.emit("pause_game", false, (data) => {
+      if (data && data.error) {
+        renderErrorPopup(data.error);
+      } else {
+        PopupboxManager.close();
+      }
+    });
+  };
+
   return (
     <Popup title="Partida pausada" icon={pause}>
       <p className="text-center">
@@ -15,7 +31,7 @@ export default function PausePopup() {
       </p>
       <Button
         className="primary-button"
-        onClick={PopupboxManager.close}
+        onClick={restartGame}
         style={{ width: "100%" }}
       >
         Reanudar Partida
