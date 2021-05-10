@@ -3,107 +3,11 @@ import { SessionContext } from "./SessionProvider";
 
 export var GameContext = React.createContext();
 
-// ------------------------ PRUEBAS BODY ---------------------------------------
-/*
-const rivalBodyTest = {
-  bodies: {
-    // Pila del jugador, siempre de longitud 4.
-    // JUGADOR N
-    fernandito: [
-      // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
-      // PILA 0
-      {
-        // Puede ser nulo si no hay nada en esa posición.
-        organ: null,
-        // Puede estar vacío si no hay modificadores.
-        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-        modifiers: [],
-      },
-      // PILA 1
-      {
-        // Puede ser nulo si no hay nada en esa posición.
-        organ: {
-          card_type: "organ",
-          color: "blue",
-        },
-        // Puede estar vacío si no hay modificadores.
-        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-        modifiers: [{ card_type: "virus", color: "red" }],
-      },
-      // PILA 2
-      {
-        // Puede ser nulo si no hay nada en esa posición.
-        organ: {
-          card_type: "organ",
-          color: "red",
-        },
-        // Puede estar vacío si no hay modificadores.
-        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-        modifiers: [{ card_type: "virus", color: "red" }],
-      },
-      // PILA 3
-      {
-        // Puede ser nulo si no hay nada en esa posición.
-        organ: {
-          card_type: "organ",
-          color: "yellow",
-        },
-        // Puede estar vacío si no hay modificadores.
-        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-        modifiers: [{ card_type: "virus", color: "red" }],
-      },
-    ],
-    ordesa: [
-      // PILAS DE CARTAS - VECTOR DE PILAS (4 PILAS)
-      // PILA 0
-      {
-        // Puede ser nulo si no hay nada en esa posición.
-        organ: null,
-        // Puede estar vacío si no hay modificadores.
-        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-        modifiers: [],
-      },
-      // PILA 1
-      {
-        // Puede ser nulo si no hay nada en esa posición.
-        organ: {
-          card_type: "organ",
-          color: "blue",
-        },
-        // Puede estar vacío si no hay modificadores.
-        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-        modifiers: [{ card_type: "virus", color: "yellow" }],
-      },
-      // PILA 2
-      {
-        // Puede ser nulo si no hay nada en esa posición.
-        organ: {
-          card_type: "organ",
-          color: "red",
-        },
-        // Puede estar vacío si no hay modificadores.
-        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-        modifiers: [{ card_type: "virus", color: "red" }],
-      },
-      // PILA 3
-      {
-        // Puede ser nulo si no hay nada en esa posición.
-        organ: {
-          card_type: "organ",
-          color: "yellow",
-        },
-        // Puede estar vacío si no hay modificadores.
-        // VECTOR DE CARTAS SOBRE LA PRIMERA CARTA
-        modifiers: [{ card_type: "virus", color: "red" }],
-      },
-    ],
-  },
-};
-*/
-
 function GameProvider({ children }) {
   const session = useContext(SessionContext);
   const [messages, setMessages] = useState([]);
+  const [isPrivate, setIsPrivate] = useState(false);
+  const [pause, setPause] = useState({});
 
   // Game variables
   const [hand, setHand] = useState([]);
@@ -120,7 +24,6 @@ function GameProvider({ children }) {
       return;
     }
     session.socket.current.on("chat", function ({ owner, msg }) {
-      console.log(owner, msg);
       setMessages((prev) => [...prev, { userid: owner, text: msg }]);
     });
 
@@ -178,7 +81,12 @@ function GameProvider({ children }) {
           bodiesRef.current = auxBodies;
           setBodies(auxBodies);
         }
-        // TODO: Resto campos del game_update?
+        if ("paused" in response) {
+          setPause({
+            isPaused: response.paused,
+            paused_by: response.paused_by,
+          });
+        }
       }
     });
 
@@ -202,6 +110,9 @@ function GameProvider({ children }) {
         bodies: bodies,
         currentTurn: currentTurn,
         players: players,
+        isPrivate: isPrivate,
+        setIsPrivate: (game) => setIsPrivate(game),
+        pause,
       }}
     >
       {children}

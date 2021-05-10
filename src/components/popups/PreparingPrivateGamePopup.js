@@ -8,12 +8,15 @@ import { renderErrorPopup } from "./ErrorPopup";
 import { renderStartGamePopup } from "./StartGamePopup";
 import { NumUsersContext } from "../UsersProvider";
 import { SessionContext } from "../SessionProvider";
+import { GameContext } from "../GameProvider";
+
 import { leaveGame } from "../WebSockets";
 
 export default function PreparingPrivateGamePopup({ socket }) {
   const history = useHistory();
   const userContext = useContext(NumUsersContext);
   const session = useContext(SessionContext);
+  const game = useContext(GameContext);
   const total = 6;
 
   useEffect(() => {
@@ -25,6 +28,7 @@ export default function PreparingPrivateGamePopup({ socket }) {
       } else {
         PopupboxManager.close();
         session.setOnMatch(true);
+        game.setIsPrivate(true);
         history.push("/match");
         socket.current.off("game_owner");
       }

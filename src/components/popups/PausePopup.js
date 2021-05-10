@@ -1,25 +1,56 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Button } from "react-bootstrap";
 
 import Popup from "./PopUp";
+import { renderErrorPopup } from "./ErrorPopup";
 
-import pause from "../../assets/common/icons/pause.svg";
+import { SessionContext } from "../SessionProvider";
+import { GameContext } from "../GameProvider";
+
+import pauseIcon from "../../assets/common/icons/pause.svg";
 
 export default function PausePopup() {
+  const { socket, userData } = useContext(SessionContext);
+  const { pause } = useContext(GameContext);
+
+  const restartGame = async (e) => {
+    e.preventDefault();
+    socket.current.emit("pause_game", false, (data) => {
+      if (data && data.error) {
+        renderErrorPopup(data.error);
+      }
+    });
+  };
+
+  useEffect(() => {
+    //- Termina la pausa
+    if (!pause.isPaused) {
+      PopupboxManager.close();
+    }
+  }, [pause.isPaused]);
+
   return (
-    <Popup title="Partida pausada" icon={pause}>
-      <p className="text-center">
-        Se ha pausado la partida, los gaticos <br />
-        están esperando...
-      </p>
-      <Button
-        className="primary-button"
-        onClick={PopupboxManager.close}
-        style={{ width: "100%" }}
-      >
-        Reanudar Partida
-      </Button>
+    <Popup title="Partida pausada" icon={pauseIcon}>
+      {pause.paused_by == userData.name ? (
+        <p className="text-center">
+          Se ha pausado la partida, los gaticos <br />
+          están esperando...
+        </p>
+      ) : (
+        <p className="text-center">
+          El gatico <strong>{pause.paused_by}</strong> ha parado la partida
+        </p>
+      )}
+      {pause.paused_by == userData.name && (
+        <Button
+          className="primary-button"
+          onClick={restartGame}
+          style={{ width: "100%" }}
+        >
+          Reanudar Partida
+        </Button>
+      )}
     </Popup>
   );
 }
@@ -30,7 +61,7 @@ export function renderPausePopup() {
     content,
     config: {
       fadeIn: true,
-      fadeInSpeed: 400,
+      fadeInSpeed: 200,
       escClose: false,
       overlayClose: false,
     },
