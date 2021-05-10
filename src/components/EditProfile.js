@@ -99,13 +99,19 @@ function EditProfile() {
     }
   };
 
+  const handleClose = () => {
+    history.push("/menu");
+  };
+
   return (
     <Container
       id="editProfile"
       className="app-container col-centered justify-content-center"
     >
       <Card>
-        <p className="close-card">&times;</p>g
+        <Button className="close card-close" onClick={handleClose}>
+          &times;
+        </Button>
         <Card.Body>
           <Row className="align-items-center justify-content-center">
             <Col>

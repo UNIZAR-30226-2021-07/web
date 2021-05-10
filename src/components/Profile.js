@@ -8,7 +8,7 @@ import {
   Image,
   Table,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { logoutUser, getUserStats } from "../utils/api";
 
@@ -20,6 +20,7 @@ import { SessionContext } from "./SessionProvider";
 
 function Profile() {
   const session = useContext(SessionContext);
+  const history = useHistory();
 
   const [picture, setPicture] = useState("");
   const [games, setGames] = useState(0);
@@ -69,12 +70,19 @@ function Profile() {
     }
   };
 
+  const handleClose = () => {
+    history.push("/menu");
+  };
+
   return (
     <Container
       id="profile"
       className="app-container col-centered justify-content-center"
     >
       <Card className="w-100">
+        <Button className="close card-close" onClick={handleClose}>
+          &times;
+        </Button>
         <Card.Body>
           <Row className="align-items-center justify-content-center">
             <Col>

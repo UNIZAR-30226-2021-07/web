@@ -192,19 +192,6 @@ body,
   font-weight: bold;
 }
 
-.close {
-  box-shadow: none !important;
-  cursor: pointer;
-  position: absolute;
-  right: 10px;
-  top: 5px;
-}
-
-.close:hover,
-.close:focus {
-  background: none !important;
-}
-
 /* --------------------------- Profile / EditProfile ------------------------ */
 
 .user-profile-image {
@@ -268,19 +255,14 @@ body,
   top: 5px;
 }
 .close:hover,
-.close:focus,
-.close-card:hover,
-.close-card:focus {
+.close:focus {
   background: none !important;
 }
 
-.close-card {
-  font-size: 15px;
-  box-shadow: none !important;
-  cursor: pointer;
-  position: absolute;
-  right: 15px;
-  top: 5px;
+.card-close {
+  font-size: 40px !important;
+  right: 20px;
+  top: 10px;
 }
 
 /*Chat*/
@@ -334,13 +316,6 @@ body,
 .btn-primary:focus,
 .form-control:focus {
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25) !important;
-}
-
-/* No hace falta animación para el botón de cerrar porque ya se hace con el
- * popup. */
-.close:focus {
-  color: #000 !important;
-  transition: none !important;
 }
 
 /* --------------------------- Match ------------------------ */
