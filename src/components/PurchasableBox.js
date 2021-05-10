@@ -32,6 +32,7 @@ function PurchasableBox({ index, type }) {
 
   // Check if element is selected
   useEffect(() => {
+    console.log(session.userData);
     if (type == "profile_pic") {
       if (session.userData.picture == index) {
         setIsSelected(true);
@@ -107,7 +108,7 @@ function PurchasableBox({ index, type }) {
   ) : (
     <Card
       className="purchasable-component p-0 my-3 ml-sm-4 ml-md-2"
-      onClick={() => renderConfirmPurchasePopup(eltPrice)}
+      onClick={() => renderConfirmPurchasePopup(index, type, eltPrice)}
     >
       <Card.Img
         className="purchasable-component-image"
