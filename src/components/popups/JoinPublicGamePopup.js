@@ -1,11 +1,9 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row } from "react-bootstrap";
-// import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
-// import { SessionContext } from "../SessionProvider";
 import { stopSearchingGame } from "../WebSockets";
 
 const curiosities = [
@@ -33,7 +31,7 @@ export default function JoinPublicGamePopup({ socket }) {
   );
 }
 
-export function renderJoinPublicGamePopup(session, history) {
+export function renderJoinPublicGamePopup(session, game, history) {
   const socket = session.socket;
 
   function callback(data) {
@@ -58,6 +56,7 @@ export function renderJoinPublicGamePopup(session, history) {
       } else {
         PopupboxManager.close();
         session.setOnMatch(true);
+        game.setIsPrivate(false);
         history.push("/match");
         socket.current.off("game_cancelled");
       }

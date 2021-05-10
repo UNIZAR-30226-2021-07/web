@@ -6,6 +6,8 @@ export var GameContext = React.createContext();
 function GameProvider({ children }) {
   const session = useContext(SessionContext);
   const [messages, setMessages] = useState([]);
+  const [isPrivate, setIsPrivate] = useState(false);
+  const [pause, setPause] = useState({});
 
   // Game variables
   const [hand, setHand] = useState([]);
@@ -22,7 +24,6 @@ function GameProvider({ children }) {
       return;
     }
     session.socket.current.on("chat", function ({ owner, msg }) {
-      console.log(owner, msg);
       setMessages((prev) => [...prev, { userid: owner, text: msg }]);
     });
 
@@ -80,7 +81,12 @@ function GameProvider({ children }) {
           bodiesRef.current = auxBodies;
           setBodies(auxBodies);
         }
-        // TODO: Resto campos del game_update?
+        if ("paused" in response) {
+          setPause({
+            isPaused: response.paused,
+            paused_by: response.paused_by,
+          });
+        }
       }
     });
 
@@ -105,6 +111,9 @@ function GameProvider({ children }) {
         bodies: bodies,
         currentTurn: currentTurn,
         players: players,
+        isPrivate: isPrivate,
+        setIsPrivate: (game) => setIsPrivate(game),
+        pause,
       }}
     >
       {children}

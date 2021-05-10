@@ -6,6 +6,8 @@ import { SessionContext } from "./SessionProvider";
 
 import coinImg from "../assets/common/icons/huella.svg";
 
+import { SessionContext } from "./SessionProvider";
+
 function Shop() {
   const session = useContext(SessionContext);
   const [coins, setCoins] = useState(0);

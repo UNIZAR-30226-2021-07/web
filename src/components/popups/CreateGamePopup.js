@@ -6,7 +6,7 @@ import Popup from "./PopUp";
 import { renderStartGamePopup } from "./StartGamePopup";
 import { leaveGame } from "../WebSockets";
 
-import check from "../../assets/common/icons/check.svg";
+import tick from "../../assets/common/icons/tick.svg";
 import clipboard from "../../assets/common/icons/clipboard.svg";
 
 function copyCode() {
@@ -20,7 +20,7 @@ export default function CreateGamePopup({ socket, code }) {
   return (
     <Popup
       title="Partida privada lista"
-      icon={check}
+      icon={tick}
       close={true}
       onClose={() => {
         leaveGame({ socket });

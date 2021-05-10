@@ -7,7 +7,7 @@ import Popup from "./PopUp";
 import { renderPreparingPrivateGamePopup } from "./PreparingPrivateGamePopup";
 import { renderErrorPopup } from "./ErrorPopup";
 
-import check from "../../assets/common/icons/check.svg";
+import tick from "../../assets/common/icons/tick.svg";
 
 export default function JoinPrivateGamePopup({ socket }) {
   const [code, setCode] = useState("");
@@ -26,7 +26,7 @@ export default function JoinPrivateGamePopup({ socket }) {
   };
 
   return (
-    <Popup title="Unirse a partida" icon={check} close={true}>
+    <Popup title="Unirse a partida" icon={tick} close={true}>
       <Row className="justify-content-center">
         <p className="text-center">
           Introduce el código de partida y <br />

@@ -7,12 +7,15 @@ import Popup from "./PopUp";
 import { renderErrorPopup } from "./ErrorPopup";
 import { NumUsersContext } from "../UsersProvider";
 import { SessionContext } from "../SessionProvider";
+import { GameContext } from "../GameProvider";
+
 import { leaveGame } from "../WebSockets";
 
 export default function StartGamePopup({ socket }) {
   const history = useHistory();
   const userContext = useContext(NumUsersContext);
   const session = useContext(SessionContext);
+  const game = useContext(GameContext);
   const total = 6;
 
   const handleClick = async (e) => {
@@ -24,6 +27,7 @@ export default function StartGamePopup({ socket }) {
       } else {
         PopupboxManager.close();
         session.setOnMatch(true);
+        game.setIsPrivate(true);
         history.push("/match");
       }
     });
