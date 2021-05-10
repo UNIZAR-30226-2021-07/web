@@ -43,7 +43,7 @@ function GameProvider({ children }) {
     session.socket.current.on("game_update", (response) => {
       if (response != null) {
         if ("current_turn" in response) {
-          console.log(response)
+          console.log(response);
           setCurrentTurn(response.current_turn);
         }
         if ("hand" in response) {

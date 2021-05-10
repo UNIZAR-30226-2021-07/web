@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
@@ -19,26 +19,25 @@ function Timer() {
 
   const [isPaused, setIsPaused] = useState(pause.paused);
 
-  useEffect(
-    () => {
-      setIsPaused(pause.paused)
-    }, [pause.paused]
-  )
-  
+  useEffect(() => {
+    setIsPaused(pause.paused);
+  }, [pause.paused]);
+
   return (
-    (currentTurn == userData.name) &&
-    <Row className="justify-content-center mb-2">
-      <CountdownCircleTimer
-        isPlaying={!isPaused}
-        duration={30}
-        colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
-        size={80}
-        strokeWidth={8}
-        onComplete={() => [true, 1000]}
-      >
-        {renderTime}
-      </CountdownCircleTimer>
-    </Row>
+    currentTurn == userData.name && (
+      <Row className="justify-content-center mb-2">
+        <CountdownCircleTimer
+          isPlaying={!isPaused}
+          duration={30}
+          colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
+          size={80}
+          strokeWidth={8}
+          onComplete={() => [true, 1000]}
+        >
+          {renderTime}
+        </CountdownCircleTimer>
+      </Row>
+    )
   );
 }
 

@@ -14,7 +14,6 @@ function searchCard(elem, card) {
 
 // Create card url
 export function getCard(card) {
-
   let carta = cards.find((elem) => searchCard(elem, card));
 
   return process.env.PUBLIC_URL + "/" + carta.image;
