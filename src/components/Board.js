@@ -12,26 +12,26 @@ import { SessionContext } from "./SessionProvider";
 
 function Board() {
   const session = useContext(SessionContext);
-  const game = useContext(GameContext);
+  const { players, bodies } = useContext(GameContext);
 
   const [numRivals, setNumRivals] = useState(0);
 
   useEffect(() => {
-    if (game.players.length > 0) {
-      setNumRivals(game.players.length);
+    if (players.length > 0) {
+      setNumRivals(players.length);
     }
     return () => {
       setNumRivals(0);
     };
-  }, [game.players]);
+  }, [players]);
 
   const Player1 = () => {
     let index = 2;
     return numRivals == 5 || numRivals == 6 ? (
       <PlayerBox
-        username={game.players[index].name}
-        photo={game.players[index].picture}
-        body={game.bodies[game.players[index].name]}
+        username={players[index].name}
+        photo={players[index].picture}
+        body={bodies[players[index].name]}
       />
     ) : null;
   };
@@ -40,9 +40,9 @@ function Board() {
     let index = 1;
     return numRivals > 2 ? (
       <PlayerBox
-        username={game.players[index].name}
-        photo={game.players[index].picture}
-        body={game.bodies[game.players[index].name]}
+        username={players[index].name}
+        photo={players[index].picture}
+        body={bodies[players[index].name]}
       />
     ) : null;
   };
@@ -54,9 +54,9 @@ function Board() {
     else if (numRivals == 6) index = 3;
     return index != -1 ? (
       <PlayerBox
-        username={game.players[index].name}
-        photo={game.players[index].picture}
-        body={game.bodies[game.players[index].name]}
+        username={players[index].name}
+        photo={players[index].picture}
+        body={bodies[players[index].name]}
       />
     ) : null;
   };
@@ -68,9 +68,9 @@ function Board() {
     else if (numRivals == 6) index = 4;
     return index != -1 ? (
       <PlayerBox
-        username={game.players[index].name}
-        photo={game.players[index].picture}
-        body={game.bodies[game.players[index].name]}
+        username={players[index].name}
+        photo={players[index].picture}
+        body={bodies[players[index].name]}
       />
     ) : null;
   };
@@ -81,9 +81,9 @@ function Board() {
     else if (numRivals == 6) index = 5;
     return index != -1 ? (
       <PlayerBox
-        username={game.players[index].name}
-        photo={game.players[index].picture}
-        body={game.bodies[game.players[index].name]}
+        username={players[index].name}
+        photo={players[index].picture}
+        body={bodies[players[index].name]}
       />
     ) : null;
   };
@@ -106,7 +106,7 @@ function Board() {
       </Row>
       <Row className="justify-content-center">
         <Body
-          cardStacks={game.bodies[session.userData.name]}
+          cardStacks={bodies[session.userData.name]}
           username={session.userData.name}
         />
       </Row>

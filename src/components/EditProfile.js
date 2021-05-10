@@ -85,7 +85,8 @@ function EditProfile() {
               }
             });
           } else {
-            if (response.error != "Ningún campo a modificar") { //Sorry :(
+            if (response.error != "Ningún campo a modificar") {
+              //Sorry :(
               renderErrorPopup(response.error);
             }
           }
