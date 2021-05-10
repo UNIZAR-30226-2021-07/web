@@ -52,15 +52,15 @@ function GameProvider({ children }) {
         if ("players" in response) {
           // Set players on game -> {board, name, picture}
           let users = [];
-          // Traverse players list and update it, deleting the ones that are 
+          // Traverse players list and update it, deleting the ones that are
           // not in the list and leaving the ones that still are
           playersRef.current.map((player) => {
             // Search player in players response -> if it exist apend if not don't
             var i = 0;
             for (i; i < response.players.length; i++) {
               if (response.players[i].name == player.name) {
-                  // Add to list
-                  users = [...users, player];
+                // Add to list
+                users = [...users, player];
               }
             }
           });
