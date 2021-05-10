@@ -8,7 +8,7 @@ import {
   Form,
   Image,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { renderDeleteAccountPopup } from "./popups/DeleteAccountPopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
@@ -22,6 +22,7 @@ import { SessionContext } from "./SessionProvider";
 
 function EditProfile() {
   const session = useContext(SessionContext);
+  const history = useHistory();
 
   const [picture, setPicture] = useState("");
   const [board, setBoard] = useState("");
