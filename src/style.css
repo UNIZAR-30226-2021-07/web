@@ -268,8 +268,19 @@ body,
   top: 5px;
 }
 .close:hover,
-.close:focus {
+.close:focus,
+.close-card:hover,
+.close-card:focus {
   background: none !important;
+}
+
+.close-card {
+  font-size: 15px;
+  box-shadow: none !important;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 5px;
 }
 
 /*Chat*/
