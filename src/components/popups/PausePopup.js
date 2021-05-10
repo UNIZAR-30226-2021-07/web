@@ -11,7 +11,7 @@ import { GameContext } from "../GameProvider";
 import pauseIcon from "../../assets/common/icons/pause.svg";
 
 export default function PausePopup() {
-  const {socket, userData} = useContext(SessionContext);
+  const { socket, userData } = useContext(SessionContext);
   const { pause } = useContext(GameContext);
 
   const restartGame = async (e) => {
@@ -26,7 +26,6 @@ export default function PausePopup() {
   useEffect(() => {
     //- Termina la pausa
     if (!pause.isPaused) {
-      console.log("Fin pausa");
       PopupboxManager.close();
     }
   }, [pause.isPaused]);

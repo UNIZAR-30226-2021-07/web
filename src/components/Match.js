@@ -33,14 +33,12 @@ function Match() {
   useEffect(() => {
     //Ha habido una pausa por parte de otro usuario
     if (pause.isPaused && pause.paused_by != userData.name) {
-      console.log("Otro ha pausado");
       renderPausePopup();
     }
   }, [pause.isPaused]);
 
   const pauseGame = async (e) => {
     e.preventDefault();
-    console.log("He pausado");
     socket.current.emit("pause_game", true, (data) => {
       if (data && data.error) {
         renderErrorPopup(data.error);
