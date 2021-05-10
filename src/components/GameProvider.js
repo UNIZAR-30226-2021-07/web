@@ -84,7 +84,7 @@ function GameProvider({ children }) {
         if ("paused" in response) {
           setPause({
             isPaused: response.paused,
-            paused_by: response.paused ? response.paused_by : null,
+            paused_by: response.paused_by,
           });
         }
       }
