@@ -92,6 +92,7 @@ function GameProvider({ children }) {
 
     return () => {
       // Delete previous listenings and clean variables
+      console.log("LIMPIANDO");
       setHand([]);
       bodiesRef.current = {};
       setBodies({});

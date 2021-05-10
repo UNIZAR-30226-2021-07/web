@@ -8,7 +8,7 @@ import {
   Form,
   Image,
 } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { renderDeleteAccountPopup } from "./popups/DeleteAccountPopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
@@ -22,7 +22,6 @@ import { SessionContext } from "./SessionProvider";
 
 function EditProfile() {
   const session = useContext(SessionContext);
-  const history = useHistory();
 
   const [picture, setPicture] = useState("");
   const [board, setBoard] = useState("");
@@ -61,11 +60,6 @@ function EditProfile() {
       if (newUserName && newUserName !== "") data.append(`name`, newUserName);
       if (password && password !== "") data.append(`password`, password);
 
-      // TODO -> Da error de no comprado!?
-      /*
-      data.append(`board`, board);
-      data.append(`picture`, picture);
-      */
       modifyUser({
         token: session.token,
         data,
@@ -87,12 +81,14 @@ function EditProfile() {
                     board: response.board,
                     purchases: response.purchases,
                   });
-                  history.push("/profile");
                 }
               }
             });
           } else {
-            renderErrorPopup(response.error);
+            if (response.error != "Ningún campo a modificar") {
+              //Sorry :(
+              renderErrorPopup(response.error);
+            }
           }
         }
       });

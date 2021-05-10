@@ -118,3 +118,15 @@ export async function getUserStats({ username, setToken }) {
 
   return serverRequest(path, requestOptions, setToken);
 }
+
+export async function shopBuy({ token, data, setToken }) {
+  const requestOptions = {
+    method: "POST",
+    headers: { Authorization: "Bearer " + token },
+    body: data,
+  };
+
+  const path = "/shop_buy";
+
+  return serverRequest(path, requestOptions, setToken);
+}
