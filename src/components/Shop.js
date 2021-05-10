@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { Row, Col, Container, Image, Card } from "react-bootstrap";
 
 import PurchasablesList from "./PurchasablesList";

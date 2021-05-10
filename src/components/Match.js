@@ -11,26 +11,37 @@ import { renderErrorPopup } from "./popups/ErrorPopup";
 import { SessionContext } from "./SessionProvider";
 import { GameContext } from "./GameProvider";
 
-import pause from "../assets/common/icons/pause.svg";
+import pauseIcon from "../assets/common/icons/pause.svg";
 import exit from "../assets/common/icons/logout.svg";
 import help from "../assets/common/icons/help.svg";
 
 function Match() {
-  const session = useContext(SessionContext);
-  const game = useContext(GameContext);
+  const { socket, updateSocket, setUpdateSocket, userData } = useContext(
+    SessionContext
+  );
+  const { isPrivate, pause } = useContext(GameContext);
   const history = useHistory();
 
   useEffect(() => {
     // If socket null, (e.g. when disconnected) go back to menu
-    if (!session.socket.current) {
-      session.setUpdateSocket((session.updateSocket + 1) % 2);
+    if (!socket.current) {
+      setUpdateSocket((updateSocket + 1) % 2);
       history.push("/home");
     }
   }, []);
 
+  useEffect(() => {
+    //Ha habido una pausa por parte de otro usuario
+    if (pause.isPaused && pause.paused_by != userData.name) {
+      console.log("Otro ha pausado");
+      renderPausePopup();
+    }
+  }, [pause.isPaused]);
+
   const pauseGame = async (e) => {
     e.preventDefault();
-    session.socket.current.emit("pause_game", true, (data) => {
+    console.log("He pausado");
+    socket.current.emit("pause_game", true, (data) => {
       if (data && data.error) {
         renderErrorPopup(data.error);
       } else {
@@ -41,12 +52,12 @@ function Match() {
 
   const leaveGame = async (e) => {
     e.preventDefault();
-    session.socket.current.emit("leave", (data) => {
+    socket.current.emit("leave", (data) => {
       if (data && data.error) {
         console.error(data.error);
       } else {
         // When leaving, change updateSocket to get a new socket
-        session.setUpdateSocket((session.updateSocket + 1) % 2);
+        setUpdateSocket((updateSocket + 1) % 2);
         history.push("/home");
       }
     });
@@ -57,7 +68,9 @@ function Match() {
       <Col md={8} className="p-0">
         <Row className="mx-0 justify-content-around">
           <Image src={exit} className="game-icon" onClick={leaveGame} />
-          {game.isPrivate && <Image src={pause} className="game-icon" onClick={pauseGame} />}
+          {isPrivate && (
+            <Image src={pauseIcon} className="game-icon" onClick={pauseGame} />
+          )}
           <Image
             src={help}
             className="game-icon"
