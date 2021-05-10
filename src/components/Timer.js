@@ -1,12 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Row } from "react-bootstrap";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
-const renderTime = ({ remainingTime }) => {
-  if (remainingTime === 0) {
-    /*alert("Tiempo finalizado");*/
-  }
+import { GameContext } from "./GameProvider";
 
+const renderTime = ({ remainingTime }) => {
   return (
     <div className="text-center">
       <div className="time">{remainingTime}</div>
@@ -15,10 +13,11 @@ const renderTime = ({ remainingTime }) => {
 };
 
 function Timer() {
+  const { pause } = useContext(GameContext);
   return (
     <Row className="justify-content-center mb-2">
       <CountdownCircleTimer
-        isPlaying={true}
+        isPlaying={!pause.paused}
         duration={30}
         colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
         size={80}
