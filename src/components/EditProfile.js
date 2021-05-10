@@ -105,7 +105,7 @@ function EditProfile() {
       className="app-container col-centered justify-content-center"
     >
       <Card>
-        <p className="close-card">&times;</p>
+        <p className="close-card">&times;</p>g
         <Card.Body>
           <Row className="align-items-center justify-content-center">
             <Col>
