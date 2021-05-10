@@ -18,6 +18,7 @@ function GameProvider({ children }) {
   const [currentTurn, setCurrentTurn] = useState("");
 
   const [players, setPlayers] = useState([]);
+  const playersRef = useRef(players);
 
   useEffect(() => {
     if (!session.socket.current) {
@@ -51,21 +52,51 @@ function GameProvider({ children }) {
         if ("players" in response) {
           // Set players on game -> {board, name, picture}
           let users = [];
-          // Set own user the first on the list of players
-          let ownUser = response.players.find(
-            (player) => player.name == session.userData.name
-          );
-          users = [...users, ownUser];
+          // Traverse players list and update it, deleting the ones that are 
+          // not in the list and leaving the ones that still are
+          playersRef.current.map((player) => {
+            // Search player in players response -> if it exist apend if not don't
+            var i = 0;
+            for (i; i < response.players.length; i++) {
+              if (response.players[i].name == player.name) {
+                  // Add to list
+                  users = [...users, player];
+              }
+            }
+          });
+
+          // Look for new players and add it (like IA)
           response.players.map((player) => {
-            // Rivals
-            if (player.name != session.userData.name) {
+            // Search if it is not in users list
+            var i = 0;
+            for (i; i < users.length; i++) {
+              if (player.name == users[i].name) {
+                break;
+              }
+            }
+            if (i == users.length) {
+              // Add player to list of players as new player
               users = [...users, player];
             }
           });
+
+          // Set own user the first on the list of players
+          for (var i = 0; i < users.length; i++) {
+            if (users[i].name == session.userData.name) {
+              let auxUser = users[0];
+              users[0] = users[i];
+              users[i] = auxUser;
+            }
+          }
+
+          console.log(users);
+
+          playersRef.current = users;
           setPlayers(users);
         }
         if ("bodies" in response) {
-          setBodies(response.bodies);
+          // TODO: OJO CUIDAO CON ESTE DESCOMENTARIO
+          //setBodies(response.bodies);
 
           // Update corresponding body in bodies -> if !exist create a new
           // entry in the dictionary
