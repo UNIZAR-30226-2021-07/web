@@ -7,7 +7,7 @@ function GameProvider({ children }) {
   const session = useContext(SessionContext);
   const [messages, setMessages] = useState([]);
   const [isPrivate, setIsPrivate] = useState(false);
-  const [pause, setPause] = useState({});
+  const [pause, setPause] = useState({isPaused: false, paused_by: null});
 
   // Game variables
   const [hand, setHand] = useState([]);
@@ -93,7 +93,6 @@ function GameProvider({ children }) {
 
     return () => {
       // Delete previous listenings and clean variables
-      console.log("LIMPIANDO");
       setHand([]);
       bodiesRef.current = {};
       setBodies({});
