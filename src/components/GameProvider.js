@@ -95,9 +95,6 @@ function GameProvider({ children }) {
           setPlayers(users);
         }
         if ("bodies" in response) {
-          // TODO: OJO CUIDAO CON ESTE DESCOMENTARIO
-          //setBodies(response.bodies);
-
           // Update corresponding body in bodies -> if !exist create a new
           // entry in the dictionary
 
@@ -123,7 +120,6 @@ function GameProvider({ children }) {
 
     return () => {
       // Delete previous listenings and clean variables
-      console.log("LIMPIANDO");
       setHand([]);
       bodiesRef.current = {};
       setBodies({});

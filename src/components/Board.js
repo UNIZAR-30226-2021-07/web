@@ -15,10 +15,12 @@ function Board() {
   const { players, bodies } = useContext(GameContext);
 
   const [numRivals, setNumRivals] = useState(0);
+  const [gamePlayers, setGamePlayers] = useState(players);
 
   useEffect(() => {
     if (players.length > 0) {
       setNumRivals(players.length);
+      setGamePlayers(players);
     }
     return () => {
       setNumRivals(0);
@@ -29,9 +31,9 @@ function Board() {
     let index = 2;
     return numRivals == 5 || numRivals == 6 ? (
       <PlayerBox
-        username={players[index].name}
-        photo={players[index].picture}
-        body={bodies[players[index].name]}
+        username={gamePlayers[index].name}
+        photo={gamePlayers[index].picture}
+        body={bodies[gamePlayers[index].name]}
       />
     ) : null;
   };
@@ -40,9 +42,9 @@ function Board() {
     let index = 1;
     return numRivals > 2 ? (
       <PlayerBox
-        username={players[index].name}
-        photo={players[index].picture}
-        body={bodies[players[index].name]}
+        username={gamePlayers[index].name}
+        photo={gamePlayers[index].picture}
+        body={bodies[gamePlayers[index].name]}
       />
     ) : null;
   };
@@ -54,9 +56,9 @@ function Board() {
     else if (numRivals == 6) index = 3;
     return index != -1 ? (
       <PlayerBox
-        username={players[index].name}
-        photo={players[index].picture}
-        body={bodies[players[index].name]}
+        username={gamePlayers[index].name}
+        photo={gamePlayers[index].picture}
+        body={bodies[gamePlayers[index].name]}
       />
     ) : null;
   };
@@ -68,9 +70,9 @@ function Board() {
     else if (numRivals == 6) index = 4;
     return index != -1 ? (
       <PlayerBox
-        username={players[index].name}
-        photo={players[index].picture}
-        body={bodies[players[index].name]}
+        username={gamePlayers[index].name}
+        photo={gamePlayers[index].picture}
+        body={bodies[gamePlayers[index].name]}
       />
     ) : null;
   };
@@ -81,9 +83,9 @@ function Board() {
     else if (numRivals == 6) index = 5;
     return index != -1 ? (
       <PlayerBox
-        username={players[index].name}
-        photo={players[index].picture}
-        body={bodies[players[index].name]}
+        username={gamePlayers[index].name}
+        photo={gamePlayers[index].picture}
+        body={bodies[gamePlayers[index].name]}
       />
     ) : null;
   };
