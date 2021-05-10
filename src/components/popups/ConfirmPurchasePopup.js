@@ -11,8 +11,6 @@ import coins from "../../assets/common/icons/huella.svg";
 
 export default function ConfirmPurchasePopup({ id, type, price }) {
   const session = useContext(SessionContext);
-  console.log(id);
-  console.log(type);
 
   const handleClick = async (e) => {
     e.preventDefault();

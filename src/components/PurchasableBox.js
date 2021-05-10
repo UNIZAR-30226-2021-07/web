@@ -32,7 +32,6 @@ function PurchasableBox({ index, type }) {
 
   // Check if element is selected
   useEffect(() => {
-    console.log(session.userData);
     if (type == "profile_pic") {
       if (session.userData.picture == index) {
         setIsSelected(true);
@@ -48,8 +47,6 @@ function PurchasableBox({ index, type }) {
     }
   }, [session.userData.picture, session.userData.board]);
 
-  // TODO: Probar bien si funciona -> hasta que no se haya podido comprar no
-  // se puede probar...
   function changeUserData() {
     // If it is already selected disable the call
     if (!isSelected) {
