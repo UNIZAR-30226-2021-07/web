@@ -32,6 +32,7 @@ function Board() {
     return numRivals == 5 || numRivals == 6 ? (
       <PlayerBox
         username={gamePlayers[index].name}
+        display_name={gamePlayers[index].display_name}
         photo={gamePlayers[index].picture}
         body={bodies[gamePlayers[index].name]}
       />
@@ -43,6 +44,7 @@ function Board() {
     return numRivals > 2 ? (
       <PlayerBox
         username={gamePlayers[index].name}
+        display_name={gamePlayers[index].display_name}
         photo={gamePlayers[index].picture}
         body={bodies[gamePlayers[index].name]}
       />
@@ -57,6 +59,7 @@ function Board() {
     return index != -1 ? (
       <PlayerBox
         username={gamePlayers[index].name}
+        display_name={gamePlayers[index].display_name}
         photo={gamePlayers[index].picture}
         body={bodies[gamePlayers[index].name]}
       />
@@ -71,6 +74,7 @@ function Board() {
     return index != -1 ? (
       <PlayerBox
         username={gamePlayers[index].name}
+        display_name={gamePlayers[index].display_name}
         photo={gamePlayers[index].picture}
         body={bodies[gamePlayers[index].name]}
       />
@@ -84,6 +88,7 @@ function Board() {
     return index != -1 ? (
       <PlayerBox
         username={gamePlayers[index].name}
+        display_name={gamePlayers[index].display_name}
         photo={gamePlayers[index].picture}
         body={bodies[gamePlayers[index].name]}
       />

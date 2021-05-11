@@ -50,7 +50,7 @@ function GameProvider({ children }) {
           setHand(response.hand);
         }
         if ("players" in response) {
-          // Set players on game -> {board, name, picture}
+          // Set players on game -> {board, name, display_name, picture}
           let users = [];
           // Traverse players list and update it, deleting the ones that are
           // not in the list and leaving the ones that still are
@@ -60,12 +60,22 @@ function GameProvider({ children }) {
             for (i; i < response.players.length; i++) {
               if (response.players[i].name == player.name) {
                 // Add to list
-                users = [...users, player];
+                // Check if is ai
+                if (response.players[i].is_ai == true) {
+                  // Set received player instead of current one
+                  // adding its display name as ai_bot
+                  let ia_player = response.players[i];
+                  ia_player["display_name"] = ia_player.name + " [BOT]";
+                  users = [...users, ia_player];
+                } else {
+                  // Set ordinary one (not ai)
+                  users = [...users, player];
+                }
               }
             }
           });
 
-          // Look for new players and add it (like IA)
+          // Add new players (e.g. at the beggining)
           response.players.map((player) => {
             // Search if it is not in users list
             var i = 0;
@@ -76,6 +86,8 @@ function GameProvider({ children }) {
             }
             if (i == users.length) {
               // Add player to list of players as new player
+              // Adding new key: display_name (the same as its name at this point)
+              player["display_name"] = player.name;
               users = [...users, player];
             }
           });
@@ -88,8 +100,6 @@ function GameProvider({ children }) {
               users[i] = auxUser;
             }
           }
-
-          console.log(users);
 
           playersRef.current = users;
           setPlayers(users);
@@ -115,6 +125,7 @@ function GameProvider({ children }) {
             paused_by: response.paused_by,
           });
         }
+        console.log(response);
       }
     });
 
