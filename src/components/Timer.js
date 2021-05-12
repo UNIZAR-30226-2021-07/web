@@ -16,28 +16,40 @@ const renderTime = ({ remainingTime }) => {
 function Timer() {
   const { userData } = useContext(SessionContext);
   const { isPaused, currentTurn } = useContext(GameContext);
-
   const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
     setIsPlaying(!isPaused);
   }, [isPaused]);
 
-  return (
-    currentTurn == userData.name && (
-      <Row className="justify-content-center mb-2">
-        <CountdownCircleTimer
-          isPlaying={isPlaying}
-          duration={30}
-          colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
-          size={80}
-          strokeWidth={8}
-          onComplete={() => [true, 1000]}
-        >
-          {renderTime}
-        </CountdownCircleTimer>
-      </Row>
-    )
+  return currentTurn == userData.name ? (
+    <Row className="justify-content-center mb-2">
+      <CountdownCircleTimer
+        key={currentTurn}
+        isPlaying={isPlaying}
+        duration={30}
+        colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
+        size={80}
+        strokeWidth={8}
+        onComplete={() => [true, 1000]}
+      >
+        {renderTime}
+      </CountdownCircleTimer>
+    </Row>
+  ) : (
+    <Row className="justify-content-center mb-2">
+      <CountdownCircleTimer
+        key={currentTurn}
+        isPlaying={false}
+        duration={30}
+        colors={[["#7A7A7A"]]}
+        size={80}
+        strokeWidth={8}
+        onComplete={() => [true, 1000]}
+      >
+        {renderTime}
+      </CountdownCircleTimer>
+    </Row>
   );
 }
 
