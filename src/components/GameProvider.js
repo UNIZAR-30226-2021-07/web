@@ -18,6 +18,7 @@ function GameProvider({ children }) {
   const [currentTurn, setCurrentTurn] = useState("");
 
   const [players, setPlayers] = useState([]);
+  const playersRef = useRef(players);
 
   useEffect(() => {
     if (!session.socket.current) {
@@ -50,24 +51,61 @@ function GameProvider({ children }) {
           setHand(response.hand);
         }
         if ("players" in response) {
-          // Set players on game -> {board, name, picture}
+          // Set players on game -> {board, name, display_name, picture}
           let users = [];
-          // Set own user the first on the list of players
-          let ownUser = response.players.find(
-            (player) => player.name == session.userData.name
-          );
-          users = [...users, ownUser];
+          // Traverse players list and update it, deleting the ones that are
+          // not in the list and leaving the ones that still are
+          playersRef.current.map((player) => {
+            // Search player in players response -> if it exist apend if not don't
+            var i = 0;
+            for (i; i < response.players.length; i++) {
+              if (response.players[i].name == player.name) {
+                // Add to list
+                // Check if is ai
+                if (response.players[i].is_ai == true) {
+                  // Set received player instead of current one
+                  // adding its display name as ai_bot
+                  let ia_player = response.players[i];
+                  ia_player["display_name"] = ia_player.name + " [BOT]";
+                  users = [...users, ia_player];
+                } else {
+                  // Set ordinary one (not ai)
+                  users = [...users, player];
+                }
+              }
+            }
+          });
+
+          // Add new players (e.g. at the beggining)
           response.players.map((player) => {
-            // Rivals
-            if (player.name != session.userData.name) {
+            // Search if it is not in users list
+            var i = 0;
+            for (i; i < users.length; i++) {
+              if (player.name == users[i].name) {
+                break;
+              }
+            }
+            if (i == users.length) {
+              // Add player to list of players as new player
+              // Adding new key: display_name (the same as its name at this point)
+              player["display_name"] = player.name;
               users = [...users, player];
             }
           });
+
+          // Set own user the first on the list of players
+          for (var i = 0; i < users.length; i++) {
+            if (users[i].name == session.userData.name) {
+              let auxUser = users[0];
+              users[0] = users[i];
+              users[i] = auxUser;
+            }
+          }
+
+          playersRef.current = users;
           setPlayers(users);
         }
         if ("bodies" in response) {
-          setBodies(response.bodies);
-
           // Update corresponding body in bodies -> if !exist create a new
           // entry in the dictionary
 
@@ -88,16 +126,17 @@ function GameProvider({ children }) {
             paused_by: response.paused_by,
           });
         }
+        console.log(response);
       }
     });
 
     return () => {
       // Delete previous listenings and clean variables
-      console.log("LIMPIANDO");
       setHand([]);
       bodiesRef.current = {};
       setBodies({});
       setCurrentTurn("");
+      playersRef.current = [];
       setPlayers([]);
       session.socket.current.off("game_update");
     };
