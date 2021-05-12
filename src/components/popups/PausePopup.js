@@ -12,7 +12,7 @@ import pauseIcon from "../../assets/common/icons/pause.svg";
 
 export default function PausePopup() {
   const { socket, userData } = useContext(SessionContext);
-  const { pause } = useContext(GameContext);
+  const { isPaused, pausedBy } = useContext(GameContext);
 
   const restartGame = async (e) => {
     e.preventDefault();
@@ -25,24 +25,24 @@ export default function PausePopup() {
 
   useEffect(() => {
     //- Termina la pausa
-    if (!pause.isPaused) {
+    if (!isPaused) {
       PopupboxManager.close();
     }
-  }, [pause.isPaused]);
+  }, [isPaused]);
 
   return (
     <Popup title="Partida pausada" icon={pauseIcon}>
-      {pause.paused_by == userData.name ? (
+      {pausedBy == userData.name ? (
         <p className="text-center">
           Se ha pausado la partida, los gaticos <br />
           están esperando...
         </p>
       ) : (
         <p className="text-center">
-          El gatico <strong>{pause.paused_by}</strong> ha parado la partida
+          El gatico <strong>{pausedBy}</strong> ha parado la partida
         </p>
       )}
-      {pause.paused_by == userData.name && (
+      {pausedBy == userData.name && (
         <Button
           className="primary-button"
           onClick={restartGame}

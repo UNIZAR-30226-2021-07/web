@@ -15,19 +15,19 @@ const renderTime = ({ remainingTime }) => {
 
 function Timer() {
   const { userData } = useContext(SessionContext);
-  const { pause, currentTurn } = useContext(GameContext);
+  const { isPaused, currentTurn } = useContext(GameContext);
 
-  const [isPaused, setIsPaused] = useState(pause.paused);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
-    setIsPaused(pause.paused);
-  }, [pause.paused]);
+    setIsPlaying(!isPaused);
+  }, [isPaused]);
 
   return (
     currentTurn == userData.name && (
       <Row className="justify-content-center mb-2">
         <CountdownCircleTimer
-          isPlaying={!isPaused}
+          isPlaying={isPlaying}
           duration={30}
           colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
           size={80}
