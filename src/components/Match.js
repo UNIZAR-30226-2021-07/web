@@ -36,7 +36,7 @@ function Match() {
     if (isPaused && pausedBy != userData.name) {
       renderPausePopup();
     }
-  }, [isPaused]);
+  }, [isPaused, pausedBy]);
 
   const pauseGame = async (e) => {
     e.preventDefault();
