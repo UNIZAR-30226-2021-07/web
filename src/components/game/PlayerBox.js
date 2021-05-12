@@ -5,7 +5,7 @@ import { getProfile } from "../../utils/json";
 
 import Body from "./Body";
 
-function PlayerBox({ username, photo, body }) {
+function PlayerBox({ username, display_name, photo, body }) {
   let profile = getProfile(photo);
   return (
     <Card className="player-box p-1 pb-2 m-3">
@@ -17,7 +17,7 @@ function PlayerBox({ username, photo, body }) {
               src={profile}
               roundedCircle
             />
-            <h4 className="align-self-center my-0">{username} </h4>
+            <h4 className="align-self-center my-0">{display_name} </h4>
           </Row>
         </Card.Title>
         <Body cardStacks={body} kind="rival" username={username} />
