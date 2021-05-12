@@ -135,6 +135,7 @@ function GameProvider({ children }) {
       bodiesRef.current = {};
       setBodies({});
       setCurrentTurn("");
+      playersRef.current = [];
       setPlayers([]);
       session.socket.current.off("game_update");
     };
