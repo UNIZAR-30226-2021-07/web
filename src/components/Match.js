@@ -19,7 +19,7 @@ function Match() {
   const { socket, updateSocket, setUpdateSocket, userData } = useContext(
     SessionContext
   );
-  const { isPrivate, pause } = useContext(GameContext);
+  const { isPrivate, isPaused, pausedBy } = useContext(GameContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -32,10 +32,10 @@ function Match() {
 
   useEffect(() => {
     //Ha habido una pausa por parte de otro usuario
-    if (pause.isPaused && pause.paused_by != userData.name) {
+    if (isPaused && pausedBy != userData.name) {
       renderPausePopup();
     }
-  }, [pause.isPaused]);
+  }, [isPaused, pausedBy]);
 
   const pauseGame = async (e) => {
     e.preventDefault();

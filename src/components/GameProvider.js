@@ -7,7 +7,8 @@ function GameProvider({ children }) {
   const session = useContext(SessionContext);
   const [messages, setMessages] = useState([]);
   const [isPrivate, setIsPrivate] = useState(false);
-  const [pause, setPause] = useState({});
+  const [isPaused, setIsPaused] = useState(false);
+  const [pausedBy, setPausedBy] = useState("");
 
   // Game variables
   const [hand, setHand] = useState([]);
@@ -120,12 +121,9 @@ function GameProvider({ children }) {
           setBodies(auxBodies);
         }
         if ("paused" in response) {
-          setPause({
-            isPaused: response.paused,
-            paused_by: response.paused_by,
-          });
+          setIsPaused(response.paused);
+          setPausedBy(response.paused_by);
         }
-        console.log(response);
       }
     });
 
@@ -138,6 +136,8 @@ function GameProvider({ children }) {
       playersRef.current = [];
       setPlayers([]);
       session.socket.current.off("game_update");
+      setIsPaused(false);
+      setPausedBy("");
     };
   }, [session.socketChange]);
 
@@ -152,7 +152,8 @@ function GameProvider({ children }) {
         players: players,
         isPrivate: isPrivate,
         setIsPrivate: (game) => setIsPrivate(game),
-        pause,
+        isPaused,
+        pausedBy,
       }}
     >
       {children}
