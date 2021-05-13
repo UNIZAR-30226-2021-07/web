@@ -125,6 +125,7 @@ function GameProvider({ children }) {
           setPausedBy(response.paused_by);
         }
       }
+      console.log(response);
     });
 
     return () => {
