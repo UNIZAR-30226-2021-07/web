@@ -121,7 +121,6 @@ function GameProvider({ children }) {
           setBodies(auxBodies);
         }
         if ("paused" in response) {
-          console.log(response);
           setIsPaused(response.paused);
           setPausedBy(response.paused_by);
         }

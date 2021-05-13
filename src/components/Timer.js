@@ -22,27 +22,17 @@ function Timer() {
     setIsPlaying(!isPaused);
   }, [isPaused]);
 
-  return currentTurn == userData.name ? (
+  return (
     <Row className="justify-content-center mb-2">
       <CountdownCircleTimer
         key={currentTurn}
-        isPlaying={isPlaying}
+        isPlaying={currentTurn == userData.name ? isPlaying : false}
         duration={30}
-        colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
-        size={80}
-        strokeWidth={8}
-        onComplete={() => [true, 1000]}
-      >
-        {renderTime}
-      </CountdownCircleTimer>
-    </Row>
-  ) : (
-    <Row className="justify-content-center mb-2">
-      <CountdownCircleTimer
-        key={currentTurn}
-        isPlaying={false}
-        duration={30}
-        colors={[["#7A7A7A"]]}
+        colors={
+          currentTurn == userData.name
+            ? [["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]
+            : [["#7A7A7A"]]
+        }
         size={80}
         strokeWidth={8}
         onComplete={() => [true, 1000]}

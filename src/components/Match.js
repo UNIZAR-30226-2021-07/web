@@ -32,7 +32,6 @@ function Match() {
 
   useEffect(() => {
     //Ha habido una pausa por parte de otro usuario
-    console.log("paused_by: " + pausedBy);
     if (isPaused && pausedBy != userData.name) {
       renderPausePopup();
     }
