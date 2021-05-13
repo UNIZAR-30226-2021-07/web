@@ -37,7 +37,7 @@ function Timer() {
         strokeWidth={8}
         onComplete={() => [true, 1000]}
       >
-        {renderTime}
+        {currentTurn == userData.name ? renderTime : null}
       </CountdownCircleTimer>
     </Row>
   );
