@@ -5,10 +5,14 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { SessionContext } from "./SessionProvider";
 import { GameContext } from "./GameProvider";
 
-const renderTime = ({ remainingTime }) => {
-  return (
+const renderTime = ({ remainingTime }, isTurn) => {
+  return isTurn ? (
     <div className="text-center">
-      <div className="time">{remainingTime}</div>
+      <div className="time">{remainingTime} </div>
+    </div>
+  ) : (
+    <div className="text-center">
+      <strong style={{ "font-size": "14px" }}>ESPERA</strong>
     </div>
   );
 };
@@ -22,6 +26,7 @@ function Timer() {
     setIsPlaying(!isPaused);
   }, [isPaused]);
 
+  let isTurn = currentTurn == userData.name;
   return (
     <Row className="justify-content-center mb-2">
       <CountdownCircleTimer
@@ -37,7 +42,7 @@ function Timer() {
         strokeWidth={8}
         onComplete={() => [true, 1000]}
       >
-        {renderTime}
+        {({ remainingTime }) => renderTime({ remainingTime }, isTurn)}
       </CountdownCircleTimer>
     </Row>
   );

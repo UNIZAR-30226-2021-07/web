@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import { SessionContext } from "./SessionProvider";
 
 export var GameContext = React.createContext();
 
 function GameProvider({ children }) {
   const session = useContext(SessionContext);
+  const history = useHistory();
   const [messages, setMessages] = useState([]);
   const [isPrivate, setIsPrivate] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
@@ -63,11 +65,20 @@ function GameProvider({ children }) {
                 // Add to list
                 // Check if is ai
                 if (response.players[i].is_ai == true) {
-                  // Set received player instead of current one
-                  // adding its display name as ai_bot
-                  let ia_player = response.players[i];
-                  ia_player["display_name"] = ia_player.name + " [BOT]";
-                  users = [...users, ia_player];
+                  // Check if it own player replaced by AI -> get out of the match
+                  if (response.players[i].name == session.userData.name) {
+                    // Get out of match
+                    // When leaving, change updateSocket to get a new socket
+                    session.setUpdateSocket((session.updateSocket + 1) % 2);
+                    history.push("/home");
+                    return;
+                  } else {
+                    // Set received player instead of current one
+                    // adding its display name as ai_bot
+                    let ia_player = response.players[i];
+                    ia_player["display_name"] = ia_player.name + " [BOT]";
+                    users = [...users, ia_player];
+                  }
                 } else {
                   // Set ordinary one (not ai)
                   users = [...users, player];
@@ -125,10 +136,13 @@ function GameProvider({ children }) {
           setPausedBy(response.paused_by);
         }
       }
+
+      console.log(response);
     });
 
     return () => {
       // Delete previous listenings and clean variables
+      console.log("RETURN");
       setHand([]);
       bodiesRef.current = {};
       setBodies({});
