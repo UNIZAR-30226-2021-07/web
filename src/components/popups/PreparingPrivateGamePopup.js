@@ -23,6 +23,7 @@ export default function PreparingPrivateGamePopup({ socket }) {
     if (!socket || !socket.current) return;
 
     socket.current.on("start_game", (response) => {
+      console.log("game_start");
       if (response && response.error) {
         renderErrorPopup(response.error);
       } else {

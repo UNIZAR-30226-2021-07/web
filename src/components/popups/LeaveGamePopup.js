@@ -7,7 +7,7 @@ import Popup from "./PopUp";
 
 import { SessionContext } from "../SessionProvider";
 
-export default function LeaveGamePopup({isPrivate}) {
+export default function LeaveGamePopup({ isPrivate }) {
   const { socket, updateSocket, setUpdateSocket } = useContext(SessionContext);
   const history = useHistory();
 
@@ -25,19 +25,23 @@ export default function LeaveGamePopup({isPrivate}) {
     });
   };
 
+  const exitGame = (e) => {
+    e.preventDefault();
+    PopupboxManager.close();
+    setUpdateSocket((updateSocket + 1) % 2);
+    history.push("/home");
+  };
+
   return (
     <Popup title="¿Quieres salir?" close={true}>
       <Row>
-        <Button className="alert-button w-100 mb-3 mt-4" onClick={leaveGame}>
+        <Button className="alert-button w-100 mt-3" onClick={leaveGame}>
           Abandonar partida
         </Button>
       </Row>
       {isPrivate && (
         <Row>
-          <Button
-            className="primary-button w-100"
-            onClick={PopupboxManager.close}
-          >
+          <Button className="primary-button w-100 my-3" onClick={exitGame}>
             Salir y reanudar más tarde
           </Button>
         </Row>
