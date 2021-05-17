@@ -353,12 +353,10 @@ body,
 }
 
 .discard-base {
-  position: relative;
-  display: block;
-  height: 16vh;
-  width: 8vh !important;
-  border: #000;
-  border-width: 3px !important;
+  height: 80px;
+  width: 150px;
+  border: 1px solid #000;
+  text-align: center;
 }
 
 /* --------------------------- Cartas ------------------------ */

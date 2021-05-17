@@ -42,7 +42,7 @@ function CardStack({ id, cards, kind, organ_pile, username }) {
     } else if (treatment_type == "medical_error") {
       data["target"] = username;
     }
-    
+
     // popup para coger el 2º usuario al que se echa el transplante
     playCard(session, data);
   };

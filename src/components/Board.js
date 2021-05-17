@@ -118,7 +118,7 @@ function Board() {
     let data = slot;
 
     console.log(data);
-    
+
     playDiscard(session, data);
   };
 
@@ -145,18 +145,16 @@ function Board() {
       <Row className="justify-content-center">
         <Col />
         <Col>
-        <Body
-          cardStacks={bodies[session.userData.name]}
-          username={session.userData.name}
-        />
+          <Body
+            cardStacks={bodies[session.userData.name]}
+            username={session.userData.name}
+          />
         </Col>
-        <Col>
-        <div
-          className="discard-base"
-          onDrop={drop}
-          onDragOver={allowDrop}
-        >DESCARTES</div>
-        </Col> 
+        <Col className="justify-content-center align-items-center">
+          <div className="discard-base" onDrop={drop} onDragOver={allowDrop}>
+            <h5 className="mt-4">DESCARTES</h5>
+          </div>
+        </Col>
       </Row>
       <Row className="justify-content-center">
         <Col />
