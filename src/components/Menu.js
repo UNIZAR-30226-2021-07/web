@@ -26,12 +26,17 @@ function Menu() {
   const [picture, setPicture] = useState("");
 
   useEffect(() => {
+    if (session.restartPending) {
+      console.log("Pendiente reanudar");
+      return;
+    }
     // Prevents going to match if user is not in a match
-    session.setOnMatch(false);
 
+    session.setOnMatch(false);
     if (!session.socket.current) return;
     leaveGame(session);
-  }, []);
+    
+  }, [session.restartPending]);
 
   useEffect(() => {
     if (session.userData.length === 0) return;

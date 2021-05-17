@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button, Form } from "react-bootstrap";
 
@@ -9,16 +9,41 @@ import { renderErrorPopup } from "./ErrorPopup";
 
 import tick from "../../assets/common/icons/tick.svg";
 
-export default function JoinPrivateGamePopup({ socket }) {
+export default function JoinPrivateGamePopup({ socket, setRestartPending, restartPending}) {
   const [code, setCode] = useState("");
+
+  useEffect(
+    () => {
+      console.log("Restart pending:" + restartPending);
+    }, [restartPending]
+  )
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     socket.current.emit("join", code, (response) => {
+
+      console.log(restartPending);
+
       if (response && response.error) {
         renderErrorPopup(response.error);
+      } else if (restartPending) {
+        //Join existing game
+        console.log("Join existing");
+
+        socket.current.once("start_game", (response) => {
+          if (response && response.error) {
+            renderErrorPopup(response.error);
+          } else {
+            setRestartPending(false);
+            PopupboxManager.close();
+            history.push("/match");
+          }
+        });
       } else {
+        //Join new game
+        console.log("New game");
+
         PopupboxManager.close();
         renderPreparingPrivateGamePopup({ socket });
       }

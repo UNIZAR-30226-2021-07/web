@@ -8,7 +8,13 @@ import Popup from "./PopUp";
 import { SessionContext } from "../SessionProvider";
 
 export default function LeaveGamePopup({ isPrivate }) {
-  const { socket, updateSocket, setUpdateSocket } = useContext(SessionContext);
+  const {
+    socket,
+    updateSocket,
+    setUpdateSocket,
+    setRestartPending,
+  } = useContext(SessionContext);
+
   const history = useHistory();
 
   const leaveGame = (e) => {
@@ -28,6 +34,7 @@ export default function LeaveGamePopup({ isPrivate }) {
   const exitGame = (e) => {
     e.preventDefault();
     PopupboxManager.close();
+    setRestartPending(true);
     setUpdateSocket((updateSocket + 1) % 2);
     history.push("/home");
   };
