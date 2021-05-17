@@ -26,7 +26,7 @@ export default function JoinPrivateGamePopup({
       if (response && response.error) {
         renderErrorPopup(response.error);
       } else if (!restartPending) {
-        //Join new game
+        // Join new game
         PopupboxManager.close();
         renderPreparingPrivateGamePopup({ socket });
       }
@@ -39,8 +39,8 @@ export default function JoinPrivateGamePopup({
           renderErrorPopup(response.error);
         } else {
           PopupboxManager.close();
-          history.push("/match");
           setOnMatch(true);
+          history.push("/match");
           setRestartPending(false);
         }
       });

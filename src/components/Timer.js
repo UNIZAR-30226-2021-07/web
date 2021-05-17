@@ -12,7 +12,7 @@ const renderTime = ({ remainingTime }, isTurn) => {
     </div>
   ) : (
     <div className="text-center">
-      <strong style={{ "font-size": "14px" }}>ESPERA</strong>
+      <strong style={{ fontSize: "14px" }}>ESPERA</strong>
     </div>
   );
 };
