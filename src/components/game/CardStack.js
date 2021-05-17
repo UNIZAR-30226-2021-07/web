@@ -23,6 +23,7 @@ function CardStack({ id, cards, kind, organ_pile, username }) {
       slot: slot,
     };
 
+    console.log(treatment_type);
     if (treatment_type == "undefined") {
       // Organ, virus, medicine
       data["organ_pile"] = organ_pile;
@@ -33,6 +34,7 @@ function CardStack({ id, cards, kind, organ_pile, username }) {
       alert("Transplante");
     } else if (treatment_type == "organ_thief") {
       data["target"] = username;
+      data["organ_pile"] = organ_pile;
     } else if (treatment_type == "infection") {
       // TODO:
       alert("Infection");
