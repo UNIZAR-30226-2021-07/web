@@ -7,6 +7,7 @@ import Board from "./Board";
 
 import { renderPausePopup } from "./popups/PausePopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
+import { renderLeaderboardPopup } from "./popups/LeaderboardPopup";
 
 import { SessionContext } from "./SessionProvider";
 import { GameContext } from "./GameProvider";
@@ -73,7 +74,8 @@ function Match() {
             src={help}
             className="game-icon"
             onClick={() => {
-              alert("Help");
+              renderLeaderboardPopup(socket);
+              //alert("Help"); TODO: solo para probar la clasificación
             }}
           />
         </Row>
