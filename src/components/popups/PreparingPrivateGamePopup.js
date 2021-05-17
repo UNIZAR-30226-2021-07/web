@@ -22,8 +22,7 @@ export default function PreparingPrivateGamePopup({ socket }) {
   useEffect(() => {
     if (!socket || !socket.current) return;
 
-    socket.current.on("start_game", (response) => {
-      console.log("game_start");
+    socket.current.once("start_game", (response) => {
       if (response && response.error) {
         renderErrorPopup(response.error);
       } else {

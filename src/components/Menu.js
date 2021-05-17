@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 import { renderCreateGamePopup } from "./popups/CreateGamePopup";
 import { renderJoinPrivateGamePopup } from "./popups/JoinPrivateGamePopup";
@@ -26,16 +25,12 @@ function Menu() {
   const [picture, setPicture] = useState("");
 
   useEffect(() => {
-    if (session.restartPending) {
-      console.log("Pendiente reanudar");
-      return;
+    if (!session.restartPending) {
+      session.setOnMatch(false);
+      console.log("Restart pending menu:" + session.restartPending);
+      if (!session.socket.current) return;
+      leaveGame(session);
     }
-    // Prevents going to match if user is not in a match
-
-    session.setOnMatch(false);
-    if (!session.socket.current) return;
-    leaveGame(session);
-    
   }, [session.restartPending]);
 
   useEffect(() => {

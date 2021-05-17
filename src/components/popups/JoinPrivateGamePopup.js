@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button, Form } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
 
@@ -9,22 +10,18 @@ import { renderErrorPopup } from "./ErrorPopup";
 
 import tick from "../../assets/common/icons/tick.svg";
 
-export default function JoinPrivateGamePopup({ socket, setRestartPending, restartPending}) {
+export default function JoinPrivateGamePopup({
+  socket,
+  setRestartPending,
+  restartPending,
+}) {
   const [code, setCode] = useState("");
+  const history = useHistory();
 
-  useEffect(
-    () => {
-      console.log("Restart pending:" + restartPending);
-    }, [restartPending]
-  )
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     socket.current.emit("join", code, (response) => {
-
-      console.log(restartPending);
-
       if (response && response.error) {
         renderErrorPopup(response.error);
       } else if (restartPending) {
@@ -32,9 +29,11 @@ export default function JoinPrivateGamePopup({ socket, setRestartPending, restar
         console.log("Join existing");
 
         socket.current.once("start_game", (response) => {
+          console.log("Start existing");
           if (response && response.error) {
             renderErrorPopup(response.error);
           } else {
+            console.log("match");
             setRestartPending(false);
             PopupboxManager.close();
             history.push("/match");
@@ -79,8 +78,18 @@ export default function JoinPrivateGamePopup({ socket, setRestartPending, restar
   );
 }
 
-export function renderJoinPrivateGamePopup({ socket }) {
-  const content = <JoinPrivateGamePopup socket={socket} />;
+export function renderJoinPrivateGamePopup({
+  socket,
+  setRestartPending,
+  restartPending,
+}) {
+  const content = (
+    <JoinPrivateGamePopup
+      socket={socket}
+      setRestartPending={setRestartPending}
+      restartPending={restartPending}
+    />
+  );
   PopupboxManager.open({
     content,
     config: {
