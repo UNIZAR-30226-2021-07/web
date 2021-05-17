@@ -23,7 +23,7 @@ function GameProvider({ children }) {
   const [players, setPlayers] = useState([]);
   const playersRef = useRef(players);
 
-  // Transplant variables 
+  // Transplant variables
   const [transplantData, setTransplantData] = useState({});
 
   useEffect(() => {

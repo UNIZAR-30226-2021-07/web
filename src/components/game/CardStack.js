@@ -50,12 +50,6 @@ function CardStack({ id, cards, kind, organ_pile, username }) {
     } else if (treatment_type == "organ_thief") {
       data["target"] = username;
       data["organ_pile"] = organ_pile;
-    } else if (treatment_type == "infection") {
-      // TODO:
-      alert("Infection");
-    } else if (treatment_type == "latex_glove") {
-      // TODO:
-      alert("Latex_glove");
     } else if (treatment_type == "medical_error") {
       data["target"] = username;
     }
