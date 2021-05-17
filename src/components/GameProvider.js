@@ -141,7 +141,6 @@ function GameProvider({ children }) {
 
     return () => {
       // Delete previous listenings and clean variables
-      console.log("RETURN");
       setHand([]);
       bodiesRef.current = {};
       setBodies({});

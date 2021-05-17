@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 import { renderCreateGamePopup } from "./popups/CreateGamePopup";
 import { renderJoinPrivateGamePopup } from "./popups/JoinPrivateGamePopup";
@@ -26,12 +25,13 @@ function Menu() {
   const [picture, setPicture] = useState("");
 
   useEffect(() => {
-    // Prevents going to match if user is not in a match
-    session.setOnMatch(false);
+    if (!session.restartPending) {
+      session.setOnMatch(false);
 
-    if (!session.socket.current) return;
-    leaveGame(session);
-  }, []);
+      if (!session.socket.current) return;
+      leaveGame(session);
+    }
+  }, [session.restartPending]);
 
   useEffect(() => {
     if (session.userData.length === 0) return;
