@@ -28,3 +28,13 @@ export function playCard({ socket }, data) {
     }
   });
 }
+
+export function playDiscard({ socket }, data) {
+  socket.current.emit("play_discard", data, (response) => {
+    if (response && response.error) {
+      console.log(response.error);
+    } else {
+      console.log("play_discard");
+    }
+  });
+}

@@ -328,6 +328,37 @@ body,
   height: 8vh;
 }
 
+.pass-button-locked,
+.pass-button-unlocked {
+  display: block;
+  height: 80px;
+  width: 80px;
+  border-radius: 50% !important;
+  border-color: white !important;
+  border-width: 2px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+}
+
+.pass-button-unlocked:hover {
+  background-color: #a92ff5 !important;
+}
+
+.pass-button-locked {
+  background-color: #b4b4b4 !important;
+}
+
+.pass-button-unlocked {
+  background-color: #6a1b9a !important;
+}
+
+.discard-base {
+  height: 80px;
+  width: 150px;
+  border: 1px solid #000;
+  text-align: center;
+}
+
 /* --------------------------- Cartas ------------------------ */
 
 .hand-card {
