@@ -56,9 +56,7 @@ function Match() {
           <Image
             src={exit}
             className="game-icon"
-            onClick={() =>
-              renderLeaveGamePopup(isPrivate)
-            }
+            onClick={() => renderLeaveGamePopup(isPrivate)}
           />
           {isPrivate && (
             <Image src={pauseIcon} className="game-icon" onClick={pauseGame} />
