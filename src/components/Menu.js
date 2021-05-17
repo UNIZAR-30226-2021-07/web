@@ -27,7 +27,7 @@ function Menu() {
   useEffect(() => {
     if (!session.restartPending) {
       session.setOnMatch(false);
-      console.log("Restart pending menu:" + session.restartPending);
+
       if (!session.socket.current) return;
       leaveGame(session);
     }

@@ -14,6 +14,7 @@ export default function JoinPrivateGamePopup({
   socket,
   setRestartPending,
   restartPending,
+  setOnMatch,
 }) {
   const [code, setCode] = useState("");
   const history = useHistory();
@@ -24,29 +25,26 @@ export default function JoinPrivateGamePopup({
     socket.current.emit("join", code, (response) => {
       if (response && response.error) {
         renderErrorPopup(response.error);
-      } else if (restartPending) {
-        //Join existing game
-        console.log("Join existing");
-
-        socket.current.once("start_game", (response) => {
-          console.log("Start existing");
-          if (response && response.error) {
-            renderErrorPopup(response.error);
-          } else {
-            console.log("match");
-            setRestartPending(false);
-            PopupboxManager.close();
-            history.push("/match");
-          }
-        });
-      } else {
+      } else if (!restartPending) {
         //Join new game
-        console.log("New game");
-
         PopupboxManager.close();
         renderPreparingPrivateGamePopup({ socket });
       }
     });
+
+    if (restartPending) {
+      // Join existing game
+      socket.current.once("start_game", (response) => {
+        if (response && response.error) {
+          renderErrorPopup(response.error);
+        } else {
+          PopupboxManager.close();
+          history.push("/match");
+          setOnMatch(true);
+          setRestartPending(false);
+        }
+      });
+    }
   };
 
   return (
@@ -82,12 +80,14 @@ export function renderJoinPrivateGamePopup({
   socket,
   setRestartPending,
   restartPending,
+  setOnMatch,
 }) {
   const content = (
     <JoinPrivateGamePopup
       socket={socket}
       setRestartPending={setRestartPending}
       restartPending={restartPending}
+      setOnMatch={setOnMatch}
     />
   );
   PopupboxManager.open({
