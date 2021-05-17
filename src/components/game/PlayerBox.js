@@ -20,7 +20,9 @@ function PlayerBox({ username, display_name, photo, body }) {
             <h4 className="align-self-center my-0">{display_name} </h4>
           </Row>
         </Card.Title>
-        <Body cardStacks={body} kind="rival" username={username} />
+        <Row className="justify-content-center mx-1gi">
+          <Body cardStacks={body} kind="rival" username={username} />
+        </Row>
       </Card.Body>
     </Card>
   );
