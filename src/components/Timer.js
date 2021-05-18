@@ -24,9 +24,6 @@ function Timer() {
   );
   const [isPlaying, setIsPlaying] = useState(true);
 
-  console.log(changeTurn);
-  console.log(currentTurn);
-
   useEffect(() => {
     setIsPlaying(!isPaused);
   }, [isPaused]);
