@@ -8,6 +8,7 @@ import Board from "./Board";
 import { renderPausePopup } from "./popups/PausePopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
 import { renderLeaderboardPopup } from "./popups/LeaderboardPopup";
+import { renderLeaveGamePopup } from "./popups/LeaveGamePopup";
 
 import { SessionContext } from "./SessionProvider";
 import { GameContext } from "./GameProvider";
@@ -49,24 +50,15 @@ function Match() {
     });
   };
 
-  const leaveGame = async (e) => {
-    e.preventDefault();
-    socket.current.emit("leave", (data) => {
-      if (data && data.error) {
-        console.error(data.error);
-      } else {
-        // When leaving, change updateSocket to get a new socket
-        setUpdateSocket((updateSocket + 1) % 2);
-        history.push("/home");
-      }
-    });
-  };
-
   return (
     <Row className="m-0 p-0 flex-nowrap">
       <Col md={8} className="p-0">
         <Row className="mx-0 justify-content-around">
-          <Image src={exit} className="game-icon" onClick={leaveGame} />
+          <Image
+            src={exit}
+            className="game-icon"
+            onClick={() => renderLeaveGamePopup(isPrivate)}
+          />
           {isPrivate && (
             <Image src={pauseIcon} className="game-icon" onClick={pauseGame} />
           )}

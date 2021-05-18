@@ -23,6 +23,9 @@ function GameProvider({ children }) {
   const [players, setPlayers] = useState([]);
   const playersRef = useRef(players);
 
+  // Transplant variables
+  const [transplantData, setTransplantData] = useState({});
+
   useEffect(() => {
     if (!session.socket.current) {
       return;
@@ -136,13 +139,11 @@ function GameProvider({ children }) {
           setPausedBy(response.paused_by);
         }
       }
-
       console.log(response);
     });
 
     return () => {
       // Delete previous listenings and clean variables
-      console.log("RETURN");
       setHand([]);
       bodiesRef.current = {};
       setBodies({});
@@ -152,6 +153,7 @@ function GameProvider({ children }) {
       session.socket.current.off("game_update");
       setIsPaused(false);
       setPausedBy("");
+      setTransplantData({});
     };
   }, [session.socketChange]);
 
@@ -168,6 +170,8 @@ function GameProvider({ children }) {
         setIsPrivate: (game) => setIsPrivate(game),
         isPaused,
         pausedBy,
+        transplantData: transplantData,
+        setTransplantData: (data) => setTransplantData(data),
       }}
     >
       {children}

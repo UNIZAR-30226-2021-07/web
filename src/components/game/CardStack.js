@@ -4,9 +4,11 @@ import Card from "./Card";
 import { playCard } from "../WebSockets";
 
 import { SessionContext } from "../SessionProvider";
+import { GameContext } from "../GameProvider";
 
 function CardStack({ id, cards, kind, organ_pile, username }) {
   const session = useContext(SessionContext);
+  const { transplantData, setTransplantData } = useContext(GameContext);
 
   const drop = (e) => {
     e.preventDefault();
@@ -23,26 +25,37 @@ function CardStack({ id, cards, kind, organ_pile, username }) {
       slot: slot,
     };
 
+    console.log(treatment_type);
     if (treatment_type == "undefined") {
       // Organ, virus, medicine
       data["organ_pile"] = organ_pile;
       data["target"] = username;
     } else if (treatment_type == "transplant") {
-      // TODO: Eleccin del segundo usuario
-      data["targets"] = [username, username];
-      alert("Transplante");
+      // Check for previous transplant data
+      if (transplantData["target1"] == undefined) {
+        // No previous data -> first player on transplant
+        let aux = {};
+        aux["target1"] = username;
+        aux["organ_pile1"] = organ_pile;
+        setTransplantData(aux);
+        // No play_card
+        return;
+      } else {
+        // Previous player -> second player on transplant
+        data["target1"] = transplantData["target1"];
+        data["organ_pile1"] = transplantData["organ_pile1"];
+        data["target2"] = username;
+        data["organ_pile2"] = organ_pile;
+      }
     } else if (treatment_type == "organ_thief") {
       data["target"] = username;
-    } else if (treatment_type == "infection") {
-      // TODO:
-      alert("Infection");
-    } else if (treatment_type == "latex_glove") {
-      // TODO:
-      alert("Latex_glove");
+      data["organ_pile"] = organ_pile;
     } else if (treatment_type == "medical_error") {
       data["target"] = username;
     }
+
     playCard(session, data);
+    setTransplantData({});
   };
 
   const allowDrop = (e) => {
