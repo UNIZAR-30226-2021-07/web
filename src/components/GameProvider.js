@@ -153,6 +153,7 @@ function GameProvider({ children }) {
       }
     });
 
+
     return () => {
       // Delete previous listenings and clean variables
       setHand([]);
