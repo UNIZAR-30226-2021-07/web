@@ -14,7 +14,7 @@ function PlayerBox({ username, display_name, photo, body }) {
   let profile = getProfile(photo);
 
   return (
-    <Card className={"player-box p-1 pb-2 m-3 " + (isTurn && "player-turn")}>
+    <Card className={"player-box p-1 py-2 m-3 " + (isTurn && "player-turn")}>
       <Card.Body className="player-body p-0">
         <Card.Title>
           <Row className="mx-0 justify-content-center flex-nowrap">

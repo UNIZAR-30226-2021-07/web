@@ -445,7 +445,7 @@ body,
 }
 
 .player-box {
-  width: fit-content;
+  width: 36vh;
   height: fit-content;
   background-color: #c4c4c4 !important;
   border-radius: 2vh !important;
