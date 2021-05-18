@@ -21,7 +21,11 @@ function Match() {
   const { socket, updateSocket, setUpdateSocket, userData } = useContext(
     SessionContext
   );
-  const { isPrivate, isPaused, pausedBy } = useContext(GameContext);
+
+  const { isPrivate, isPaused, pausedBy, isFinished, leaderboard } = useContext(
+    GameContext
+  );
+
   const history = useHistory();
 
   useEffect(() => {
@@ -38,6 +42,15 @@ function Match() {
       renderPausePopup();
     }
   }, [isPaused, pausedBy]);
+
+  useEffect(() => {
+    //La partida ha terminado
+    if (isFinished) {
+      console.log("Terminada");
+      console.log(leaderboard);
+      renderLeaderboardPopup(socket);
+    }
+  }, [isFinished, leaderboard]);
 
   const pauseGame = async (e) => {
     e.preventDefault();
@@ -66,8 +79,7 @@ function Match() {
             src={help}
             className="game-icon"
             onClick={() => {
-              renderLeaderboardPopup(socket);
-              //alert("Help"); TODO: solo para probar la clasificación
+              alert("Help");
             }}
           />
         </Row>

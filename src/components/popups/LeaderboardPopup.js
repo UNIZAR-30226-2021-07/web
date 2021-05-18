@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button, Image } from "react-bootstrap";
 
@@ -10,33 +10,10 @@ import dinero from "../../assets/common/icons/huella.svg";
 
 import Popup from "./PopUp";
 
+import { GameContext } from "../GameProvider";
+
 export default function LeaderboardPopup() {
-  const leaderboard = {
-    manolo22: {
-      position: 1,
-      coins: 60,
-    },
-    juan: {
-      position: 2,
-      coins: 50,
-    },
-    pedro: {
-      position: 3,
-      coins: 40,
-    },
-    daniel: {
-      position: 4,
-      coins: 30,
-    },
-    jaime: {
-      position: 5,
-      coins: 20,
-    },
-    carmen: {
-      position: 6,
-      coins: 10,
-    },
-  };
+  const {leaderboard} = useContext(GameContext);
 
   let players = Object.keys(leaderboard);
 

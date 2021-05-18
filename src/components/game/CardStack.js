@@ -25,7 +25,6 @@ function CardStack({ id, cards, kind, organ_pile, username }) {
       slot: slot,
     };
 
-    console.log(treatment_type);
     if (treatment_type == "undefined") {
       // Organ, virus, medicine
       data["organ_pile"] = organ_pile;

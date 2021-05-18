@@ -26,6 +26,9 @@ function GameProvider({ children }) {
   // Transplant variables
   const [transplantData, setTransplantData] = useState({});
 
+  const [leaderboard, setLeaderboard] = useState({});
+  const [isFinished, setIsFinished] = useState(false);
+
   useEffect(() => {
     if (!session.socket.current) {
       return;
@@ -134,9 +137,18 @@ function GameProvider({ children }) {
           bodiesRef.current = auxBodies;
           setBodies(auxBodies);
         }
+
         if ("paused" in response) {
           setIsPaused(response.paused);
           setPausedBy(response.paused_by);
+        }
+
+        if ("finished" in response) {
+          if (response.finished) {
+            //La partida ha terminado
+            setIsFinished(response.finished);
+            setLeaderboard(response.leaderboard);
+          }
         }
       }
       console.log(response);
@@ -154,6 +166,7 @@ function GameProvider({ children }) {
       setIsPaused(false);
       setPausedBy("");
       setTransplantData({});
+      setLeaderboard({});
     };
   }, [session.socketChange]);
 
@@ -171,6 +184,8 @@ function GameProvider({ children }) {
         isPaused,
         pausedBy,
         transplantData: transplantData,
+        isFinished,
+        leaderboard,
         setTransplantData: (data) => setTransplantData(data),
       }}
     >
