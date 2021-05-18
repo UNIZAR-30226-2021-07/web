@@ -19,6 +19,7 @@ function GameProvider({ children }) {
   const [bodies, setBodies] = useState({});
   const bodiesRef = useRef(bodies);
   const [currentTurn, setCurrentTurn] = useState("");
+  const [changeCurrentTurn, setChangeCurrentTurn] = useState(0);
 
   const [players, setPlayers] = useState([]);
   const playersRef = useRef(players);
@@ -54,6 +55,7 @@ function GameProvider({ children }) {
       if (response != null) {
         if ("current_turn" in response) {
           setCurrentTurn(response.current_turn);
+          setChangeCurrentTurn(changeCurrentTurn + 1 % 2);
         }
         if ("hand" in response) {
           setHand(response.hand);
@@ -178,6 +180,7 @@ function GameProvider({ children }) {
         hand: hand,
         bodies: bodies,
         currentTurn: currentTurn,
+        changeCurrentTurn: changeCurrentTurn,
         players: players,
         isPrivate: isPrivate,
         setIsPrivate: (game) => setIsPrivate(game),
