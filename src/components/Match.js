@@ -7,6 +7,7 @@ import Board from "./Board";
 
 import { renderPausePopup } from "./popups/PausePopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
+import { renderLeaderboardPopup } from "./popups/LeaderboardPopup";
 import { renderLeaveGamePopup } from "./popups/LeaveGamePopup";
 
 import { SessionContext } from "./SessionProvider";
@@ -20,7 +21,11 @@ function Match() {
   const { socket, updateSocket, setUpdateSocket, userData } = useContext(
     SessionContext
   );
-  const { isPrivate, isPaused, pausedBy } = useContext(GameContext);
+
+  const { isPrivate, isPaused, pausedBy, isFinished, leaderboard } = useContext(
+    GameContext
+  );
+
   const history = useHistory();
 
   useEffect(() => {
@@ -37,6 +42,13 @@ function Match() {
       renderPausePopup();
     }
   }, [isPaused, pausedBy]);
+
+  useEffect(() => {
+    //La partida ha terminado
+    if (isFinished) {
+      renderLeaderboardPopup(socket);
+    }
+  }, [isFinished, leaderboard]);
 
   const pauseGame = async (e) => {
     e.preventDefault();
