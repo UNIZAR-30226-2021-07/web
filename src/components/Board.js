@@ -116,9 +116,6 @@ function Board() {
     }
     slot = parseInt(slot);
     let data = slot;
-
-    console.log(data);
-
     playDiscard(session, data);
   };
 

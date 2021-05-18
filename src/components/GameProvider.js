@@ -144,7 +144,6 @@ function GameProvider({ children }) {
         }
 
         if ("finished" in response) {
-          console.log(response);
           if (response.finished) {
             //La partida ha terminado
             setIsFinished(response.finished);
@@ -152,7 +151,6 @@ function GameProvider({ children }) {
           }
         }
       }
-      console.log(response);
     });
 
     return () => {

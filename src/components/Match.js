@@ -46,8 +46,6 @@ function Match() {
   useEffect(() => {
     //La partida ha terminado
     if (isFinished) {
-      console.log("Terminada");
-      console.log(leaderboard);
       renderLeaderboardPopup(socket);
     }
   }, [isFinished, leaderboard]);
@@ -79,7 +77,8 @@ function Match() {
             src={help}
             className="game-icon"
             onClick={() => {
-              alert("Help");
+              renderLeaderboardPopup(socket);
+              //alert("Help");
             }}
           />
         </Row>

@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button, Image } from "react-bootstrap";
 
@@ -13,7 +13,7 @@ import Popup from "./PopUp";
 import { GameContext } from "../GameProvider";
 
 export default function LeaderboardPopup() {
-  const {leaderboard} = useContext(GameContext);
+  const { leaderboard } = useContext(GameContext);
 
   let players = Object.keys(leaderboard);
 
