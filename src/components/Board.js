@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
-import Timer from "./Timer";
-
 import Hand from "./game/Hand";
 import Body from "./game/Body";
 import PlayerBox from "./game/PlayerBox";
@@ -125,14 +123,13 @@ function Board() {
 
   return (
     <Container className="mx-0 p-0">
-      <Row>
+      <Row className="players-container">
         <Col className="">
           <Player2 />
           <Player1 />
         </Col>
         <Col className="justify-content-center">
           <Player3 />
-          <Timer />
         </Col>
         <Col className="">
           <Player4 />
@@ -140,25 +137,13 @@ function Board() {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Col />
-        <Col>
-          <Body
-            cardStacks={bodies[session.userData.name]}
-            username={session.userData.name}
-          />
-        </Col>
-        <Col className="justify-content-center align-items-center">
-          <div className="discard-base" onDrop={drop} onDragOver={allowDrop}>
-            <h5 className="mt-4">DESCARTES</h5>
-          </div>
-        </Col>
+        <Body
+          cardStacks={bodies[session.userData.name]}
+          username={session.userData.name}
+        />
       </Row>
-      <Row className="justify-content-center">
-        <Col />
-        <Col className="justify-content-center">
-          <Hand />
-        </Col>
-        <Col>
+      <Row className="justify-content-around">
+        <Col className="align-items-center">
           {currentTurn == session.userData.name ? (
             <Button className="pass-button-unlocked" onClick={playPass}>
               PASAR
@@ -166,6 +151,14 @@ function Board() {
           ) : (
             <Button className="pass-button-locked">PASAR</Button>
           )}
+        </Col>
+        <Col className="align-items-center">
+          <Hand />
+        </Col>
+        <Col className="align-items-center">
+          <div className="discard-base" onDrop={drop} onDragOver={allowDrop}>
+            <h5 className="mt-4">DESCARTES</h5>
+          </div>
         </Col>
       </Row>
     </Container>
