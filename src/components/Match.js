@@ -77,8 +77,7 @@ function Match() {
             src={help}
             className="game-icon"
             onClick={() => {
-              renderLeaderboardPopup(socket);
-              //alert("Help");
+              alert("Help");
             }}
           />
         </Row>
