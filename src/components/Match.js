@@ -18,9 +18,13 @@ import exit from "../assets/common/icons/logout.svg";
 import help from "../assets/common/icons/help.svg";
 
 function Match() {
-  const { socket, updateSocket, setUpdateSocket, userData, socketChange } = useContext(
-    SessionContext
-  );
+  const {
+    socket,
+    updateSocket,
+    setUpdateSocket,
+    userData,
+    socketChange,
+  } = useContext(SessionContext);
 
   const { isPrivate, isPaused, pausedBy, isFinished, leaderboard } = useContext(
     GameContext
@@ -57,7 +61,10 @@ function Match() {
     }
     socket.current.on("game_cancelled", () => {
       // TODO: Poner popup
-      renderErrorPopup("La partida fue cancelada", "Gatopartida cancelada");
+      renderErrorPopup(
+        "Juega otra partida para disfrutar de los gaticos",
+        "Gatopartida cancelada"
+      );
       // Get out of match
       // When leaving, change updateSocket to get a new socket
       setUpdateSocket((updateSocket + 1) % 2);
