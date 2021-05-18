@@ -123,18 +123,12 @@ function Board() {
 
   return (
     <Container className="mx-0 p-0">
-      <Row className="players-container">
-        <Col className="">
-          <Player2 />
-          <Player1 />
-        </Col>
-        <Col className="justify-content-center">
-          <Player3 />
-        </Col>
-        <Col className="">
-          <Player4 />
-          <Player5 />
-        </Col>
+      <Row className="justify-content-around">
+        <Player2 />
+        <Player1 />
+        <Player3 />
+        <Player4 />
+        <Player5 />
       </Row>
       <Row className="justify-content-center">
         <Body

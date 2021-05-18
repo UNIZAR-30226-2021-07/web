@@ -64,8 +64,8 @@ function Match() {
 
   return (
     <Row className="m-0 p-0 flex-nowrap">
-      <Col md={8} className="mx-3 my-2 p-0">
-        <Row className="justify-content-between mx-0">
+      <Col md={8} className="px-3 py-2">
+        <Row className="mx-0 justify-content-between">
           <Image
             src={exit}
             className="game-icon"
