@@ -448,7 +448,7 @@ body,
   width: fit-content;
   height: fit-content;
   background-color: #c4c4c4 !important;
-  border-radius: 2vh;
+  border-radius: 2vh !important;
 }
 
 .player-body {
@@ -513,4 +513,8 @@ body,
 
 .shop-card {
   min-height: 550px !important;
+}
+
+.player-turn {
+  border: 5px solid #6a1b9a !important;
 }

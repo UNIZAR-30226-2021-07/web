@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Row, Card, Image } from "react-bootstrap";
 
 import { getProfile } from "../../utils/json";
 
 import Body from "./Body";
 
+import { GameContext } from "../GameProvider";
+
 function PlayerBox({ username, display_name, photo, body }) {
+  const { currentTurn } = useContext(GameContext);
+
+  let isTurn = currentTurn == username;
   let profile = getProfile(photo);
+
   return (
-    <Card className="player-box p-1 pb-2 m-3">
+    <Card className={"player-box p-1 pb-2 m-3 " + (isTurn && "player-turn")}>
       <Card.Body className="player-body p-0">
         <Card.Title>
           <Row className="mx-0 justify-content-center flex-nowrap">

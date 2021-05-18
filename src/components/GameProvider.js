@@ -53,6 +53,7 @@ function GameProvider({ children }) {
     session.socket.current.on("game_update", (response) => {
       if (response != null) {
         if ("current_turn" in response) {
+          console.log(response.current_turn);
           setCurrentTurn(response.current_turn);
         }
         if ("hand" in response) {
@@ -150,6 +151,7 @@ function GameProvider({ children }) {
             setLeaderboard(response.leaderboard);
           }
         }
+        console.log(response);
       }
     });
 
