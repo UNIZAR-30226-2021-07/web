@@ -18,9 +18,13 @@ import exit from "../assets/common/icons/logout.svg";
 import help from "../assets/common/icons/help.svg";
 
 function Match() {
-  const { socket, updateSocket, setUpdateSocket, userData } = useContext(
-    SessionContext
-  );
+  const {
+    socket,
+    updateSocket,
+    setUpdateSocket,
+    userData,
+    socketChange,
+  } = useContext(SessionContext);
 
   const { isPrivate, isPaused, pausedBy, isFinished, leaderboard } = useContext(
     GameContext
@@ -49,6 +53,29 @@ function Match() {
       renderLeaderboardPopup(socket);
     }
   }, [isFinished, leaderboard]);
+
+  // Listen to "game_cancelled" events from server
+  useEffect(() => {
+    if (!socket.current) {
+      return;
+    }
+    socket.current.on("game_cancelled", () => {
+      // TODO: Poner popup
+      renderErrorPopup(
+        "Juega otra partida para disfrutar de los gaticos",
+        "Gatopartida cancelada"
+      );
+      // Get out of match
+      // When leaving, change updateSocket to get a new socket
+      setUpdateSocket((updateSocket + 1) % 2);
+      history.push("/home");
+      return;
+    });
+
+    return () => {
+      socket.current.off("game_cancelled");
+    };
+  }, [socketChange]);
 
   const pauseGame = async (e) => {
     e.preventDefault();

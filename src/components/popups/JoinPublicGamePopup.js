@@ -57,8 +57,8 @@ export function renderJoinPublicGamePopup(session, game, history) {
         PopupboxManager.close();
         session.setOnMatch(true);
         game.setIsPrivate(false);
-        history.push("/match");
         socket.current.off("game_cancelled");
+        history.push("/match");
       }
     });
     socket.current.once("game_cancelled", () => {
