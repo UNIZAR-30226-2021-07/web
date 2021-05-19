@@ -59,11 +59,10 @@ function Match() {
     if (!socket.current) {
       return;
     }
-    socket.current.on("game_cancelled", () => {
-      // TODO: Poner popup
+    socket.current.once("game_cancelled", () => {
       renderErrorPopup(
         "Juega otra partida para disfrutar de los gaticos",
-        "Gatopartida cancelada"
+        "Partida cancelada"
       );
       // Get out of match
       // When leaving, change updateSocket to get a new socket
