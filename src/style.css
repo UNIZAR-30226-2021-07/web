@@ -355,7 +355,7 @@ body,
 .discard-base {
   height: 80px;
   width: 150px;
-  border: 1px solid #000;
+  border: 2px dashed #9c4dcc;
   text-align: center;
 }
 

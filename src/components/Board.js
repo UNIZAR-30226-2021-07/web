@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Button } from "react-bootstrap";
 
 import Hand from "./game/Hand";
 import Body from "./game/Body";
@@ -130,30 +130,24 @@ function Board() {
         <Player4 />
         <Player5 />
       </Row>
-      <Row className="justify-content-center">
+      <Row className="justify-content-around">
+        {currentTurn == session.userData.name ? (
+          <Button className="pass-button-unlocked" onClick={playPass}>
+            PASAR
+          </Button>
+        ) : (
+          <Button className="pass-button-locked">PASAR</Button>
+        )}
         <Body
           cardStacks={bodies[session.userData.name]}
           username={session.userData.name}
         />
+        <div className="discard-base" onDrop={drop} onDragOver={allowDrop}>
+          <h5 className="mt-4">DESCARTAR</h5>
+        </div>
       </Row>
-      <Row className="justify-content-around">
-        <Col className="align-items-center">
-          {currentTurn == session.userData.name ? (
-            <Button className="pass-button-unlocked" onClick={playPass}>
-              PASAR
-            </Button>
-          ) : (
-            <Button className="pass-button-locked">PASAR</Button>
-          )}
-        </Col>
-        <Col className="align-items-center">
-          <Hand />
-        </Col>
-        <Col className="align-items-center">
-          <div className="discard-base" onDrop={drop} onDragOver={allowDrop}>
-            <h5 className="mt-4">DESCARTES</h5>
-          </div>
-        </Col>
+      <Row className="justify-content-center">
+        <Hand />
       </Row>
     </Container>
   );
