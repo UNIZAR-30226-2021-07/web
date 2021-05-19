@@ -355,7 +355,7 @@ body,
 .discard-base {
   height: 80px;
   width: 150px;
-  border: 1px solid #000;
+  border: 2px dashed #9c4dcc;
   text-align: center;
 }
 
@@ -363,6 +363,7 @@ body,
 
 .hand-card {
   width: 10vh !important;
+  transition: transform 0.3s 0s cubic-bezier(0.29, -0.43, 0.27, 1.55);
 }
 
 .hand-card:hover {
@@ -442,10 +443,10 @@ body,
 }
 
 .player-box {
-  width: fit-content;
+  width: 36vh;
   height: fit-content;
   background-color: #c4c4c4 !important;
-  border-radius: 2vh;
+  border-radius: 2vh !important;
 }
 
 .player-body {
@@ -510,4 +511,8 @@ body,
 
 .shop-card {
   min-height: 550px !important;
+}
+
+.player-turn {
+  border: 5px solid #6a1b9a !important;
 }

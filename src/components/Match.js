@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import Chat from "./Chat";
 import Board from "./Board";
+import Timer from "./Timer";
 
 import { renderPausePopup } from "./popups/PausePopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
@@ -89,25 +90,32 @@ function Match() {
 
   return (
     <Row className="m-0 p-0 flex-nowrap">
-      <Col md={8} className="p-0">
-        <Row className="mx-0 justify-content-around">
+      <Col md={8} className="px-3 py-2 d-flex flex-column">
+        <Row className="mx-0 justify-content-between">
           <Image
             src={exit}
             className="game-icon"
             onClick={() => renderLeaveGamePopup(isPrivate)}
           />
-          {isPrivate && (
-            <Image src={pauseIcon} className="game-icon" onClick={pauseGame} />
-          )}
-          <Image
-            src={help}
-            className="game-icon"
-            onClick={() => {
-              alert("Help");
-            }}
-          />
+          <Timer />
+          <div>
+            {isPrivate && (
+              <Image
+                src={pauseIcon}
+                className="game-icon mr-2"
+                onClick={pauseGame}
+              />
+            )}
+            <Image
+              src={help}
+              className="game-icon"
+              onClick={() => {
+                alert("Help");
+              }}
+            />
+          </div>
         </Row>
-        <Row className="mx-0">
+        <Row className="mx-0 flex-grow-1">
           <Board />
         </Row>
       </Col>

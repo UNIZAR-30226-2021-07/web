@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-
-import Timer from "./Timer";
+import { Container, Row, Button } from "react-bootstrap";
 
 import Hand from "./game/Hand";
 import Body from "./game/Body";
@@ -124,49 +122,32 @@ function Board() {
   };
 
   return (
-    <Container className="mx-0 p-0">
-      <Row>
-        <Col className="">
-          <Player2 />
-          <Player1 />
-        </Col>
-        <Col className="justify-content-center">
-          <Player3 />
-          <Timer />
-        </Col>
-        <Col className="">
-          <Player4 />
-          <Player5 />
-        </Col>
+    <Container className=" d-flex flex-column mx-0 p-0">
+      <Row className="justify-content-around flex-grow-1">
+        <Player2 />
+        <Player1 />
+        <Player3 />
+        <Player4 />
+        <Player5 />
+      </Row>
+      <Row className="justify-content-around">
+        {currentTurn == session.userData.name ? (
+          <Button className="pass-button-unlocked" onClick={playPass}>
+            PASAR
+          </Button>
+        ) : (
+          <Button className="pass-button-locked">PASAR</Button>
+        )}
+        <Body
+          cardStacks={bodies[session.userData.name]}
+          username={session.userData.name}
+        />
+        <div className="discard-base" onDrop={drop} onDragOver={allowDrop}>
+          <h5 className="mt-4">DESCARTAR</h5>
+        </div>
       </Row>
       <Row className="justify-content-center">
-        <Col />
-        <Col>
-          <Body
-            cardStacks={bodies[session.userData.name]}
-            username={session.userData.name}
-          />
-        </Col>
-        <Col className="justify-content-center align-items-center">
-          <div className="discard-base" onDrop={drop} onDragOver={allowDrop}>
-            <h5 className="mt-4">DESCARTES</h5>
-          </div>
-        </Col>
-      </Row>
-      <Row className="justify-content-center">
-        <Col />
-        <Col className="justify-content-center">
-          <Hand />
-        </Col>
-        <Col>
-          {currentTurn == session.userData.name ? (
-            <Button className="pass-button-unlocked" onClick={playPass}>
-              PASAR
-            </Button>
-          ) : (
-            <Button className="pass-button-locked">PASAR</Button>
-          )}
-        </Col>
+        <Hand />
       </Row>
     </Container>
   );

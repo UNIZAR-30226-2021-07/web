@@ -55,6 +55,7 @@ function GameProvider({ children }) {
     session.socket.current.on("game_update", (response) => {
       if (response != null) {
         if ("current_turn" in response) {
+          console.log(response.current_turn);
           setCurrentTurn(response.current_turn);
           setChangeTurn((changeTurnRef.current + 1) % 2);
           changeTurnRef.current = (changeTurnRef.current + 1) % 2;
@@ -154,6 +155,7 @@ function GameProvider({ children }) {
             setLeaderboard(response.leaderboard);
           }
         }
+        console.log(response);
       }
     });
 
