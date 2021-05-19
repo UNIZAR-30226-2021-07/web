@@ -363,14 +363,12 @@ body,
 
 .hand-card {
   width: 10vh !important;
+  transition: transform 0.3s 0s cubic-bezier(0.29, -0.43, 0.27, 1.55);
 }
 
-/* TODO: DEJAR DESCOMENTADO */
-/*
 .hand-card:hover {
-  transform: scale(1.3);
+  transform: scale(1.2);
 }
-*/
 
 .body-card {
   width: 8vh !important;
