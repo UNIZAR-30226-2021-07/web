@@ -122,8 +122,8 @@ function Board() {
   };
 
   return (
-    <Container className="mx-0 p-0">
-      <Row className="justify-content-around">
+    <Container className=" d-flex flex-column mx-0 p-0">
+      <Row className="justify-content-around flex-grow-1">
         <Player2 />
         <Player1 />
         <Player3 />

@@ -64,7 +64,7 @@ function Match() {
 
   return (
     <Row className="m-0 p-0 flex-nowrap">
-      <Col md={8} className="px-3 py-2">
+      <Col md={8} className="px-3 py-2 d-flex flex-column">
         <Row className="mx-0 justify-content-between">
           <Image
             src={exit}
@@ -83,7 +83,7 @@ function Match() {
             }}
           />
         </Row>
-        <Row className="mx-0">
+        <Row className="mx-0 flex-grow-1">
           <Board />
         </Row>
       </Col>
