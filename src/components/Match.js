@@ -72,16 +72,22 @@ function Match() {
             onClick={() => renderLeaveGamePopup(isPrivate)}
           />
           <Timer />
-          {isPrivate && (
-            <Image src={pauseIcon} className="game-icon" onClick={pauseGame} />
-          )}
-          <Image
-            src={help}
-            className="game-icon"
-            onClick={() => {
-              alert("Help");
-            }}
-          />
+          <div>
+            {isPrivate && (
+              <Image
+                src={pauseIcon}
+                className="game-icon mr-2"
+                onClick={pauseGame}
+              />
+            )}
+            <Image
+              src={help}
+              className="game-icon"
+              onClick={() => {
+                alert("Help");
+              }}
+            />
+          </div>
         </Row>
         <Row className="mx-0 flex-grow-1">
           <Board />
