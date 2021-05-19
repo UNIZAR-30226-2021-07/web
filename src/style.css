@@ -516,3 +516,8 @@ body,
 .player-turn {
   border: 5px solid #6a1b9a !important;
 }
+
+.help-component-image {
+  width: 120px !important;
+  height: 120px !important;
+}

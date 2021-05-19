@@ -1,86 +1,289 @@
 import React from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Button, Col, Row, Card } from "react-bootstrap";
 
-import logo from "../assets/common/logo/logo.svg";
+import { useHistory } from "react-router-dom";
 
-function Help(props) {
+import organ1 from "../assets/common/cards/cuerpo_cerebro.svg";
+import organ2 from "../assets/common/cards/cuerpo_corazon.svg";
+import organ3 from "../assets/common/cards/cuerpo_estomago.svg";
+import organ4 from "../assets/common/cards/cuerpo_hueso.svg";
+import organ5 from "../assets/common/cards/cuerpo_full.svg";
+
+import virus1 from "../assets/common/cards/virus_a.svg";
+import virus2 from "../assets/common/cards/virus_b.svg";
+import virus3 from "../assets/common/cards/virus_c.svg";
+import virus4 from "../assets/common/cards/virus_d.svg";
+import virus5 from "../assets/common/cards/virus_e.svg";
+
+import medicina3 from "../assets/common/cards/medicina_jarabe.svg";
+import medicina2 from "../assets/common/cards/medicina_jeringuilla.svg";
+import medicina5 from "../assets/common/cards/medicina_medikit.svg";
+import medicina1 from "../assets/common/cards/medicina_pastis.svg";
+import medicina4 from "../assets/common/cards/medicina_tiritas.svg";
+
+import tratamiento1 from "../assets/common/cards/especial_operacion.svg";
+import tratamiento2 from "../assets/common/cards/especial_robaorganos.svg";
+import tratamiento3 from "../assets/common/cards/especial_tos.svg";
+import tratamiento4 from "../assets/common/cards/especial_guantes.svg";
+import tratamiento5 from "../assets/common/cards/especial_radiografia.svg";
+
+function Help() {
+  const history = useHistory();
+
+  const handleClose = () => {
+    history.goBack();
+  };
+
   return (
-    <Container className="app-container">
-      <Card>
-        <Card.Body>
-          <Card.Title>Mi perfil</Card.Title>
-        </Card.Body>
-        <Row>
-          <Col>
-            <Card.Body>
-              <Row className="align-items-center justify-content-center">
-                <Card.Img variant="top" src={logo}></Card.Img>
-              </Row>
-              <br></br>
-              <Row className="align-items-center justify-content-center">
-                <Card.Text>{props.username}</Card.Text>
-              </Row>
-              <Row className="align-items-center justify-content-center">
-                <Card.Text>{props.email}</Card.Text>
-              </Row>
-              <br></br>
-              <Row className="align-items-center justify-content-center">
-                <Button>Editar Perfil</Button>
-              </Row>
-            </Card.Body>
-          </Col>
-          <Col>
+    <Row className="justify-content-center align-items-center mt-4 ml-2 mr-2">
+      <Col>
+        <Card>
+          <Button className="close card-close" onClick={handleClose}>
+            &times;
+          </Button>
+          <Card.Body>
             <Card.Title>
-              <Row className="align-items-center justify-content-center">
-                <Card.Text>Estadísticas</Card.Text>
-              </Row>
+              <h2 className="font-weight-bold text-center">AYUDA</h2>
             </Card.Title>
-            <Card.Body>
-              <Row className="align-items-center justify-content-center">
-                <Col sm={8}>
-                  <Card.Text>Partidas jugadas </Card.Text>
-                </Col>
-                <Col sm={4}>
-                  <Card.Text>{props.games}</Card.Text>
-                </Col>
-              </Row>
-              <Row
-                md={20}
-                className="align-items-center justify-content-center"
-              >
-                <Col sm={8}>
-                  <Card.Text>Partidas ganadas</Card.Text>
-                </Col>
-                <Col sm={4}>
-                  <Card.Text>{props.wins}</Card.Text>
-                </Col>
-              </Row>
-              <Row className="align-items-center justify-content-center">
-                <Col sm={8}>
-                  <Card.Text>Partidas perdidas</Card.Text>
-                </Col>
-                <Col sm={4}>
-                  <Card.Text>{props.losts}</Card.Text>
-                </Col>
-              </Row>
-              <Row className="align-items-center justify-content-center">
-                <Col sm={8}>
-                  <Card.Text>Tiempo jugado</Card.Text>
-                </Col>
-                <Col sm={4}>
-                  <Card.Text>{props.timePlayed} min</Card.Text>
-                </Col>
-              </Row>
-            </Card.Body>
-            <Card.Body>
-              <Row className="align-items-center justify-content-center">
-                <Button variant="danger">Cerrar Sesión</Button>
-              </Row>
-            </Card.Body>
-          </Col>
-        </Row>
-      </Card>
-    </Container>
+            <Card.Title className="mt-4">
+              <h4 className="text-center">Estructura del tablero</h4>
+            </Card.Title>
+            <Card.Text className="mt-4 text-justify">
+              En la pantalla anterior has podido ver el tablero.
+              <br />
+              En la parte más inferior aparece tu mano, es decir, las cartas que
+              tienes en todo momento para poder jugar.
+              <br />
+              <br />
+              En mitad de pantalla aparecen 3 componentes: <br />
+              ● Un botón con el que puedes pasar el turno <br />
+              ● El cronómetro, que cuando sea tu turno se activará y podrás ver
+              el tiempo de juego restante en tu turno.
+              <br />
+              ● Un cuadro al que puedes descartar cartas de tu mano. <br />
+              <br />
+              Entre estos componentes y tu mano, se encuentra el espacio para ir
+              colocando las cartas de tu cuerpo. Entre los botones superiores y
+              los componentes mencionados se encuentran los cuerpos de tus
+              oponentes. Puedes colocar en tu turno cartas sobre estos cuerpos.
+            </Card.Text>
+            <Card.Title className="mt-4">
+              <h4 className="text-center">Objetivo del juego</h4>
+            </Card.Title>
+            <Card.Text className="mt-4 text-justify">
+              Sé el primer jugador en completar tu cuerpo. Un cuerpo lo forman 4
+              órganos, uno de cada color. Si logras reunir sobre la mesa, frente
+              a ti, tus 4 órganos diferentes sanos, ¡habrás ganado la partida!.
+            </Card.Text>
+            <Card.Title className="mt-4">
+              <h4 className="text-center">Mecánica del juego</h4>
+            </Card.Title>
+            <Card.Text className="mt-4 text-justify">
+              Cada jugador debe tener siempre al comienzo de su turno 3 cartas
+              en su mano y tan solo podrá realizar una acción por turno. Después
+              de haber actuado, recibirá cartas del mazo para volver a tener su
+              mano completa. Juega los distintos tipos de carta, colocándolas en
+              el espacio del cuerpo para construirlo, o sobre las cartas de tus
+              rivales para evitar que estos lo logren antes que tú.
+              <br />
+              <br />
+              Algunas cartas pueden obligarte a descartar o cambiar tus órganos,
+              tus vacunas o incluso tu mano. Elabora tu estrategia para ser el
+              primero en formar tu cuerpo completo.
+              <br />
+              Permanece atento a las jugadas de los demás, porque tendrás que
+              evitar que el resto de jugadores terminen su cuerpo antes que tú.
+            </Card.Text>
+            <Card.Title className="mt-4">
+              <h4 className="text-center">Fases del juego</h4>
+            </Card.Title>
+            <Card.Text className="mt-4 text-justify">
+              <b>● FASE 1: Jugar o descartar. </b>
+              Jugar una única carta de tu mano o descarta las cartas que se
+              desee.
+              <br />
+              <br />
+              <b>● FASE 2: Robar. </b>
+              Tu mano se completará automáticamente cuando termine tu turno.
+              <br />
+              <br />
+              <b>● FASE 3: Pasar. </b>
+              Pasa el turno al jugador de tu derecha.
+            </Card.Text>
+            <Card.Title className="mt-4">
+              <h4 className="text-center">Tipos de carta</h4>
+            </Card.Title>
+            <Card.Title className="mt-4">
+              <h5 className="text-left">Órganos</h5>
+            </Card.Title>
+            <Row className="align-items-center justify-content-center mt-4">
+              <Card.Img className="help-component-image mt-2" src={organ1} />
+              <Card.Img className="help-component-image mt-2" src={organ2} />
+              <Card.Img className="help-component-image mt-2" src={organ3} />
+              <Card.Img className="help-component-image mt-2" src={organ4} />
+              <Card.Img className="help-component-image mt-2" src={organ5} />
+            </Row>
+            <Card.Text className="mt-4 text-justify">
+              Usa las cartas de virus para destruir los órganos y medicinas de
+              tus rivales. Los virus sólo tienen efecto sobre órganos y
+              medicinas de su mismo color.
+              <br />
+              <br />
+              El órgano multicolor actúa como un comodín para ayudarte a
+              completar tu cuerpo y cuenta como órgano a todos sus efectos.
+              Puede vacunarse con una medicina de cualquier color, pero también
+              puede ser infectado por un virus de cualquier color.
+            </Card.Text>
+            <Card.Title className="mt-4">
+              <h5 className="text-left">Virus</h5>
+            </Card.Title>
+            <Row className="align-items-center justify-content-center mt-4">
+              <Card.Img className="help-component-image mt-2" src={virus1} />
+              <Card.Img className="help-component-image mt-2" src={virus2} />
+              <Card.Img className="help-component-image mt-2" src={virus3} />
+              <Card.Img className="help-component-image mt-2" src={virus4} />
+              <Card.Img className="help-component-image mt-2" src={virus5} />
+            </Row>
+            <Card.Text className="mt-4 text-justify">
+              <b>● INFECTAR:</b> Coloca una carta de virus sobre un órgano libre
+              de su color para infectarlo. No podrás completar tu cuerpo si
+              alguno de tus órganos está infectado por un virus.
+              <br />
+              <br />
+              <b>● EXTIRPAR:</b> Destruye un órgano infectado. Coloca un segundo
+              virus sobre un órgano ya infectado: Este órgano es destruido y las
+              tres cartas van a parar a los descartes.
+              <br />
+              <br />
+              <b>● DESTRUIR VACUNA:</b> Destruye una vacuna. Elimina una carta
+              de medicina que se encuentre sobre un órgano. Envía el virus y la
+              medicina a los descartes.
+              <br />
+              <br />
+              <b>● VIRUS MULTICOLOR:</b> Este virus comodín puede infectar un
+              órgano o destruir una vacuna de cualquier color. Sin embargo,
+              también puede ser curado por medicinas de cualquier color.
+            </Card.Text>
+            <Card.Title className="mt-4">
+              <h5 className="text-left">Medicinas</h5>
+            </Card.Title>
+            <Row className="align-items-center justify-content-center mt-4">
+              <Card.Img className="help-component-image mt-2" src={medicina1} />
+              <Card.Img className="help-component-image mt-2" src={medicina2} />
+              <Card.Img className="help-component-image mt-2" src={medicina3} />
+              <Card.Img className="help-component-image mt-2" src={medicina4} />
+              <Card.Img className="help-component-image mt-2" src={medicina5} />
+            </Row>
+            <Card.Text className="mt-4 text-justify">
+              <b>● CURAR:</b> Destruye un virus. Utiliza una carta de medicina
+              para descartar un virus de su mismo color que se encuentre sobre
+              un órgano.
+              <br />
+              <br />
+              <b>● VACUNAR:</b> Protege un órgano. Coloca una medicina sobre un
+              órgano libre de su mismo color. Ahora tus rivales necesitan dos
+              virus para infectar tu órgano.
+              <br />
+              <br />
+              <b>● INMUNIZAR:</b> Coloca una segunda medicina sobre un órgano.
+              Este queda protegido para siempre contra el ataque de cualquier
+              virus y no podrá ser destruido ni afectado por cartas de
+              tratamiento.
+              <br />
+              <br />
+              <b>● MEDICINAS MULTICOLOR:</b> Estas medicinas son comodines.
+              Utilízalas para curar virus o vacunar órganos de cualquier color.
+              Del mismo modo, pueden ser destruidas por virus de cualquier
+              color.
+            </Card.Text>
+            <Card.Title className="mt-4">
+              <h5 className="text-left">Tratamientos</h5>
+            </Card.Title>
+            <Row className="align-items-center justify-content-center mt-4">
+              <Card.Img
+                className="help-component-image mt-2"
+                src={tratamiento1}
+              />
+              <Card.Img
+                className="help-component-image mt-2"
+                src={tratamiento2}
+              />
+              <Card.Img
+                className="help-component-image mt-2"
+                src={tratamiento3}
+              />
+              <Card.Img
+                className="help-component-image mt-2"
+                src={tratamiento4}
+              />
+              <Card.Img
+                className="help-component-image mt-2"
+                src={tratamiento5}
+              />
+            </Row>
+            <Card.Text className="mt-4 text-justify">
+              Las cartas de tratamiento pueden alterar el juego para ayudarte a
+              ganar. Utilízalas en tu beneficio o para evitar que tus rivales
+              completen su cuerpo antes que tú.
+              <br />
+              <br />
+              En orden de izquierda a derecha según aparece en las imágenes,
+              realizan las siguientes acciones:
+              <br />
+              <br />
+              <b>● TRASPLANTE:</b> Intercambia un órgano por otro entre dos
+              jugadores cualesquiera. No importa si el color de estos órganos es
+              diferente, ni si están sanos, infectados o vacunados.
+              Sencillamente el jugador cambia el órgano escogido por otro,
+              siempre y cuando ninguno de los dos jugadores tenga dos órganos
+              del mismo color ni éstos estén inmunizados.
+              <br />
+              <br />
+              Para realizar esta acción primero debes arrastrar la carta al
+              órgano del primer jugador con el que quieres intercambiar y lo
+              mismo con el segundo que participa en el transplante.
+              <br />
+              <br />
+              <b>● LADRÓN DE ÓRGANOS:</b> Roba un órgano de otro jugador y
+              añádelo a tu cuerpo. Puedes robar órganos sanos, vacunados o
+              infectados, pero no inmunes. Recuerda que no puedes tener dos
+              órganos del mismo color
+              <br />
+              <br />
+              Para realizar esta acción arrastra la carta de tratamiento al
+              órgano que quieras robar.
+              <br />
+              <br />
+              <b>● CONTAGIO:</b> Contagia con tantos virus como puedas de tus
+              órganos infectados a los órganos de los demás jugadores.
+              <br />
+              <br />
+              Para realizar esta acción arrastra la carta de tratamiento a
+              cualquier cuerpo y se realizará el contagio de manera aleatoria.
+              <br />
+              <br />
+              <b>● GUANTE DE LÁTEX:</b> Todos los jugadores, excepto el que
+              utiliza el guante, descartan su mano. Su mano será reestablecida
+              de nuevo con cartas nuevas.
+              <br />
+              <br />
+              Para realizar esta acción arrastra la carta de tratamiento a
+              cualquier cuerpo.
+              <br />
+              <br />
+              <b>● ERROR MÉDICO:</b> Intercambia todo tu cuerpo por el de otro
+              jugador, incluyendo órganos, virus y vacunas. No importa el número
+              de cartas que cada uno tenga. Cuando usas esta carta, los órganos
+              inmunizados también son intercambiados.
+              <br />
+              <br />
+              Para realizar esta acción arrastra la carta de tratamiento al
+              cuerpo del jugador con el que quieras intercambiar el cuerpo.
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
   );
 }
 

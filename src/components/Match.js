@@ -110,7 +110,7 @@ function Match() {
               src={help}
               className="game-icon"
               onClick={() => {
-                alert("Help");
+                history.push("/help");
               }}
             />
           </div>
