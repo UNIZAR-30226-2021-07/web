@@ -102,11 +102,12 @@ function Match() {
   };
 
   return (
-    <Row
-      className="m-0 p-0 flex-nowrap"
-      style={{ backgroundImage: `url(${board})` }}
-    >
-      <Col md={8} className="px-3 py-2 d-flex flex-column">
+    <Row className="m-0 p-0 flex-nowrap">
+      <Col
+        md={8}
+        className="px-3 py-2 d-flex flex-column border-right border-dark"
+        style={{ backgroundImage: `url(${board})` }}
+      >
         <Row className="mx-0 justify-content-between">
           <Image
             src={exit}
