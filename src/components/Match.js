@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
@@ -34,8 +34,7 @@ function Match() {
   );
 
   const history = useHistory();
-
-  const [board, setBoard] = useState("");
+  const board = getBoard(userData.board)[0];
 
   useEffect(() => {
     // If socket null, (e.g. when disconnected) go back to menu
@@ -80,15 +79,6 @@ function Match() {
       socket.current.off("game_cancelled");
     };
   }, [socketChange]);
-
-  useEffect(() => {
-    if (userData.length === 0) return;
-
-    const boardData = getBoard(userData.board);
-    setBoard(boardData[0]);
-    console.log(boardData[0]);
-    console.log(board);
-  }, [userData.board]);
 
   const pauseGame = async (e) => {
     e.preventDefault();
