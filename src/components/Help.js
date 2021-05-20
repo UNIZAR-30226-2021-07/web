@@ -116,7 +116,7 @@ function Help() {
               <p className="secondary-title text-center">Tipos de carta</p>
             </Card.Title>
             <Card.Title className="mt-4">
-            <p className="tertiary-title text-left">Órganos</p>
+              <p className="tertiary-title text-left">Órganos</p>
             </Card.Title>
             <Row className="align-items-center justify-content-center mt-4">
               <Card.Img className="help-component-image mt-2" src={organ1} />
