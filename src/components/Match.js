@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Row, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
@@ -13,6 +13,8 @@ import { renderLeaveGamePopup } from "./popups/LeaveGamePopup";
 
 import { SessionContext } from "./SessionProvider";
 import { GameContext } from "./GameProvider";
+
+import { getBoard } from "../utils/json";
 
 import pauseIcon from "../assets/common/icons/pause.svg";
 import exit from "../assets/common/icons/logout.svg";
@@ -32,6 +34,8 @@ function Match() {
   );
 
   const history = useHistory();
+
+  const [board, setBoard] = useState("");
 
   useEffect(() => {
     // If socket null, (e.g. when disconnected) go back to menu
@@ -77,6 +81,15 @@ function Match() {
     };
   }, [socketChange]);
 
+  useEffect(() => {
+    if (userData.length === 0) return;
+
+    const boardData = getBoard(userData.board);
+    setBoard(boardData[0]);
+    console.log(boardData[0]);
+    console.log(board);
+  }, [userData.board]);
+
   const pauseGame = async (e) => {
     e.preventDefault();
     socket.current.emit("pause_game", true, (data) => {
@@ -89,7 +102,10 @@ function Match() {
   };
 
   return (
-    <Row className="m-0 p-0 flex-nowrap">
+    <Row
+      className="m-0 p-0 flex-nowrap"
+      style={{ backgroundImage: `url(${board})` }}
+    >
       <Col md={8} className="px-3 py-2 d-flex flex-column">
         <Row className="mx-0 justify-content-between">
           <Image
