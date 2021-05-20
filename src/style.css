@@ -12,6 +12,10 @@ body {
   background-image: url("assets/common/background.jpg");
 }
 
+hr {
+  border-top: 2px solid #bbb !important;
+}
+
 html,
 body,
 #root,

@@ -43,10 +43,12 @@ function Help() {
           </Button>
           <Card.Body>
             <Card.Title>
-              <h2 className="font-weight-bold text-center">AYUDA</h2>
+              <p className="primary-title text-center">AYUDA</p>
             </Card.Title>
             <Card.Title className="mt-4">
-              <h4 className="text-center">Estructura del tablero</h4>
+              <p className="secondary-title text-center">
+                Estructura del tablero
+              </p>
             </Card.Title>
             <Card.Text className="mt-4 text-justify">
               En la pantalla anterior has podido ver el tablero.
@@ -68,7 +70,7 @@ function Help() {
               oponentes. Puedes colocar en tu turno cartas sobre estos cuerpos.
             </Card.Text>
             <Card.Title className="mt-4">
-              <h4 className="text-center">Objetivo del juego</h4>
+              <p className="secondary-title text-center">Objetivo del juego</p>
             </Card.Title>
             <Card.Text className="mt-4 text-justify">
               Sé el primer jugador en completar tu cuerpo. Un cuerpo lo forman 4
@@ -76,7 +78,7 @@ function Help() {
               a ti, tus 4 órganos diferentes sanos, ¡habrás ganado la partida!.
             </Card.Text>
             <Card.Title className="mt-4">
-              <h4 className="text-center">Mecánica del juego</h4>
+              <p className="secondary-title text-center">Mecánica del juego</p>
             </Card.Title>
             <Card.Text className="mt-4 text-justify">
               Cada jugador debe tener siempre al comienzo de su turno 3 cartas
@@ -95,7 +97,7 @@ function Help() {
               evitar que el resto de jugadores terminen su cuerpo antes que tú.
             </Card.Text>
             <Card.Title className="mt-4">
-              <h4 className="text-center">Fases del juego</h4>
+              <p className="secondary-title text-center">Fases del juego</p>
             </Card.Title>
             <Card.Text className="mt-4 text-justify">
               <b>● FASE 1: Jugar o descartar. </b>
@@ -111,10 +113,10 @@ function Help() {
               Pasa el turno al jugador de tu derecha.
             </Card.Text>
             <Card.Title className="mt-4">
-              <h4 className="text-center">Tipos de carta</h4>
+              <p className="secondary-title text-center">Tipos de carta</p>
             </Card.Title>
             <Card.Title className="mt-4">
-              <h5 className="text-left">Órganos</h5>
+            <p className="tertiary-title text-left">Órganos</p>
             </Card.Title>
             <Row className="align-items-center justify-content-center mt-4">
               <Card.Img className="help-component-image mt-2" src={organ1} />
@@ -135,7 +137,8 @@ function Help() {
               puede ser infectado por un virus de cualquier color.
             </Card.Text>
             <Card.Title className="mt-4">
-              <h5 className="text-left">Virus</h5>
+              <hr />
+              <p className="tertiary-title text-left">Virus</p>
             </Card.Title>
             <Row className="align-items-center justify-content-center mt-4">
               <Card.Img className="help-component-image mt-2" src={virus1} />
@@ -165,7 +168,8 @@ function Help() {
               también puede ser curado por medicinas de cualquier color.
             </Card.Text>
             <Card.Title className="mt-4">
-              <h5 className="text-left">Medicinas</h5>
+              <hr />
+              <p className="tertiary-title text-left">Medicinas</p>
             </Card.Title>
             <Row className="align-items-center justify-content-center mt-4">
               <Card.Img className="help-component-image mt-2" src={medicina1} />
@@ -197,38 +201,13 @@ function Help() {
               color.
             </Card.Text>
             <Card.Title className="mt-4">
-              <h5 className="text-left">Tratamientos</h5>
+              <hr />
+              <p className="tertiary-title text-left">Tratamientos</p>
             </Card.Title>
-            <Row className="align-items-center justify-content-center mt-4">
-              <Card.Img
-                className="help-component-image mt-2"
-                src={tratamiento1}
-              />
-              <Card.Img
-                className="help-component-image mt-2"
-                src={tratamiento2}
-              />
-              <Card.Img
-                className="help-component-image mt-2"
-                src={tratamiento3}
-              />
-              <Card.Img
-                className="help-component-image mt-2"
-                src={tratamiento4}
-              />
-              <Card.Img
-                className="help-component-image mt-2"
-                src={tratamiento5}
-              />
-            </Row>
             <Card.Text className="mt-4 text-justify">
               Las cartas de tratamiento pueden alterar el juego para ayudarte a
               ganar. Utilízalas en tu beneficio o para evitar que tus rivales
               completen su cuerpo antes que tú.
-              <br />
-              <br />
-              En orden de izquierda a derecha según aparece en las imágenes,
-              realizan las siguientes acciones:
               <br />
               <br />
               <b>● TRASPLANTE:</b> Intercambia un órgano por otro entre dos
@@ -237,6 +216,12 @@ function Help() {
               Sencillamente el jugador cambia el órgano escogido por otro,
               siempre y cuando ninguno de los dos jugadores tenga dos órganos
               del mismo color ni éstos estén inmunizados.
+              <Row className="align-items-center justify-content-center mt-4">
+                <Card.Img
+                  className="help-component-image mt-2"
+                  src={tratamiento1}
+                />
+              </Row>
               <br />
               <br />
               Para realizar esta acción primero debes arrastrar la carta al
@@ -248,6 +233,12 @@ function Help() {
               añádelo a tu cuerpo. Puedes robar órganos sanos, vacunados o
               infectados, pero no inmunes. Recuerda que no puedes tener dos
               órganos del mismo color
+              <Row className="align-items-center justify-content-center mt-4">
+                <Card.Img
+                  className="help-component-image mt-2"
+                  src={tratamiento2}
+                />
+              </Row>
               <br />
               <br />
               Para realizar esta acción arrastra la carta de tratamiento al
@@ -256,6 +247,12 @@ function Help() {
               <br />
               <b>● CONTAGIO:</b> Contagia con tantos virus como puedas de tus
               órganos infectados a los órganos de los demás jugadores.
+              <Row className="align-items-center justify-content-center mt-4">
+                <Card.Img
+                  className="help-component-image mt-2"
+                  src={tratamiento3}
+                />
+              </Row>
               <br />
               <br />
               Para realizar esta acción arrastra la carta de tratamiento a
@@ -265,6 +262,12 @@ function Help() {
               <b>● GUANTE DE LÁTEX:</b> Todos los jugadores, excepto el que
               utiliza el guante, descartan su mano. Su mano será reestablecida
               de nuevo con cartas nuevas.
+              <Row className="align-items-center justify-content-center mt-4">
+                <Card.Img
+                  className="help-component-image mt-2"
+                  src={tratamiento4}
+                />
+              </Row>
               <br />
               <br />
               Para realizar esta acción arrastra la carta de tratamiento a
@@ -275,6 +278,12 @@ function Help() {
               jugador, incluyendo órganos, virus y vacunas. No importa el número
               de cartas que cada uno tenga. Cuando usas esta carta, los órganos
               inmunizados también son intercambiados.
+              <Row className="align-items-center justify-content-center mt-4">
+                <Card.Img
+                  className="help-component-image mt-2"
+                  src={tratamiento5}
+                />
+              </Row>
               <br />
               <br />
               Para realizar esta acción arrastra la carta de tratamiento al
