@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button, Form } from "react-bootstrap";
-//import { useHistory } from "react-router-dom";
 import { GameContext } from "../GameProvider";
 
 import Popup from "./PopUp";
@@ -11,47 +10,23 @@ import { renderErrorPopup } from "./ErrorPopup";
 
 import tick from "../../assets/common/icons/tick.svg";
 
-export default function JoinPrivateGamePopup({
-  socket,
-  //setRestartPending,
-  //restartPending,
-  //setOnMatch,
-}) {
+export default function JoinPrivateGamePopup({ socket }) {
   const [code, setCode] = useState("");
-  //const history = useHistory();
   const game = useContext(GameContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     socket.current.emit("join", code, (response) => {
-      console.log("JOIN" + code);
       if (response && response.error) {
         renderErrorPopup(response.error);
-      } //else if (!restartPending) {
+      } else {
         // Join new game
         game.setIsPrivate(true);
         PopupboxManager.close();
         renderPreparingPrivateGamePopup({ socket });
-      //}
+      }
     });
-
-
-    /*
-    //if (restartPending) {
-      // Join existing game
-      socket.current.once("start_game", (response) => {
-        if (response && response.error) {
-          renderErrorPopup(response.error);
-        } else {
-          PopupboxManager.close();
-          setOnMatch(true);
-          history.push("/match");
-          setRestartPending(false);
-        }
-      });
-    //}
-    */
   };
 
   return (
@@ -83,20 +58,8 @@ export default function JoinPrivateGamePopup({
   );
 }
 
-export function renderJoinPrivateGamePopup({
-  socket,
-  setRestartPending,
-  restartPending,
-  setOnMatch,
-}) {
-  const content = (
-    <JoinPrivateGamePopup
-      socket={socket}
-      setRestartPending={setRestartPending}
-      restartPending={restartPending}
-      setOnMatch={setOnMatch}
-    />
-  );
+export function renderJoinPrivateGamePopup({ socket }) {
+  const content = <JoinPrivateGamePopup socket={socket} />;
   PopupboxManager.open({
     content,
     config: {

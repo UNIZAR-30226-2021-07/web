@@ -31,7 +31,7 @@ export default function JoinPublicGamePopup({ socket }) {
   );
 }
 
-export function renderJoinPublicGamePopup(session, game/*, history*/) {
+export function renderJoinPublicGamePopup(session, game) {
   const socket = session.socket;
 
   function callback(data) {
@@ -50,28 +50,6 @@ export function renderJoinPublicGamePopup(session, game/*, history*/) {
     // Join public game with the given code
     socket.current.emit("join", response.code, callback);
     game.setIsPrivate(false);
-
-    // Wait to "start_game" or "game_cancelled"
-    /*
-    socket.current.once("start_game", (response) => {
-      if (response && response.error) {
-        renderErrorPopup(response.error);
-      } else {
-        PopupboxManager.close();
-        session.setOnMatch(true);
-        game.setIsPrivate(false);
-        socket.current.off("game_cancelled");
-        history.push("/match");
-      }
-    });
-
-    // TODO: Escuchar a game_cancelled en Menu
-    socket.current.once("game_cancelled", () => {
-      PopupboxManager.close();
-      history.push("/menu");
-      socket.current.off("start_game");
-    });
-    */
   });
 
   const content = <JoinPublicGamePopup socket={socket} />;

@@ -19,17 +19,16 @@ import { getProfile } from "../utils/json";
 import { SessionContext } from "./SessionProvider";
 import { GameContext } from "./GameProvider";
 
-// import { leaveGame } from "./WebSockets";
-
 function Menu() {
   const session = useContext(SessionContext);
   const game = useContext(GameContext);
   const history = useHistory();
   const [picture, setPicture] = useState("");
 
-  useEffect(() => {
-    console.log("MENU");
-    //if (!session.restartPending) {
+  useEffect(
+    () => {
+      console.log("MENU");
+      //if (!session.restartPending) {
       session.setOnMatch(false);
       // Update del socket
       // F: Así se consigue que se limpien los datos del gameProvider
@@ -37,8 +36,12 @@ function Menu() {
       // if (!session.socket.current) return;
       //console.log("leave game");
       //leaveGame(session);
-    //}
-  }, [/*session.restartPending*/]);
+      //}
+    },
+    [
+      /*session.restartPending*/
+    ]
+  );
 
   useEffect(() => {
     if (session.userData.length === 0) return;
@@ -57,9 +60,12 @@ function Menu() {
         PopupboxManager.close();
         session.setOnMatch(true);
         history.push("/match");
-        // TODO: rev si quitar o no
         session.socket.current.off("game_owner");
       }
+    });
+
+    session.socket.current.once("game_cancelled", () => {
+      PopupboxManager.close();
     });
   }, [session.socketChange]);
 
@@ -80,13 +86,13 @@ function Menu() {
           </Link>
         </Col>
         <Col>
-        <Image
-              src={help}
-              className="game-icon"
-              onClick={() => {
-                history.push("/help");
-              }}
-            />
+          <Image
+            src={help}
+            className="game-icon"
+            onClick={() => {
+              history.push("/help");
+            }}
+          />
         </Col>
         <Col className="h-100">
           <Link to="/shop" className="d-block h-100 url-style-disabled">
