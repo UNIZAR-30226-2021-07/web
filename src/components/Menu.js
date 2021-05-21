@@ -25,23 +25,12 @@ function Menu() {
   const history = useHistory();
   const [picture, setPicture] = useState("");
 
-  useEffect(
-    () => {
-      console.log("MENU");
-      //if (!session.restartPending) {
-      session.setOnMatch(false);
-      // Update del socket
-      // F: Así se consigue que se limpien los datos del gameProvider
-      session.setUpdateSocket((session.updateSocket + 1) % 2);
-      // if (!session.socket.current) return;
-      //console.log("leave game");
-      //leaveGame(session);
-      //}
-    },
-    [
-      /*session.restartPending*/
-    ]
-  );
+  useEffect(() => {
+    session.setOnMatch(false);
+    // Update del socket
+    // F: Así se consigue que se limpien los datos del gameProvider
+    session.setUpdateSocket((session.updateSocket + 1) % 2);
+  }, []);
 
   useEffect(() => {
     if (session.userData.length === 0) return;
