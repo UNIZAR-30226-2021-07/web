@@ -118,7 +118,9 @@ function Match() {
             <Image
               src={help}
               className="game-icon"
-              onClick={() => renderHelpPopup()}
+              onClick={() => {
+                history.push("/help");
+              }}
             />
           </div>
         </Row>
