@@ -14,6 +14,8 @@ import { renderLeaveGamePopup } from "./popups/LeaveGamePopup";
 import { SessionContext } from "./SessionProvider";
 import { GameContext } from "./GameProvider";
 
+import { getBoard } from "../utils/json";
+
 import pauseIcon from "../assets/common/icons/pause.svg";
 import exit from "../assets/common/icons/logout.svg";
 import help from "../assets/common/icons/help.svg";
@@ -32,6 +34,7 @@ function Match() {
   );
 
   const history = useHistory();
+  const board = getBoard(userData.board)[0];
 
   useEffect(() => {
     // If socket null, (e.g. when disconnected) go back to menu
@@ -90,7 +93,12 @@ function Match() {
 
   return (
     <Row className="m-0 p-0 flex-nowrap">
-      <Col md={8} className="px-3 py-2 d-flex flex-column">
+      <Col
+        md={8}
+        lg={9}
+        className="px-3 py-2 d-flex flex-column border-right border-dark"
+        style={{ backgroundImage: `url(${board})` }}
+      >
         <Row className="mx-0 justify-content-between">
           <Image
             src={exit}
@@ -119,7 +127,7 @@ function Match() {
           <Board />
         </Row>
       </Col>
-      <Col md={4} className="p-0">
+      <Col md={4} lg={3} className="p-0">
         <Chat />
       </Col>
     </Row>
