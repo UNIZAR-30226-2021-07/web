@@ -1,6 +1,5 @@
 import React from "react";
 import { PopupboxManager } from "react-popupbox";
-import ScrollView from 'devextreme-react/scroll-view';
 
 import Popup from "./PopUp";
 import Help from "../Help";
@@ -8,10 +7,8 @@ import Help from "../Help";
 export default function HelpPopup() {
 
   return (
-    <Popup close={true}>
-        <ScrollView width="100%" height="100%">
-            <Help />
-        </ScrollView>
+    <Popup style={{height: "600px"}} close={true}>
+        <Help />
     </Popup>
   );
 }
