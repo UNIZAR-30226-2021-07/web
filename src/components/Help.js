@@ -31,7 +31,7 @@ function Help() {
   const history = useHistory();
 
   const handleClose = () => {
-    history.goBack();
+    history.push("/match");
   };
 
   return (

@@ -366,7 +366,7 @@ body,
 /* --------------------------- Cartas ------------------------ */
 
 .hand-card {
-  width: 10vh !important;
+  height: 13vh !important;
   transition: transform 0.3s 0s cubic-bezier(0.29, -0.43, 0.27, 1.55);
 }
 
