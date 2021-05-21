@@ -95,6 +95,7 @@ function Match() {
     <Row className="m-0 p-0 flex-nowrap">
       <Col
         md={8}
+        lg={9}
         className="px-3 py-2 d-flex flex-column border-right border-dark"
         style={{ backgroundImage: `url(${board})` }}
       >
@@ -126,7 +127,7 @@ function Match() {
           <Board />
         </Row>
       </Col>
-      <Col md={4} className="p-0">
+      <Col md={4} lg={3} className="p-0">
         <Chat />
       </Col>
     </Row>
