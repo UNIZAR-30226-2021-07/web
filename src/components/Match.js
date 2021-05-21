@@ -8,6 +8,7 @@ import Timer from "./Timer";
 
 import { renderPausePopup } from "./popups/PausePopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
+import { renderHelpPopup } from "./popups/HelpPopup";
 import { renderLeaderboardPopup } from "./popups/LeaderboardPopup";
 import { renderLeaveGamePopup } from "./popups/LeaveGamePopup";
 
@@ -117,9 +118,7 @@ function Match() {
             <Image
               src={help}
               className="game-icon"
-              onClick={() => {
-                history.push("/help");
-              }}
+              onClick={() => renderHelpPopup()}
             />
           </div>
         </Row>

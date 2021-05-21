@@ -51,8 +51,6 @@ function Help() {
               </p>
             </Card.Title>
             <Card.Text className="mt-4 text-justify">
-              En la pantalla anterior has podido ver el tablero.
-              <br />
               En la parte más inferior aparece tu mano, es decir, las cartas que
               tienes en todo momento para poder jugar.
               <br />
