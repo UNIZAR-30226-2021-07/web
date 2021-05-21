@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { PopupboxManager } from "react-popupbox";
 
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
 import { renderCreateGamePopup } from "./popups/CreateGamePopup";
 import { renderJoinPrivateGamePopup } from "./popups/JoinPrivateGamePopup";
 import { renderJoinPublicGamePopup } from "./popups/JoinPublicGamePopup";
+import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import logo from "../assets/common/logo/logo.svg";
 import shop from "../assets/common/icons/tienda.svg";
@@ -17,7 +19,7 @@ import { getProfile } from "../utils/json";
 import { SessionContext } from "./SessionProvider";
 import { GameContext } from "./GameProvider";
 
-import { leaveGame } from "./WebSockets";
+// import { leaveGame } from "./WebSockets";
 
 function Menu() {
   const session = useContext(SessionContext);
@@ -26,13 +28,17 @@ function Menu() {
   const [picture, setPicture] = useState("");
 
   useEffect(() => {
-    if (!session.restartPending) {
+    console.log("MENU");
+    //if (!session.restartPending) {
       session.setOnMatch(false);
-
-      if (!session.socket.current) return;
-      leaveGame(session);
-    }
-  }, [session.restartPending]);
+      // Update del socket
+      // F: Así se consigue que se limpien los datos del gameProvider
+      session.setUpdateSocket((session.updateSocket + 1) % 2);
+      // if (!session.socket.current) return;
+      //console.log("leave game");
+      //leaveGame(session);
+    //}
+  }, [/*session.restartPending*/]);
 
   useEffect(() => {
     if (session.userData.length === 0) return;
@@ -40,6 +46,22 @@ function Menu() {
     const pictureURL = getProfile(session.userData.picture);
     setPicture(pictureURL);
   }, [session.userData.picture]);
+
+  useEffect(() => {
+    if (!session.socket || !session.socket.current) return;
+    session.socket.current.once("start_game", (response) => {
+      console.log("Start game received");
+      if (response && response.error) {
+        renderErrorPopup(response.error);
+      } else {
+        PopupboxManager.close();
+        session.setOnMatch(true);
+        history.push("/match");
+        // TODO: rev si quitar o no
+        session.socket.current.off("game_owner");
+      }
+    });
+  }, [session.socketChange]);
 
   return (
     <Container

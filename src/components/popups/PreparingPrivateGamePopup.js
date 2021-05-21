@@ -1,27 +1,33 @@
 import React, { useContext, useEffect } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 
 import Popup from "./PopUp";
-import { renderErrorPopup } from "./ErrorPopup";
+//import { renderErrorPopup } from "./ErrorPopup";
 import { renderStartGamePopup } from "./StartGamePopup";
 import { NumUsersContext } from "../UsersProvider";
 import { SessionContext } from "../SessionProvider";
-import { GameContext } from "../GameProvider";
+//import { GameContext } from "../GameProvider";
 
 import { leaveGame } from "../WebSockets";
 
 export default function PreparingPrivateGamePopup({ socket }) {
-  const history = useHistory();
+  //const history = useHistory();
   const userContext = useContext(NumUsersContext);
   const session = useContext(SessionContext);
-  const game = useContext(GameContext);
+  //const game = useContext(GameContext);
   const total = 6;
 
   useEffect(() => {
+
+    if (session.onMatch) {
+      PopupboxManager.close();
+    }
+
     if (!socket || !socket.current) return;
 
+    /*
     socket.current.once("start_game", (response) => {
       if (response && response.error) {
         renderErrorPopup(response.error);
@@ -33,15 +39,17 @@ export default function PreparingPrivateGamePopup({ socket }) {
         socket.current.off("game_owner");
       }
     });
+    */
 
     socket.current.once("game_owner", () => {
       PopupboxManager.close();
+      // TODO. quitar el apagar esta escucha?
       socket.current.off("start_game");
       renderStartGamePopup({ socket });
     });
   }, []);
 
-  return (
+  return session.onMatch ? null : (
     <Popup
       title="Preparando partida..."
       close={true}

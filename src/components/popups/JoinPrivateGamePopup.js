@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { PopupboxManager } from "react-popupbox";
 import { Row, Button, Form } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
+import { GameContext } from "../GameProvider";
 
 import Popup from "./PopUp";
 
@@ -12,27 +13,32 @@ import tick from "../../assets/common/icons/tick.svg";
 
 export default function JoinPrivateGamePopup({
   socket,
-  setRestartPending,
-  restartPending,
-  setOnMatch,
+  //setRestartPending,
+  //restartPending,
+  //setOnMatch,
 }) {
   const [code, setCode] = useState("");
-  const history = useHistory();
+  //const history = useHistory();
+  const game = useContext(GameContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     socket.current.emit("join", code, (response) => {
+      console.log("JOIN" + code);
       if (response && response.error) {
         renderErrorPopup(response.error);
-      } else if (!restartPending) {
+      } //else if (!restartPending) {
         // Join new game
+        game.setIsPrivate(true);
         PopupboxManager.close();
         renderPreparingPrivateGamePopup({ socket });
-      }
+      //}
     });
 
-    if (restartPending) {
+
+    /*
+    //if (restartPending) {
       // Join existing game
       socket.current.once("start_game", (response) => {
         if (response && response.error) {
@@ -44,7 +50,8 @@ export default function JoinPrivateGamePopup({
           setRestartPending(false);
         }
       });
-    }
+    //}
+    */
   };
 
   return (
