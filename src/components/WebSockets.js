@@ -30,6 +30,7 @@ export function playDiscard({ socket }, data) {
   socket.current.emit("play_discard", data, (response) => {
     if (response && response.error) {
       console.log(response.error);
+      renderErrorPopup(response.error);
     }
   });
 }
