@@ -10,6 +10,7 @@ import { renderJoinPublicGamePopup } from "./popups/JoinPublicGamePopup";
 import logo from "../assets/common/logo/logo.svg";
 import shop from "../assets/common/icons/tienda.svg";
 import coins from "../assets/common/icons/huella.svg";
+import help from "../assets/common/icons/help.svg";
 
 import { getProfile } from "../utils/json";
 
@@ -55,6 +56,15 @@ function Menu() {
               roundedCircle
             />
           </Link>
+        </Col>
+        <Col>
+        <Image
+              src={help}
+              className="game-icon"
+              onClick={() => {
+                history.push("/help");
+              }}
+            />
         </Col>
         <Col className="h-100">
           <Link to="/shop" className="d-block h-100 url-style-disabled">

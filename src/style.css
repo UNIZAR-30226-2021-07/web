@@ -12,6 +12,10 @@ body {
   background-image: url("assets/common/background.jpg");
 }
 
+hr {
+  border-top: 2px solid #bbb !important;
+}
+
 html,
 body,
 #root,
@@ -362,7 +366,7 @@ body,
 /* --------------------------- Cartas ------------------------ */
 
 .hand-card {
-  width: 10vh !important;
+  height: 13vh !important;
   transition: transform 0.3s 0s cubic-bezier(0.29, -0.43, 0.27, 1.55);
 }
 
@@ -515,4 +519,9 @@ body,
 
 .player-turn {
   border: 5px solid #6a1b9a !important;
+}
+
+.help-component-image {
+  width: 120px !important;
+  height: 120px !important;
 }
