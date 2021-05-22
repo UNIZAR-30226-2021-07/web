@@ -10,6 +10,7 @@ import { renderPausePopup } from "./popups/PausePopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
 import { renderLeaderboardPopup } from "./popups/LeaderboardPopup";
 import { renderLeaveGamePopup } from "./popups/LeaveGamePopup";
+import { renderHelpPopup } from "./popups/HelpPopup";
 
 import { SessionContext } from "./SessionProvider";
 import { GameContext } from "./GameProvider";
@@ -117,9 +118,7 @@ function Match() {
             <Image
               src={help}
               className="game-icon"
-              onClick={() => {
-                history.push("/help");
-              }}
+              onClick={() => renderHelpPopup()}
             />
           </div>
         </Row>

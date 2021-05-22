@@ -58,13 +58,9 @@ function Menu() {
           </Link>
         </Col>
         <Col>
-        <Image
-              src={help}
-              className="game-icon"
-              onClick={() => {
-                history.push("/help");
-              }}
-            />
+          <Link to="/help">
+            <Image src={help} className="game-icon pause-menu" />
+          </Link>
         </Col>
         <Col className="h-100">
           <Link to="/shop" className="d-block h-100 url-style-disabled">
