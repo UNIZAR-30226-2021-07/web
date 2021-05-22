@@ -55,7 +55,8 @@ function GameProvider({ children }) {
     session.socket.current.on("game_update", (response) => {
       if (response != null) {
         if ("current_turn" in response) {
-          console.log(response.current_turn);
+          // Clean transplant state
+          setTransplantData({});
           setCurrentTurn(response.current_turn);
           setChangeTurn((changeTurnRef.current + 1) % 2);
           changeTurnRef.current = (changeTurnRef.current + 1) % 2;
