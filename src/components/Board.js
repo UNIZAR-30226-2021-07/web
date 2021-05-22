@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Container, Row, Button } from "react-bootstrap";
+import { Container, Row, Button, Image } from "react-bootstrap";
 
 import Hand from "./game/Hand";
 import Body from "./game/Body";
@@ -9,6 +9,8 @@ import { renderErrorPopup } from "./popups/ErrorPopup";
 import { playDiscard } from "./WebSockets";
 import { GameContext } from "./GameProvider";
 import { SessionContext } from "./SessionProvider";
+
+import fuegos from "../assets/common/icons/fuegos-artificiales.png";
 
 function Board() {
   const session = useContext(SessionContext);
@@ -144,7 +146,14 @@ function Board() {
             username={session.userData.name}
           />
         ) : (
-          <p>HAS ACABADO. FUEGOS ARTIFICIALES</p>
+          <div>
+            <Row>
+              <h4>¡HAS TERMINADO!</h4>
+            </Row>
+            <Row className="align-items-center justify-content-center">
+              <Image style={{ height: "80px", width: "80px" }} src={fuegos} />
+            </Row>
+          </div>
         )}
         <div className="discard-base" onDrop={drop} onDragOver={allowDrop}>
           <h5 className="mt-4">DESCARTAR</h5>
