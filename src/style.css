@@ -307,7 +307,7 @@ body,
 }
 
 .message-list,
-.shop-list {
+.help-popup {
   overflow-y: scroll;
   flex: 1;
 }
@@ -524,4 +524,13 @@ body,
 .help-component-image {
   width: 120px !important;
   height: 120px !important;
+}
+
+.help-popup {
+  height: 100vh;
+}
+
+.card-help-popup {
+  border: none !important;
+  box-shadow: none !important;
 }
