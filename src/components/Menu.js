@@ -46,6 +46,9 @@ function Menu() {
       id="menu"
       className="app-container col-centered justify-content-around"
     >
+      <Link to="/help">
+        <Image src={help} className="game-icon pause-menu" />
+      </Link>
       <Row className="justify-content-between menu-icons">
         <Col className="h-100">
           <Link to="/profile" className="d-block h-100">
@@ -55,11 +58,6 @@ function Menu() {
               className="menu-icon user-profile-image"
               roundedCircle
             />
-          </Link>
-        </Col>
-        <Col>
-          <Link to="/help">
-            <Image src={help} className="game-icon pause-menu" />
           </Link>
         </Col>
         <Col className="h-100">

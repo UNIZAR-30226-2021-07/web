@@ -534,3 +534,10 @@ body,
   border: none !important;
   box-shadow: none !important;
 }
+
+.pause-menu {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 15px;
+}
