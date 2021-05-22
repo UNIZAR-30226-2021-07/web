@@ -42,7 +42,6 @@ function Menu() {
   useEffect(() => {
     if (!session.socket || !session.socket.current) return;
     session.socket.current.once("start_game", (response) => {
-      console.log("Start game received");
       if (response && response.error) {
         renderErrorPopup(response.error);
       } else {

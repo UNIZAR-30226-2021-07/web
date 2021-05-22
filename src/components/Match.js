@@ -29,9 +29,14 @@ function Match() {
     socketChange,
   } = useContext(SessionContext);
 
-  const { isPrivate, isPaused, pausedBy, isFinished, leaderboard } = useContext(
-    GameContext
-  );
+  const {
+    isPrivate,
+    isPaused,
+    pausedBy,
+    isFinished,
+    leaderboard,
+    remTurnTime,
+  } = useContext(GameContext);
 
   const history = useHistory();
   const board = getBoard(userData.board)[0];
@@ -45,7 +50,7 @@ function Match() {
   }, []);
 
   useEffect(() => {
-    //Ha habido una pausa por parte de otro usuario
+    // Ha habido una pausa por parte de otro usuario
     if (isPaused && pausedBy != userData.name) {
       renderPausePopup();
     }
@@ -105,7 +110,7 @@ function Match() {
             className="game-icon"
             onClick={() => renderLeaveGamePopup(isPrivate)}
           />
-          <Timer />
+          <Timer remTime={remTurnTime} />
           <div>
             {isPrivate && (
               <Image

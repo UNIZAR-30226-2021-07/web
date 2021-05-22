@@ -31,6 +31,9 @@ function GameProvider({ children }) {
   const [leaderboard, setLeaderboard] = useState({});
   const [isFinished, setIsFinished] = useState(false);
 
+  // Set to 30 by default
+  const [remTurnTime, setRemTurnTime] = useState(30);
+
   useEffect(() => {
     if (!session.socket.current) {
       return;
@@ -55,6 +58,7 @@ function GameProvider({ children }) {
     session.socket.current.on("game_update", (response) => {
       if (response != null) {
         if ("current_turn" in response) {
+          setRemTurnTime(30);
           setCurrentTurn(response.current_turn);
           setChangeTurn((changeTurnRef.current + 1) % 2);
           changeTurnRef.current = (changeTurnRef.current + 1) % 2;
@@ -149,16 +153,22 @@ function GameProvider({ children }) {
 
         if ("finished" in response) {
           if (response.finished) {
-            //La partida ha terminado
+            // La partida ha terminado
             setIsFinished(response.finished);
             setLeaderboard(response.leaderboard);
           }
+        }
+
+        if ("remaining_turn_secs" in response) {
+          setRemTurnTime(Math.floor(response.remaining_turn_secs));
+          // To update timer with corresponding remainder time
+          setChangeTurn((changeTurnRef.current + 1) % 2);
+          changeTurnRef.current = (changeTurnRef.current + 1) % 2;
         }
       }
     });
 
     return () => {
-      console.log("LIMPIEZA GAME PROVIDER");
       // Delete previous listenings and clean variables
       setHand([]);
       bodiesRef.current = {};
@@ -172,6 +182,7 @@ function GameProvider({ children }) {
       setTransplantData({});
       setLeaderboard({});
       setIsFinished(false);
+      setRemTurnTime(30);
     };
   }, [session.socketChange]);
 
@@ -193,6 +204,7 @@ function GameProvider({ children }) {
         isFinished,
         leaderboard,
         setTransplantData: (data) => setTransplantData(data),
+        remTurnTime,
       }}
     >
       {children}
