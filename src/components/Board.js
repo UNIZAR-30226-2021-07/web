@@ -12,7 +12,7 @@ import { SessionContext } from "./SessionProvider";
 
 function Board() {
   const session = useContext(SessionContext);
-  const { players, bodies, currentTurn } = useContext(GameContext);
+  const { players, bodies, currentTurn, ownFinished } = useContext(GameContext);
 
   const [numRivals, setNumRivals] = useState(0);
   const [gamePlayers, setGamePlayers] = useState(players);
@@ -138,10 +138,14 @@ function Board() {
         ) : (
           <Button className="pass-button-locked">PASAR</Button>
         )}
-        <Body
-          cardStacks={bodies[session.userData.name]}
-          username={session.userData.name}
-        />
+        {!ownFinished ? (
+          <Body
+            cardStacks={bodies[session.userData.name]}
+            username={session.userData.name}
+          />
+        ) : (
+          <p>HAS ACABADO. FUEGOS ARTIFICIALES</p>
+        )}
         <div className="discard-base" onDrop={drop} onDragOver={allowDrop}>
           <h5 className="mt-4">DESCARTAR</h5>
         </div>
