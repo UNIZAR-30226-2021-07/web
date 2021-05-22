@@ -106,7 +106,7 @@ function Match() {
             className="game-icon"
             onClick={() => renderLeaveGamePopup(isPrivate)}
           />
-            <Timer />
+          <Timer />
           <div>
             {isPrivate && (
               <Image

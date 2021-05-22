@@ -27,7 +27,6 @@ import tratamiento4 from "../../assets/common/cards/especial_guantes.svg";
 import tratamiento5 from "../../assets/common/cards/especial_radiografia.svg";
 
 function HelpPopup() {
-
   return (
     <Row className=" help-popup justify-content-center align-items-center mt-4 ml-2 mr-2">
       <Col>
