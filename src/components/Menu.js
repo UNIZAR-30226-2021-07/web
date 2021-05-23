@@ -1,22 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { PopupboxManager } from "react-popupbox";
 
 import { Container, Row, Col, Button, Image } from "react-bootstrap";
 
 import { renderCreateGamePopup } from "./popups/CreateGamePopup";
 import { renderJoinPrivateGamePopup } from "./popups/JoinPrivateGamePopup";
 import { renderJoinPublicGamePopup } from "./popups/JoinPublicGamePopup";
+import { renderErrorPopup } from "./popups/ErrorPopup";
 
 import logo from "../assets/common/logo/logo.svg";
 import shop from "../assets/common/icons/tienda.svg";
 import coins from "../assets/common/icons/huella.svg";
+import help from "../assets/common/icons/help.svg";
 
 import { getProfile } from "../utils/json";
 
 import { SessionContext } from "./SessionProvider";
 import { GameContext } from "./GameProvider";
-
-import { leaveGame } from "./WebSockets";
 
 function Menu() {
   const session = useContext(SessionContext);
@@ -25,13 +26,11 @@ function Menu() {
   const [picture, setPicture] = useState("");
 
   useEffect(() => {
-    if (!session.restartPending) {
-      session.setOnMatch(false);
-
-      if (!session.socket.current) return;
-      leaveGame(session);
-    }
-  }, [session.restartPending]);
+    session.setOnMatch(false);
+    // Update del socket
+    // F: Así se consigue que se limpien los datos del gameProvider
+    session.setUpdateSocket((session.updateSocket + 1) % 2);
+  }, []);
 
   useEffect(() => {
     if (session.userData.length === 0) return;
@@ -39,6 +38,24 @@ function Menu() {
     const pictureURL = getProfile(session.userData.picture);
     setPicture(pictureURL);
   }, [session.userData.picture]);
+
+  useEffect(() => {
+    if (!session.socket || !session.socket.current) return;
+    session.socket.current.once("start_game", (response) => {
+      if (response && response.error) {
+        renderErrorPopup(response.error);
+      } else {
+        PopupboxManager.close();
+        session.setOnMatch(true);
+        history.push("/match");
+        session.socket.current.off("game_owner");
+      }
+    });
+
+    session.socket.current.once("game_cancelled", () => {
+      PopupboxManager.close();
+    });
+  }, [session.socketChange]);
 
   return (
     <Container
@@ -55,6 +72,15 @@ function Menu() {
               roundedCircle
             />
           </Link>
+        </Col>
+        <Col>
+          <Image
+            src={help}
+            className="game-icon"
+            onClick={() => {
+              history.push("/help");
+            }}
+          />
         </Col>
         <Col className="h-100">
           <Link to="/shop" className="d-block h-100 url-style-disabled">

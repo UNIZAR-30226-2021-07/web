@@ -45,7 +45,7 @@ function Match() {
   }, []);
 
   useEffect(() => {
-    //Ha habido una pausa por parte de otro usuario
+    // Ha habido una pausa por parte de otro usuario
     if (isPaused && pausedBy != userData.name) {
       renderPausePopup();
     }
@@ -97,6 +97,7 @@ function Match() {
     <Row className="m-0 p-0 flex-nowrap">
       <Col
         md={8}
+        lg={9}
         className="px-3 py-2 d-flex flex-column border-right border-dark"
         style={{ backgroundImage: `url(${board})` }}
       >
@@ -119,7 +120,7 @@ function Match() {
               src={help}
               className="game-icon"
               onClick={() => {
-                alert("Help");
+                history.push("/help");
               }}
             />
           </div>
@@ -128,7 +129,7 @@ function Match() {
           <Board />
         </Row>
       </Col>
-      <Col md={4} className="p-0">
+      <Col md={4} lg={3} className="p-0">
         <Chat />
       </Col>
     </Row>

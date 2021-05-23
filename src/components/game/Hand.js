@@ -13,7 +13,7 @@ function Hand() {
   }, [game.hand]);
 
   return (
-    <ListGroup horizontal>
+    <ListGroup horizontal style={{ minHeight: "14vh" }}>
       {hand.map((card, idx) => (
         <Card key={idx} slot={idx} card={card} kind="hand" />
       ))}
