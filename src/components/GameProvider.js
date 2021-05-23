@@ -32,6 +32,9 @@ function GameProvider({ children }) {
   const [isFinished, setIsFinished] = useState(false);
   const [ownFinished, setOwnFinished] = useState(false);
 
+  // Set to 30 by default
+  const [remTurnTime, setRemTurnTime] = useState(30);
+
   useEffect(() => {
     if (!session.socket.current) {
       return;
@@ -56,6 +59,7 @@ function GameProvider({ children }) {
     session.socket.current.on("game_update", (response) => {
       if (response != null) {
         if ("current_turn" in response) {
+          setRemTurnTime(30);
           setCurrentTurn(response.current_turn);
           setChangeTurn((changeTurnRef.current + 1) % 2);
           changeTurnRef.current = (changeTurnRef.current + 1) % 2;
@@ -155,6 +159,14 @@ function GameProvider({ children }) {
             setLeaderboard(response.leaderboard);
           }
         }
+
+        if ("remaining_turn_secs" in response) {
+          setRemTurnTime(Math.floor(response.remaining_turn_secs));
+          // To update timer with corresponding remainder time
+          setChangeTurn((changeTurnRef.current + 1) % 2);
+          changeTurnRef.current = (changeTurnRef.current + 1) % 2;
+        }
+
         if ("leaderboard" in response) {
           // Alguien ha terminado. Si es el propio user, quitar cartas
           // de body y de hand
@@ -182,6 +194,7 @@ function GameProvider({ children }) {
       setTransplantData({});
       setLeaderboard({});
       setIsFinished(false);
+      setRemTurnTime(30);
       setOwnFinished(false);
     };
   }, [session.socketChange]);
@@ -205,6 +218,7 @@ function GameProvider({ children }) {
         leaderboard,
         ownFinished,
         setTransplantData: (data) => setTransplantData(data),
+        remTurnTime,
       }}
     >
       {children}
