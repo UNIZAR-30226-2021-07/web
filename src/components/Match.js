@@ -45,14 +45,14 @@ function Match() {
   }, []);
 
   useEffect(() => {
-    //Ha habido una pausa por parte de otro usuario
+    // Ha habido una pausa por parte de otro usuario
     if (isPaused && pausedBy != userData.name) {
       renderPausePopup();
     }
   }, [isPaused, pausedBy]);
 
   useEffect(() => {
-    //La partida ha terminado
+    // La partida ha terminado
     if (isFinished) {
       renderLeaderboardPopup(socket);
     }
@@ -64,10 +64,12 @@ function Match() {
       return;
     }
     socket.current.once("game_cancelled", () => {
-      renderErrorPopup(
-        "Juega otra partida para disfrutar de los gaticos",
-        "Partida cancelada"
-      );
+      if (!isFinished) {
+        renderErrorPopup(
+          "Todos los rivales han abandonado",
+          "Partida terminada"
+        );
+      }
       // Get out of match
       // When leaving, change updateSocket to get a new socket
       setUpdateSocket((updateSocket + 1) % 2);
@@ -78,7 +80,7 @@ function Match() {
     return () => {
       socket.current.off("game_cancelled");
     };
-  }, [socketChange]);
+  }, [socketChange, isFinished]);
 
   const pauseGame = async (e) => {
     e.preventDefault();
