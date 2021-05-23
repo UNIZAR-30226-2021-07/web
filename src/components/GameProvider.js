@@ -30,6 +30,7 @@ function GameProvider({ children }) {
 
   const [leaderboard, setLeaderboard] = useState({});
   const [isFinished, setIsFinished] = useState(false);
+  const [ownFinished, setOwnFinished] = useState(false);
 
   // Set to 30 by default
   const [remTurnTime, setRemTurnTime] = useState(30);
@@ -164,6 +165,16 @@ function GameProvider({ children }) {
           // To update timer with corresponding remainder time
           setChangeTurn((changeTurnRef.current + 1) % 2);
           changeTurnRef.current = (changeTurnRef.current + 1) % 2;
+
+        if ("leaderboard" in response) {
+          // Alguien ha terminado. Si es el propio user, quitar cartas
+          // de body y de hand
+          // Ver si el propio user tiene los campos a null o no
+          if (response.leaderboard[session.userData.name].coins) {
+            // Se limpia la mano, para quitar esa zona manteniendo el tamaño
+            setHand([]);
+            setOwnFinished(true);
+          }
         }
       }
     });
@@ -183,6 +194,7 @@ function GameProvider({ children }) {
       setLeaderboard({});
       setIsFinished(false);
       setRemTurnTime(30);
+      setOwnFinished(false);
     };
   }, [session.socketChange]);
 
@@ -203,6 +215,7 @@ function GameProvider({ children }) {
         transplantData: transplantData,
         isFinished,
         leaderboard,
+        ownFinished,
         setTransplantData: (data) => setTransplantData(data),
         remTurnTime,
       }}

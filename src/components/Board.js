@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Container, Row, Button } from "react-bootstrap";
+import { Container, Row, Button, Image } from "react-bootstrap";
 
 import Hand from "./game/Hand";
 import Body from "./game/Body";
@@ -10,9 +10,11 @@ import { playDiscard } from "./WebSockets";
 import { GameContext } from "./GameProvider";
 import { SessionContext } from "./SessionProvider";
 
+import fuegos from "../assets/common/icons/fuegos-artificiales.png";
+
 function Board() {
   const session = useContext(SessionContext);
-  const { players, bodies, currentTurn } = useContext(GameContext);
+  const { players, bodies, currentTurn, ownFinished } = useContext(GameContext);
 
   const [numRivals, setNumRivals] = useState(0);
   const [gamePlayers, setGamePlayers] = useState(players);
@@ -138,10 +140,21 @@ function Board() {
         ) : (
           <Button className="pass-button-locked">PASAR</Button>
         )}
-        <Body
-          cardStacks={bodies[session.userData.name]}
-          username={session.userData.name}
-        />
+        {!ownFinished ? (
+          <Body
+            cardStacks={bodies[session.userData.name]}
+            username={session.userData.name}
+          />
+        ) : (
+          <div>
+            <Row>
+              <h4>¡HAS TERMINADO!</h4>
+            </Row>
+            <Row className="align-items-center justify-content-center">
+              <Image style={{ height: "80px", width: "80px" }} src={fuegos} />
+            </Row>
+          </div>
+        )}
         <div className="discard-base" onDrop={drop} onDragOver={allowDrop}>
           <h5 className="mt-4">DESCARTAR</h5>
         </div>
