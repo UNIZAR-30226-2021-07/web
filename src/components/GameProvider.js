@@ -30,6 +30,7 @@ function GameProvider({ children }) {
 
   const [leaderboard, setLeaderboard] = useState({});
   const [isFinished, setIsFinished] = useState(false);
+  const [ownFinished, setOwnFinished] = useState(false);
 
   useEffect(() => {
     if (!session.socket.current) {
@@ -149,9 +150,19 @@ function GameProvider({ children }) {
 
         if ("finished" in response) {
           if (response.finished) {
-            //La partida ha terminado
+            // La partida ha terminado
             setIsFinished(response.finished);
             setLeaderboard(response.leaderboard);
+          }
+        }
+        if ("leaderboard" in response) {
+          // Alguien ha terminado. Si es el propio user, quitar cartas
+          // de body y de hand
+          // Ver si el propio user tiene los campos a null o no
+          if (response.leaderboard[session.userData.name].coins) {
+            // Se limpia la mano, para quitar esa zona manteniendo el tamaño
+            setHand([]);
+            setOwnFinished(true);
           }
         }
       }
@@ -171,6 +182,7 @@ function GameProvider({ children }) {
       setTransplantData({});
       setLeaderboard({});
       setIsFinished(false);
+      setOwnFinished(false);
     };
   }, [session.socketChange]);
 
@@ -191,6 +203,7 @@ function GameProvider({ children }) {
         transplantData: transplantData,
         isFinished,
         leaderboard,
+        ownFinished,
         setTransplantData: (data) => setTransplantData(data),
       }}
     >
