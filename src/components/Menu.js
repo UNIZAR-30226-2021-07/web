@@ -62,6 +62,9 @@ function Menu() {
       id="menu"
       className="app-container col-centered justify-content-around"
     >
+      <Link to="/help">
+        <Image src={help} className="game-icon pause-menu" />
+      </Link>
       <Row className="justify-content-between menu-icons">
         <Col className="h-100">
           <Link to="/profile" className="d-block h-100">
@@ -72,15 +75,6 @@ function Menu() {
               roundedCircle
             />
           </Link>
-        </Col>
-        <Col>
-          <Image
-            src={help}
-            className="game-icon"
-            onClick={() => {
-              history.push("/help");
-            }}
-          />
         </Col>
         <Col className="h-100">
           <Link to="/shop" className="d-block h-100 url-style-disabled">
