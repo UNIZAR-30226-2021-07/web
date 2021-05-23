@@ -60,6 +60,7 @@ function GameProvider({ children }) {
       if (response != null) {
         if ("current_turn" in response) {
           setRemTurnTime(30);
+          setTransplantData({});
           setCurrentTurn(response.current_turn);
           setChangeTurn((changeTurnRef.current + 1) % 2);
           changeTurnRef.current = (changeTurnRef.current + 1) % 2;
