@@ -29,14 +29,9 @@ function Match() {
     socketChange,
   } = useContext(SessionContext);
 
-  const {
-    isPrivate,
-    isPaused,
-    pausedBy,
-    isFinished,
-    leaderboard,
-    remTurnTime,
-  } = useContext(GameContext);
+  const { isPrivate, isPaused, pausedBy, isFinished, leaderboard } = useContext(
+    GameContext
+  );
 
   const history = useHistory();
   const board = getBoard(userData.board)[0];
@@ -112,7 +107,7 @@ function Match() {
             className="game-icon"
             onClick={() => renderLeaveGamePopup(isPrivate)}
           />
-          <Timer remTime={remTurnTime} />
+          <Timer />
           <div>
             {isPrivate && (
               <Image
