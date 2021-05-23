@@ -30,6 +30,10 @@ function GameProvider({ children }) {
 
   const [leaderboard, setLeaderboard] = useState({});
   const [isFinished, setIsFinished] = useState(false);
+  const [ownFinished, setOwnFinished] = useState(false);
+
+  // Set to 30 by default
+  const [remTurnTime, setRemTurnTime] = useState(30);
 
   useEffect(() => {
     if (!session.socket.current) {
@@ -55,6 +59,8 @@ function GameProvider({ children }) {
     session.socket.current.on("game_update", (response) => {
       if (response != null) {
         if ("current_turn" in response) {
+          setRemTurnTime(30);
+          setTransplantData({});
           setCurrentTurn(response.current_turn);
           setChangeTurn((changeTurnRef.current + 1) % 2);
           changeTurnRef.current = (changeTurnRef.current + 1) % 2;
@@ -149,9 +155,27 @@ function GameProvider({ children }) {
 
         if ("finished" in response) {
           if (response.finished) {
-            //La partida ha terminado
+            // La partida ha terminado
             setIsFinished(response.finished);
             setLeaderboard(response.leaderboard);
+          }
+        }
+
+        if ("remaining_turn_secs" in response) {
+          setRemTurnTime(Math.floor(response.remaining_turn_secs));
+          // To update timer with corresponding remainder time
+          setChangeTurn((changeTurnRef.current + 1) % 2);
+          changeTurnRef.current = (changeTurnRef.current + 1) % 2;
+        }
+
+        if ("leaderboard" in response) {
+          // Alguien ha terminado. Si es el propio user, quitar cartas
+          // de body y de hand
+          // Ver si el propio user tiene los campos a null o no
+          if (response.leaderboard[session.userData.name].coins) {
+            // Se limpia la mano, para quitar esa zona manteniendo el tamaño
+            setHand([]);
+            setOwnFinished(true);
           }
         }
       }
@@ -171,6 +195,8 @@ function GameProvider({ children }) {
       setTransplantData({});
       setLeaderboard({});
       setIsFinished(false);
+      setRemTurnTime(30);
+      setOwnFinished(false);
     };
   }, [session.socketChange]);
 
@@ -191,7 +217,9 @@ function GameProvider({ children }) {
         transplantData: transplantData,
         isFinished,
         leaderboard,
+        ownFinished,
         setTransplantData: (data) => setTransplantData(data),
+        remTurnTime,
       }}
     >
       {children}

@@ -32,7 +32,6 @@ function SessionProvider({ children }) {
   const [updateSocket, setUpdateSocket] = useState(1);
   // Flag de estar o no en partida
   const [onMatch, setOnMatch] = useState(false);
-  const [restartPending, setRestartPending] = useState(false);
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
@@ -48,15 +47,12 @@ function SessionProvider({ children }) {
         socketChange: socketChange,
         updateSocket: updateSocket,
         onMatch: onMatch,
-        restartPending: restartPending,
         userData: userData,
         setToken: (token) => setToken(token),
         setSocketChange: (socketChange) => setSocketChange(socketChange),
         setUpdateSocket: (updateSocket) => setUpdateSocket(updateSocket),
         setOnMatch: (onMatch) => setOnMatch(onMatch),
         setUserData: (userData) => setUserData(userData),
-        setRestartPending: (restartPending) =>
-          setRestartPending(restartPending),
       }}
     >
       {children}

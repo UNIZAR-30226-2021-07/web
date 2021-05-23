@@ -1,6 +1,7 @@
 import { renderErrorPopup } from "./popups/ErrorPopup";
 
 export function leaveGame({ socket }) {
+  console.log("LEAVE GAME");
   socket.current.emit("leave", (data) => {
     if (data && data.error) {
       console.log(data.error);
