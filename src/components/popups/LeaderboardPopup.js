@@ -18,7 +18,7 @@ export default function LeaderboardPopup() {
   // Ordena los jugadores por posición
   let players = Object.keys(leaderboard).sort(
     (player1, player2) =>
-      leaderboard[player1].position > leaderboard[player2].position
+      leaderboard[player1].position - leaderboard[player2].position
   );
 
   const handleClick = (e) => {
