@@ -523,7 +523,7 @@ body,
 
 .help-component-image {
   width: 120px !important;
-  height: 120px !important;
+  padding: 5px !important;
 }
 
 .help-popup {
