@@ -66,8 +66,8 @@ function Match() {
     socket.current.once("game_cancelled", () => {
       if (!isFinished) {
         renderErrorPopup(
-          "Juega otra partida para disfrutar de los gaticos",
-          "Partida cancelada"
+          "Todos los rivales han abandonado",
+          "Partida terminada"
         );
       }
       // Get out of match
