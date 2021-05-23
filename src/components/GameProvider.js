@@ -165,6 +165,7 @@ function GameProvider({ children }) {
           // To update timer with corresponding remainder time
           setChangeTurn((changeTurnRef.current + 1) % 2);
           changeTurnRef.current = (changeTurnRef.current + 1) % 2;
+        }
 
         if ("leaderboard" in response) {
           // Alguien ha terminado. Si es el propio user, quitar cartas
