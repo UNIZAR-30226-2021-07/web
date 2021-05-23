@@ -3,29 +3,29 @@ import { Button, Col, Row, Card } from "react-bootstrap";
 
 import { useHistory } from "react-router-dom";
 
-import organ1 from "../assets/common/cards/cuerpo_cerebro.svg";
-import organ2 from "../assets/common/cards/cuerpo_corazon.svg";
-import organ3 from "../assets/common/cards/cuerpo_estomago.svg";
-import organ4 from "../assets/common/cards/cuerpo_hueso.svg";
-import organ5 from "../assets/common/cards/cuerpo_full.svg";
+import organ1 from "../assets/common/cards/cuerpo_cerebro.png";
+import organ2 from "../assets/common/cards/cuerpo_corazon.png";
+import organ3 from "../assets/common/cards/cuerpo_estomago.png";
+import organ4 from "../assets/common/cards/cuerpo_hueso.png";
+import organ5 from "../assets/common/cards/cuerpo_full.png";
 
-import virus1 from "../assets/common/cards/virus_a.svg";
-import virus2 from "../assets/common/cards/virus_b.svg";
-import virus3 from "../assets/common/cards/virus_c.svg";
-import virus4 from "../assets/common/cards/virus_d.svg";
-import virus5 from "../assets/common/cards/virus_e.svg";
+import virus1 from "../assets/common/cards/virus_a.png";
+import virus2 from "../assets/common/cards/virus_b.png";
+import virus3 from "../assets/common/cards/virus_c.png";
+import virus4 from "../assets/common/cards/virus_d.png";
+import virus5 from "../assets/common/cards/virus_e.png";
 
-import medicina3 from "../assets/common/cards/medicina_jarabe.svg";
-import medicina2 from "../assets/common/cards/medicina_jeringuilla.svg";
-import medicina5 from "../assets/common/cards/medicina_medikit.svg";
-import medicina1 from "../assets/common/cards/medicina_pastis.svg";
-import medicina4 from "../assets/common/cards/medicina_tiritas.svg";
+import medicina3 from "../assets/common/cards/medicina_jarabe.png";
+import medicina2 from "../assets/common/cards/medicina_jeringuilla.png";
+import medicina5 from "../assets/common/cards/medicina_medikit.png";
+import medicina1 from "../assets/common/cards/medicina_pastis.png";
+import medicina4 from "../assets/common/cards/medicina_tiritas.png";
 
-import tratamiento1 from "../assets/common/cards/especial_operacion.svg";
-import tratamiento2 from "../assets/common/cards/especial_robaorganos.svg";
-import tratamiento3 from "../assets/common/cards/especial_tos.svg";
-import tratamiento4 from "../assets/common/cards/especial_guantes.svg";
-import tratamiento5 from "../assets/common/cards/especial_radiografia.svg";
+import tratamiento1 from "../assets/common/cards/especial_operacion.png";
+import tratamiento2 from "../assets/common/cards/especial_robaorganos.png";
+import tratamiento3 from "../assets/common/cards/especial_tos.png";
+import tratamiento4 from "../assets/common/cards/especial_guantes.png";
+import tratamiento5 from "../assets/common/cards/especial_radiografia.png";
 
 function Help() {
   const history = useHistory();
