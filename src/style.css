@@ -277,6 +277,7 @@ body,
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: white !important;
 }
 
 .chat-header {
@@ -359,7 +360,7 @@ body,
 .discard-base {
   height: 80px;
   width: 150px;
-  border: 2px dashed #9c4dcc;
+  border: 4px dashed #9c4dcc;
   text-align: center;
 }
 
@@ -377,6 +378,7 @@ body,
 .body-card {
   width: 8vh !important;
   height: 11.25vh !important;
+  border-width: 2px !important;
 }
 
 .rival-card {
@@ -523,7 +525,7 @@ body,
 
 .help-component-image {
   width: 120px !important;
-  height: 120px !important;
+  padding: 5px !important;
 }
 
 .help-popup {
