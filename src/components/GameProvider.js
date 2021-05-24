@@ -158,6 +158,8 @@ function GameProvider({ children }) {
             // La partida ha terminado
             setIsFinished(response.finished);
             setLeaderboard(response.leaderboard);
+            // Se limpia la mano, para quitar esa zona manteniendo el tamaño
+            setHand([]);
           }
         }
 

@@ -8,6 +8,7 @@ import { renderCreateGamePopup } from "./popups/CreateGamePopup";
 import { renderJoinPrivateGamePopup } from "./popups/JoinPrivateGamePopup";
 import { renderJoinPublicGamePopup } from "./popups/JoinPublicGamePopup";
 import { renderErrorPopup } from "./popups/ErrorPopup";
+import { getUserData } from "../utils/api";
 
 import logo from "../assets/common/logo/logo.svg";
 import shop from "../assets/common/icons/tienda.svg";
@@ -24,6 +25,7 @@ function Menu() {
   const game = useContext(GameContext);
   const history = useHistory();
   const [picture, setPicture] = useState("");
+  const [numCoins, setNumCoins] = useState(0);
 
   useEffect(() => {
     session.setOnMatch(false);
@@ -37,7 +39,27 @@ function Menu() {
 
     const pictureURL = getProfile(session.userData.picture);
     setPicture(pictureURL);
-  }, [session.userData.picture]);
+    setNumCoins(session.userData.coins);
+  }, [session.userData.picture, session.userData.coins]);
+
+  useEffect(() => {
+    getUserData(session).then((response) => {
+      if (response != null) {
+        if ("error" in response) {
+          console.error(response.error);
+        } else {
+          session.setUserData({
+            email: response.email,
+            name: response.name,
+            coins: response.coins,
+            picture: response.picture,
+            board: response.board,
+            purchases: response.purchases,
+          });
+        }
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (!session.socket || !session.socket.current) return;
@@ -82,7 +104,7 @@ function Menu() {
                     <Image src={shop} alt="Tienda" className="h-100" />
                   </Row>
                   <Row className="coins justify-content-center align-items-center">
-                    <span className="mr-2">{session.userData.coins}</span>
+                    <span className="mr-2">{numCoins}</span>
                     <Image src={coins} alt="Tienda" />
                   </Row>
                 </Col>

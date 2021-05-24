@@ -12,6 +12,7 @@ function Shop() {
 
   // Check if element is selected
   useEffect(() => {
+    console.log(session.userData.coins);
     if (session.userData.coins) {
       setCoins(session.userData.coins);
     }
