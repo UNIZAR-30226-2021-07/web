@@ -14,7 +14,7 @@ import fuegos from "../assets/common/icons/fuegos-artificiales.png";
 
 function Board() {
   const session = useContext(SessionContext);
-  const { players, bodies, currentTurn, ownFinished } = useContext(GameContext);
+  const { players, bodies, currentTurn, ownFinished, isFinished } = useContext(GameContext);
 
   const [numRivals, setNumRivals] = useState(0);
   const [gamePlayers, setGamePlayers] = useState(players);
@@ -133,19 +133,14 @@ function Board() {
         <Player5 />
       </Row>
       <Row className="justify-content-around">
-        {currentTurn == session.userData.name ? (
+        {(currentTurn == session.userData.name && !isFinished) ? (
           <Button className="pass-button-unlocked" onClick={playPass}>
             PASAR
           </Button>
         ) : (
           <Button className="pass-button-locked">PASAR</Button>
         )}
-        {!ownFinished ? (
-          <Body
-            cardStacks={bodies[session.userData.name]}
-            username={session.userData.name}
-          />
-        ) : (
+        {(ownFinished || isFinished) ? (
           <div>
             <Row>
               <h4>¡HAS TERMINADO!</h4>
@@ -154,6 +149,11 @@ function Board() {
               <Image style={{ height: "80px", width: "80px" }} src={fuegos} />
             </Row>
           </div>
+        ) : (
+          <Body
+            cardStacks={bodies[session.userData.name]}
+            username={session.userData.name}
+          />
         )}
         <div className="discard-base" onDrop={drop} onDragOver={allowDrop}>
           <h5 className="mt-4">DESCARTAR</h5>
