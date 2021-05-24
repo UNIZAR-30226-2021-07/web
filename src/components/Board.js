@@ -14,7 +14,9 @@ import fuegos from "../assets/common/icons/fuegos-artificiales.png";
 
 function Board() {
   const session = useContext(SessionContext);
-  const { players, bodies, currentTurn, ownFinished, isFinished } = useContext(GameContext);
+  const { players, bodies, currentTurn, ownFinished, isFinished } = useContext(
+    GameContext
+  );
 
   const [numRivals, setNumRivals] = useState(0);
   const [gamePlayers, setGamePlayers] = useState(players);
@@ -133,14 +135,14 @@ function Board() {
         <Player5 />
       </Row>
       <Row className="justify-content-around">
-        {(currentTurn == session.userData.name && !isFinished) ? (
+        {currentTurn == session.userData.name && !isFinished ? (
           <Button className="pass-button-unlocked" onClick={playPass}>
             PASAR
           </Button>
         ) : (
           <Button className="pass-button-locked">PASAR</Button>
         )}
-        {(ownFinished || isFinished) ? (
+        {ownFinished || isFinished ? (
           <div>
             <Row>
               <h4>¡HAS TERMINADO!</h4>
